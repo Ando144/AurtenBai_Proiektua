@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class proba {
+public class eljuego {
     private static final int SIZE = 10;
     private static final int MAX_STRENGTH = 3;
 
