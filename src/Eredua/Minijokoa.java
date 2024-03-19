@@ -44,6 +44,18 @@ public class Minijokoa {
             }
         }
     }
+    
+    public static boolean irabaziDu()
+    {
+        if (tamagochiLerroa == tartaLerroa && tamagochiZutabea == tartaZutabea)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public static boolean osoGertu(int lerroa, int zutabea)
     {
         if (lerroa == tamagochiLerroa && zutabea == tamagochiZutabea)
@@ -87,4 +99,5 @@ public class Minijokoa {
             return false;
         }
     }
+
 }
