@@ -43,6 +43,7 @@ public class Minijokoa {
                 tartaZutabea = (int) (Math.random() * 12);
             }
         }
+    }
     public static boolean osoGertu(int lerroa, int zutabea)
     {
         if (lerroa == tamagochiLerroa && zutabea == tamagochiZutabea)
