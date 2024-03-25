@@ -14,6 +14,8 @@ public class Egg extends Tamagotchi{
         else if (this.gaixorik){
             this.osasunaGalduGaixorik();
         }
+		setChanged();
+		notifyObservers();
     }
 
 }

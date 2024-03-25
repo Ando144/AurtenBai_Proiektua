@@ -1,12 +1,10 @@
 package src.Eredua;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyAdapter;
+import java.util.Observable;
 
-public class Minijokoa {
+
+public class Minijokoa extends Observable{
    
    private static int[][] laukiak = new int [12][12]; 
    private static boolean[][] tarta = new boolean [12][12];
@@ -16,6 +14,15 @@ public class Minijokoa {
    private static int tartaLerroa;
    private static int tartaZutabea;
 
+    private static Minijokoa NireMinijokoa = null;
+    public static Minijokoa getMinijokoa()
+    {
+        if(NireMinijokoa == null)
+        {
+            NireMinijokoa = new Minijokoa();
+        }
+        return NireMinijokoa;
+    }
     public static void main(String[] args) 
     {
         hasieratuLaukiak();
@@ -30,6 +37,7 @@ public class Minijokoa {
                 laukiak[i][j] = (int) (Math.random() * 3) + 1;
             }
         }
+
     }
     public static boolean mugimenduaEginDaiteke(int norabidea)
     /*comprueba si el movimiento esta dentro de la matriz 
@@ -210,40 +218,5 @@ public class Minijokoa {
             return false;
         }
     }
-    public class MinijokoController extends MouseAdapter
-    {
-        public void punteroaBarruan(MouseEvent e)
-        {
-            int x = e.getX();
-            int y = e.getY();
-            int zutabea = x / 50;
-            int lerroa = y / 50;
-            laukiaAktualizatu(lerroa, zutabea);
-            
-        }
-        //input de las flechas del teclado
-        public void keyPressed(KeyEvent e)
-        {
-            if(!irabaziDu()){
-                int key = e.getKeyCode();
-                if (key == KeyEvent.VK_UP)
-                {
-                    TamagochiMugitu(1);
-                }
-                else if (key == KeyEvent.VK_DOWN)
-                {
-                    TamagochiMugitu(2);
-                }
-                else if (key == KeyEvent.VK_LEFT)
-                {
-                    TamagochiMugitu(3);
-                }
-                else if (key == KeyEvent.VK_RIGHT)
-                {
-                    TamagochiMugitu(4);
-                }
-            }
-        }
-
-    }
+    
 }

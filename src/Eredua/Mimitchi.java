@@ -16,5 +16,7 @@ public class Mimitchi extends Tamagotchi{
         }
         this.bizitza -= 7;
         this.asetasuna -= 7;
+		setChanged();
+		notifyObservers();
     }
 }

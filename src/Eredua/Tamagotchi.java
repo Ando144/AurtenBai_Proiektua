@@ -1,6 +1,8 @@
 package src.Eredua;
 
-public abstract class Tamagotchi {
+import java.util.Observable;
+
+public abstract class Tamagotchi extends Observable{
     protected int bizitza;
     protected int asetasuna;
     protected boolean gaixorik;
@@ -13,7 +15,7 @@ public abstract class Tamagotchi {
         this.kaka = pKaka;
     }
 
-    protected abstract void kontadoreakEguneratu();
+    public abstract void kontadoreakEguneratu();
 
     protected void osasunaGalduKaka(){
         bizitza -= 5;

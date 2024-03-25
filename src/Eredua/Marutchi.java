@@ -16,5 +16,7 @@ public class Marutchi extends Tamagotchi{
         }
         this.bizitza -= 1;
         this.asetasuna -= 1;
+		setChanged();
+		notifyObservers();
     }
 }

@@ -16,5 +16,7 @@ public class Maskutchi extends Tamagotchi{
         }
         this.bizitza -= 3;
         this.asetasuna -= 14;
+		setChanged();
+		notifyObservers();
     }
 }
