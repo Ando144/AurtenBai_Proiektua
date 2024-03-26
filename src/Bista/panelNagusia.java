@@ -281,7 +281,7 @@ public class panelNagusia extends JFrame{
 	}
 	private JLabel getEggIrudi() {
 		if (eggIrudi == null) {
-			eggIrudi = new JLabel("New label");
+			eggIrudi = new JLabel("");
 			eggIrudi.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\Egg1.png"));
 			eggIrudi.setBounds(35, 10, 151, 126);
 		}
