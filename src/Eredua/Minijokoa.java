@@ -28,7 +28,7 @@ public class Minijokoa extends Observable{
         hasieratuLaukiak();
         TamagochietaTartaHasieratu();
     }
-    public void hasieratuLaukiak()
+    private void hasieratuLaukiak()
     {
         for (int i = 0; i < 12; i++)
         {
@@ -40,24 +40,9 @@ public class Minijokoa extends Observable{
         setChanged();
         notifyObservers("hasieratu");
     }
-    public Color getColor(int lerroa, int zutabea)
+    public int[][] getLaukiak()
     {
-        if (laukiak[lerroa][zutabea] == 1)
-        {
-            return Color.LIGHT_GRAY;
-        }
-        else if (laukiak[lerroa][zutabea] == 2)
-        {
-            return Color.GRAY;
-        }
-        else if (laukiak[lerroa][zutabea] == 3)
-        {
-            return Color.DARK_GRAY;
-        }
-        else
-        {
-            return Color.LIGHT_GRAY;
-        }
+        return laukiak;
     }
     public static boolean tamagochiVisible()
     {
@@ -70,7 +55,7 @@ public class Minijokoa extends Observable{
             return false;
         }
     }
-    public static boolean mugimenduaEginDaiteke(int norabidea)
+    private static boolean mugimenduaEginDaiteke(int norabidea)
     /*comprueba si el movimiento esta dentro de la matriz 
     y si la casilla a la que se quiere desplazar esta con laukiak de valor 0*/
     {
@@ -123,7 +108,7 @@ public class Minijokoa extends Observable{
             return false;
         }
     }
-    public static void TamagochiMugitu(int norabidea)
+    public void TamagochiMugitu(int norabidea)
     //mueve el tamagochi en la matriz siempre y cuando sea movimiento valido
     {
         if (norabidea == 1)
@@ -172,7 +157,7 @@ public class Minijokoa extends Observable{
             }
         }
     }
-    public static void TamagochietaTartaHasieratu()
+    private  void TamagochietaTartaHasieratu()
     {
         tamagochiLerroa = (int) (Math.random() * 12);
         tamagochiZutabea = (int) (Math.random() * 12);
