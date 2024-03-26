@@ -14,8 +14,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.util.Observer;
 import java.util.Observable;
-
-public class panelNagusia extends JFrame implements Observer {
+import javax.swing.Timer;
+public class panelNagusia extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel panel_tamagochi;
@@ -37,6 +37,11 @@ public class panelNagusia extends JFrame implements Observer {
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_5;
+	private ImageIcon[] TamaIrudiak;
+	private JLabel eggIrudi;
+	private int intOrain;
+	private Timer timer;
+	private ImageIcon irudiak;
 
 	/**
 	 * Launch the application.
@@ -53,11 +58,11 @@ public class panelNagusia extends JFrame implements Observer {
 			}
 		});
 	}
-public void update(Observable arg0, Object arg1){
+/**public void update(Observable arg0, Object arg1){
     if (){
 
     }
-}
+}**/
 
 	/**
 	 * Create the frame.
@@ -80,6 +85,20 @@ public void update(Observable arg0, Object arg1){
 		getContentPane().add(getLblNewLabel_3());
 		getContentPane().add(getLblNewLabel_4());
 		
+		TamaIrudiak= new ImageIcon[] {
+				new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\Egg1.png"),
+				new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\Egg2.png")
+		};
+		intOrain=0;
+		//segundoro irudia aldatzeko
+		timer = new Timer(1000, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				intOrain = (intOrain + 1) % TamaIrudiak.length;
+				eggIrudi.setIcon(TamaIrudiak[intOrain]);
+			}
+		});
+		timer.start();
+            
 	}
 	private JPanel getPanel_tamagochi() {
 		if (panel_tamagochi == null) {
@@ -87,6 +106,8 @@ public void update(Observable arg0, Object arg1){
 			panel_tamagochi.setBackground(new Color(0, 0, 0));
 			panel_tamagochi.setBounds(120, 33, 196, 165);
 			panel_tamagochi.setLayout(null);
+			panel_tamagochi.add(getEggIrudi());
+			panel_tamagochi.add(getEggIrudi());
 		}
 		return panel_tamagochi;
 	}
@@ -258,4 +279,13 @@ public void update(Observable arg0, Object arg1){
 		}
 		return lblNewLabel_5;
 	}
+	private JLabel getEggIrudi() {
+		if (eggIrudi == null) {
+			eggIrudi = new JLabel("New label");
+			eggIrudi.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\Egg1.png"));
+			eggIrudi.setBounds(35, 10, 151, 126);
+		}
+		return eggIrudi;
+	}
 }
+
