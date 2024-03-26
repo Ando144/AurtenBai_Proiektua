@@ -23,12 +23,12 @@ public class Minijokoa extends Observable{
         }
         return NireMinijokoa;
     }
-    public static void main(String[] args) 
+    public void main(String[] args) 
     {
         hasieratuLaukiak();
         TamagochietaTartaHasieratu();
     }
-    public static void hasieratuLaukiak()
+    public void hasieratuLaukiak()
     {
         for (int i = 0; i < 12; i++)
         {
@@ -37,7 +37,38 @@ public class Minijokoa extends Observable{
                 laukiak[i][j] = (int) (Math.random() * 3) + 1;
             }
         }
-
+        setChanged();
+        notifyObservers("hasieratu");
+    }
+    public Color getColor(int lerroa, int zutabea)
+    {
+        if (laukiak[lerroa][zutabea] == 1)
+        {
+            return Color.LIGHT_GRAY;
+        }
+        else if (laukiak[lerroa][zutabea] == 2)
+        {
+            return Color.GRAY;
+        }
+        else if (laukiak[lerroa][zutabea] == 3)
+        {
+            return Color.DARK_GRAY;
+        }
+        else
+        {
+            return Color.LIGHT_GRAY;
+        }
+    }
+    public static boolean tamagochiVisible()
+    {
+        if(laukiak[tamagochiLerroa][tamagochiZutabea] == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public static boolean mugimenduaEginDaiteke(int norabidea)
     /*comprueba si el movimiento esta dentro de la matriz 
@@ -102,6 +133,8 @@ public class Minijokoa extends Observable{
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = false;
                 tamagochiLerroa--;
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = true;
+                setChanged();
+                notifyObservers("tamagochiMugitu");
             }
         }
         else if (norabidea == 2)
@@ -111,6 +144,8 @@ public class Minijokoa extends Observable{
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = false;
                 tamagochiLerroa++;
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = true;
+                setChanged();
+                notifyObservers("tamagochiMugitu");
             }
         }
         else if (norabidea == 3)
@@ -120,6 +155,9 @@ public class Minijokoa extends Observable{
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = false;
                 tamagochiZutabea--;
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = true;
+                setChanged();
+                notifyObservers("tamagochiMugitu");
+
             }
         }
         else if (norabidea == 4)
@@ -129,6 +167,8 @@ public class Minijokoa extends Observable{
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = false;
                 tamagochiZutabea++;
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = true;
+                setChanged();
+                notifyObservers("tamagochiMugitu");
             }
         }
     }
@@ -147,21 +187,31 @@ public class Minijokoa extends Observable{
                 tartaZutabea = (int) (Math.random() * 12);
             }
         }
+        setChanged();
+        notifyObservers("tamagochietaTartaHasieratu");
     }
-    public static void laukiaAktualizatu(int lerroa, int zutabea)
+    public  void laukiaAktualizatu(int lerroa, int zutabea)
     {
         if (laukiak[lerroa][zutabea] == 1)
         {
             laukiak[lerroa][zutabea] = 0;
+            setChanged();
+            notifyObservers("laukiaAktualizatu");//cambiar el color del panel
             //convertirlo en invisible
         }
         else if (laukiak[lerroa][zutabea] == 2)
         {
             laukiak[lerroa][zutabea] = 1;
+            setChanged();
+            notifyObservers("laukiaAktualizatu");//cambiar el color del panel
+
         }
         else if (laukiak[lerroa][zutabea] == 3)
         {
             laukiak[lerroa][zutabea] = 2;
+            setChanged();
+            notifyObservers("laukiaAktualizatu");//cambiar el color del panel
+
         }
     }
     public static boolean irabaziDu()
