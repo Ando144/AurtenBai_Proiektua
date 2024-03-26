@@ -178,8 +178,8 @@ public class panelNagusia extends JFrame{
 			boton_exit.setFont(new Font("Tahoma", Font.PLAIN, 10));
 			boton_exit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					HasieraMenua Proba = new HasieraMenua();
-					Proba.setVisible(true);
+					HasieraMenua HasieraMenua = new HasieraMenua();
+					HasieraMenua.setVisible(true);
 					dispose();}
 			});
 			boton_exit.setBounds(351, 0, 85, 21);
