@@ -16,11 +16,14 @@ import java.util.Observer;
 import java.util.Observable;
 import java.awt.Color;
 
+
+
 public class miniJokoaBista implements Observer{
     private JFrame frame;
     private JPanel panel;
     private JButton button;
     private JLabel label;
+    private JLabel Tamagochi;
 
     public miniJokoaBista (Observable pMinijokoa){
         pMinijokoa.addObserver(this);
@@ -41,13 +44,13 @@ public class miniJokoaBista implements Observer{
                 tamagochiMugitu();
                 break;
             case "tamagochietaTartaHasieratu":
-                tartaKokatu();
+                //tartaKokatu();
                 break;
             case "irabazi":
-                irabazi();
+                //irabazi();
                 break;
             case "galdu":
-                galdu();
+                //galdu();
                 break;
         }
         
@@ -103,7 +106,7 @@ public class miniJokoaBista implements Observer{
     }
     public void tamagochiMugitu()
     {
-
+    
     }
 
     private class MinijokoController extends MouseAdapter implements KeyListener

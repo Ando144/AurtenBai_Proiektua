@@ -59,53 +59,55 @@ public class Minijokoa extends Observable{
     /*comprueba si el movimiento esta dentro de la matriz 
     y si la casilla a la que se quiere desplazar esta con laukiak de valor 0*/
     {
-        if (norabidea == 1)
-        {
-            if (tamagochiLerroa > 0 && laukiak[tamagochiLerroa - 1][tamagochiZutabea] != 0)
+        if(tamagochiVisible()){
+            if (norabidea == 1)
             {
-                return true;
+                if (tamagochiLerroa > 0 && laukiak[tamagochiLerroa - 1][tamagochiZutabea] != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (norabidea == 2)
+            {
+                if (tamagochiLerroa < 11 && laukiak[tamagochiLerroa + 1][tamagochiZutabea] != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (norabidea == 3)
+            {
+                if (tamagochiZutabea > 0 && laukiak[tamagochiLerroa][tamagochiZutabea - 1] != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (norabidea == 4)
+            {
+                if (tamagochiZutabea < 11 && laukiak[tamagochiLerroa][tamagochiZutabea + 1] != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
                 return false;
             }
-        }
-        else if (norabidea == 2)
-        {
-            if (tamagochiLerroa < 11 && laukiak[tamagochiLerroa + 1][tamagochiZutabea] != 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else if (norabidea == 3)
-        {
-            if (tamagochiZutabea > 0 && laukiak[tamagochiLerroa][tamagochiZutabea - 1] != 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else if (norabidea == 4)
-        {
-            if (tamagochiZutabea < 11 && laukiak[tamagochiLerroa][tamagochiZutabea + 1] != 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
         }
     }
     public void TamagochiMugitu(int norabidea)
