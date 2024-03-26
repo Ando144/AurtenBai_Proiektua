@@ -1,6 +1,5 @@
 package src.Eredua;
 import java.util.*;
-import java.util.Observable;
 import java.io.*;
 
 public class PartidaErregistro extends Observable{
@@ -68,7 +67,7 @@ public class PartidaErregistro extends Observable{
 	}
 	
 	public void getLehenengoBostak() {
-		String path="C:\\Users\\jonan\\Downloads\\TamagotchiDB.txt";
+		String path=this.getClass().getResource("/TamagotchiDB/TamagotchiDB.txt").toString().replace("file:/", "");
         File file= new File(path);
         
         try{
