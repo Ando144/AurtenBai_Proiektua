@@ -171,10 +171,20 @@ public class HasieraMenua extends JFrame implements Observer{
 			Erregistroa.setBackground(SystemColor.desktop);
 			Erregistroa.setLayout(null);
 			Erregistroa.add(getLBTitulua());
+			Erregistroa.add(getLeh());
+			Erregistroa.add(getBig());
+			Erregistroa.add(getHir());
+			Erregistroa.add(getLau());
+			Erregistroa.add(getBos());
+			Erregistroa.add(getLehName());
 			Erregistroa.add(getLehScore());
+			Erregistroa.add(getBigName());
 			Erregistroa.add(getBigScore());
+			Erregistroa.add(getHirName());
 			Erregistroa.add(getHirScore());
+			Erregistroa.add(getLauName());
 			Erregistroa.add(getLauScore());
+			Erregistroa.add(getBosName());
 			Erregistroa.add(getBosScore());
 		}
 		return Erregistroa;
