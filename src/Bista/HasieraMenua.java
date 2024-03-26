@@ -1,5 +1,7 @@
 package src.Bista;
 
+import src.Eredua.*;
+
 import java.awt.*;
 import java.awt.EventQueue;
 import java.util.*;
@@ -8,6 +10,7 @@ import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -221,6 +224,13 @@ public class HasieraMenua extends JFrame {
 			PlayBotoi.setForeground(SystemColor.desktop);
 			PlayBotoi.setBackground(Color.red);
 			PlayBotoi.setBounds(283, 13, 89, 23);
+			PlayBotoi.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Jokoa.getJokoa().partidaBatJokatu();
+					panelNagusia.main(null);
+					//itxi frame hau
+				}
+			});
 		}
 		return PlayBotoi;
 	}
@@ -231,6 +241,11 @@ public class HasieraMenua extends JFrame {
 			ExitBotoi.setForeground(SystemColor.desktop);
 			ExitBotoi.setBackground(Color.red);
 			ExitBotoi.setBounds(382, 13, 89, 23);
+			ExitBotoi.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					System.exit(0);
+				}
+			});
 		}
 		return ExitBotoi;
 	}
