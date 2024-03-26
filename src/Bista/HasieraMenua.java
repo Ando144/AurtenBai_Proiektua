@@ -1,5 +1,7 @@
 package src.Bista;
 
+import src.Eredua.*;
+
 import java.awt.*;
 import java.awt.EventQueue;
 import java.util.*;
@@ -8,6 +10,7 @@ import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -52,6 +55,15 @@ public class HasieraMenua extends JFrame {
 	private JLabel HirScore;
 	private JLabel LauScore;
 	private JLabel BosScore;
+
+	private Kontroladorea kontroladorea = null;
+
+	private Kontroladorea getKontroladorea() {
+		if (kontroladorea == null) {
+			kontroladorea = new Kontroladorea();
+		}
+		return kontroladorea;
+	}
 
 	/**
 	 * Launch the application.
@@ -221,6 +233,7 @@ public class HasieraMenua extends JFrame {
 			PlayBotoi.setForeground(SystemColor.desktop);
 			PlayBotoi.setBackground(Color.red);
 			PlayBotoi.setBounds(283, 13, 89, 23);
+			PlayBotoi.addActionListener(getKontroladorea());
 		}
 		return PlayBotoi;
 	}
@@ -231,6 +244,7 @@ public class HasieraMenua extends JFrame {
 			ExitBotoi.setForeground(SystemColor.desktop);
 			ExitBotoi.setBackground(Color.red);
 			ExitBotoi.setBounds(382, 13, 89, 23);
+			ExitBotoi.addActionListener(getKontroladorea());
 		}
 		return ExitBotoi;
 	}
@@ -313,5 +327,18 @@ public class HasieraMenua extends JFrame {
 			BosScore.setBounds(10, 115, 223, 14);
 		}
 		return BosScore;
+	}
+
+	private class Kontroladorea implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource().equals(PlayBotoi)){
+				Jokoa.getJokoa().partidaBatJokatu();
+				panelNagusia.main(null);
+				//itxi hasierako panela
+			}else if(e.getSource().equals(ExitBotoi)){
+				System.exit(0);
+			}
+		}
 	}
 }
