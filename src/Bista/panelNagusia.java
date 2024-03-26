@@ -16,9 +16,6 @@ import java.awt.Font;
 import java.awt.SystemColor;
 
 import javax.swing.border.LineBorder;
-
-import src.Eredua.PartidaErregistro;
-
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -181,10 +178,8 @@ public class panelNagusia extends JFrame{
 			boton_exit.setFont(new Font("Tahoma", Font.PLAIN, 10));
 			boton_exit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					PartidaErregistro pe = new PartidaErregistro();
-					HasieraMenua frame = new HasieraMenua(pe);
-					pe.getLehenengoBostak();
-					frame.setVisible(true);
+					HasieraMenua HasieraMenua = new HasieraMenua();
+					HasieraMenua.setVisible(true);
 					dispose();}
 			});
 			boton_exit.setBounds(351, 0, 85, 21);
