@@ -3,27 +3,15 @@ package src.Bista;
 import src.Eredua.*;
 
 import java.awt.*;
-import java.awt.EventQueue;
 import java.util.*;
 import javax.swing.Timer;
 import javax.swing.*;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.GridLayout;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import java.awt.FlowLayout;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.SwingConstants;
-
-public class HasieraMenua extends JFrame {
+public class HasieraMenua extends JFrame implements Observer{
 	
 	private Timer timer;
 	private ImageIcon[] tamagotchiIrudiak;
@@ -50,10 +38,20 @@ public class HasieraMenua extends JFrame {
 	private JLabel YourNametxt;
 	private JLabel LeaderBoardtxt;
 	private JLabel LBTitulua;
+	private JLabel Leh;
+	private JLabel Big;
+	private JLabel Hir;
+	private JLabel Lau;
+	private JLabel Bos;
+	private JLabel LehName;
 	private JLabel LehScore;
+	private JLabel BigName;
 	private JLabel BigScore;
+	private JLabel HirName;
 	private JLabel HirScore;
+	private JLabel LauName;
 	private JLabel LauScore;
+	private JLabel BosName;
 	private JLabel BosScore;
 
 	private Kontroladorea kontroladorea = null;
@@ -72,7 +70,9 @@ public class HasieraMenua extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HasieraMenua frame = new HasieraMenua();
+					PartidaErregistro pe = new PartidaErregistro();
+					HasieraMenua frame = new HasieraMenua(pe);
+					pe.getLehenengoBostak();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -84,7 +84,7 @@ public class HasieraMenua extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public HasieraMenua() {
+	public HasieraMenua(Observable pErreg) {
 		setFont(new Font("Dialog", Font.PLAIN, 31));
 		getContentPane().setBackground(new Color(0, 0, 0));
 		getContentPane().setForeground(new Color(0, 0, 0));
@@ -93,6 +93,8 @@ public class HasieraMenua extends JFrame {
 		getContentPane().setLayout(new GridLayout(2, 1, 0, 0));
 		getContentPane().add(getPanel());
 		getContentPane().add(getPanel_1());
+		
+		pErreg.addObserver(this);
 		
 		koloreak = new Color[]{
 				Color.CYAN,
@@ -125,10 +127,20 @@ public class HasieraMenua extends JFrame {
                 intOrain4 = (intOrain4 +1) % koloreak.length;
                 intOrain5 = (intOrain5 +1) % koloreak.length;
                 MarutchiIrudi.setIcon(tamagotchiIrudiak[intOrain]);
+                Leh.setForeground(koloreak[intOrain1]);
+                LehName.setForeground(koloreak[intOrain1]);
                 LehScore.setForeground(koloreak[intOrain1]);
+                Big.setForeground(koloreak[intOrain2]);
+                BigName.setForeground(koloreak[intOrain2]);
                 BigScore.setForeground(koloreak[intOrain2]);
+                Hir.setForeground(koloreak[intOrain3]);
+                HirName.setForeground(koloreak[intOrain3]);
                 HirScore.setForeground(koloreak[intOrain3]);
+                Lau.setForeground(koloreak[intOrain4]);
+                LauName.setForeground(koloreak[intOrain4]);
                 LauScore.setForeground(koloreak[intOrain4]);
+                Bos.setForeground(koloreak[intOrain5]);
+                BosName.setForeground(koloreak[intOrain5]);
                 BosScore.setForeground(koloreak[intOrain5]);
             }
         });
@@ -287,44 +299,177 @@ public class HasieraMenua extends JFrame {
 		}
 		return LBTitulua;
 	}
+	private JLabel getLeh() {
+		if (Leh == null) {
+			Leh = new JLabel("1st");
+			Leh.setHorizontalAlignment(SwingConstants.CENTER);
+			Leh.setFont(new Font("Arial", Font.PLAIN, 15));
+			Leh.setForeground(new Color(0, 255, 255));
+			Leh.setBounds(10, 40, 43, 14);
+		}
+		return Leh;
+	}
+	private JLabel getBig() {
+		if (Big == null) {
+			Big = new JLabel("2nd");
+			Big.setHorizontalAlignment(SwingConstants.CENTER);
+			Big.setFont(new Font("Arial", Font.PLAIN, 15));
+			Big.setForeground(Color.GREEN);
+			Big.setBounds(10, 65, 43, 14);
+		}
+		return Big;
+	}
+	private JLabel getHir() {
+		if (Hir == null) {
+			Hir = new JLabel("3rd");
+			Hir.setHorizontalAlignment(SwingConstants.CENTER);
+			Hir.setFont(new Font("Arial", Font.PLAIN, 15));
+			Hir.setForeground(Color.MAGENTA);
+			Hir.setBounds(10, 90, 43, 14);
+		}
+		return Hir;
+	}
+	private JLabel getLau() {
+		if (Lau == null) {
+			Lau = new JLabel("4th");
+			Lau.setHorizontalAlignment(SwingConstants.CENTER);
+			Lau.setFont(new Font("Arial", Font.PLAIN, 15));
+			Lau.setForeground(new Color(255, 140, 0));
+			Lau.setBounds(10, 115, 43, 14);
+		}
+		return Lau;
+	}
+	
+	//   ((PartidaErregistroa)arg0).metodo1()
+	
+	
+	private JLabel getBos() {
+		if (Bos == null) {
+			Bos = new JLabel("5th");
+			Bos.setHorizontalAlignment(SwingConstants.CENTER);
+			Bos.setFont(new Font("Arial", Font.PLAIN, 15));
+			Bos.setForeground(Color.YELLOW);
+			Bos.setBounds(10, 140, 43, 14);
+		}
+		return Bos;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		LehName.setText(((PartidaErregistro)o).getLeh());
+		LehScore.setText(((PartidaErregistro)o).getLehSc());
+		
+		BigName.setText(((PartidaErregistro)o).getBig());
+		BigScore.setText(((PartidaErregistro)o).getBigSc());
+		
+		HirName.setText(((PartidaErregistro)o).getHir());
+		HirScore.setText(((PartidaErregistro)o).getHirSc());
+		
+		LauName.setText(((PartidaErregistro)o).getLau());
+		LauScore.setText(((PartidaErregistro)o).getLauSc());
+		
+		BosName.setText(((PartidaErregistro)o).getBos());
+		BosScore.setText(((PartidaErregistro)o).getBosSc());
+		
+	}
+	private JLabel getLehName() {
+		if (LehName == null) {
+			LehName = new JLabel("1Name1");
+			LehName.setHorizontalAlignment(SwingConstants.CENTER);
+			LehName.setFont(new Font("Arial", Font.PLAIN, 12));
+			LehName.setForeground(Color.CYAN);
+			LehName.setBounds(84, 41, 74, 14);
+		}
+		return LehName;
+	}
 	private JLabel getLehScore() {
 		if (LehScore == null) {
-			LehScore = new JLabel("1st                 ABC                 99");
+			LehScore = new JLabel("1Score1");
+			LehScore.setHorizontalAlignment(SwingConstants.CENTER);
 			LehScore.setFont(new Font("Arial", Font.PLAIN, 15));
-			LehScore.setForeground(new Color(0, 255, 255));
-			LehScore.setBounds(10, 40, 223, 14);
+			LehScore.setForeground(Color.CYAN);
+			LehScore.setBounds(182, 40, 51, 14);
 		}
 		return LehScore;
 	}
+	private JLabel getBigName() {
+		if (BigName == null) {
+			BigName = new JLabel("2Name2");
+			BigName.setHorizontalAlignment(SwingConstants.CENTER);
+			BigName.setFont(new Font("Arial", Font.PLAIN, 12));
+			BigName.setForeground(Color.GREEN);
+			BigName.setBounds(84, 65, 74, 14);
+		}
+		return BigName;
+	}
 	private JLabel getBigScore() {
 		if (BigScore == null) {
-			BigScore = new JLabel("New label");
+			BigScore = new JLabel("2Score2");
+			BigScore.setHorizontalAlignment(SwingConstants.CENTER);
+			BigScore.setFont(new Font("Arial", Font.PLAIN, 15));
 			BigScore.setForeground(Color.GREEN);
-			BigScore.setBounds(10, 90, 223, 14);
+			BigScore.setBounds(182, 65, 51, 14);
 		}
 		return BigScore;
 	}
+	private JLabel getHirName() {
+		if (HirName == null) {
+			HirName = new JLabel("3Name3");
+			HirName.setHorizontalAlignment(SwingConstants.CENTER);
+			HirName.setFont(new Font("Arial", Font.PLAIN, 12));
+			HirName.setForeground(Color.MAGENTA);
+			HirName.setBounds(84, 90, 74, 14);
+		}
+		return HirName;
+	}
 	private JLabel getHirScore() {
 		if (HirScore == null) {
-			HirScore = new JLabel("New label");
+			HirScore = new JLabel("3Score3");
+			HirScore.setHorizontalAlignment(SwingConstants.CENTER);
+			HirScore.setFont(new Font("Arial", Font.PLAIN, 15));
 			HirScore.setForeground(Color.MAGENTA);
-			HirScore.setBounds(10, 65, 223, 14);
+			HirScore.setBounds(182, 90, 51, 14);
 		}
 		return HirScore;
 	}
+	private JLabel getLauName() {
+		if (LauName == null) {
+			LauName = new JLabel("4Name4");
+			LauName.setHorizontalAlignment(SwingConstants.CENTER);
+			LauName.setFont(new Font("Arial", Font.PLAIN, 12));
+			LauName.setForeground(new Color(255, 140, 0));
+			LauName.setBounds(84, 115, 74, 14);
+		}
+		return LauName;
+	}
 	private JLabel getLauScore() {
 		if (LauScore == null) {
-			LauScore = new JLabel("New label");
+			LauScore = new JLabel("4Score4");
+			LauScore.setHorizontalAlignment(SwingConstants.CENTER);
+			LauScore.setFont(new Font("Arial", Font.PLAIN, 15));
 			LauScore.setForeground(new Color(255, 140, 0));
-			LauScore.setBounds(10, 140, 223, 14);
+			LauScore.setBounds(182, 115, 51, 14);
 		}
 		return LauScore;
 	}
+	private JLabel getBosName() {
+		if (BosName == null) {
+			BosName = new JLabel("5Name5");
+			BosName.setHorizontalAlignment(SwingConstants.CENTER);
+			BosName.setFont(new Font("Arial", Font.PLAIN, 12));
+			BosName.setForeground(Color.YELLOW);
+			BosName.setBounds(84, 140, 74, 14);
+		}
+		return BosName;
+	}
 	private JLabel getBosScore() {
 		if (BosScore == null) {
-			BosScore = new JLabel("New label");
+			BosScore = new JLabel("5Score5");
+			BosScore.setHorizontalAlignment(SwingConstants.CENTER);
+			BosScore.setFont(new Font("Arial", Font.PLAIN, 15));
 			BosScore.setForeground(Color.YELLOW);
-			BosScore.setBounds(10, 115, 223, 14);
+			BosScore.setBounds(182, 140, 51, 14);
 		}
 		return BosScore;
 	}
