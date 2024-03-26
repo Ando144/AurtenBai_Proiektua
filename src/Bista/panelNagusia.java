@@ -1,7 +1,7 @@
 package src.Bista;
 
 import java.awt.EventQueue;
-
+import src.Eredua.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -17,8 +17,6 @@ import java.awt.SystemColor;
 
 import javax.swing.border.LineBorder;
 
-import src.Eredua.PartidaErregistro;
-
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -26,7 +24,7 @@ import javax.swing.ImageIcon;
 import java.util.Observer;
 import java.util.Observable;
 import javax.swing.Timer;
-public class panelNagusia extends JFrame{
+public class panelNagusia extends JFrame implements Observer{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel panel_tamagochi;
@@ -53,15 +51,22 @@ public class panelNagusia extends JFrame{
 	private Timer timer;
 	private ImageIcon irudiak;
 	private JLabel eggIrudi;
-
+	private Kontroladorea kontroladorea = null;
 	/**
 	 * Launch the application.
 	 */
+	private Kontroladorea getKontroladorea(){
+		if(kontroladorea == null){
+			kontroladorea = new Kontroladorea();
+		}
+		return kontroladorea;
+	}
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					panelNagusia frame = new panelNagusia();
+					Partida part = new Partida();
+					panelNagusia frame = new panelNagusia(part);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -69,16 +74,8 @@ public class panelNagusia extends JFrame{
 			}
 		});
 	}
-/**public void update(Observable arg0, Object arg1){
-    if (){
 
-    }
-}**/
-
-	/**
-	 * Create the frame.
-	 */
-	public panelNagusia() {
+	public panelNagusia(Observable pObservable) {
 		getContentPane().setBackground(new Color(0, 0, 0));
 		getContentPane().setForeground(new Color(0, 0, 0));
 		setBounds(100, 100, 500, 450);
@@ -95,7 +92,7 @@ public class panelNagusia extends JFrame{
 		getContentPane().add(getPanel__soup());
 		getContentPane().add(getLblNewLabel_3());
 		getContentPane().add(getLblNewLabel_4());
-		
+		pObservable.addObserver(this);
 		TamaIrudiak= new ImageIcon[] {
 				new ImageIcon((this.getClass().getResource("/sprites/Egg1.png"))),
 				new ImageIcon((this.getClass().getResource("/sprites/Egg2.png")))
@@ -179,14 +176,6 @@ public class panelNagusia extends JFrame{
 			boton_exit.setBackground(new Color(0, 0, 0));
 			boton_exit.setForeground(new Color(192, 192, 192));
 			boton_exit.setFont(new Font("Tahoma", Font.PLAIN, 10));
-			boton_exit.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					PartidaErregistro pe = new PartidaErregistro();
-					HasieraMenua frame = new HasieraMenua(pe);
-					pe.getLehenengoBostak();
-					frame.setVisible(true);
-					dispose();}
-			});
 			boton_exit.setBounds(351, 0, 85, 21);
 		}
 		return boton_exit;
@@ -305,5 +294,20 @@ public class panelNagusia extends JFrame{
 		}
 		return eggIrudi;
 	}
+	public void update(Observable o, Object arg){
+
+	}
+	private class Kontroladorea implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e){
+			if(e.getSource().equals(boton_exit)){
+				PartidaErregistro pe = new PartidaErregistro();
+					HasieraMenua frame = new HasieraMenua(pe);
+					pe.getLehenengoBostak();
+					frame.setVisible(true);
+					dispose();}
+			}
+		}
 }
+
 

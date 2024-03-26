@@ -1,6 +1,9 @@
 package src.Eredua;
 
-public class Partida {
+import java.util.*;
+import java.util.Observable;
+
+public class Partida extends Observable{
     private int score;
     private String izena;
     private int candy;
