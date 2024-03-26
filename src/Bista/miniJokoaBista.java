@@ -7,11 +7,14 @@ import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import src.Eredua.Minijokoa;
 import java.util.Observer;
 import java.util.Observable;
+import java.awt.Color;
 
 public class miniJokoaBista implements Observer{
     private JFrame frame;
@@ -26,7 +29,7 @@ public class miniJokoaBista implements Observer{
 
     public void update(Observable arg0, Object arg1)
     {
-        switch((String)arg1)
+        switch((String)arg1)//((MiniJokoa)arg0).get...
         {
             case "hasieratu":
                 hasieratu();
@@ -61,12 +64,12 @@ public class miniJokoaBista implements Observer{
             for (int j = 0; j < 12; j++)
             {
                 laukiak[i][j] = new JPanel();
-                laukiak[i][j].setBackground(Minijokoa.getMinijokoa().getColor(j, i));
+                laukiak[i][j].setBackground(koloreaAtera(i, j));
                 laukiak[i][j].addMouseListener(new MinijokoController());
                 frame.add(laukiak[i][j]);
             }
         }
-        frame.addKeyListener(new MinijokoController());//ERROR?
+        frame.addKeyListener(new MinijokoController());
         frame.setVisible(true);
     }
     public void LaukiakAktualizatu()
@@ -75,8 +78,27 @@ public class miniJokoaBista implements Observer{
         {
             for (int j = 0; j < 12; j++)
             {
-                laukiak[i][j].setBackground(Minijokoa.getMinijokoa().getColor(j, i));
+                laukiak[i][j].setBackground(koloreaAtera(i, j));
             }
+        }
+    }
+    private Color koloreaAtera(int lerroa, int zutabea)
+    {
+        if (Minijokoa.getMinijokoa().getLaukiak()[lerroa][zutabea] == 1)
+        {
+            return Color.LIGHT_GRAY;
+        }
+        else if (Minijokoa.getMinijokoa().getLaukiak()[lerroa][zutabea] == 2)
+        {
+            return Color.GRAY;
+        }
+        else if (Minijokoa.getMinijokoa().getLaukiak()[lerroa][zutabea] == 3)
+        {
+            return Color.DARK_GRAY;
+        }
+        else
+        {
+            return Color.LIGHT_GRAY;
         }
     }
     public void tamagochiMugitu()
@@ -84,15 +106,11 @@ public class miniJokoaBista implements Observer{
 
     }
 
-    private class MinijokoController extends MouseAdapter
+    private class MinijokoController extends MouseAdapter implements KeyListener
     {
 
         //hay que llamar al EMA de Minijoko para que el controller acceda a el
-        public void MinijokoaHartu() 
-        {
-            Minijokoa minijoko = new Minijokoa();
-            Minijokoa nireMinijokoa = Minijokoa.getMinijokoa();
-        }
+        
         public void punteroaBarruan(MouseEvent e)
         {
             int x = e.getX();
@@ -107,25 +125,33 @@ public class miniJokoaBista implements Observer{
         {
             if(!Minijokoa.irabaziDu() && Minijokoa.tamagochiVisible())
             {
+                
                 int key = e.getKeyCode();
                 if (key == KeyEvent.VK_UP)
                 {
-                    Minijokoa.TamagochiMugitu(1);
+                    Minijokoa.getMinijokoa().TamagochiMugitu(1);
                 }
                 else if (key == KeyEvent.VK_DOWN)
                 {
-                    Minijokoa.TamagochiMugitu(2);
+                    Minijokoa.getMinijokoa().TamagochiMugitu(2);
                 }
                 else if (key == KeyEvent.VK_LEFT)
                 {
-                    Minijokoa.TamagochiMugitu(3);
+                    Minijokoa.getMinijokoa().TamagochiMugitu(3);
                 }
                 else if (key == KeyEvent.VK_RIGHT)
                 {
-                    Minijokoa.TamagochiMugitu(4);
+                    Minijokoa.getMinijokoa().TamagochiMugitu(4);
                 }
             }
         }
+        public void keyReleased(KeyEvent e)
+        {
+        }
+        public void keyTyped(KeyEvent e)
+        {
+        }
+
 
     }
 }
