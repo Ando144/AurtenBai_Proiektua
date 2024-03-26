@@ -228,6 +228,7 @@ public class HasieraMenua extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					Jokoa.getJokoa().partidaBatJokatu();
 					panelNagusia.main(null);
+					dispose();
 					//itxi frame hau
 				}
 			});

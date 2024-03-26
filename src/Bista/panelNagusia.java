@@ -1,12 +1,20 @@
 package src.Bista;
 
 import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.SystemColor;
+
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -38,10 +46,10 @@ public class panelNagusia extends JFrame{
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_5;
 	private ImageIcon[] TamaIrudiak;
-	private JLabel eggIrudi;
 	private int intOrain;
 	private Timer timer;
 	private ImageIcon irudiak;
+	private JLabel eggIrudi;
 
 	/**
 	 * Launch the application.
@@ -104,10 +112,10 @@ public class panelNagusia extends JFrame{
 		if (panel_tamagochi == null) {
 			panel_tamagochi = new JPanel();
 			panel_tamagochi.setBackground(new Color(0, 0, 0));
-			panel_tamagochi.setBounds(120, 33, 196, 165);
 			panel_tamagochi.setLayout(null);
 			panel_tamagochi.add(getEggIrudi());
-			panel_tamagochi.add(getEggIrudi());
+			panel_tamagochi.setBounds(71, 33, 294, 165);
+			panel_tamagochi.setLayout(null);
 		}
 		return panel_tamagochi;
 	}
@@ -139,10 +147,10 @@ public class panelNagusia extends JFrame{
 	}
 	private JLabel getTamagochi_Izena() {
 		if (Tamagochi_Izena == null) {
-			Tamagochi_Izena = new JLabel("Nombre");
+			Tamagochi_Izena = new JLabel("Egg");
 			Tamagochi_Izena.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			Tamagochi_Izena.setForeground(new Color(192, 192, 192));
-			Tamagochi_Izena.setBounds(68, 4, 64, 13);
+			Tamagochi_Izena.setBounds(71, -5, 64, 28);
 		}
 		return Tamagochi_Izena;
 	}
@@ -170,7 +178,9 @@ public class panelNagusia extends JFrame{
 			boton_exit.setFont(new Font("Tahoma", Font.PLAIN, 10));
 			boton_exit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				}
+					HasieraMenua Proba = new HasieraMenua();
+					Proba.setVisible(true);
+					dispose();}
 			});
 			boton_exit.setBounds(351, 0, 85, 21);
 		}
@@ -226,7 +236,7 @@ public class panelNagusia extends JFrame{
 		if (bihotza3 == null) {
 			bihotza3 = new JLabel("");
 			bihotza3.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\heart.png"));
-			bihotza3.setBounds(10, 43, 45, 39);
+			bihotza3.setBounds(10, 48, 45, 39);
 		}
 		return bihotza3;
 	}
@@ -234,7 +244,7 @@ public class panelNagusia extends JFrame{
 		if (bihotza2 == null) {
 			bihotza2 = new JLabel("");
 			bihotza2.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\heart.png"));
-			bihotza2.setBounds(10, 81, 45, 39);
+			bihotza2.setBounds(10, 92, 45, 39);
 		}
 		return bihotza2;
 	}
@@ -242,7 +252,7 @@ public class panelNagusia extends JFrame{
 		if (bihotza1 == null) {
 			bihotza1 = new JLabel("");
 			bihotza1.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\heart.png"));
-			bihotza1.setBounds(10, 120, 45, 35);
+			bihotza1.setBounds(10, 130, 45, 35);
 		}
 		return bihotza1;
 	}
@@ -282,8 +292,11 @@ public class panelNagusia extends JFrame{
 	private JLabel getEggIrudi() {
 		if (eggIrudi == null) {
 			eggIrudi = new JLabel("");
-			eggIrudi.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\Egg1.png"));
-			eggIrudi.setBounds(35, 10, 151, 126);
+			eggIrudi.setBounds(80, 0, 200, 200);
+			eggIrudi.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\egg1.png"));
+		}
+		else {
+			eggIrudi.setIcon(TamaIrudiak[intOrain]);
 		}
 		return eggIrudi;
 	}
