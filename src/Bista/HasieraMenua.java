@@ -104,9 +104,9 @@ public class HasieraMenua extends JFrame implements Observer{
 				Color.YELLOW
 		};
 		tamagotchiIrudiak = new ImageIcon[]{
-                new ImageIcon("C:\\Users\\jonan\\Downloads\\sprites\\Marutchi1.png"),
-                new ImageIcon("C:\\Users\\jonan\\Downloads\\sprites\\Marutchi2.png"),
-                new ImageIcon("C:\\Users\\jonan\\Downloads\\sprites\\Marutchi4.png")
+                new ImageIcon(this.getClass().getResource("/sprites/Marutchi1.png")),
+                new ImageIcon(this.getClass().getResource("/sprites/Marutchi2.png")),
+                new ImageIcon(this.getClass().getResource("/sprites/Marutchi4.png"))
                 // Irudiak
         };
 		intOrain = 0;
@@ -224,7 +224,7 @@ public class HasieraMenua extends JFrame implements Observer{
 	private JLabel getTituluIrudi() {
 		if (TituluIrudi == null) {
 			TituluIrudi = new JLabel("");
-			TituluIrudi.setIcon(new ImageIcon("C:\\Users\\jonan\\Downloads\\sprites\\MainTitle.png"));
+			TituluIrudi.setIcon(new ImageIcon(this.getClass().getResource("/sprites/MainTitle.png")));
 		}
 		return TituluIrudi;
 	}
@@ -232,7 +232,7 @@ public class HasieraMenua extends JFrame implements Observer{
 		if (MarutchiIrudi == null) {
 			MarutchiIrudi = new JLabel("");
 			MarutchiIrudi.setBounds(80, 0, 200, 200);
-			MarutchiIrudi.setIcon(new ImageIcon("C:\\Users\\jonan\\Downloads\\sprites\\Marutchi1.png"));
+			MarutchiIrudi.setIcon(new ImageIcon(this.getClass().getResource("/sprites/Marutchi1.png")));
 		}
 		else {
 			MarutchiIrudi.setIcon(tamagotchiIrudiak[intOrain]);
@@ -244,7 +244,7 @@ public class HasieraMenua extends JFrame implements Observer{
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("");
 			lblNewLabel.setBounds(28, 124, 54, 48);
-			lblNewLabel.setIcon(new ImageIcon("C:\\Users\\jonan\\Downloads\\sprites\\gudetama1.gif"));
+			lblNewLabel.setIcon(new ImageIcon(this.getClass().getResource("/sprites/gudetama1.gif")));
 		}
 		return lblNewLabel;
 	}
