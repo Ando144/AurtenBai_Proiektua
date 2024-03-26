@@ -81,7 +81,7 @@ public class panelNagusia extends JFrame{
 	public panelNagusia() {
 		getContentPane().setBackground(new Color(0, 0, 0));
 		getContentPane().setForeground(new Color(0, 0, 0));
-		setBounds(100, 100, 462, 300);
+		setBounds(100, 100, 500, 450);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		getContentPane().add(getPanel_tamagochi());
@@ -97,8 +97,8 @@ public class panelNagusia extends JFrame{
 		getContentPane().add(getLblNewLabel_4());
 		
 		TamaIrudiak= new ImageIcon[] {
-				new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\Egg1.png"),
-				new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\Egg2.png")
+				new ImageIcon((this.getClass().getResource("/sprites/Egg1.png"))),
+				new ImageIcon((this.getClass().getResource("/sprites/Egg2.png")))
 		};
 		intOrain=0;
 		//segundoro irudia aldatzeko
@@ -240,7 +240,7 @@ public class panelNagusia extends JFrame{
 	private JLabel getBihotza3() {
 		if (bihotza3 == null) {
 			bihotza3 = new JLabel("");
-			bihotza3.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\heart.png"));
+			bihotza3.setIcon(new ImageIcon(this.getClass().getResource("/sprites/heart.png")));
 			bihotza3.setBounds(10, 48, 45, 39);
 		}
 		return bihotza3;
@@ -248,7 +248,7 @@ public class panelNagusia extends JFrame{
 	private JLabel getBihotza2() {
 		if (bihotza2 == null) {
 			bihotza2 = new JLabel("");
-			bihotza2.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\heart.png"));
+			bihotza2.setIcon(new ImageIcon(this.getClass().getResource("/sprites/heart.png")));
 			bihotza2.setBounds(10, 92, 45, 39);
 		}
 		return bihotza2;
@@ -256,7 +256,7 @@ public class panelNagusia extends JFrame{
 	private JLabel getBihotza1() {
 		if (bihotza1 == null) {
 			bihotza1 = new JLabel("");
-			bihotza1.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\heart.png"));
+			bihotza1.setIcon(new ImageIcon(this.getClass().getResource("/sprites/heart.png")));
 			bihotza1.setBounds(10, 130, 45, 35);
 		}
 		return bihotza1;
@@ -265,7 +265,7 @@ public class panelNagusia extends JFrame{
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("");
 			lblNewLabel.setEnabled(true);
-			lblNewLabel.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\hungry.png"));
+			lblNewLabel.setIcon(new ImageIcon(this.getClass().getResource("/sprites/hungry.png")));
 			lblNewLabel.setBounds(10, 10, 45, 31);
 		}
 		return lblNewLabel;
@@ -273,7 +273,7 @@ public class panelNagusia extends JFrame{
 	private JLabel getLblNewLabel_1() {
 		if (lblNewLabel_1 == null) {
 			lblNewLabel_1 = new JLabel("");
-			lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\hungry.png"));
+			lblNewLabel_1.setIcon(new ImageIcon(this.getClass().getResource("/sprites/hungry.png")));
 			lblNewLabel_1.setBounds(10, 51, 45, 31);
 		}
 		return lblNewLabel_1;
@@ -281,7 +281,7 @@ public class panelNagusia extends JFrame{
 	private JLabel getLblNewLabel_2() {
 		if (lblNewLabel_2 == null) {
 			lblNewLabel_2 = new JLabel("");
-			lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\hungry.png"));
+			lblNewLabel_2.setIcon(new ImageIcon(this.getClass().getResource("/sprites/hungry.png")));
 			lblNewLabel_2.setBounds(10, 92, 45, 31);
 		}
 		return lblNewLabel_2;
@@ -289,7 +289,7 @@ public class panelNagusia extends JFrame{
 	private JLabel getLblNewLabel_5() {
 		if (lblNewLabel_5 == null) {
 			lblNewLabel_5 = new JLabel("");
-			lblNewLabel_5.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\hungry.png"));
+			lblNewLabel_5.setIcon(new ImageIcon(this.getClass().getResource("/sprites/hungry.png")));
 			lblNewLabel_5.setBounds(10, 133, 45, 32);
 		}
 		return lblNewLabel_5;
@@ -298,7 +298,7 @@ public class panelNagusia extends JFrame{
 		if (eggIrudi == null) {
 			eggIrudi = new JLabel("");
 			eggIrudi.setBounds(80, 0, 200, 200);
-			eggIrudi.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\egg1.png"));
+			eggIrudi.setIcon(new ImageIcon(this.getClass().getResource("/sprites/Egg1.png")));
 		}
 		else {
 			eggIrudi.setIcon(TamaIrudiak[intOrain]);
