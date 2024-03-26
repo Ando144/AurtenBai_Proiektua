@@ -490,6 +490,7 @@ public class HasieraMenua extends JFrame implements Observer{
 			if(e.getSource().equals(PlayBotoi)){
 				Jokoa.getJokoa().partidaBatJokatu();
 				panelNagusia.main(null);
+				dispose();
 				//itxi hasierako panela
 			}else if(e.getSource().equals(ExitBotoi)){
 				System.exit(0);
