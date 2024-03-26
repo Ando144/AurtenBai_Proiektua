@@ -227,7 +227,7 @@ public class panelNagusia extends JFrame{
 	private JLabel getBihotza4() {
 		if (bihotza4 == null) {
 			bihotza4 = new JLabel("");
-			bihotza4.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\sprites (1)\\heart.png"));
+			bihotza4.setIcon(new ImageIcon(this.getClass().getResource("/sprites/heart.png")));
 			bihotza4.setBounds(10, 10, 45, 39);
 		}
 		return bihotza4;
