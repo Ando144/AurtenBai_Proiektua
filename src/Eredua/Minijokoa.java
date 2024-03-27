@@ -23,12 +23,12 @@ public class Minijokoa extends Observable{
         }
         return NireMinijokoa;
     }
-    public void main(String[] args) 
+    public static void main(String[] args) 
     {
         hasieratuLaukiak();
         TamagochietaTartaHasieratu();
     }
-    private void hasieratuLaukiak()
+    private static void hasieratuLaukiak()
     {
         for (int i = 0; i < 12; i++)
         {
@@ -39,6 +39,22 @@ public class Minijokoa extends Observable{
         }
         setChanged();
         notifyObservers("hasieratu");
+    }
+    public int getTamagochiLerroa()
+    {
+        return tamagochiLerroa;
+    }
+    public int getTamagochiZutabea()
+    {
+        return tamagochiZutabea;
+    }
+    public int getTartaLerroa()
+    {
+        return tartaLerroa;
+    }
+    public int getTartaZutabea()
+    {
+        return tartaZutabea;
     }
     public int[][] getLaukiak()
     {

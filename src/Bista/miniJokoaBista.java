@@ -55,7 +55,7 @@ public class miniJokoaBista implements Observer{
         }
         
     }
-    public void hasieratu()
+    public static void hasieratu()
     {
         frame = new JFrame("Minijokoa");
         frame.setSize(600, 600);
@@ -106,7 +106,12 @@ public class miniJokoaBista implements Observer{
     }
     public void tamagochiMugitu()
     {
-    
+        int x= Minijokoa.getMinijokoa().getTamagochiZutabea();
+        int y= Minijokoa.getMinijokoa().getTamagochiLerroa();
+        if (Minijokoa.tamagochiVisible())
+        {
+            laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("tamagochi.png"));//revisar
+        }
     }
 
     private class MinijokoController extends MouseAdapter implements KeyListener
