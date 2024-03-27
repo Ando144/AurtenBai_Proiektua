@@ -4,12 +4,10 @@ import java.awt.EventQueue;
 import src.Eredua.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-import java.awt.EventQueue;
+import javax.swing.*;
+import java.awt.*;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -42,10 +40,10 @@ public class panelNagusia extends JFrame implements Observer{
 	private JLabel bihotza3;
 	private JLabel bihotza2;
 	private JLabel bihotza1;
-	private JLabel lblNewLabel;
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_5;
+	private JLabel katilu4;
+	private JLabel katilu3;
+	private JLabel katilu2;
+	private JLabel katilu1;
 	private ImageIcon[] TamaIrudiak;
 	private int intOrain;
 	private Timer timer;
@@ -114,7 +112,7 @@ public class panelNagusia extends JFrame implements Observer{
 			panel_tamagochi.setBackground(new Color(0, 0, 0));
 			panel_tamagochi.setLayout(null);
 			panel_tamagochi.add(getEggIrudi());
-			panel_tamagochi.setBounds(71, 33, 294, 165);
+			panel_tamagochi.setBounds(100, 108, 294, 165);
 			panel_tamagochi.setLayout(null);
 		}
 		return panel_tamagochi;
@@ -123,7 +121,7 @@ public class panelNagusia extends JFrame implements Observer{
 		if (panel_bihotzak == null) {
 			panel_bihotzak = new JPanel();
 			panel_bihotzak.setBackground(new Color(0, 0, 0));
-			panel_bihotzak.setBounds(10, 33, 51, 165);
+			panel_bihotzak.setBounds(10, 108, 51, 165);
 			panel_bihotzak.setLayout(null);
 			panel_bihotzak.add(getBihotza4());
 			panel_bihotzak.add(getBihotza3());
@@ -136,12 +134,12 @@ public class panelNagusia extends JFrame implements Observer{
 		if (panel_platos == null) {
 			panel_platos = new JPanel();
 			panel_platos.setBackground(new Color(0, 0, 0));
-			panel_platos.setBounds(375, 33, 51, 165);
+			panel_platos.setBounds(425, 108, 51, 165);
 			panel_platos.setLayout(null);
-			panel_platos.add(getLblNewLabel());
-			panel_platos.add(getLblNewLabel_1());
-			panel_platos.add(getLblNewLabel_2());
-			panel_platos.add(getLblNewLabel_5());
+			panel_platos.add(getkatilu4());
+			panel_platos.add(getkatilu3());
+			panel_platos.add(getKatilu2());
+			panel_platos.add(getkatilu1());
 		}
 		return panel_platos;
 	}
@@ -177,6 +175,7 @@ public class panelNagusia extends JFrame implements Observer{
 			boton_exit.setForeground(new Color(192, 192, 192));
 			boton_exit.setFont(new Font("Tahoma", Font.PLAIN, 10));
 			boton_exit.setBounds(351, 0, 85, 21);
+			boton_exit.addActionListener(getKontroladorea());
 		}
 		return boton_exit;
 	}
@@ -186,7 +185,7 @@ public class panelNagusia extends JFrame implements Observer{
 			panel_candy.setForeground(new Color(255, 255, 255));
 			panel_candy.setBackground(new Color(0, 0, 0));
 			panel_candy.setBorder(new LineBorder(new Color(128, 128, 128)));
-			panel_candy.setBounds(50, 219, 85, 34);
+			panel_candy.setBounds(50, 354, 85, 34);
 		}
 		return panel_candy;
 	}
@@ -196,7 +195,7 @@ public class panelNagusia extends JFrame implements Observer{
 			panel__soup.setBackground(new Color(0, 0, 0));
 			panel__soup.setForeground(new Color(255, 255, 255));
 			panel__soup.setBorder(new LineBorder(new Color(128, 128, 128)));
-			panel__soup.setBounds(302, 219, 85, 34);
+			panel__soup.setBounds(351, 354, 85, 34);
 		}
 		return panel__soup;
 	}
@@ -205,7 +204,7 @@ public class panelNagusia extends JFrame implements Observer{
 			lblNewLabel_3 = new JLabel("Soup");
 			lblNewLabel_3.setForeground(new Color(255, 255, 255));
 			lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblNewLabel_3.setBounds(351, 201, 45, 21);
+			lblNewLabel_3.setBounds(404, 333, 45, 21);
 		}
 		return lblNewLabel_3;
 	}
@@ -214,7 +213,7 @@ public class panelNagusia extends JFrame implements Observer{
 			lblNewLabel_4 = new JLabel("Candy");
 			lblNewLabel_4.setForeground(new Color(255, 255, 255));
 			lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblNewLabel_4.setBounds(53, 201, 45, 21);
+			lblNewLabel_4.setBounds(50, 333, 45, 21);
 		}
 		return lblNewLabel_4;
 	}
@@ -250,38 +249,38 @@ public class panelNagusia extends JFrame implements Observer{
 		}
 		return bihotza1;
 	}
-	private JLabel getLblNewLabel() {
-		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("");
-			lblNewLabel.setEnabled(true);
-			lblNewLabel.setIcon(new ImageIcon(this.getClass().getResource("/sprites/hungry.png")));
-			lblNewLabel.setBounds(10, 10, 45, 31);
+	private JLabel getkatilu4() {
+		if (katilu4 == null) {
+			katilu4 = new JLabel("");
+			katilu4.setEnabled(true);
+			katilu4.setIcon(new ImageIcon(this.getClass().getResource("/sprites/hungry.png")));
+			katilu4.setBounds(10, 10, 45, 31);
 		}
-		return lblNewLabel;
+		return katilu4;
 	}
-	private JLabel getLblNewLabel_1() {
-		if (lblNewLabel_1 == null) {
-			lblNewLabel_1 = new JLabel("");
-			lblNewLabel_1.setIcon(new ImageIcon(this.getClass().getResource("/sprites/hungry.png")));
-			lblNewLabel_1.setBounds(10, 51, 45, 31);
+	private JLabel getkatilu3() {
+		if (katilu3 == null) {
+			katilu3 = new JLabel("");
+			katilu3.setIcon(new ImageIcon(this.getClass().getResource("/sprites/hungry.png")));
+			katilu3.setBounds(10, 51, 45, 31);
 		}
-		return lblNewLabel_1;
+		return katilu3;
 	}
-	private JLabel getLblNewLabel_2() {
-		if (lblNewLabel_2 == null) {
-			lblNewLabel_2 = new JLabel("");
-			lblNewLabel_2.setIcon(new ImageIcon(this.getClass().getResource("/sprites/hungry.png")));
-			lblNewLabel_2.setBounds(10, 92, 45, 31);
+	private JLabel getKatilu2() {
+		if (katilu2 == null) {
+			katilu2 = new JLabel("");
+			katilu2.setIcon(new ImageIcon(this.getClass().getResource("/sprites/hungry.png")));
+			katilu2.setBounds(10, 92, 45, 31);
 		}
-		return lblNewLabel_2;
+		return katilu2;
 	}
-	private JLabel getLblNewLabel_5() {
-		if (lblNewLabel_5 == null) {
-			lblNewLabel_5 = new JLabel("");
-			lblNewLabel_5.setIcon(new ImageIcon(this.getClass().getResource("/sprites/hungry.png")));
-			lblNewLabel_5.setBounds(10, 133, 45, 32);
+	private JLabel getkatilu1() {
+		if (katilu1 == null) {
+			katilu1 = new JLabel("");
+			katilu1.setIcon(new ImageIcon(this.getClass().getResource("/sprites/hungry.png")));
+			katilu1.setBounds(10, 133, 45, 32);
 		}
-		return lblNewLabel_5;
+		return katilu1;
 	}
 	private JLabel getEggIrudi() {
 		if (eggIrudi == null) {
@@ -295,19 +294,98 @@ public class panelNagusia extends JFrame implements Observer{
 		return eggIrudi;
 	}
 	public void update(Observable o, Object arg){
-
+		switch ((String)arg) {
+			case "4bihotzjarri":
+				lauBihotzJarri();
+				break;
+		
+			case "3bihotzjarri":
+				hiruBihotzJarri();
+				break;
+			case "2bihotzjarri":
+				biBihotzJarri();
+				break;
+			case "bihotz1jarri":
+				bihotzBatJarri();
+				break;
+			case "hildaDago":
+				hildaDago();
+				break;
+		
+			case "4sopajarri":
+				lauKatiluJarri();
+				break;
+		
+			case "3sopajarri":
+				hiruKatiluJarri();
+				break;
+			case "2sopajarri":
+				biKatiluJarri();
+				break; 
+			case "sopa1jarri":
+				katiluBatJarri();
+				break;
+		}
+	}
+	public void lauBihotzJarri(){
+		bihotza1.setEnabled(true);
+		bihotza2.setEnabled(true);
+		bihotza3.setEnabled(true);
+		bihotza4.setEnabled(true);
+	}
+	public void hiruBihotzJarri(){
+		bihotza1.setEnabled(true);
+		bihotza2.setEnabled(true);
+		bihotza3.setEnabled(true);
+		bihotza4.setEnabled(false);
+	}
+	public void biBihotzJarri(){
+		bihotza1.setEnabled(true);
+		bihotza2.setEnabled(true);
+		bihotza3.setEnabled(false);
+		bihotza4.setEnabled(false);
+	}
+	public void bihotzBatJarri(){
+		bihotza1.setEnabled(true);
+		bihotza2.setEnabled(false);
+		bihotza3.setEnabled(false);
+		bihotza4.setEnabled(false);
+	}
+	public void hildaDago(){}	
+	public void lauKatiluJarri(){
+		katilu1.setEnabled(true);
+		katilu2.setEnabled(true);
+		katilu3.setEnabled(true);
+		katilu4.setEnabled(true);
+	}
+	public void hiruKatiluJarri(){
+		katilu1.setEnabled(true);
+		katilu2.setEnabled(true);
+		katilu3.setEnabled(true);
+		katilu4.setEnabled(false);
+	}
+	public void biKatiluJarri(){
+		katilu1.setEnabled(true);
+		katilu2.setEnabled(true);
+		katilu3.setEnabled(false);
+		katilu4.setEnabled(false);
+	}
+	public void katiluBatJarri(){
+		katilu1.setEnabled(true);
+		katilu2.setEnabled(false);
+		katilu3.setEnabled(false);
+		katilu4.setEnabled(false);
 	}
 	private class Kontroladorea implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e){
-			if(e.getSource().equals(boton_exit)){
 				PartidaErregistro pe = new PartidaErregistro();
-					HasieraMenua frame = new HasieraMenua(pe);
-					pe.getLehenengoBostak();
-					frame.setVisible(true);
-					dispose();}
-			}
+				HasieraMenua frame = new HasieraMenua(pe);
+				pe.getLehenengoBostak();
+				frame.setVisible(true);
+				dispose();	
 		}
+	}
 }
 
 
