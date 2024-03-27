@@ -2,6 +2,7 @@ package src.Bista;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
@@ -24,11 +25,14 @@ public class miniJokoaBista implements Observer{
     private JButton button;
     private JLabel label;
     private JLabel Tamagochi;
+    private int x;
+    private int y;
+    private JLabel[][] laukiak = new JLabel[12][12];
 
     public miniJokoaBista (Observable pMinijokoa){
         pMinijokoa.addObserver(this);
     }
-    private static JPanel[][] laukiak = new JPanel[12][12];
+    
 
     public void update(Observable arg0, Object arg1)
     {
@@ -55,11 +59,8 @@ public class miniJokoaBista implements Observer{
         }
         
     }
-    public static void hasieratu()
+    public void hasieratu()
     {
-        /*Todo esto de hasieratuar la vista se debe hacer en el playGroud que ha creado gaizka(el nombre puede cambiar) aqui en la vista solo debemos
-         * llamar a la funcion/clase hasieratu y aqui en la vista solo actualizarlo.
-         */
         frame = new JFrame("Minijokoa");
         frame.setSize(600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,7 +70,7 @@ public class miniJokoaBista implements Observer{
         {
             for (int j = 0; j < 12; j++)
             {
-                laukiak[i][j] = new JPanel();
+                laukiak[i][j] = new JLabel();
                 laukiak[i][j].setBackground(koloreaAtera(i, j));
                 laukiak[i][j].addMouseListener(new MinijokoController());
                 frame.add(laukiak[i][j]);
@@ -109,11 +110,12 @@ public class miniJokoaBista implements Observer{
     }
     public void tamagochiMugitu()
     {
-        int x= Minijokoa.getMinijokoa().getTamagochiZutabea();
-        int y= Minijokoa.getMinijokoa().getTamagochiLerroa();
-        if (Minijokoa.tamagochiVisible())
-        {
-            laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("tamagochi.png"));//revisar
+        x = Minijokoa.getMinijokoa().getZutabea();
+        y = Minijokoa.getMinijokoa().getLerroa();
+        if (Minijokoa.getMinijokoa().tamagochiVisible()==true){
+        //Faltan los ifs para saber que tamagochi es
+
+            laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Marutchi1.png")));
         }
     }
 
