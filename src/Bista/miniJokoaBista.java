@@ -57,6 +57,9 @@ public class miniJokoaBista implements Observer{
     }
     public static void hasieratu()
     {
+        /*Todo esto de hasieratuar la vista se debe hacer en el playGroud que ha creado gaizka(el nombre puede cambiar) aqui en la vista solo debemos
+         * llamar a la funcion/clase hasieratu y aqui en la vista solo actualizarlo.
+         */
         frame = new JFrame("Minijokoa");
         frame.setSize(600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
