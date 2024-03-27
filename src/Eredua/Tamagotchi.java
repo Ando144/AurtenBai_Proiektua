@@ -15,6 +15,20 @@ public abstract class Tamagotchi extends Observable{
         this.kaka = pKaka;
     }
 
+    public String zeinEboluzioDa(){
+        if (this instanceof Egg){
+            return "Egg";
+        }else if (this instanceof Kuchipatchi){
+            return "Kuchipatchi";
+        }else if (this instanceof Mimitchi){
+            return "Mimitchi";
+        }else if (this instanceof Maskutchi){    
+            return "Maskutchi";
+        }else{    
+            return "Marutchi";
+        }
+    }
+
     public abstract void kontadoreakEguneratu();
 
     protected void osasunaGalduKaka(){
