@@ -1,6 +1,7 @@
 package src.Eredua;
 
 import java.util.*;
+import java.io.*;
 import java.util.Observable;
 
 public class Partida extends Observable{
@@ -18,23 +19,25 @@ public class Partida extends Observable{
         this.soup = 0;
         this.tamagotchi = new Egg(20, 20, false, false);
     }
+
     public void main(String[]args){
-        bihotzakEguneratu(this.tamagotchi.bizitza);
-        sopakEguneratu(this.tamagotchi.asetasuna);
+		
+        bihotzakEguneratu(20);
+        sopakEguneratu(20);
     }
     private void bihotzakEguneratu(int pBizitza) {
 		int zenb = pBizitza;
 		int kont=0;
-		if (zenb>=31 || zenb<=40) {
+		if (zenb>=31 && zenb<=40) {
 			kont=4;
 		}
-		if (zenb>=21 || zenb<=30) {
+		if (zenb>=21 && zenb<=30) {
 			kont=3;
 		}
-		if (zenb>=11 || zenb<=20) {
+		if (zenb>=11 && zenb<=20) {
 			kont=2;
 		}
-		if (zenb>=1 || zenb<=10) {
+		if (zenb>=1 && zenb<=10) {
 			kont=1;
 		}
         bihotzakBistaratu(kont);
@@ -42,16 +45,16 @@ public class Partida extends Observable{
     private void sopakEguneratu(int pAsetasuna) {
 		int zenb = pAsetasuna;
 		int kont=0;
-		if (zenb>=31 || zenb<=40) {
+		if (zenb>=31 && zenb<=40) {
 			kont=4;
 		}
-		if (zenb>=21 || zenb<=30) {
+		if (zenb>=21 && zenb<=30) {
 			kont=3;
 		}
-		if (zenb>=11 || zenb<=20) {
+		if (zenb>=11 && zenb<=20) {
 			kont=2;
 		}
-		if (zenb>=1 || zenb<=10) {
+		if (zenb>=1 && zenb<=10) {
 			kont=1;
 		}
         sopakBistaratu(kont);
