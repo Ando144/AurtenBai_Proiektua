@@ -27,19 +27,20 @@ public class miniJokoaBista implements Observer{
     private JLabel Tamagochi;
     private int x;
     private int y;
-    private JLabel[][] laukiak = new JLabel[12][12];
+
+    
 
     public miniJokoaBista (Observable pMinijokoa){
         pMinijokoa.addObserver(this);
     }
     
 
-    public void update(Observable arg0, Object arg1)
+    public static void update(Observable arg0, Object arg1)
     {
         switch((String)arg1)//((MiniJokoa)arg0).get...
         {
             case "hasieratu":
-                hasieratu();
+                MatrizeaHasieratu();
                 break;
             case "LaukiakAktualizatu":
                 LaukiakAktualizatu();
@@ -59,33 +60,19 @@ public class miniJokoaBista implements Observer{
         }
         
     }
-    public void hasieratu()
+    public static void MatrizeaHasieratu()
     {
-        frame = new JFrame("Minijokoa");
-        frame.setSize(600, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new GridLayout(12, 12));
-
-        for (int i = 0; i < 12; i++)
-        {
-            for (int j = 0; j < 12; j++)
-            {
-                laukiak[i][j] = new JLabel();
-                laukiak[i][j].setBackground(koloreaAtera(i, j));
-                laukiak[i][j].addMouseListener(new MinijokoController());
-                frame.add(laukiak[i][j]);
-            }
-        }
-        frame.addKeyListener(new MinijokoController());
-        frame.setVisible(true);
+        Matrizea matrizea = new Matrizea();
     }
-    public void LaukiakAktualizatu()
+    
+    public static void LaukiakAktualizatu()
     {
+        
         for (int i = 0; i < 12; i++)
         {
             for (int j = 0; j < 12; j++)
             {
-                laukiak[i][j].setBackground(koloreaAtera(i, j));
+                laukiak[i][j].setBackground(koloreaAtera(j, i));
             }
         }
     }
@@ -110,15 +97,40 @@ public class miniJokoaBista implements Observer{
     }
     public void tamagochiMugitu()
     {
-        x = Minijokoa.getMinijokoa().getZutabea();
-        y = Minijokoa.getMinijokoa().getLerroa();
+        x = Minijokoa.getMinijokoa().getTamagochiZutabea();
+        y = Minijokoa.getMinijokoa().getTamagochiLerroa();
         if (Minijokoa.getMinijokoa().tamagochiVisible()==true){
-        //Faltan los ifs para saber que tamagochi es
+        //Faltan los ifs para saber que evolucion de tamagochi es
 
             laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Marutchi1.png")));
         }
     }
-
+public class Matrizea extends JFrame 
+{
+    public void MatrizeaHasieratu() {
+        panel = new JPanel();
+        panel.setLayout(null);
+        panel.setBounds(0, 0, 800, 600);
+        this.add(panel);
+        this.setSize(800, 600);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+        for (int i = 0; i < 12; i++)
+        {
+            for (int j = 0; j < 12; j++)
+            {
+                laukiak[i][j] = new JLabel();
+                laukiak[i][j].setBackground(koloreaAtera(j, i));
+               // laukiak[i][j].addMouseListener(new MinijokoController());
+                panel.add(laukiak[i][j]);
+            }
+        }
+        frame.addKeyListener(new MinijokoController());
+        frame.setVisible(true);
+        /*Esto sirve para crear todo, en hasieratu de vista hay que llamar aqui para crear todo lo referido a la vista
+         * y luego despues de hasieratuarlo llamar a en vista a la funcion que actualiza la vista y punto (EXPLICADO POR GAIZKA: Todas las dudas a el).
+         */
+}
     private class MinijokoController extends MouseAdapter implements KeyListener
     {
 
