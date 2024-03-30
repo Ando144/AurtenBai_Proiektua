@@ -24,6 +24,7 @@ public class miniJokoaBista implements Observer{
     private JPanel panel;
     private JButton button;
     private JLabel label;
+    private JLabel laukiak[][];
     private JLabel Tamagochi;
     private int x;
     private int y;
@@ -60,9 +61,10 @@ public class miniJokoaBista implements Observer{
         }
         
     }
-    public static void MatrizeaHasieratu()
+    public void MatrizeaHasieratu()
     {
         Matrizea matrizea = new Matrizea();
+        matrizea.MatrizeaHasieratu();
     }
     
     public static void LaukiakAktualizatu()
@@ -97,8 +99,8 @@ public class miniJokoaBista implements Observer{
     }
     public void tamagochiMugitu()
     {
-        x = Minijokoa.getMinijokoa().getTamagochiZutabea();
-        y = Minijokoa.getMinijokoa().getTamagochiLerroa();
+        x = Minijokoa.getMinijokoa().getZutabea();
+        y = Minijokoa.getMinijokoa().getLerroa();
         if (Minijokoa.getMinijokoa().tamagochiVisible()==true){
         //Faltan los ifs para saber que evolucion de tamagochi es
 
@@ -179,4 +181,5 @@ public class Matrizea extends JFrame
 
 
     }
+}
 }
