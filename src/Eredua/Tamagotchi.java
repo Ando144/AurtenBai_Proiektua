@@ -14,7 +14,7 @@ public abstract class Tamagotchi extends Observable{
         this.gaixorik = pGaixorik;
         this.kaka = pKaka;
     }
-
+    
     public String zeinEboluzioDa(){
         if (this instanceof Egg){
             return "Egg";

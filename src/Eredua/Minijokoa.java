@@ -1,8 +1,5 @@
 package src.Eredua;
 import javax.swing.*;
-
-import src.Bista.miniJokoaBista;
-
 import java.awt.*;
 import java.util.Observable;
 
@@ -16,7 +13,7 @@ public class Minijokoa extends Observable{
    private static int tamagochiZutabea;
    private static int tartaLerroa;
    private static int tartaZutabea;
-
+    
     private static Minijokoa NireMinijokoa = null;
     public static Minijokoa getMinijokoa()
     {
@@ -26,10 +23,10 @@ public class Minijokoa extends Observable{
         }
         return NireMinijokoa;
     }
-    public static void main(String[] args) 
+    public void main(String[] args) 
     {
-       Minijokoa minijokoa = new Minijokoa();
-        minijokoa.hasieratuLaukiak();
+        hasieratuLaukiak();
+        TamagochietaTartaHasieratu();
     }
     private void hasieratuLaukiak()
     {
@@ -37,31 +34,21 @@ public class Minijokoa extends Observable{
         {
             for (int j = 0; j < 12; j++)
             {
-                laukiak[i][j] = (int) (Math.random() * 3) + 1;
-                
+                laukiak[i][j] = (int) (Math.random() * 3) + 1;//mirar esto pq el random no debe ser 0 tmb
             }
         }
         setChanged();
         notifyObservers("hasieratu");
-        System.out.println("hasieratu da");
     }
-    public static int getTamagochiLerroa()
-    {
+    public int getLerroa(){
         return tamagochiLerroa;
     }
-    public static int getTamagochiZutabea()
-    {
+    public int getZutabea(){
         return tamagochiZutabea;
     }
-    public static int getTartaLerroa()
-    {
-        return tartaLerroa;
-    }
-    public static int getTartaZutabea()
-    {
-        return tartaZutabea;
-    }
-    public static int[][] getLaukiak()
+  
+    
+    public int[][] getLaukiak()
     {
         return laukiak;
     }
@@ -76,7 +63,7 @@ public class Minijokoa extends Observable{
             return false;
         }
     }
-    private boolean mugimenduaEginDaiteke(int norabidea) //
+    private static boolean mugimenduaEginDaiteke(int norabidea)
     /*comprueba si el movimiento esta dentro de la matriz 
     y si la casilla a la que se quiere desplazar esta con laukiak de valor 0*/
     {
@@ -129,10 +116,7 @@ public class Minijokoa extends Observable{
             {
                 return false;
             }
-        } else{
-            return false;
         }
-        
     }
     public void TamagochiMugitu(int norabidea)
     //mueve el tamagochi en la matriz siempre y cuando sea movimiento valido
@@ -142,7 +126,7 @@ public class Minijokoa extends Observable{
             if (mugimenduaEginDaiteke(1))
             {
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = false;
-                tamagochiLerroa--;
+                tamagochiLerroa++;
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = true;
                 setChanged();
                 notifyObservers("tamagochiMugitu");
@@ -153,7 +137,7 @@ public class Minijokoa extends Observable{
             if (mugimenduaEginDaiteke(2))
             {
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = false;
-                tamagochiLerroa++;
+                tamagochiLerroa--;
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = true;
                 setChanged();
                 notifyObservers("tamagochiMugitu");

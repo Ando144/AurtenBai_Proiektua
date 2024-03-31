@@ -12,7 +12,12 @@ import java.awt.event.KeyListener;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+
+import src.Eredua.Marutchi;
+import src.Eredua.Mimitchi;
 import src.Eredua.Minijokoa;
+import src.Eredua.Tamagotchi;
+
 import java.util.Observer;
 import java.util.Observable;
 import java.awt.Color;
@@ -121,12 +126,27 @@ public class miniJokoaBista implements Observer{
     }
     public void tamagochiMugitu()
     {
-        x = Minijokoa.getMinijokoa().getTamagochiZutabea();
-        y = Minijokoa.getMinijokoa().getTamagochiLerroa();
+        x = Minijokoa.getMinijokoa().getZutabea();
+        y = Minijokoa.getMinijokoa().getLerroa();
         if (Minijokoa.getMinijokoa().tamagochiVisible()==true){
-        //Faltan los ifs para saber que evolucion de tamagochi es
-
-            laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Marutchi1.png")));
+            //hay que llamar bien al metodo zeinEboluzioDa()
+            Mimitchi tamagochi= new Mimitchi(y, x, false, false);
+            String aux=tamagochi.zeinEboluzioDa();
+            if (aux=="Egg"){
+                laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Egg1.png")));
+            } 
+            else if (aux=="Kuchipatchi"){
+                laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Kuchipatchi1.png")));
+            }
+            else if (aux=="Mimitchi"){
+                laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Mimitchi1.png")));
+            }
+            else if (aux=="Maskutchi"){
+                laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Maskutchi1.png")));
+            }
+            else {
+                laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Marutchi1.png")));
+            }     
         }
     }
 
