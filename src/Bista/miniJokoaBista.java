@@ -29,19 +29,19 @@ public class miniJokoaBista implements Observer{
     private int x;
     private int y;
 
-    
 
     public miniJokoaBista (Observable pMinijokoa){
         pMinijokoa.addObserver(this);
     }
     
 
-    public static void update(Observable arg0, Object arg1)
+    public void update(Observable arg0, Object arg1)
     {
         switch((String)arg1)//((MiniJokoa)arg0).get...
         {
             case "hasieratu":
-                MatrizeaHasieratu();
+                Hasieratu();
+                System.out.println("ha pasado el observer de hasieratu");
                 break;
             case "LaukiakAktualizatu":
                 LaukiakAktualizatu();
@@ -61,20 +61,42 @@ public class miniJokoaBista implements Observer{
         }
         
     }
-    public void MatrizeaHasieratu()
-    {
-        Matrizea matrizea = new Matrizea();
-        matrizea.MatrizeaHasieratu();
-    }
-    
-    public static void LaukiakAktualizatu()
+    public void Hasieratu() 
     {
         
+        System.out.println("Hasieratu da 2");
+     //metodo que inicializa una matriz de 12 x 12 de laukias
+        laukiak = new JLabel[12][12];
+        frame = new JFrame();
+        panel = new JPanel();
+        panel.setLayout(new GridLayout(12, 12));
+        frame.add(panel);
+        frame.setSize(800, 600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
         for (int i = 0; i < 12; i++)
         {
             for (int j = 0; j < 12; j++)
             {
-                laukiak[i][j].setBackground(koloreaAtera(j, i));
+                laukiak[i][j] = new JLabel();
+                laukiak[i][j].setOpaque(true);
+                laukiak[i][j].setBackground(koloreaAtera(i, j));
+                panel.add(laukiak[i][j]);
+
+                System.out.println("Creando JLabel en la posición " + i + ", " + j);
+            }
+        }
+        frame.addKeyListener(new MinijokoController());
+        frame.setVisible(true);
+    }
+    public void LaukiakAktualizatu()
+    {
+         
+        for (int i = 0; i < 12; i++)
+        {
+            for (int j = 0; j < 12; j++)
+            {
+                laukiak[i][j].setBackground(koloreaAtera(i, j));
             }
         }
     }
@@ -99,40 +121,15 @@ public class miniJokoaBista implements Observer{
     }
     public void tamagochiMugitu()
     {
-        x = Minijokoa.getMinijokoa().getZutabea();
-        y = Minijokoa.getMinijokoa().getLerroa();
+        x = Minijokoa.getMinijokoa().getTamagochiZutabea();
+        y = Minijokoa.getMinijokoa().getTamagochiLerroa();
         if (Minijokoa.getMinijokoa().tamagochiVisible()==true){
         //Faltan los ifs para saber que evolucion de tamagochi es
 
             laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Marutchi1.png")));
         }
     }
-public class Matrizea extends JFrame 
-{
-    public void MatrizeaHasieratu() {
-        panel = new JPanel();
-        panel.setLayout(null);
-        panel.setBounds(0, 0, 800, 600);
-        this.add(panel);
-        this.setSize(800, 600);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
-        for (int i = 0; i < 12; i++)
-        {
-            for (int j = 0; j < 12; j++)
-            {
-                laukiak[i][j] = new JLabel();
-                laukiak[i][j].setBackground(koloreaAtera(j, i));
-               // laukiak[i][j].addMouseListener(new MinijokoController());
-                panel.add(laukiak[i][j]);
-            }
-        }
-        frame.addKeyListener(new MinijokoController());
-        frame.setVisible(true);
-        /*Esto sirve para crear todo, en hasieratu de vista hay que llamar aqui para crear todo lo referido a la vista
-         * y luego despues de hasieratuarlo llamar a en vista a la funcion que actualiza la vista y punto (EXPLICADO POR GAIZKA: Todas las dudas a el).
-         */
-}
+
     private class MinijokoController extends MouseAdapter implements KeyListener
     {
 
@@ -181,5 +178,4 @@ public class Matrizea extends JFrame
 
 
     }
-}
 }

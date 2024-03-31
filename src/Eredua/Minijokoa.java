@@ -1,5 +1,8 @@
 package src.Eredua;
 import javax.swing.*;
+
+import src.Bista.miniJokoaBista;
+
 import java.awt.*;
 import java.util.Observable;
 
@@ -25,38 +28,40 @@ public class Minijokoa extends Observable{
     }
     public static void main(String[] args) 
     {
-        hasieratuLaukiak();
-        TamagochietaTartaHasieratu();
+       Minijokoa minijokoa = new Minijokoa();
+        minijokoa.hasieratuLaukiak();
     }
-    private static void hasieratuLaukiak()
+    private void hasieratuLaukiak()
     {
         for (int i = 0; i < 12; i++)
         {
             for (int j = 0; j < 12; j++)
             {
                 laukiak[i][j] = (int) (Math.random() * 3) + 1;
+                
             }
         }
         setChanged();
         notifyObservers("hasieratu");
+        System.out.println("hasieratu da");
     }
-    public int getTamagochiLerroa()
+    public static int getTamagochiLerroa()
     {
         return tamagochiLerroa;
     }
-    public int getTamagochiZutabea()
+    public static int getTamagochiZutabea()
     {
         return tamagochiZutabea;
     }
-    public int getTartaLerroa()
+    public static int getTartaLerroa()
     {
         return tartaLerroa;
     }
-    public int getTartaZutabea()
+    public static int getTartaZutabea()
     {
         return tartaZutabea;
     }
-    public int[][] getLaukiak()
+    public static int[][] getLaukiak()
     {
         return laukiak;
     }
@@ -71,7 +76,7 @@ public class Minijokoa extends Observable{
             return false;
         }
     }
-    private static boolean mugimenduaEginDaiteke(int norabidea)
+    private boolean mugimenduaEginDaiteke(int norabidea) //
     /*comprueba si el movimiento esta dentro de la matriz 
     y si la casilla a la que se quiere desplazar esta con laukiak de valor 0*/
     {
@@ -124,7 +129,10 @@ public class Minijokoa extends Observable{
             {
                 return false;
             }
+        } else{
+            return false;
         }
+        
     }
     public void TamagochiMugitu(int norabidea)
     //mueve el tamagochi en la matriz siempre y cuando sea movimiento valido
