@@ -2,6 +2,8 @@ package src.Eredua;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Observable;
+import java.util.Observer;
+import src.Bista.miniJokoaBista;
 
 
 public class Minijokoa extends Observable{
@@ -23,10 +25,13 @@ public class Minijokoa extends Observable{
         }
         return NireMinijokoa;
     }
-    public void main(String[] args) 
+    public static void main(String[] args) 
     {
-        hasieratuLaukiak();
-        TamagochietaTartaHasieratu();
+        Minijokoa minijokoa = new Minijokoa();
+        miniJokoaBista bista = new miniJokoaBista(minijokoa);
+        minijokoa.hasieratuLaukiak();
+        minijokoa.TamagochietaTartaHasieratu();
+
     }
     private void hasieratuLaukiak()
     {
@@ -46,7 +51,14 @@ public class Minijokoa extends Observable{
     public int getZutabea(){
         return tamagochiZutabea;
     }
-  
+    public static int getTartaLerroa()
+    {
+        return tartaLerroa;
+    }
+    public static int getTartaZutabea()
+    {
+        return tartaZutabea;
+    }
     
     public int[][] getLaukiak()
     {
@@ -117,10 +129,15 @@ public class Minijokoa extends Observable{
                 return false;
             }
         }
+        else
+        {
+            return false;
+        }
     }
     public void TamagochiMugitu(int norabidea)
     //mueve el tamagochi en la matriz siempre y cuando sea movimiento valido
     {
+        
         if (norabidea == 1)
         {
             if (mugimenduaEginDaiteke(1))
@@ -128,8 +145,16 @@ public class Minijokoa extends Observable{
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = false;
                 tamagochiLerroa++;
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = true;
-                setChanged();
-                notifyObservers("tamagochiMugitu");
+                if(irabaziDu())
+                {
+                    setChanged();
+                    notifyObservers("irabaziDu");
+                }
+                else
+                {
+                    setChanged();
+                    notifyObservers("tamagochiMugitu");
+                }
             }
         }
         else if (norabidea == 2)
@@ -139,8 +164,16 @@ public class Minijokoa extends Observable{
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = false;
                 tamagochiLerroa--;
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = true;
-                setChanged();
-                notifyObservers("tamagochiMugitu");
+                if(irabaziDu())
+                {
+                    setChanged();
+                    notifyObservers("irabaziDu");
+                }
+                else
+                {
+                    setChanged();
+                    notifyObservers("tamagochiMugitu");
+                }
             }
         }
         else if (norabidea == 3)
@@ -150,8 +183,16 @@ public class Minijokoa extends Observable{
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = false;
                 tamagochiZutabea--;
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = true;
-                setChanged();
-                notifyObservers("tamagochiMugitu");
+                if(irabaziDu())
+                {
+                    setChanged();
+                    notifyObservers("irabaziDu");
+                }
+                else
+                {
+                    setChanged();
+                    notifyObservers("tamagochiMugitu");
+                }
 
             }
         }
@@ -162,8 +203,16 @@ public class Minijokoa extends Observable{
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = false;
                 tamagochiZutabea++;
                 tamagochi[tamagochiLerroa][tamagochiZutabea] = true;
-                setChanged();
-                notifyObservers("tamagochiMugitu");
+                if(irabaziDu())
+                {
+                    setChanged();
+                    notifyObservers("irabaziDu");
+                }
+                else
+                {
+                    setChanged();
+                    notifyObservers("tamagochiMugitu");
+                }
             }
         }
     }

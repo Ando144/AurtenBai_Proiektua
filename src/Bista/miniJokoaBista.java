@@ -39,14 +39,14 @@ public class miniJokoaBista implements Observer{
         pMinijokoa.addObserver(this);
     }
     
-
+    MinijokoController controller = new MinijokoController();
     public void update(Observable arg0, Object arg1)
     {
+        System.out.println("ha pasado a el update");
         switch((String)arg1)//((MiniJokoa)arg0).get...
         {
             case "hasieratu":
                 Hasieratu();
-                System.out.println("ha pasado el observer de hasieratu");
                 break;
             case "LaukiakAktualizatu":
                 LaukiakAktualizatu();
@@ -57,8 +57,8 @@ public class miniJokoaBista implements Observer{
             case "tamagochietaTartaHasieratu":
                 //tartaKokatu();
                 break;
-            case "irabazi":
-                //irabazi();
+            case "irabaziDu":
+                //irabaziDu();
                 break;
             case "galdu":
                 //galdu();
@@ -69,8 +69,8 @@ public class miniJokoaBista implements Observer{
     public void Hasieratu() 
     {
         
-        System.out.println("Hasieratu da 2");
      //metodo que inicializa una matriz de 12 x 12 de laukias
+        
         laukiak = new JLabel[12][12];
         frame = new JFrame();
         panel = new JPanel();
@@ -86,12 +86,12 @@ public class miniJokoaBista implements Observer{
                 laukiak[i][j] = new JLabel();
                 laukiak[i][j].setOpaque(true);
                 laukiak[i][j].setBackground(koloreaAtera(i, j));
-                panel.add(laukiak[i][j]);
+                frame.addMouseListener(controller);
 
-                System.out.println("Creando JLabel en la posición " + i + ", " + j);
+                panel.add(laukiak[i][j]);
             }
         }
-        frame.addKeyListener(new MinijokoController());
+        frame.addKeyListener(controller);
         frame.setVisible(true);
     }
     public void LaukiakAktualizatu()
@@ -104,6 +104,8 @@ public class miniJokoaBista implements Observer{
                 laukiak[i][j].setBackground(koloreaAtera(i, j));
             }
         }
+        
+        
     }
     private Color koloreaAtera(int lerroa, int zutabea)
     {
@@ -152,17 +154,18 @@ public class miniJokoaBista implements Observer{
 
     private class MinijokoController extends MouseAdapter implements KeyListener
     {
+        private int lerroa;
+        private int zutabea;
 
-        //hay que llamar al EMA de Minijoko para que el controller acceda a el
-        
+        public void CustomMouseListener(int lerroa, int zutabea)
+        {
+            this.lerroa = lerroa;
+            this.zutabea = zutabea;
+        }
+
         public void punteroaBarruan(MouseEvent e)
         {
-            int x = e.getX();
-            int y = e.getY();
-            int zutabea = x / 50;
-            int lerroa = y / 50;
-            Minijokoa minijokoa = new Minijokoa();
-            minijokoa.laukiaAktualizatu(lerroa, zutabea);
+            Minijokoa.getMinijokoa().laukiaAktualizatu(lerroa, zutabea);
         }
         //input de las flechas del teclado
         public void keyPressed(KeyEvent e)
