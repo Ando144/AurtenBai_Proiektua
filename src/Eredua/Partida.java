@@ -1,8 +1,10 @@
 package src.Eredua;
 
 import java.util.*;
+
+import src.Bista.panelNagusia;
+
 import java.io.*;
-import java.util.Observable;
 
 public class Partida extends Observable{
     private int score;
@@ -10,7 +12,7 @@ public class Partida extends Observable{
     private int candy;
     private int soup;
     private Tamagotchi tamagotchi;
-    private Minijokoa minijokoa;
+    private static Partida nirePartida = null;
 	public Partida(){
         this.score = 0;
         //this.izena = "";
@@ -18,11 +20,36 @@ public class Partida extends Observable{
         this.soup = 0;
         this.tamagotchi = new Egg(20, 20, false, false);
     }
-
-    public void main(){
-			bihotzakEguneratu(20);
-        	sopakEguneratu(20);    
+	public static Partida getPartida()
+    {
+        if(nirePartida == null)
+        {
+            nirePartida = new Partida();
+        }
+        return nirePartida;
     }
+    public static void main(String [] args){
+			Partida nirePartida =new Partida();
+			panelNagusia frame = new panelNagusia(nirePartida);
+			nirePartida.hasieratuPartida();
+			nirePartida.bihotzakEguneratu(20);
+        	nirePartida.sopakEguneratu(20);  
+			while (true) {
+				nirePartida.kakaEgin();
+				try{
+					Thread.sleep(4000);
+				}
+				catch(InterruptedException e){
+					e.printStackTrace();
+				}
+			}
+			
+    }
+	private void hasieratuPartida(){
+		System.out.println("hemen nago");
+		setChanged();
+		notifyObservers("hasieratu");
+	}
     private void bihotzakEguneratu(int pBizitza) {
 		System.out.println("hemen nago");
 		int zenb = pBizitza;
@@ -72,78 +99,63 @@ public class Partida extends Observable{
             notifyObservers("hildaDago");
 		}
 	}
-    /*private void bihotzakBistaratu(int bihotzKop) {
-		if(bihotzKop==0) {
-           setChanged();
-            notifyObservers("hildaDago");
-		}
-		if(bihotzKop==1) {
-            setChanged();
-           notifyObservers("bihotz1jarri");
-		}
-		if(bihotzKop==2) {
-			setChanged();
-            notifyObservers("2bihotzjarri");
-		}
-		if(bihotzKop==3) {
-            setChanged();
-            notifyObservers("3bihotzjarri");
-		}
-		if(bihotzKop==4) {
-			setChanged();
-            notifyObservers("4bihotzjarri");	
-		}
-		} */
-   /*  private void sopakBistaratu(int sopaKop) {
-		if(sopaKop==0) {
-            setChanged();
-            notifyObservers("hildaDago");
-		}
-		if(sopaKop==1) {
-            setChanged();
-            notifyObservers("sopa1jarri");
-		}
-		if(sopaKop==2) {
-			setChanged();
-            notifyObservers("2sopajarri");
-		}
-		if(sopaKop==3) {
-            setChanged();
-            notifyObservers("3sopajarri");
-		}
-		if(sopaKop==4) {
-			setChanged();
-            notifyObservers("4sopajarri");	
-		}
-	}*/
-	public boolean kakaEgin(){
+	public boolean kakaEgin(){ //mira si se hace kk
+		boolean kaka = false;
 		Random probabilitatea = new Random();
 		int zenbakia = probabilitatea.nextInt(101);
+		System.out.println("kaka zenb "+zenbakia);
 		if(1<=zenbakia && zenbakia<=20){
-			return true;
+			kaka = true;
+			kakaBistaratu(kaka); //aqui si se hace kk salta
 		}
 		else{
-			return false;
+			System.out.println("kaka ez du egin");
+			gaixotuAhalDa(kaka); //aqui salta a otro metodo para ver si se puede enfermar (no puede hacer kaka y enfermar a la misma vez)
+		}
+		
+		return kaka;
+	}
+	public void gaixotuAhalDa(boolean kaka){
+		System.out.println(kaka);
+		if (kaka==false) {
+			System.out.println("kaka ez du eginnnnnnnnnnn");
+			gaixorikEgon();
 		}
 	}
 	public boolean gaixorikEgon(){
+		boolean gaixo = false;
 		Random probabilitatea = new Random();
 		int zenbakia = probabilitatea.nextInt(101);
+		System.out.println("gaixo zenb "+zenbakia);
 		if(1<=zenbakia && zenbakia<=30){
-			return true;
+			gaixo = true;
+			gaixoBistaratu(gaixo);
 		}
-		else{
-			return false;
-		}
+		
+		return gaixo;
 	}
 	public boolean minijokoaJokaatu(){
 		Random probabilitatea = new Random();
 		int zenbakia = probabilitatea.nextInt(101);
 		if(1<=zenbakia && zenbakia<=12){
+			setChanged();
+			notifyObservers("MiniJokua");
 			return true;
 		}
 		else{
 			return false;
+		}
+	}
+	public void kakaBistaratu(boolean kaka){
+		if(kaka==true){
+			setChanged();
+			notifyObservers("kaka");
+		}
+	}
+	public  void gaixoBistaratu(boolean gaixo){
+		if(gaixo==true){
+			setChanged();
+			notifyObservers("gaixo");
 		}
 	}
 	private void scoreEguneratu(){

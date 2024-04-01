@@ -1,6 +1,5 @@
 package src.Bista;
 
-import java.awt.EventQueue;
 import src.Eredua.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,12 +9,8 @@ import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.SystemColor;
-
 import javax.swing.border.LineBorder;
 
-import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
@@ -23,7 +18,8 @@ import java.util.Observer;
 import java.util.Observable;
 import javax.swing.Timer;
 public class panelNagusia extends JFrame implements Observer{
-
+	private JFrame frame;
+	private JPanel panel;
 	private static final long serialVersionUID = 1L;
 	private JPanel panel_tamagochi;
 	private JPanel panel_bihotzak;
@@ -49,6 +45,8 @@ public class panelNagusia extends JFrame implements Observer{
 	private Timer timer;
 	private ImageIcon irudiak;
 	private JLabel eggIrudi;
+	private JLabel kakaIrudi;
+	private JLabel gaixoIrudi;
 	private int pBizitza;
 	private int pAsetasuna;
 	private boolean pGaixorik;
@@ -63,7 +61,7 @@ public class panelNagusia extends JFrame implements Observer{
 		}
 		return kontroladorea;
 	}
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -75,26 +73,32 @@ public class panelNagusia extends JFrame implements Observer{
 				}
 			}
 		});
-	}
-
-	public panelNagusia(Observable pObservable) {
-		getContentPane().setBackground(new Color(0, 0, 0));
-		getContentPane().setForeground(new Color(0, 0, 0));
-		setBounds(100, 100, 500, 450);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
-		getContentPane().add(getPanel_tamagochi());
-		getContentPane().add(getPanel_bihotzak());
-		getContentPane().add(getPanel_platos());
-		getContentPane().add(getTamagochi_Izena());
-		getContentPane().add(getScore_label());
-		getContentPane().add(getPuntuazioa());
-		getContentPane().add(getBoton_exit());
-		getContentPane().add(getPanel_candy());
-		getContentPane().add(getPanel__soup());
-		getContentPane().add(getLblNewLabel_3());
-		getContentPane().add(getLblNewLabel_4());
+	}*/
+	public panelNagusia(Observable pObservable){
 		pObservable.addObserver(this);
+	}
+	private void hasieratu() {
+		frame = new JFrame();
+		panel = new JPanel();
+		panel.setBackground(new Color(0, 0, 0));
+		panel.setLayout(new GridLayout(12,12));
+		frame.add(panel);
+		frame.setBackground(new Color(0, 0, 0));
+		frame.setForeground(new Color(0, 0, 0));
+		frame.setBounds(100, 100, 500, 450);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLayout(null);
+		frame.add(getPanel_tamagochi());
+		frame.add(getPanel_bihotzak());
+		frame.add(getPanel_platos());
+		frame.add(getTamagochi_Izena());
+		frame.add(getScore_label());
+		frame.add(getPuntuazioa());
+		frame.add(getBoton_exit());
+		frame.add(getPanel_candy());
+		frame.add(getPanel__soup());
+		frame.add(getLblNewLabel_3());
+		frame.add(getLblNewLabel_4());
 		TamaIrudiak= new ImageIcon[] {
 				new ImageIcon((this.getClass().getResource("/sprites/egg1.png"))),
 				new ImageIcon((this.getClass().getResource("/sprites/egg2.png")))
@@ -107,8 +111,9 @@ public class panelNagusia extends JFrame implements Observer{
 				eggIrudi.setIcon(TamaIrudiak[intOrain]);
 			}
 		});
-		timer.start();
-            
+		timer.start(); 
+		frame.setVisible(true);
+		System.out.println("eyouuuu");        
 	}
 	private JPanel getPanel_tamagochi() {
 		if (panel_tamagochi == null) {
@@ -297,8 +302,28 @@ public class panelNagusia extends JFrame implements Observer{
 		}
 		return eggIrudi;
 	}
+	private JLabel getKakaIrudi( ) {
+		if (kakaIrudi == null) {
+			kakaIrudi = new JLabel("");
+			kakaIrudi.setBounds(100, 100, 100, 100);
+			kakaIrudi.setIcon(new ImageIcon(this.getClass().getResource("/sprites/kk.png")));
+		}
+		return kakaIrudi;
+	}
+	private JLabel getgaixoIrudi( ) {
+		if (gaixoIrudi == null) {
+			gaixoIrudi = new JLabel("");
+			gaixoIrudi.setBounds(80, 0, 100, 100);
+			gaixoIrudi.setIcon(new ImageIcon(this.getClass().getResource("/sprites/Virus.png")));
+		}
+		return gaixoIrudi;
+	}
 	public void update(Observable o, Object arg){
 		switch ((String)arg) {
+			case "hasieratu":
+				System.out.println("hasieratu");
+				hasieratu();
+				break;
 			case "4bihotzjarri":
 				lauBihotzJarri();
 				break;
@@ -307,6 +332,7 @@ public class panelNagusia extends JFrame implements Observer{
 				hiruBihotzJarri();
 				break;
 			case "2bihotzjarri":
+				System.out.println("hemen nago");
 				biBihotzJarri();
 				break;
 			case "bihotz1jarri":
@@ -329,65 +355,85 @@ public class panelNagusia extends JFrame implements Observer{
 			case "sopa1jarri":
 				katiluBatJarri();
 				break;
+			case "kaka":
+				kaka();
+				break;
+			case "gaixo":
+				gaixo();
+				break;
+			case "MiniJokua":
+				minijokuaBistaratu();
+				break;
 		}
 	}
-	public void lauBihotzJarri(){
+	private void lauBihotzJarri(){
 		bihotza1.setEnabled(true);
 		bihotza2.setEnabled(true);
 		bihotza3.setEnabled(true);
 		bihotza4.setEnabled(true);
 	}
-	public void hiruBihotzJarri(){
+	private void hiruBihotzJarri(){
 		bihotza1.setEnabled(true);
 		bihotza2.setEnabled(true);
 		bihotza3.setEnabled(true);
 		bihotza4.setEnabled(false);
 	}
-	public void biBihotzJarri(){
+	private void biBihotzJarri(){
 		bihotza1.setEnabled(true);
 		bihotza2.setEnabled(true);
 		bihotza3.setEnabled(false);
 		bihotza4.setEnabled(false);
 	}
-	public void bihotzBatJarri(){
+	private void bihotzBatJarri(){
 		bihotza1.setEnabled(true);
 		bihotza2.setEnabled(false);
 		bihotza3.setEnabled(false);
 		bihotza4.setEnabled(false);
 	}
-	public void hildaDago(){}	
-	public void lauKatiluJarri(){
+	private void hildaDago(){}	
+	private void lauKatiluJarri(){
 		katilu1.setEnabled(true);
 		katilu2.setEnabled(true);
 		katilu3.setEnabled(true);
 		katilu4.setEnabled(true);
 	}
-	public void hiruKatiluJarri(){
+	private void hiruKatiluJarri(){
 		katilu1.setEnabled(true);
 		katilu2.setEnabled(true);
 		katilu3.setEnabled(true);
 		katilu4.setEnabled(false);
 	}
-	public void biKatiluJarri(){
+	private void biKatiluJarri(){
 		katilu1.setEnabled(true);
 		katilu2.setEnabled(true);
 		katilu3.setEnabled(false);
 		katilu4.setEnabled(false);
 	}
-	public void katiluBatJarri(){
+	private void katiluBatJarri(){
 		katilu1.setEnabled(true);
 		katilu2.setEnabled(false);
 		katilu3.setEnabled(false);
 		katilu4.setEnabled(false);
 	}
+	private void kaka(){
+		panel_tamagochi.add(getKakaIrudi());
+	}
+	private void gaixo(){
+		panel_tamagochi.add(getgaixoIrudi());
+	}
+	private void minijokuaBistaratu(){
+		
+	}
 	private class Kontroladorea implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e){
+			if(e.getSource().equals(boton_exit)){
 				PartidaErregistro pe = new PartidaErregistro();
-				HasieraMenua frame = new HasieraMenua(pe);
+				HasieraMenua frame2 = new HasieraMenua(pe);
 				pe.getLehenengoBostak();
-				frame.setVisible(true);
+				frame2.setVisible(true);
 				dispose();	
+			}
 		}
 	}
 }
