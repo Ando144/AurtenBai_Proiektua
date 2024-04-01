@@ -116,5 +116,51 @@ public class Partida extends Observable{
             notifyObservers("4sopajarri");	
 		}
 	}*/
+	public boolean kakaEgin(){
+		Random probabilitatea = new Random();
+		int zenbakia = probabilitatea.nextInt(101);
+		if(1<=zenbakia && zenbakia<=20){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public boolean gaixorikEgon(){
+		Random probabilitatea = new Random();
+		int zenbakia = probabilitatea.nextInt(101);
+		if(1<=zenbakia && zenbakia<=30){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public boolean minijokoaJokaatu(){
+		Random probabilitatea = new Random();
+		int zenbakia = probabilitatea.nextInt(101);
+		if(1<=zenbakia && zenbakia<=12){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	private void scoreEguneratu(){
+		int puntuazioa=this.score;
+		//+1 cada vez que pasan 4 segundos
+		if (this.gaixorikEgon()==true){
+			puntuazioa=puntuazioa-5;
+		}
+		if (this.kakaEgin()==true){
+			puntuazioa=puntuazioa-5;
+		}
+		Marutchi marutchi= new Marutchi(puntuazioa, puntuazioa, false, false);
+		if (marutchi.zeinEboluzioDa()=="Marutchi"){
+			puntuazioa=puntuazioa+20;
+		}
+		//si se da una piruleta o sopa +5
+		
+	}
 
 }
