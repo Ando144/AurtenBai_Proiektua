@@ -20,53 +20,67 @@ public class Partida extends Observable{
         this.tamagotchi = new Egg(20, 20, false, false);
     }
 
-    public void main(String[]args){
-		
-        bihotzakEguneratu(20);
-        sopakEguneratu(20);
+    public  void main(){
+			bihotzakEguneratu(20);
+        	sopakEguneratu(20);    
     }
     private void bihotzakEguneratu(int pBizitza) {
+		System.out.println("hemen nago");
 		int zenb = pBizitza;
-		int kont=0;
+		//int kont=0;
 		if (zenb>=31 && zenb<=40) {
-			kont=4;
+			setChanged();
+            notifyObservers("4bihotzjarri");
 		}
 		if (zenb>=21 && zenb<=30) {
-			kont=3;
+			setChanged();
+            notifyObservers("3bihotzjarri");
 		}
 		if (zenb>=11 && zenb<=20) {
-			kont=2;
+			setChanged();
+            notifyObservers("2bihotzjarri");
 		}
 		if (zenb>=1 && zenb<=10) {
-			kont=1;
+			setChanged();
+            notifyObservers("bihotz1jarri");
 		}
-        bihotzakBistaratu(kont);
+        else{
+			setChanged();
+            notifyObservers("hildaDago");
+		}
 	}
     private void sopakEguneratu(int pAsetasuna) {
 		int zenb = pAsetasuna;
-		int kont=0;
+		//int kont=0;
 		if (zenb>=31 && zenb<=40) {
-			kont=4;
+			setChanged();
+            notifyObservers("4sopajarri");
 		}
 		if (zenb>=21 && zenb<=30) {
-			kont=3;
+			setChanged();
+            notifyObservers("3sopajarri");
 		}
 		if (zenb>=11 && zenb<=20) {
-			kont=2;
+			setChanged();
+            notifyObservers("2sopajarri");
 		}
 		if (zenb>=1 && zenb<=10) {
-			kont=1;
+			setChanged();
+            notifyObservers("sopa1jarri");
 		}
-        sopakBistaratu(kont);
+		else{
+			setChanged();
+            notifyObservers("hildaDago");
+		}
 	}
-    private void bihotzakBistaratu(int bihotzKop) {
+    /*private void bihotzakBistaratu(int bihotzKop) {
 		if(bihotzKop==0) {
-            setChanged();
+           setChanged();
             notifyObservers("hildaDago");
 		}
 		if(bihotzKop==1) {
             setChanged();
-            notifyObservers("bihotz1jarri");
+           notifyObservers("bihotz1jarri");
 		}
 		if(bihotzKop==2) {
 			setChanged();
@@ -80,8 +94,8 @@ public class Partida extends Observable{
 			setChanged();
             notifyObservers("4bihotzjarri");	
 		}
-	}
-    private void sopakBistaratu(int sopaKop) {
+		} */
+   /*  private void sopakBistaratu(int sopaKop) {
 		if(sopaKop==0) {
             setChanged();
             notifyObservers("hildaDago");
@@ -102,6 +116,6 @@ public class Partida extends Observable{
 			setChanged();
             notifyObservers("4sopajarri");	
 		}
-	}
+	}*/
 
 }
