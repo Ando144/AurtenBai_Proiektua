@@ -155,8 +155,7 @@ public class Partida extends Observable{
 		if (this.kakaEgin()==true){
 			puntuazioa=puntuazioa-5;
 		}
-		Marutchi marutchi= new Marutchi(puntuazioa, puntuazioa, false, false);
-		if (marutchi.zeinEboluzioDa()=="Marutchi"){
+		if (this.tamagotchi.zeinEboluzioDa()=="Marutchi"){
 			puntuazioa=puntuazioa+20;
 		}
 		//si se da una piruleta o sopa +5
