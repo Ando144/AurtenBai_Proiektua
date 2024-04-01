@@ -49,6 +49,10 @@ public class panelNagusia extends JFrame implements Observer{
 	private Timer timer;
 	private ImageIcon irudiak;
 	private JLabel eggIrudi;
+	private int pBizitza;
+	private int pAsetasuna;
+	private boolean pGaixorik;
+	private boolean pKaka;
 	private Kontroladorea kontroladorea = null;
 	/**
 	 * Launch the application.
@@ -64,10 +68,7 @@ public class panelNagusia extends JFrame implements Observer{
 			public void run() {
 				try {
 					Partida part = new Partida();
-					Tamagotchi tama = new Tamagotchi(pBizitza, pAsetasuna, pGaixorik, pKaka) {
-						
-					};
-					panelNagusia frame = new panelNagusia(part, pBizitza, pAsetasuna, pMota, pScore);
+					panelNagusia frame = new panelNagusia(part);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -76,13 +77,13 @@ public class panelNagusia extends JFrame implements Observer{
 		});
 	}
 
-	public panelNagusia(Observable pObservable,int pBizitza, int pAsetasuna, String pMota, int pScore) {
+	public panelNagusia(Observable pObservable) {
 		getContentPane().setBackground(new Color(0, 0, 0));
 		getContentPane().setForeground(new Color(0, 0, 0));
 		setBounds(100, 100, 500, 450);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-		getContentPane().add(getPanel_tamagochi(pMota));
+		getContentPane().add(getPanel_tamagochi());
 		getContentPane().add(getPanel_bihotzak());
 		getContentPane().add(getPanel_platos());
 		getContentPane().add(getTamagochi_Izena());
@@ -95,8 +96,8 @@ public class panelNagusia extends JFrame implements Observer{
 		getContentPane().add(getLblNewLabel_4());
 		pObservable.addObserver(this);
 		TamaIrudiak= new ImageIcon[] {
-				new ImageIcon((this.getClass().getResource("/sprites/"+pMota+"1.png"))),
-				new ImageIcon((this.getClass().getResource("/sprites/"+pMota+"2.png")))
+				new ImageIcon((this.getClass().getResource("/sprites/egg1.png"))),
+				new ImageIcon((this.getClass().getResource("/sprites/egg2.png")))
 		};
 		intOrain=0;
 		//segundoro irudia aldatzeko
@@ -109,12 +110,12 @@ public class panelNagusia extends JFrame implements Observer{
 		timer.start();
             
 	}
-	private JPanel getPanel_tamagochi(String pMota) {
+	private JPanel getPanel_tamagochi() {
 		if (panel_tamagochi == null) {
 			panel_tamagochi = new JPanel();
 			panel_tamagochi.setBackground(new Color(0, 0, 0));
 			panel_tamagochi.setLayout(null);
-			panel_tamagochi.add(getEggIrudi(pMota));
+			panel_tamagochi.add(getEggIrudi());
 			panel_tamagochi.setBounds(100, 108, 294, 165);
 			panel_tamagochi.setLayout(null);
 		}
@@ -285,11 +286,11 @@ public class panelNagusia extends JFrame implements Observer{
 		}
 		return katilu1;
 	}
-	private JLabel getEggIrudi(String pMota) {
+	private JLabel getEggIrudi( ) {
 		if (eggIrudi == null) {
 			eggIrudi = new JLabel("");
 			eggIrudi.setBounds(80, 0, 200, 200);
-			eggIrudi.setIcon(new ImageIcon(this.getClass().getResource("/sprites/"+pMota+"1.png")));
+			eggIrudi.setIcon(new ImageIcon(this.getClass().getResource("/sprites/egg1.png")));
 		}
 		else {
 			eggIrudi.setIcon(TamaIrudiak[intOrain]);

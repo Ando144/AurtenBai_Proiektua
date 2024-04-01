@@ -19,7 +19,7 @@ public class Partida extends Observable{
         this.tamagotchi = new Egg(20, 20, false, false);
     }
 
-    public  void main(){
+    public void main(){
 			bihotzakEguneratu(20);
         	sopakEguneratu(20);    
     }
