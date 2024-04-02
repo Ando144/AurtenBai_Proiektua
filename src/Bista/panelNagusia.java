@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.util.Observer;
@@ -59,6 +61,7 @@ public class panelNagusia extends JFrame implements Observer{
 	private JLabel koilara2;
 	private JLabel koilara3;
 	private JLabel tamagotchiIrudi;
+	private int offsetx,offsety;
 	/**
 	 * Launch the application.
 	 */
@@ -68,7 +71,7 @@ public class panelNagusia extends JFrame implements Observer{
 		}
 		return kontroladorea;
 	}
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -80,7 +83,7 @@ public class panelNagusia extends JFrame implements Observer{
 				}
 			}
 		});
-	}*/
+	}
 	public panelNagusia(Observable pObservable){
 		pObservable.addObserver(this);
 	}
@@ -336,6 +339,21 @@ public class panelNagusia extends JFrame implements Observer{
 			candy1 = new JLabel("");
 			candy1.setIcon(new ImageIcon(this.getClass().getResource("/sprites/candy.png")));
 			candy1.setBounds(0, 0, 29, 34);
+			candy1.addMouseListener(new MouseAdapter(){
+				public void mousePressed(MouseEvent e){
+					offsetx=e.getX();
+					offsety=e.getY();
+				}
+			});
+			candy1.addMouseMotionListener(new MouseAdapter() {
+				public void mouseDragged(MouseEvent e){
+					int newX=e.getXOnScreen()-frame.getLocationOnScreen().x -offsetx;
+					int newY=e.getYOnScreen()-frame.getLocationOnScreen().y- offsety;
+					candy1.setLocation(newX, newY);
+					repaint();
+				}	
+			}
+			);
 		}
 		return candy1;
 	}
@@ -435,6 +453,9 @@ public class panelNagusia extends JFrame implements Observer{
 			case "Maskutchi":
 				maskutchiBistaratu();
 				break;
+			case "Puntuazioa":
+				PuntuazioaEguneratuEtaBistaratu();
+				break;
 		}
 	}
 	private void lauBihotzJarri(){
@@ -508,6 +529,7 @@ public class panelNagusia extends JFrame implements Observer{
 				tamagotchiIrudi.setIcon(TamaIrudiak[intOrain]);
 			}
 		});
+		Tamagochi_Izena.setText("Marutchi");
 
 	}
 	private void kuchipatchiBistaratu(){
@@ -523,6 +545,7 @@ public class panelNagusia extends JFrame implements Observer{
 				tamagotchiIrudi.setIcon(TamaIrudiak[intOrain]);
 			}
 		});
+		Tamagochi_Izena.setText("Kuchipatchi");
 	}
 	private void mimitchiBistaratu(){
 		TamaIrudiak= new ImageIcon[] {
@@ -537,7 +560,9 @@ public class panelNagusia extends JFrame implements Observer{
 				tamagotchiIrudi.setIcon(TamaIrudiak[intOrain]);
 			}
 		});
+		Tamagochi_Izena.setText("Mimitchi");
 	}
+	
 	 private void maskutchiBistaratu(){
 		TamaIrudiak= new ImageIcon[] {
 			new ImageIcon((this.getClass().getResource("/sprites/Maskutchi1.png"))),
@@ -551,17 +576,21 @@ public class panelNagusia extends JFrame implements Observer{
 				tamagotchiIrudi.setIcon(TamaIrudiak[intOrain]);
 			}
 		});
+		Tamagochi_Izena.setText("Maskutchi");
 	 }
+	private void PuntuazioaEguneratuEtaBistaratu(){
+
+	}
 	private class Kontroladorea implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e){
 			if(e.getSource().equals(boton_exit)){
-				PartidaErregistro pe = new PartidaErregistro();
-				HasieraMenua frame2 = new HasieraMenua(pe);
-				pe.getLehenengoBostak();
+				HasieraMenua frame2 = new HasieraMenua(PartidaErregistro.getPartidaErregistro());
 				frame2.setVisible(true);
-				dispose();	
+				PartidaErregistro.getPartidaErregistro().getLehenengoBostak();
+				dispose();
 			}
+			//dispose();
 		}
 	}
 }

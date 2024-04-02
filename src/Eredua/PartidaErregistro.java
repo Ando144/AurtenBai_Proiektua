@@ -19,11 +19,11 @@ public class PartidaErregistro extends Observable{
 	public PartidaErregistro() {
 	}
 	
-	public PartidaErregistro getPartidaErregistro() {
-		if(this.nPartidaErregistro == null) {
-			this.nPartidaErregistro = new PartidaErregistro();
+	public static PartidaErregistro getPartidaErregistro() {
+		if(nPartidaErregistro == null) {
+			nPartidaErregistro = new PartidaErregistro();
 		}
-		return this.nPartidaErregistro;
+		return nPartidaErregistro;
 	}
 	
 	public String getLeh() {
