@@ -170,7 +170,7 @@ public class miniJokoaBista implements Observer{
         }
         else
         {
-            return Color.LIGHT_GRAY;
+            return Color.red;
         }
     }
     public void tamagochiMugitu()

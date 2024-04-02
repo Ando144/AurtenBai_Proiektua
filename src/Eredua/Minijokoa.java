@@ -250,6 +250,7 @@ public class Minijokoa extends Observable{
     }
     public  void laukiaAktualizatu(int lerroa, int zutabea)
     {
+        System.out.println("bai");
         //PROBLEMA: cuando llega al notifyObservers no salta a el update de minijokoaBista y no se porque
         //si te fijas cuando ejecutas el codigo funciona bien pero no se actualiza la vista
         // esto puedes saberlo por los prints qie he puesto pq si pasas dos veces el raton por encima de 
