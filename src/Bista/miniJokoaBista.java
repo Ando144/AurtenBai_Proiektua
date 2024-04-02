@@ -39,7 +39,7 @@ public class miniJokoaBista implements Observer{
         pMinijokoa.addObserver(this);
     }
     
-    MinijokoController controller = new MinijokoController();
+    @Override
     public void update(Observable arg0, Object arg1)
     {
         System.out.println("ha pasado a el update");
@@ -66,6 +66,8 @@ public class miniJokoaBista implements Observer{
         }
         
     }
+    Teklatua Teklatua = new Teklatua();
+    Arratoia Arratoia = new Arratoia();
     public void Hasieratu() 
     {
         
@@ -74,9 +76,9 @@ public class miniJokoaBista implements Observer{
         laukiak = new JLabel[12][12];
         frame = new JFrame();
         panel = new JPanel();
-        panel.setLayout(new GridLayout(12, 12));
+        frame.setLayout(new GridLayout(12, 12));
         frame.add(panel);
-        frame.setSize(800, 600);
+        frame.setSize(500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         for (int i = 0; i < 12; i++)
@@ -86,12 +88,11 @@ public class miniJokoaBista implements Observer{
                 laukiak[i][j] = new JLabel();
                 laukiak[i][j].setOpaque(true);
                 laukiak[i][j].setBackground(koloreaAtera(i, j));
-                frame.addMouseListener(controller);
-
-                panel.add(laukiak[i][j]);
+                laukiak[i][j].addMouseListener(Arratoia.CustomMouseListener(j, i));
+                frame.add(laukiak[i][j]);
             }
         }
-        frame.addKeyListener(controller);
+        frame.addKeyListener(Teklatua);
         frame.setVisible(true);
     }
     public void LaukiakAktualizatu()
@@ -152,21 +153,25 @@ public class miniJokoaBista implements Observer{
         }
     }
 
-    private class MinijokoController extends MouseAdapter implements KeyListener
+    private class Arratoia extends MouseAdapter 
     {
+        
         private int lerroa;
         private int zutabea;
-
+        
         public void CustomMouseListener(int lerroa, int zutabea)
         {
             this.lerroa = lerroa;
             this.zutabea = zutabea;
         }
-
-        public void punteroaBarruan(MouseEvent e)
+        @Override
+        public void mouseEntered(MouseEvent e)
         {
             Minijokoa.getMinijokoa().laukiaAktualizatu(lerroa, zutabea);
         }
+    }
+    public class Teklatua extends KeyAdapter{
+     
         //input de las flechas del teclado
         public void keyPressed(KeyEvent e)
         {
@@ -198,7 +203,7 @@ public class miniJokoaBista implements Observer{
         public void keyTyped(KeyEvent e)
         {
         }
-
-
     }
+
+    
 }
