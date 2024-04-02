@@ -60,7 +60,7 @@ public class Partida extends Observable{
 			});
 			lausegundo.start();
 			Thread hilo20segundo= new Thread(()->{
-				while (true) {
+				while (nirePartida.kakaEgin()==false && nirePartida.gaixorikEgon()==false) {
 					nirePartida.kakaEgin();
 					try {
 						Thread.sleep(10000); // Espera 20 segundo
@@ -163,19 +163,14 @@ public class Partida extends Observable{
 	}
 	public boolean gaixorikEgon(){
 		boolean gaixo = false;
-		if(this.kakaEgin()==true){
-			return gaixo;
+		Random probabilitatea = new Random();
+		int zenbakia = probabilitatea.nextInt(101);
+		System.out.println("gaixo zenb "+zenbakia);
+		if(1<=zenbakia && zenbakia<=30){
+			gaixo = true;
+			gaixoBistaratu(gaixo);
 		}
-		else{
-			Random probabilitatea = new Random();
-			int zenbakia = probabilitatea.nextInt(101);
-			System.out.println("gaixo zenb "+zenbakia);
-			if(1<=zenbakia && zenbakia<=30){
-				gaixo = true;
-				gaixoBistaratu(gaixo);
-			}
-			return gaixo;
-		}
+		return gaixo;
 	}
 	public boolean minijokoaJokaatu(){
 		Random probabilitatea = new Random();
