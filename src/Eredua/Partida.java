@@ -18,7 +18,7 @@ public class Partida extends Observable{
         //this.izena = "";
         this.candy = 0;
         this.soup = 0;
-        this.tamagotchi = new Egg(20, 20, false, false);
+        this.tamagotchi = new Mimitchi(20, 20, false, false);
     }
 	public static Partida getPartida()
     {
@@ -32,12 +32,13 @@ public class Partida extends Observable{
 			Partida nirePartida =new Partida();
 			panelNagusia frame = new panelNagusia(nirePartida);
 			nirePartida.hasieratuPartida();
+			nirePartida.tamagotchiEguneratu();
 			nirePartida.bihotzakEguneratu(20);
         	nirePartida.sopakEguneratu(20);  
 			while (true) {
 				nirePartida.kakaEgin();
 				try{
-					Thread.sleep(4000);
+					Thread.sleep(20000);
 				}
 				catch(InterruptedException e){
 					e.printStackTrace();
@@ -157,6 +158,26 @@ public class Partida extends Observable{
 			setChanged();
 			notifyObservers("gaixo");
 		}
+	}
+	public void tamagotchiEguneratu(){
+		String izena =this.tamagotchi.zeinEboluzioDa();
+		if (izena == "Marutchi") {
+			setChanged();
+			notifyObservers("Marutchi");
+		}
+		if (izena == "Kuchipatchi") {
+			setChanged();
+			notifyObservers("Kuchipatchi");
+		}
+		if (izena == "Maskutchi") {
+			setChanged();
+			notifyObservers("Maskutchi");
+		}
+		if (izena == "Mimitchi") {
+			setChanged();
+			notifyObservers("Mimitchi");
+		}
+
 	}
 	private void scoreEguneratu(){
 		int puntuazioa=this.score;

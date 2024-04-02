@@ -52,6 +52,13 @@ public class panelNagusia extends JFrame implements Observer{
 	private boolean pGaixorik;
 	private boolean pKaka;
 	private Kontroladorea kontroladorea = null;
+	private JLabel candy1;
+	private JLabel candy2;
+	private JLabel candy3;
+	private JLabel koilara1;
+	private JLabel koilara2;
+	private JLabel koilara3;
+	private JLabel tamagotchiIrudi;
 	/**
 	 * Launch the application.
 	 */
@@ -79,11 +86,11 @@ public class panelNagusia extends JFrame implements Observer{
 	}
 	private void hasieratu() {
 		frame = new JFrame();
+		frame.setBackground(new Color(0, 0, 0));
 		panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 0));
-		panel.setLayout(new GridLayout(12,12));
+		//panel.setLayout(new GridLayout(12,12));
 		frame.add(panel);
-		frame.setBackground(new Color(0, 0, 0));
 		frame.setForeground(new Color(0, 0, 0));
 		frame.setBounds(100, 100, 500, 450);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -194,7 +201,10 @@ public class panelNagusia extends JFrame implements Observer{
 			panel_candy.setForeground(new Color(255, 255, 255));
 			panel_candy.setBackground(new Color(0, 0, 0));
 			panel_candy.setBorder(new LineBorder(new Color(128, 128, 128)));
-			panel_candy.setBounds(50, 354, 85, 34);
+			panel_candy.setBounds(50, 354, 103, 34);
+			panel_candy.add(getCandy1());
+			panel_candy.add(getCandy2());
+			panel_candy.add(getCandy3());
 		}
 		return panel_candy;
 	}
@@ -205,6 +215,9 @@ public class panelNagusia extends JFrame implements Observer{
 			panel__soup.setForeground(new Color(255, 255, 255));
 			panel__soup.setBorder(new LineBorder(new Color(128, 128, 128)));
 			panel__soup.setBounds(351, 354, 85, 34);
+			panel__soup.add(getKoilara1());
+			panel__soup.add(getKoilara2());
+			panel__soup.add(getKoilara3());
 		}
 		return panel__soup;
 	}
@@ -318,10 +331,57 @@ public class panelNagusia extends JFrame implements Observer{
 		}
 		return gaixoIrudi;
 	}
+	private JLabel getCandy1() {
+		if (candy1 == null) {
+			candy1 = new JLabel("");
+			candy1.setIcon(new ImageIcon(this.getClass().getResource("/sprites/candy.png")));
+			candy1.setBounds(0, 0, 29, 34);
+		}
+		return candy1;
+	}
+	private JLabel getCandy2() {
+		if (candy2 == null) {
+			candy2 = new JLabel("");
+			candy2.setIcon(new ImageIcon(this.getClass().getResource("/sprites/candy.png")));
+			candy2.setBounds(35, 0, 29, 34);
+		}
+		return candy2;
+	}
+	private JLabel getCandy3() {
+		if (candy3 == null) {
+			candy3 = new JLabel("");
+			candy3.setIcon(new ImageIcon(this.getClass().getResource("/sprites/candy.png")));
+			candy3.setBounds(74, 0, 29, 34);
+		}
+		return candy3;
+	}
+	private JLabel getKoilara1() {
+		if (koilara1 == null) {
+			koilara1 = new JLabel("");
+			koilara1.setIcon(new ImageIcon(this.getClass().getResource("/sprites/spoon.png")));
+			koilara1.setBounds(10, 0, 26, 34);
+		}
+		return koilara1;
+	}
+	private JLabel getKoilara2() {
+		if (koilara2 == null) {
+			koilara2 = new JLabel("");
+			koilara2.setIcon(new ImageIcon(this.getClass().getResource("/sprites/spoon.png")));
+			koilara2.setBounds(41, 0, 26, 34);
+		}
+		return koilara2;
+	}
+	private JLabel getKoilara3() {
+		if (koilara3 == null) {
+			koilara3 = new JLabel("");
+			koilara3.setIcon(new ImageIcon(this.getClass().getResource("/sprites/spoon.png")));
+			koilara3.setBounds(77, 0, 26, 34);
+		}
+		return koilara3;
+	}
 	public void update(Observable o, Object arg){
 		switch ((String)arg) {
 			case "hasieratu":
-				System.out.println("hasieratu");
 				hasieratu();
 				break;
 			case "4bihotzjarri":
@@ -332,7 +392,6 @@ public class panelNagusia extends JFrame implements Observer{
 				hiruBihotzJarri();
 				break;
 			case "2bihotzjarri":
-				System.out.println("hemen nago");
 				biBihotzJarri();
 				break;
 			case "bihotz1jarri":
@@ -363,6 +422,18 @@ public class panelNagusia extends JFrame implements Observer{
 				break;
 			case "MiniJokua":
 				minijokuaBistaratu();
+				break;
+			case "Marutchi":
+				marutchiBistaratu();
+				break;
+			case "Mimitchi":
+				mimitchiBistaratu();
+				break;
+			case "Kuchipatchi":
+				kuchipatchiBistaratu();
+				break;
+			case "Maskutchi":
+				maskutchiBistaratu();
 				break;
 		}
 	}
@@ -424,6 +495,63 @@ public class panelNagusia extends JFrame implements Observer{
 	private void minijokuaBistaratu(){
 		
 	}
+	private void marutchiBistaratu(){
+		TamaIrudiak= new ImageIcon[] {
+			new ImageIcon((this.getClass().getResource("/sprites/Marutchi1.png"))),
+			new ImageIcon((this.getClass().getResource("/sprites/Marutchi2.png"))),
+			new ImageIcon((this.getClass().getResource("/sprites/Marutchi3.png"))),
+			new ImageIcon((this.getClass().getResource("/sprites/Marutchi2.png")))
+		};
+		timer = new Timer(1000, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				intOrain = (intOrain + 1) % TamaIrudiak.length;
+				tamagotchiIrudi.setIcon(TamaIrudiak[intOrain]);
+			}
+		});
+
+	}
+	private void kuchipatchiBistaratu(){
+		TamaIrudiak= new ImageIcon[] {
+			new ImageIcon((this.getClass().getResource("/sprites/Kuchipatchi1.png"))),
+			new ImageIcon((this.getClass().getResource("/sprites/Kuchipatchi2.png"))),
+			new ImageIcon((this.getClass().getResource("/sprites/Kuchipatchi3.png"))),
+			new ImageIcon((this.getClass().getResource("/sprites/Kuchipatchi4.png")))
+		};
+		timer = new Timer(1000, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				intOrain = (intOrain + 1) % TamaIrudiak.length;
+				tamagotchiIrudi.setIcon(TamaIrudiak[intOrain]);
+			}
+		});
+	}
+	private void mimitchiBistaratu(){
+		TamaIrudiak= new ImageIcon[] {
+			new ImageIcon((this.getClass().getResource("/sprites/Mimitchi1.png"))),
+			new ImageIcon((this.getClass().getResource("/sprites/Mimitchi2.png"))),
+			new ImageIcon((this.getClass().getResource("/sprites/Mimitchi3.png"))),
+			new ImageIcon((this.getClass().getResource("/sprites/Mimitchi4.png")))
+		};
+		timer = new Timer(1000, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				intOrain = (intOrain + 1) % TamaIrudiak.length;
+				tamagotchiIrudi.setIcon(TamaIrudiak[intOrain]);
+			}
+		});
+	}
+	 private void maskutchiBistaratu(){
+		TamaIrudiak= new ImageIcon[] {
+			new ImageIcon((this.getClass().getResource("/sprites/Maskutchi1.png"))),
+			new ImageIcon((this.getClass().getResource("/sprites/Maskutchi2.png"))),
+			new ImageIcon((this.getClass().getResource("/sprites/Maskutchi3.png"))),
+			new ImageIcon((this.getClass().getResource("/sprites/Maskutchi4.png")))
+		};
+		timer = new Timer(1000, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				intOrain = (intOrain + 1) % TamaIrudiak.length;
+				tamagotchiIrudi.setIcon(TamaIrudiak[intOrain]);
+			}
+		});
+	 }
 	private class Kontroladorea implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e){
