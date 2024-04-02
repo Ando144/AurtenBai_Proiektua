@@ -12,13 +12,14 @@ public class Partida extends Observable{
     private int candy;
     private int soup;
     private Tamagotchi tamagotchi;
+	private int bizitza;
     private static Partida nirePartida = null;
 	public Partida(){
         this.score = 0;
         //this.izena = "";
         this.candy = 0;
         this.soup = 0;
-        this.tamagotchi = new Mimitchi(20, 20, false, false);
+        this.tamagotchi = new Kuchipatchi(40, 40, false, false);
     }
 	public static Partida getPartida()
     {
@@ -32,9 +33,45 @@ public class Partida extends Observable{
 			Partida nirePartida =new Partida();
 			panelNagusia frame = new panelNagusia(nirePartida);
 			nirePartida.hasieratuPartida();
-			nirePartida.tamagotchiEguneratu();
-			nirePartida.bihotzakEguneratu(20);
-        	nirePartida.sopakEguneratu(20);  
+			try{
+				Thread.sleep(5000);
+			}
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			//nirePartida.tamagotchiEguneratu();
+			Thread lausegundo = new Thread(()->{
+				int vida =0;
+				while(true){
+					vida = vida +5;
+
+					nirePartida.bihotzakEguneratu(vida);
+					nirePartida.sopakEguneratu(vida); 
+					nirePartida.scoreEguneratu();
+					nirePartida.tamagotchiEguneratu();
+					try{
+						Thread.sleep(4000);
+					}
+					catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+
+				}
+			});
+			lausegundo.start();
+			Thread hilo20segundo= new Thread(()->{
+				while (true) {
+					nirePartida.kakaEgin();
+					try {
+						Thread.sleep(10000); // Espera 20 segundo
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			});
+			hilo20segundo.start();
+				/*nirePartida.bihotzakEguneratu(20);
+        		nirePartida.sopakEguneratu(20);  
 			while (true) {
 				nirePartida.kakaEgin();
 				try{
@@ -43,7 +80,7 @@ public class Partida extends Observable{
 				catch(InterruptedException e){
 					e.printStackTrace();
 				}
-			}
+			}*/
 			
     }
 	private void hasieratuPartida(){
@@ -52,7 +89,7 @@ public class Partida extends Observable{
 		notifyObservers("hasieratu");
 	}
     private void bihotzakEguneratu(int pBizitza) {
-		System.out.println("hemen nago");
+		System.out.println("hemen nagooooooooooo");
 		int zenb = pBizitza;
 		//int kont=0;
 		if (zenb>=31 && zenb<=40) {
@@ -103,6 +140,7 @@ public class Partida extends Observable{
 	public boolean kakaEgin(){ //mira si se hace kk
 		boolean kaka = false;
 		Random probabilitatea = new Random();
+		System.out.println("KAIXO");
 		int zenbakia = probabilitatea.nextInt(101);
 		System.out.println("kaka zenb "+zenbakia);
 		if(1<=zenbakia && zenbakia<=20){
@@ -180,7 +218,7 @@ public class Partida extends Observable{
 
 	}
 	private void scoreEguneratu(){
-		int puntuazioa=this.score;
+		/*int puntuazioa=this.score;
 		//+1 cada vez que pasan 4 segundos
 		if (this.gaixorikEgon()==true){
 			puntuazioa=puntuazioa-5;
@@ -191,8 +229,9 @@ public class Partida extends Observable{
 		if (this.tamagotchi.zeinEboluzioDa()=="Marutchi"){
 			puntuazioa=puntuazioa+20;
 		}
-		//si se da una piruleta o sopa +5
-		
+		//si se da una piruleta o sopa +5 */
+		setChanged();
+		notifyObservers("Puntuazioa");
 	}
 
 }
