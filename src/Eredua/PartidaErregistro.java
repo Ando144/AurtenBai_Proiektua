@@ -67,12 +67,11 @@ public class PartidaErregistro extends Observable{
 	}
 	
 	public void getLehenengoBostak() {
-		String path=this.getClass().getResource("/TamagotchiDB/TamagotchiDB.txt").toString().replace("file:/", "");
-        File file= new File(path);
+		File file= new File(this.getClass().getResource("/TamagotchiDB/TamagotchiDB.txt").toString().replace("file:/", ""));
         
         try{
         	
-            Scanner entrada = new Scanner(new FileReader(path));
+            Scanner entrada = new Scanner(new FileReader(file));
             String linea;
             int kont = 0;
             while (entrada.hasNext() && kont <5) {
@@ -105,7 +104,7 @@ public class PartidaErregistro extends Observable{
                 	bos=izena;
                 	bosSc = score;
                 }
-                
+
                 kont++;
             }
             entrada.close();

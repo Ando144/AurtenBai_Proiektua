@@ -72,8 +72,8 @@ public class HasieraMenua extends JFrame implements Observer{
 				try {
 					PartidaErregistro pe = new PartidaErregistro();
 					HasieraMenua frame = new HasieraMenua(pe);
-					pe.getLehenengoBostak();
 					frame.setVisible(true);
+					pe.getLehenengoBostak();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -489,7 +489,8 @@ public class HasieraMenua extends JFrame implements Observer{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource().equals(PlayBotoi)){
 				Jokoa.getJokoa().partidaBatJokatu();
-				panelNagusia.main(null);
+				panelNagusia pn = new panelNagusia(null);
+				pn.setVisible(true);
 				dispose();
 				//itxi hasierako panela
 			}else if(e.getSource().equals(ExitBotoi)){
