@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.util.Observer;
@@ -59,6 +61,7 @@ public class panelNagusia extends JFrame implements Observer{
 	private JLabel koilara2;
 	private JLabel koilara3;
 	private JLabel tamagotchiIrudi;
+	private int offsetx,offsety;
 	/**
 	 * Launch the application.
 	 */
@@ -336,6 +339,21 @@ public class panelNagusia extends JFrame implements Observer{
 			candy1 = new JLabel("");
 			candy1.setIcon(new ImageIcon(this.getClass().getResource("/sprites/candy.png")));
 			candy1.setBounds(0, 0, 29, 34);
+			candy1.addMouseListener(new MouseAdapter(){
+				public void mousePressed(MouseEvent e){
+					offsetx=e.getX();
+					offsety=e.getY();
+				}
+			});
+			candy1.addMouseMotionListener(new MouseAdapter() {
+				public void mouseDragged(MouseEvent e){
+					int newX=e.getXOnScreen()-frame.getLocationOnScreen().x -offsetx;
+					int newY=e.getYOnScreen()-frame.getLocationOnScreen().y- offsety;
+					candy1.setLocation(newX, newY);
+					repaint();
+				}	
+			}
+			);
 		}
 		return candy1;
 	}
