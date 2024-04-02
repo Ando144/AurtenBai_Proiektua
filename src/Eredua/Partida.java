@@ -163,15 +163,19 @@ public class Partida extends Observable{
 	}
 	public boolean gaixorikEgon(){
 		boolean gaixo = false;
-		Random probabilitatea = new Random();
-		int zenbakia = probabilitatea.nextInt(101);
-		System.out.println("gaixo zenb "+zenbakia);
-		if(1<=zenbakia && zenbakia<=30){
-			gaixo = true;
-			gaixoBistaratu(gaixo);
+		if(this.kakaEgin()==true){
+			return gaixo;
 		}
-		
-		return gaixo;
+		else{
+			Random probabilitatea = new Random();
+			int zenbakia = probabilitatea.nextInt(101);
+			System.out.println("gaixo zenb "+zenbakia);
+			if(1<=zenbakia && zenbakia<=30){
+				gaixo = true;
+				gaixoBistaratu(gaixo);
+			}
+			return gaixo;
+		}
 	}
 	public boolean minijokoaJokaatu(){
 		Random probabilitatea = new Random();
