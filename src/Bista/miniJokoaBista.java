@@ -26,11 +26,8 @@ import java.awt.Color;
 
 public class miniJokoaBista implements Observer{
     private JFrame frame;
-    private JPanel panel;
-    private JButton button;
-    private JLabel label;
-    private JLabel laukiak[][];
-    private JLabel Tamagochi;
+    private static JLabel laukiak[][];
+    private static JLabel Tamagochi;
     private int x;
     private int y;
 
@@ -42,45 +39,43 @@ public class miniJokoaBista implements Observer{
     @Override
     public void update(Observable arg0, Object arg1)
     {
+        
         System.out.println("ha pasado a el update");
         switch((String)arg1)//((MiniJokoa)arg0).get...
         {
             case "hasieratu":
                 Hasieratu();
                 break;
-            case "LaukiakAktualizatu":
+            case "laukiaAktualizatu"://NO SALTA ESTE CASE
+                System.out.println("ha llegado al obvserver de aktualizatu");
                 LaukiakAktualizatu();
                 break;
             case "tamagochiMugitu":
                 tamagochiMugitu();
                 break;
             case "tamagochietaTartaHasieratu":
-                //tartaKokatu();
+                System.out.println("ha llegado al obvserver de tarta y tamagochi");
+                tamagochietatartaKokatu();
                 break;
             case "irabaziDu":
-                //irabaziDu();
+                irabaziDu();
                 break;
             case "galdu":
-                //galdu();
+                galduDu();
                 break;
         }
         
     }
-    Teklatua Teklatua = new Teklatua();
-    Arratoia Arratoia = new Arratoia();
+
     public void Hasieratu() 
     {
         
      //metodo que inicializa una matriz de 12 x 12 de laukias
-        
+        System.out.println("3");
         laukiak = new JLabel[12][12];
-        frame = new JFrame();
-        panel = new JPanel();
+        frame = new JFrame("MiniJokua");
         frame.setLayout(new GridLayout(12, 12));
-        frame.add(panel);
-        frame.setSize(500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
         for (int i = 0; i < 12; i++)
         {
             for (int j = 0; j < 12; j++)
@@ -88,12 +83,15 @@ public class miniJokoaBista implements Observer{
                 laukiak[i][j] = new JLabel();
                 laukiak[i][j].setOpaque(true);
                 laukiak[i][j].setBackground(koloreaAtera(i, j));
-                laukiak[i][j].addMouseListener(Arratoia.CustomMouseListener(j, i));
+                laukiak[i][j].addMouseListener(new CustomMouseListener(i,j));
                 frame.add(laukiak[i][j]);
             }
         }
-        frame.addKeyListener(Teklatua);
+        frame.addKeyListener(new CustomKeyListener());
+        
+        frame.setSize(500, 500);
         frame.setVisible(true);
+        
     }
     public void LaukiakAktualizatu()
     {
@@ -107,6 +105,54 @@ public class miniJokoaBista implements Observer{
         }
         
         
+    }
+    public void galduDu()//falta por conectar con monge
+    {
+        frame.dispose(); // Close the main frame
+        
+        JFrame perdedorFrame = new JFrame("GALDU DUZU!");
+        perdedorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        JPanel panel = new JPanel();
+        perdedorFrame.add(panel);
+        
+        JLabel mensajeLabel = new JLabel("GALDU DUZU!");
+        panel.add(mensajeLabel);
+        
+        JButton aceptarButton = new JButton("Aceptar");
+        /*aceptarButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // KONEXIOA CON MONGE
+            }
+        });
+        panel.add(aceptarButton);
+        */
+        perdedorFrame.setSize(300, 200);
+        perdedorFrame.setVisible(true);
+    }
+    public void irabaziDu()//falta por conectar con monge
+    {
+        frame.dispose(); // Close the main frame
+        
+        JFrame ganadorFrame = new JFrame("IRABAZI DUZU!");
+        ganadorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        JPanel panel = new JPanel();
+        ganadorFrame.add(panel);
+        
+        JLabel mensajeLabel = new JLabel("IRABAZI DUZU!");
+        panel.add(mensajeLabel);
+        
+        JButton aceptarButton = new JButton("Aceptar");
+        /*aceptarButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // KONEXIOA CON MONGE
+            }
+        });
+        panel.add(aceptarButton);
+        */
+        ganadorFrame.setSize(300, 200);
+        ganadorFrame.setVisible(true);
     }
     private Color koloreaAtera(int lerroa, int zutabea)
     {
@@ -152,27 +198,49 @@ public class miniJokoaBista implements Observer{
             }     
         }
     }
+    private void tamagochietatartaKokatu()
+    { 
+        int xTama = Minijokoa.getMinijokoa().getLerroa();
+        int yTama = Minijokoa.getMinijokoa().getZutabea();
 
-    private class Arratoia extends MouseAdapter 
-    {
+        if(Minijokoa.getMinijokoa().tamagochiVisible())
+        {
+            laukiak[yTama][xTama].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Mimitchi1.png")));
+            //esto puede dar un problema de que cuando se actualize por un movimiento el tamagochi deje estela de tamagochis
+        }
+
+        int yTarta = Minijokoa.getTartaZutabea();
+        int xTarta = Minijokoa.getTartaLerroa();
+
+        if(Minijokoa.getMinijokoa().tartaVisible())
+        {
+            laukiak[yTarta][xTarta].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Tarta.png")));
+        }
         
+
+    }
+    private static class CustomMouseListener extends MouseAdapter 
+    {
         private int lerroa;
         private int zutabea;
         
-        public void CustomMouseListener(int lerroa, int zutabea)
+        public CustomMouseListener(int lerroa, int zutabea)
         {
             this.lerroa = lerroa;
             this.zutabea = zutabea;
         }
+
         @Override
         public void mouseEntered(MouseEvent e)
         {
+            System.out.println("Mouse entered: " + lerroa + " " + zutabea);
             Minijokoa.getMinijokoa().laukiaAktualizatu(lerroa, zutabea);
         }
     }
-    public class Teklatua extends KeyAdapter{
+    public class CustomKeyListener extends KeyAdapter{
      
         //input de las flechas del teclado
+        @Override
         public void keyPressed(KeyEvent e)
         {
             if(!Minijokoa.irabaziDu() && Minijokoa.tamagochiVisible())

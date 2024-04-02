@@ -29,9 +29,10 @@ public class Minijokoa extends Observable{
     {
         Minijokoa minijokoa = new Minijokoa();
         miniJokoaBista bista = new miniJokoaBista(minijokoa);
+        System.out.println("1");
         minijokoa.hasieratuLaukiak();
         minijokoa.TamagochietaTartaHasieratu();
-
+        System.out.println("5");
     }
     private void hasieratuLaukiak()
     {
@@ -43,6 +44,7 @@ public class Minijokoa extends Observable{
             }
         }
         setChanged();
+        System.out.println("2");
         notifyObservers("hasieratu");
     }
     public int getLerroa(){
@@ -63,6 +65,17 @@ public class Minijokoa extends Observable{
     public int[][] getLaukiak()
     {
         return laukiak;
+    }
+    public boolean tartaVisible()
+    {
+        if(laukiak[tartaLerroa][tartaZutabea] == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public static boolean tamagochiVisible()
     {
@@ -232,13 +245,20 @@ public class Minijokoa extends Observable{
             }
         }
         setChanged();
+        System.out.println("4");
         notifyObservers("tamagochietaTartaHasieratu");
     }
     public  void laukiaAktualizatu(int lerroa, int zutabea)
     {
+        //PROBLEMA: cuando llega al notifyObservers no salta a el update de minijokoaBista y no se porque
+        //si te fijas cuando ejecutas el codigo funciona bien pero no se actualiza la vista
+        // esto puedes saberlo por los prints qie he puesto pq si pasas dos veces el raton por encima de 
+        //una casilla esta perdera fuerzas, pero lo q pasa que no se actualiza la vista.
+        //EN RESUMEN, mirar pq no salta del notifyObservers al update de minijokoaBista
         if (laukiak[lerroa][zutabea] == 1)
         {
             laukiak[lerroa][zutabea] = 0;
+            System.out.println("ha llegado al obvserver de laukiak aktualizatu de nivel 1");
             setChanged();
             notifyObservers("laukiaAktualizatu");//cambiar el color del panel
             //convertirlo en invisible
@@ -247,6 +267,7 @@ public class Minijokoa extends Observable{
         {
             laukiak[lerroa][zutabea] = 1;
             setChanged();
+            System.out.println("ha llegado al obvserver de laukiak aktualizatu de nivel 2");
             notifyObservers("laukiaAktualizatu");//cambiar el color del panel
 
         }
@@ -254,6 +275,7 @@ public class Minijokoa extends Observable{
         {
             laukiak[lerroa][zutabea] = 2;
             setChanged();
+            System.out.println("ha llegado al obvserver de laukiak aktualizatu de nivel 3");
             notifyObservers("laukiaAktualizatu");//cambiar el color del panel
 
         }
@@ -263,6 +285,7 @@ public class Minijokoa extends Observable{
         if (tamagochiLerroa == tartaLerroa && tamagochiZutabea == tartaZutabea)
         {
             return true;
+
         }
         else
         {
