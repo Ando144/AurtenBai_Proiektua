@@ -71,7 +71,7 @@ public class panelNagusia extends JFrame implements Observer{
 		}
 		return kontroladorea;
 	}
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -83,7 +83,7 @@ public class panelNagusia extends JFrame implements Observer{
 				}
 			}
 		});
-	}*/
+	}
 	public panelNagusia(Observable pObservable){
 		pObservable.addObserver(this);
 	}
@@ -585,13 +585,12 @@ public class panelNagusia extends JFrame implements Observer{
 		@Override
 		public void actionPerformed(ActionEvent e){
 			if(e.getSource().equals(boton_exit)){
-				dispose();
-				PartidaErregistro pe = new PartidaErregistro();
-				HasieraMenua frame2 = new HasieraMenua(pe);
+				HasieraMenua frame2 = new HasieraMenua(PartidaErregistro.getPartidaErregistro());
 				frame2.setVisible(true);
-				pe.getLehenengoBostak();	
+				PartidaErregistro.getPartidaErregistro().getLehenengoBostak();
+				dispose();
 			}
-			dispose();
+			//dispose();
 		}
 	}
 }

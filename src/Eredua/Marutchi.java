@@ -7,7 +7,7 @@ public class Marutchi extends Tamagotchi{
     }
 
     @Override
-    protected void kontadoreakEguneratu(){  
+    public void kontadoreakEguneratu(){  
         if (this.kaka){
             this.osasunaGalduKaka();
         }

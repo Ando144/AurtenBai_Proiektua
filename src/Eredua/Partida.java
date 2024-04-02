@@ -13,14 +13,19 @@ public class Partida extends Observable{
     private int soup;
     private Tamagotchi tamagotchi;
 	private int bizitza;
-    private static Partida nirePartida = null;
-	public Partida(){
+    private static Partida nirePartida;
+	private Partida(){
         this.score = 0;
         //this.izena = "";
         this.candy = 0;
         this.soup = 0;
         this.tamagotchi = new Kuchipatchi(40, 40, false, false);
     }
+
+	public void resetPartida(){
+		nirePartida = null;
+	}
+
 	public static Partida getPartida()
     {
         if(nirePartida == null)
