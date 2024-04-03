@@ -588,7 +588,7 @@ public class panelNagusia extends JFrame implements Observer{
 				HasieraMenua frame2 = new HasieraMenua(PartidaErregistro.getPartidaErregistro());
 				frame2.setVisible(true);
 				PartidaErregistro.getPartidaErregistro().getLehenengoBostak();
-				dispose();
+				frame.dispose();
 			}
 			//dispose();
 		}

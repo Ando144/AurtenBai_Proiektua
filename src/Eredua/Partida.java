@@ -19,7 +19,7 @@ public class Partida extends Observable{
         //this.izena = "";
         this.candy = 0;
         this.soup = 0;
-        this.tamagotchi = new Kuchipatchi(40, 40, false, false);
+        this.tamagotchi = new Kuchipatchi(15, 15, false, false);
     }
 
 	public void resetPartida(){
@@ -39,19 +39,16 @@ public class Partida extends Observable{
 			panelNagusia frame = new panelNagusia(nirePartida);
 			nirePartida.hasieratuPartida();
 			try{
-				Thread.sleep(5000);
+				Thread.sleep(2000);
 			}
 			catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			//nirePartida.tamagotchiEguneratu();
 			Thread lausegundo = new Thread(()->{
-				int vida =0;
 				while(true){
-					vida = vida +5;
-
-					nirePartida.bihotzakEguneratu(vida);
-					nirePartida.sopakEguneratu(vida); 
+					nirePartida.bihotzakEguneratu();
+					nirePartida.sopakEguneratu(); 
 					nirePartida.scoreEguneratu();
 					nirePartida.tamagotchiEguneratu();
 					try{
@@ -74,18 +71,25 @@ public class Partida extends Observable{
 					}
 				}
 			});
+			System.out.println("itxaron 10 seg");
+			try {
+				Thread.sleep(10000);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 			hilo20segundo.start();
-				/*nirePartida.bihotzakEguneratu(20);
-        		nirePartida.sopakEguneratu(20);  
-			while (true) {
-				nirePartida.kakaEgin();
-				try{
-					Thread.sleep(20000);
+			Thread hilo15segundo =new Thread(()->{
+				while (true) {
+					nirePartida.eboluzionatuTamagotchi();
+					try{
+						Thread.sleep(15000);
+					}
+					catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
-				catch(InterruptedException e){
-					e.printStackTrace();
-				}
-			}*/
+			});
+			hilo15segundo.start();
 			
     }
 	private void hasieratuPartida(){
@@ -93,9 +97,9 @@ public class Partida extends Observable{
 		setChanged();
 		notifyObservers("hasieratu");
 	}
-    private void bihotzakEguneratu(int pBizitza) {
+    private void bihotzakEguneratu() {
 		System.out.println("hemen nagooooooooooo");
-		int zenb = pBizitza;
+		int zenb = this.tamagotchi.bizitza;
 		//int kont=0;
 		if (zenb>=31 && zenb<=40) {
 			setChanged();
@@ -118,8 +122,8 @@ public class Partida extends Observable{
             notifyObservers("hildaDago");
 		}
 	}
-    private void sopakEguneratu(int pAsetasuna) {
-		int zenb = pAsetasuna;
+    private void sopakEguneratu( ) {
+		int zenb = this.tamagotchi.asetasuna;
 		//int kont=0;
 		if (zenb>=31 && zenb<=40) {
 			setChanged();
@@ -220,6 +224,18 @@ public class Partida extends Observable{
 			notifyObservers("Mimitchi");
 		}
 
+	}
+	private void eboluzionatuTamagotchi(){
+			String 	TamaIzena;
+			if((this.tamagotchi.bizitza<20)||(this.tamagotchi.asetasuna<20)){
+				this.tamagotchi = new Mimitchi(40, 40, false, false);
+				tamagotchiEguneratu();
+			}
+			else  {
+				System.out.println(this.tamagotchi.bizitza);
+				this.tamagotchi = new Maskutchi(19, 19, false, false);
+				tamagotchiEguneratu();
+			}
 	}
 	private void scoreEguneratu(){
 		/*int puntuazioa=this.score;

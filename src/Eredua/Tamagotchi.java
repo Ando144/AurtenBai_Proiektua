@@ -40,7 +40,7 @@ public abstract class Tamagotchi extends Observable{
         bizitza -= 7;
         asetasuna += 5;
     }
-
+    
 
 
 }
