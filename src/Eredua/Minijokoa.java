@@ -33,6 +33,9 @@ public class Minijokoa extends Observable{
         minijokoa.hasieratuLaukiak();
         minijokoa.TamagochietaTartaHasieratu();
         System.out.println("5");
+        minijokoa.AktBuklea();
+        
+
     }
     private void hasieratuLaukiak()
     {
@@ -60,8 +63,7 @@ public class Minijokoa extends Observable{
     public static int getTartaZutabea()
     {
         return tartaZutabea;
-    }
-    
+    }   
     public int[][] getLaukiak()
     {
         return laukiak;
@@ -166,6 +168,7 @@ public class Minijokoa extends Observable{
                 else
                 {
                     setChanged();
+                    System.out.println("ha entrado en el norabide 1");
                     notifyObservers("tamagochiMugitu");
                 }
             }
@@ -248,9 +251,23 @@ public class Minijokoa extends Observable{
         System.out.println("4");
         notifyObservers("tamagochietaTartaHasieratu");
     }
-    public  void laukiaAktualizatu(int lerroa, int zutabea)
+    private void AktBuklea()
     {
-        System.out.println("bai");
+        while (!irabaziDu()) {
+            setChanged();
+            notifyObservers("laukiAktualizatu");
+            setChanged();
+            notifyObservers("tamagochiMugitu");
+            System.out.println("la posicion del tamagochi es: " + tamagochiLerroa + " " + tamagochiZutabea);
+            try {
+                Thread.sleep(150); 
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void laukiaAktualizatu(int lerroa, int zutabea)
+    {
         //PROBLEMA: cuando llega al notifyObservers no salta a el update de minijokoaBista y no se porque
         //si te fijas cuando ejecutas el codigo funciona bien pero no se actualiza la vista
         // esto puedes saberlo por los prints qie he puesto pq si pasas dos veces el raton por encima de 
@@ -259,25 +276,22 @@ public class Minijokoa extends Observable{
         if (laukiak[lerroa][zutabea] == 1)
         {
             laukiak[lerroa][zutabea] = 0;
-            System.out.println("ha llegado al obvserver de laukiak aktualizatu de nivel 1");
             setChanged();
-            notifyObservers("laukiaAktualizatu");//cambiar el color del panel
+            notifyObservers("laukiAktualizatu");//cambiar el color del panel
             //convertirlo en invisible
         }
         else if (laukiak[lerroa][zutabea] == 2)
         {
             laukiak[lerroa][zutabea] = 1;
             setChanged();
-            System.out.println("ha llegado al obvserver de laukiak aktualizatu de nivel 2");
-            notifyObservers("laukiaAktualizatu");//cambiar el color del panel
+            notifyObservers("laukiAktualizatu");//cambiar el color del panel
 
         }
         else if (laukiak[lerroa][zutabea] == 3)
         {
             laukiak[lerroa][zutabea] = 2;
             setChanged();
-            System.out.println("ha llegado al obvserver de laukiak aktualizatu de nivel 3");
-            notifyObservers("laukiaAktualizatu");//cambiar el color del panel
+            notifyObservers("laukiAktualizatu");//cambiar el color del panel
 
         }
     }
