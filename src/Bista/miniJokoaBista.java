@@ -40,21 +40,19 @@ public class miniJokoaBista implements Observer{
     public void update(Observable arg0, Object arg1)
     {
         
-        System.out.println("ha pasado a el update");
         switch((String)arg1)//((MiniJokoa)arg0).get...
         {
             case "hasieratu":
                 Hasieratu();
                 break;
-            case "laukiaAktualizatu"://NO SALTA ESTE CASE
-                System.out.println("ha llegado al obvserver de aktualizatu");
+            case "laukiAktualizatu"://NO SALTA ESTE CASE
                 LaukiakAktualizatu();
                 break;
             case "tamagochiMugitu":
+                System.out.println("ha entrado en el obvserver de mugitu");
                 tamagochiMugitu();
                 break;
             case "tamagochietaTartaHasieratu":
-                System.out.println("ha llegado al obvserver de tarta y tamagochi");
                 tamagochietatartaKokatu();
                 break;
             case "irabaziDu":
@@ -170,19 +168,21 @@ public class miniJokoaBista implements Observer{
         }
         else
         {
-            return Color.red;
+            return Color.BLACK;
         }
     }
     public void tamagochiMugitu()
     {
+        System.out.println("ha entrado en el metodo de mugitu");
         x = Minijokoa.getMinijokoa().getZutabea();
         y = Minijokoa.getMinijokoa().getLerroa();
         if (Minijokoa.getMinijokoa().tamagochiVisible()==true){
-            //hay que llamar bien al metodo zeinEboluzioDa()
+
             Mimitchi tamagochi= new Mimitchi(y, x, false, false);
             String aux=tamagochi.zeinEboluzioDa();
             if (aux=="Egg"){
                 laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Egg1.png")));
+                
             } 
             else if (aux=="Kuchipatchi"){
                 laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Kuchipatchi1.png")));
@@ -249,18 +249,22 @@ public class miniJokoaBista implements Observer{
                 int key = e.getKeyCode();
                 if (key == KeyEvent.VK_UP)
                 {
+                    System.out.println("UP");
                     Minijokoa.getMinijokoa().TamagochiMugitu(1);
                 }
                 else if (key == KeyEvent.VK_DOWN)
                 {
+                    System.out.println("DOWN");
                     Minijokoa.getMinijokoa().TamagochiMugitu(2);
                 }
                 else if (key == KeyEvent.VK_LEFT)
                 {
+                    System.out.println("LEFT");
                     Minijokoa.getMinijokoa().TamagochiMugitu(3);
                 }
                 else if (key == KeyEvent.VK_RIGHT)
                 {
+                    System.out.println("RIGHT");
                     Minijokoa.getMinijokoa().TamagochiMugitu(4);
                 }
             }
