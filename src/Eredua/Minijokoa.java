@@ -9,8 +9,6 @@ import src.Bista.miniJokoaBista;
 public class Minijokoa extends Observable{
    
    private static int[][] laukiak = new int [12][12]; 
-   private static boolean[][] tarta = new boolean [12][12];
-   private static boolean[][] tamagochi = new boolean [12][12];
    private static int tamagochiLerroa;
    private static int tamagochiZutabea;
    private static int tartaLerroa;
@@ -97,18 +95,22 @@ public class Minijokoa extends Observable{
         if(tamagochiVisible()){
             if (norabidea == 1)
             {
-                if (tamagochiLerroa > 0 && laukiak[tamagochiLerroa - 1][tamagochiZutabea] != 0)
+                if (tamagochiLerroa >= 0 && tamagochiLerroa <= 11 && laukiak[tamagochiLerroa + 1][tamagochiZutabea] == 0)
                 {
+                    System.out.println("puede moverse arriba");
+
                     return true;
                 }
                 else
                 {
+                    System.out.println("no puede moverse arriba");
+
                     return false;
                 }
             }
             else if (norabidea == 2)
             {
-                if (tamagochiLerroa < 11 && laukiak[tamagochiLerroa + 1][tamagochiZutabea] != 0)
+                if (tamagochiLerroa <= 12 & tamagochiLerroa >= 1 && laukiak[tamagochiLerroa - 1][tamagochiZutabea] == 0)
                 {
                     return true;
                 }
@@ -119,7 +121,7 @@ public class Minijokoa extends Observable{
             }
             else if (norabidea == 3)
             {
-                if (tamagochiZutabea > 0 && laukiak[tamagochiLerroa][tamagochiZutabea - 1] != 0)
+                if (tamagochiZutabea >= 1 && tamagochiZutabea <= 12 && laukiak[tamagochiLerroa][tamagochiZutabea - 1] == 0)
                 {
                     return true;
                 }
@@ -130,7 +132,7 @@ public class Minijokoa extends Observable{
             }
             else if (norabidea == 4)
             {
-                if (tamagochiZutabea < 11 && laukiak[tamagochiLerroa][tamagochiZutabea + 1] != 0)
+                if (tamagochiZutabea <= 11 && tamagochiZutabea >= 0 && laukiak[tamagochiLerroa][tamagochiZutabea + 1] == 0)
                 {
                     return true;
                 }
@@ -155,11 +157,11 @@ public class Minijokoa extends Observable{
         
         if (norabidea == 1)
         {
+            System.out.println("ha entrado en el norabide 1");
             if (mugimenduaEginDaiteke(1))
             {
-                tamagochi[tamagochiLerroa][tamagochiZutabea] = false;
-                tamagochiLerroa++;
-                tamagochi[tamagochiLerroa][tamagochiZutabea] = true;
+                tamagochiLerroa--;
+                System.out.println("posicion actualizada");
                 if(irabaziDu())
                 {
                     setChanged();
@@ -177,9 +179,7 @@ public class Minijokoa extends Observable{
         {
             if (mugimenduaEginDaiteke(2))
             {
-                tamagochi[tamagochiLerroa][tamagochiZutabea] = false;
-                tamagochiLerroa--;
-                tamagochi[tamagochiLerroa][tamagochiZutabea] = true;
+                tamagochiLerroa++;
                 if(irabaziDu())
                 {
                     setChanged();
@@ -196,9 +196,7 @@ public class Minijokoa extends Observable{
         {
             if (mugimenduaEginDaiteke(3))
             {
-                tamagochi[tamagochiLerroa][tamagochiZutabea] = false;
                 tamagochiZutabea--;
-                tamagochi[tamagochiLerroa][tamagochiZutabea] = true;
                 if(irabaziDu())
                 {
                     setChanged();
@@ -216,9 +214,7 @@ public class Minijokoa extends Observable{
         {
             if (mugimenduaEginDaiteke(4))
             {
-                tamagochi[tamagochiLerroa][tamagochiZutabea] = false;
                 tamagochiZutabea++;
-                tamagochi[tamagochiLerroa][tamagochiZutabea] = true;
                 if(irabaziDu())
                 {
                     setChanged();
@@ -236,7 +232,6 @@ public class Minijokoa extends Observable{
     {
         tamagochiLerroa = (int) (Math.random() * 12);
         tamagochiZutabea = (int) (Math.random() * 12);
-        tamagochi[tamagochiLerroa][tamagochiZutabea] = true;
         tartaLerroa = (int) (Math.random() * 12);
         tartaZutabea = (int) (Math.random() * 12);
         if(osoGertu(tartaLerroa, tartaZutabea))
@@ -258,7 +253,6 @@ public class Minijokoa extends Observable{
             notifyObservers("laukiAktualizatu");
             setChanged();
             notifyObservers("tamagochiMugitu");
-            System.out.println("la posicion del tamagochi es: " + tamagochiLerroa + " " + tamagochiZutabea);
             try {
                 Thread.sleep(150); 
             } catch (InterruptedException e) {

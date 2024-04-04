@@ -50,7 +50,6 @@ public class miniJokoaBista implements Observer{
                 LaukiakAktualizatu();
                 break;
             case "tamagochiMugitu":
-                System.out.println("ha entrado en el obvserver de mugitu");
                 tamagochiMugitu();
                 break;
             case "tamagochietaTartaHasieratu":
@@ -86,7 +85,7 @@ public class miniJokoaBista implements Observer{
                 frame.add(laukiak[i][j]);
             }
         }
-        frame.addKeyListener(new CustomKeyListener());
+       frame.addKeyListener(new CustomKeyListener());
         
         frame.setSize(500, 500);
         frame.setVisible(true);
@@ -174,36 +173,51 @@ public class miniJokoaBista implements Observer{
     }
     public void tamagochiMugitu()
     {
-        System.out.println("ha entrado en el metodo de mugitu");
-        x = Minijokoa.getMinijokoa().getZutabea();
-        y = Minijokoa.getMinijokoa().getLerroa();
+        System.out.println("tamagochiMugitu");
+        int x = Minijokoa.getMinijokoa().getZutabea();
+        int y = Minijokoa.getMinijokoa().getLerroa();
+        int yTarta = Minijokoa.getTartaZutabea();
+        int xTarta = Minijokoa.getTartaLerroa();
+
         if (Minijokoa.getMinijokoa().tamagochiVisible()==true){
 
             //ESTO PONERLO CUANDO ESTÉ CONECTADO CON TODO LO DEMÁS
             //Mimitchi tamagochi= new Mimitchi(y, x, false, false);
             //String aux=tamagochi.zeinEboluzioDa();
             String aux="Mimitchi";
-            ImageIcon icon;
+            ImageIcon pertsonaia;
             if (aux=="Egg"){
-                 icon = new ImageIcon(this.getClass().getResource("/sprites/Egg1.png"));
+                pertsonaia = new ImageIcon(this.getClass().getResource("/sprites/Egg1.png"));
             } 
             else if (aux=="Kuchipatchi"){
-                icon = new ImageIcon(this.getClass().getResource("/sprites/Kuchipatchi1.png"));
+                pertsonaia = new ImageIcon(this.getClass().getResource("/sprites/Kuchipatchi1.png"));
             }
             else if (aux=="Mimitchi"){
-                icon = new ImageIcon(this.getClass().getResource("/sprites/Mimitchi1.png"));
+                pertsonaia = new ImageIcon(this.getClass().getResource("/sprites/Mimitchi1.png"));
             }
             else if (aux=="Maskutchi"){
-                icon = new ImageIcon(this.getClass().getResource("/sprites/Maskutchi1.png"));
+                pertsonaia = new ImageIcon(this.getClass().getResource("/sprites/Maskutchi1.png"));
             }
             else {
-                icon = new ImageIcon(this.getClass().getResource("/sprites/Marutchi1.png"));
+                pertsonaia = new ImageIcon(this.getClass().getResource("/sprites/Marutchi1.png"));
             }     
-            Image image = icon.getImage().getScaledInstance(20, 20, 20);
-            ImageIcon icono = new ImageIcon(image);
-            laukiak[y][x].setIcon(icono);
+            Image image = pertsonaia.getImage().getScaledInstance(20, 20, 20);
+            ImageIcon pertsonaiak = new ImageIcon(image);
+            laukiak[y][x].setIcon(pertsonaiak);
             laukiak[y][x].revalidate();
             laukiak[y][x].repaint();
+            //Printear la Tarta
+         
+        }
+
+        if(Minijokoa.getMinijokoa().tartaVisible())
+        {
+            ImageIcon tarta = new ImageIcon(this.getClass().getResource("/sprites/dorayaki.png"));
+
+            laukiak[yTarta][xTarta].setIcon(tarta);
+            laukiak[yTarta][xTarta].revalidate();
+            laukiak[yTarta][xTarta].repaint();
+            
         }
     }
     private void tamagochietatartaKokatu()
@@ -241,7 +255,6 @@ public class miniJokoaBista implements Observer{
         @Override
         public void mouseEntered(MouseEvent e)
         {
-            System.out.println("Mouse entered: " + lerroa + " " + zutabea);
             Minijokoa.getMinijokoa().laukiaAktualizatu(lerroa, zutabea);
         }
     }
@@ -258,6 +271,9 @@ public class miniJokoaBista implements Observer{
                 if (key == KeyEvent.VK_UP)
                 {
                     System.out.println("UP");
+                    System.out.println("la posicion de la tarta es: "+ Minijokoa.getTartaZutabea()+" "+Minijokoa.getTartaLerroa());
+                    System.out.println("la posicion del tamagochi es: " + Minijokoa.getMinijokoa().getZutabea() + " " + Minijokoa.getMinijokoa().getLerroa());
+
                     Minijokoa.getMinijokoa().TamagochiMugitu(1);
                 }
                 else if (key == KeyEvent.VK_DOWN)
