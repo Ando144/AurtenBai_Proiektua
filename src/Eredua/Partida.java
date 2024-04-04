@@ -149,10 +149,9 @@ public class Partida extends Observable{
 	}
 	public boolean kakaEgin(){ //mira si se hace kk
 		boolean kaka = false;
-		//Random probabilitatea = new Random();
+		Random probabilitatea = new Random();
 		System.out.println("KAIXO");
-		//int zenbakia = probabilitatea.nextInt(101);
-		int zenbakia=15;
+		int zenbakia = probabilitatea.nextInt(101);
 		System.out.println("kaka zenb "+zenbakia);
 		if(1<=zenbakia && zenbakia<=20){
 			kaka = true;
