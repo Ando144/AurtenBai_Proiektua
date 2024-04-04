@@ -125,22 +125,28 @@ public class PartidaErregistro extends Observable{
 		String[] scoreakAux = new String[5];
 		int i = 0;
 		int j = 0;
-		while (i < 5) {
-			if (pScore > Integer.parseInt(scoreak[i])) {
+		boolean amaitu = false;
+		while (j < 5) {
+			if ((pScore > Integer.parseInt(scoreak[i])) && !amaitu) {
 				izenakAux[j] = pJokalaria;
 				scoreakAux[j] = Integer.toString(pScore);
 				j++;
+				amaitu = true;
 			}
-			izenakAux[j] = izenak[i];
-			scoreakAux[j] = scoreak[i];
-			i++;
-			j++;
+			else{
+				izenakAux[j] = izenak[i];
+				scoreakAux[j] = scoreak[i];
+				i++;
+				j++;
+			}
 		}
 		try {
-			PrintWriter writer = new PrintWriter(file);
+			FileWriter fw = new FileWriter(file);
+			BufferedWriter writer = new BufferedWriter(fw);
 			i = 0;
 			while (i < 5) {
-				writer.println(izenakAux[i] + " ### " + scoreakAux[i]);
+				writer.write(izenakAux[i] + " ### " + scoreakAux[i]);
+				writer.newLine();
 				i++;
 			}
 			writer.close();
