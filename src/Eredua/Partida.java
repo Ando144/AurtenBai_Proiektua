@@ -226,7 +226,7 @@ public class Partida extends Observable{
 		}
 
 	}
-	private void eboluzionatuTamagotchi(){
+	private void eboluzionatuTamagotchi(){//esto hay que ponerlo bien solamente era una prueba ra ver si funcionaban las co
 			String 	TamaIzena;
 			if((this.tamagotchi.bizitza<20)||(this.tamagotchi.asetasuna<20)){
 				this.tamagotchi = new Mimitchi(40, 40, false, false);
