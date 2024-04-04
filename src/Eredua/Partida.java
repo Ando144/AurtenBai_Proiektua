@@ -14,7 +14,7 @@ public class Partida extends Observable{
     private Tamagotchi tamagotchi;
 	private int bizitza;
     private static Partida nirePartida;
-	private Partida(){
+	public Partida(){
         this.score = 0;
         //this.izena = "";
         this.candy = 0;
@@ -37,6 +37,7 @@ public class Partida extends Observable{
     public static void main(String [] args){
 			Partida nirePartida =new Partida();
 			panelNagusia frame = new panelNagusia(nirePartida);
+
 			nirePartida.hasieratuPartida();
 			try{
 				Thread.sleep(2000);
@@ -236,6 +237,9 @@ public class Partida extends Observable{
 				this.tamagotchi = new Maskutchi(19, 19, false, false);
 				tamagotchiEguneratu();
 			}
+	}
+	private int getScore(){
+		return nirePartida.score;
 	}
 	private void scoreEguneratu(){
 		/*int puntuazioa=this.score;
