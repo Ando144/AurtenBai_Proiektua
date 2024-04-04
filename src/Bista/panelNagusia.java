@@ -181,7 +181,8 @@ public class panelNagusia extends JFrame implements Observer{
 	}
 	private JLabel getPuntuazioa() {
 		if (Puntuazioa == null) {
-			Puntuazioa = new JLabel("0");
+			int aldagai= Partida.getPartida().getScore();
+			Puntuazioa = new JLabel(""+aldagai);
 			Puntuazioa.setForeground(new Color(255, 255, 255));
 			Puntuazioa.setBounds(282, 4, 45, 13);
 		}

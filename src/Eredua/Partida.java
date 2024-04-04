@@ -238,11 +238,11 @@ public class Partida extends Observable{
 				tamagotchiEguneratu();
 			}
 	}
-	private int getScore(){
+	public int getScore(){
 		return nirePartida.score;
 	}
 	private void scoreEguneratu(){
-		/*int puntuazioa=this.score;
+		int puntuazioa=nirePartida.score;
 		//+1 cada vez que pasan 4 segundos
 		if (this.gaixorikEgon()==true){
 			puntuazioa=puntuazioa-5;
@@ -253,7 +253,7 @@ public class Partida extends Observable{
 		if (this.tamagotchi.zeinEboluzioDa()=="Marutchi"){
 			puntuazioa=puntuazioa+20;
 		}
-		//si se da una piruleta o sopa +5 */
+		//si se da una piruleta o sopa +5 
 		setChanged();
 		notifyObservers("Puntuazioa");
 	}
