@@ -40,7 +40,22 @@ public abstract class Tamagotchi extends Observable{
         bizitza -= 7;
         asetasuna += 5;
     }
-    
-
+    private Tamagotchi getTamagotchi(){
+        return this;
+    }
+    public Tamagotchi eboluzionatuTama(){
+       Tamagotchi nireTama= new Mimitchi(40, 40, false, false);
+       return nireTama;
+    }
+   public Tamagotchi azkenEbol(boolean kaka, boolean gaixo){
+        Tamagotchi nireTama = this.getTamagotchi();
+        if((gaixo==false) && (kaka==false)){
+            nireTama = new Marutchi(40, 40, false, false);
+        }
+        else{
+            nireTama = new Maskutchi(40, 40, false, false);
+        }
+        return nireTama;
+   }
 
 }
