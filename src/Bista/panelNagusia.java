@@ -399,7 +399,6 @@ public class panelNagusia extends JFrame implements Observer{
 		return koilara3;
 	}
 	public void update(Observable o, Object arg){
-		System.out.println("onbsever");
 		switch ((String)arg) {
 			case "hasieratu":
 				hasieratu();

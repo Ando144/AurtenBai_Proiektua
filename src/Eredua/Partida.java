@@ -68,24 +68,33 @@ public class Partida extends Observable{
 					nirePartida.kakaEgin();
 					try {
 						Thread.sleep(10000); // Espera 20 segundo
+						Thread.sleep(5000); // Espera 20 segundo
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 				}
 			});
 			hilo20segundo.start();
-			Thread hilo15segundo =new Thread(()->{
-				while (true) {
-					nirePartida.eboluzionatuTamagotchi();
-					try{
-						Thread.sleep(15000);
-					}
-					catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			});
-			hilo15segundo.start();
+
+			try {
+				Thread.sleep(5000); // Espera 20 segundo
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+			nirePartida.eboluzionatuTamagotchi();
+			System.out.println("40 falta");
+
+			try{
+				Thread.sleep(10000);
+			}
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+			System.out.println("azkenboluzioa");
+
+			nirePartida.azkeneboluzioa();
 			//nirePartida.tamagotchiEguneratu();
 			/* 
 			Thread lausegundo = new Thread(()->{
@@ -254,7 +263,7 @@ public class Partida extends Observable{
 		}
 	}
 	private void tamagotchiEguneratu( ){
-		String izena =nirePartida.tamagotchi.zeinEboluzioDa();
+		String izena =this.tamagotchi.zeinEboluzioDa();
 		System.out.println(izena);
 		if (izena == "Marutchi") {
 			setChanged();
@@ -279,8 +288,8 @@ public class Partida extends Observable{
 				//this.tamagotchi = new Mimitchi(40, 40, false, false);
 				//tamagotchiEguneratu();
 				System.out.println("mimimi");
-				nirePartida.tamagotchi = nirePartida.tamagotchi.eboluzionatuTama();
-				nirePartida.tamagotchiEguneratu();
+				this.tamagotchi = this.tamagotchi.eboluzionatuTama(this.tamagotchi.kaka, this.tamagotchi.gaixorik);
+				tamagotchiEguneratu();
 	}
 	public int getScore(){
 		return nirePartida.score;
@@ -303,6 +312,6 @@ public class Partida extends Observable{
 	}
 	private void azkeneboluzioa(){
 		this.tamagotchi=this.tamagotchi.azkenEbol(this.tamagotchi.kaka, this.tamagotchi.gaixorik);
-		nirePartida.tamagotchiEguneratu();
+		tamagotchiEguneratu();
 	}
 }
