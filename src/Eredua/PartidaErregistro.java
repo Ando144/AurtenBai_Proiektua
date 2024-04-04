@@ -116,6 +116,38 @@ public class PartidaErregistro extends Observable{
 
         
     }
+
+	public void eguneratu(int pScore, String pJokalaria){
+		File file= new File(this.getClass().getResource("/TamagotchiDB/TamagotchiDB.txt").toString().replace("file:/", ""));
+		String[] izenak = {leh, big, hir, lau, bos};
+		String[] scoreak = {lehSc, bigSc, hirSc, lauSc, bosSc};
+		String[] izenakAux = new String[5];
+		String[] scoreakAux = new String[5];
+		int i = 0;
+		int j = 0;
+		while (i < 5) {
+			if (pScore > Integer.parseInt(scoreak[i])) {
+				izenakAux[j] = pJokalaria;
+				scoreakAux[j] = Integer.toString(pScore);
+				j++;
+			}
+			izenakAux[j] = izenak[i];
+			scoreakAux[j] = scoreak[i];
+			i++;
+			j++;
+		}
+		try {
+			PrintWriter writer = new PrintWriter(file);
+			i = 0;
+			while (i < 5) {
+				writer.println(izenakAux[i] + " ### " + scoreakAux[i]);
+				i++;
+			}
+			writer.close();
+		}
+		catch(IOException e) {e.printStackTrace();}
+		getLehenengoBostak();
+	}
 	
  
 }
