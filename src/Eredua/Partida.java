@@ -67,7 +67,6 @@ public class Partida extends Observable{
 				while (nirePartida.getGaixorik()==false && nirePartida.getKaka()==false) {
 					nirePartida.kakaEgin();
 					try {
-						Thread.sleep(10000); // Espera 20 segundo
 						Thread.sleep(5000); // Espera 20 segundo
 					} catch (InterruptedException e) {
 						e.printStackTrace();
