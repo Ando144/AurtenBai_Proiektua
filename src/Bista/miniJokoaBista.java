@@ -21,6 +21,7 @@ import src.Eredua.Tamagotchi;
 import java.util.Observer;
 import java.util.Observable;
 import java.awt.Color;
+import java.awt.Image;
 
 
 
@@ -178,24 +179,31 @@ public class miniJokoaBista implements Observer{
         y = Minijokoa.getMinijokoa().getLerroa();
         if (Minijokoa.getMinijokoa().tamagochiVisible()==true){
 
-            Mimitchi tamagochi= new Mimitchi(y, x, false, false);
-            String aux=tamagochi.zeinEboluzioDa();
+            //ESTO PONERLO CUANDO ESTÉ CONECTADO CON TODO LO DEMÁS
+            //Mimitchi tamagochi= new Mimitchi(y, x, false, false);
+            //String aux=tamagochi.zeinEboluzioDa();
+            String aux="Mimitchi";
+            ImageIcon icon;
             if (aux=="Egg"){
-                laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Egg1.png")));
-                
+                 icon = new ImageIcon(this.getClass().getResource("/sprites/Egg1.png"));
             } 
             else if (aux=="Kuchipatchi"){
-                laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Kuchipatchi1.png")));
+                icon = new ImageIcon(this.getClass().getResource("/sprites/Kuchipatchi1.png"));
             }
             else if (aux=="Mimitchi"){
-                laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Mimitchi1.png")));
+                icon = new ImageIcon(this.getClass().getResource("/sprites/Mimitchi1.png"));
             }
             else if (aux=="Maskutchi"){
-                laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Maskutchi1.png")));
+                icon = new ImageIcon(this.getClass().getResource("/sprites/Maskutchi1.png"));
             }
             else {
-                laukiak[x][y].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Marutchi1.png")));
+                icon = new ImageIcon(this.getClass().getResource("/sprites/Marutchi1.png"));
             }     
+            Image image = icon.getImage().getScaledInstance(20, 20, 20);
+            ImageIcon icono = new ImageIcon(image);
+            laukiak[y][x].setIcon(icono);
+            laukiak[y][x].revalidate();
+            laukiak[y][x].repaint();
         }
     }
     private void tamagochietatartaKokatu()
