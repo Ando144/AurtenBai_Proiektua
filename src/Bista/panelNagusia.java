@@ -399,6 +399,7 @@ public class panelNagusia extends JFrame implements Observer{
 		return koilara3;
 	}
 	public void update(Observable o, Object arg){
+		System.out.println("onbsever");
 		switch ((String)arg) {
 			case "hasieratu":
 				hasieratu();
@@ -442,16 +443,18 @@ public class panelNagusia extends JFrame implements Observer{
 			case "MiniJokua":
 				minijokuaBistaratu();
 				break;
-			case "Marutchi":
+			case "marutchi":
 				marutchiBistaratu();
 				break;
-			case "Mimitchi":
+			case "mimitchi":
+				System.out.println("pasatu dut");
 				mimitchiBistaratu();
 				break;
-			case "Kuchipatchi":
+			case "kuchipatchi":
+				System.out.println("kuchichcihoda");
 				kuchipatchiBistaratu();
 				break;
-			case "Maskutchi":
+			case "maskutchi":
 				maskutchiBistaratu();
 				break;
 			case "Puntuazioa":

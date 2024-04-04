@@ -254,23 +254,24 @@ public class Partida extends Observable{
 		}
 	}
 	private void tamagotchiEguneratu( ){
-		String izena =this.tamagotchi.zeinEboluzioDa();
-		System.out.println(izena);;
+		String izena =nirePartida.tamagotchi.zeinEboluzioDa();
+		System.out.println(izena);
 		if (izena == "Marutchi") {
 			setChanged();
-			notifyObservers("Marutchi");
+			notifyObservers("marutchi");
 		}
 		if (izena == "Kuchipatchi") {
 			setChanged();
-			notifyObservers("Kuchipatchi");
+			notifyObservers("kuchipatchi");
 		}
 		if (izena == "Maskutchi") {
 			setChanged();
-			notifyObservers("Maskutchi");
+			notifyObservers("maskutchi");
 		}
 		if (izena == "Mimitchi") {
+			System.out.println("hemen nago mimi");
 			setChanged();
-			notifyObservers("Mimitchi");
+			notifyObservers("mimitchi");
 		}
 
 	}
