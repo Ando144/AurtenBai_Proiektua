@@ -2,6 +2,8 @@ package src.Bista;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -20,6 +22,7 @@ import src.Eredua.Tamagotchi;
 
 import java.util.Observer;
 import java.util.Observable;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
 
@@ -31,6 +34,8 @@ public class miniJokoaBista implements Observer{
     private static JLabel Tamagochi;
     private int x;
     private int y;
+    private JPanel puntosPanel;
+    private JLabel puntosLabel;
 
 
     public miniJokoaBista (Observable pMinijokoa){
@@ -70,8 +75,19 @@ public class miniJokoaBista implements Observer{
      //metodo que inicializa una matriz de 12 x 12 de laukias
         laukiak = new JLabel[12][12];
         frame = new JFrame("MiniJokua");
-        frame.setLayout(new GridLayout(12, 12));
+        frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        puntosPanel = new JPanel();
+        puntosPanel.setLayout(new BoxLayout(puntosPanel, BoxLayout.X_AXIS));
+        puntosLabel = new JLabel("Puntuazioa: 0");
+        //Aqui hay que llamar a la clase de monge para ponerle puntos
+        //tambien hay que hacer para que se actualize la puntuacion si se gana el juego
+        puntosPanel.add(puntosLabel);
+        frame.add(puntosPanel, BorderLayout.NORTH);
+
+        JPanel matrizea = new JPanel(new GridLayout(12, 12, 0, 0));
+
         for (int i = 0; i < 12; i++)
         {
             for (int j = 0; j < 12; j++)
@@ -80,10 +96,11 @@ public class miniJokoaBista implements Observer{
                 laukiak[i][j].setOpaque(true);
                 laukiak[i][j].setBackground(koloreaAtera(i, j));
                 laukiak[i][j].addMouseListener(new CustomMouseListener(i,j));
-                frame.add(laukiak[i][j]);
+                matrizea.add(laukiak[i][j]);
             }
         }
-       frame.addKeyListener(new CustomKeyListener());
+        frame.add(matrizea, BorderLayout.CENTER);
+        frame.addKeyListener(new CustomKeyListener());
         
         frame.setSize(500, 500);
         frame.setVisible(true);
