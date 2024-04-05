@@ -7,12 +7,16 @@ import src.Bista.miniJokoaBista;
 
 
 public class Minijokoa extends Observable{
-   
+   // Tanto aqui como en vista los ejes estan al reves, primero es lerroa(y) y luego zutabea(x)
+   //durante el desarrollo de la aplicacion algunos se han liado con los ejes y han puesto al reves
+   //pero por el bien del funcionamiento de la aplicacion se ha decidido dejarlo asi.
    private static int[][] laukiak = new int [12][12]; 
    private static int tamagochiLerroa;
    private static int tamagochiZutabea;
    private static int tartaLerroa;
    private static int tartaZutabea;
+   private static int xAnterior;
+    private static int yAnterior;
     
     private static Minijokoa NireMinijokoa = null;
     public static Minijokoa getMinijokoa()
@@ -23,14 +27,13 @@ public class Minijokoa extends Observable{
         }
         return NireMinijokoa;
     }
+
     public static void main(String[] args) 
     {
         Minijokoa minijokoa = new Minijokoa();
         miniJokoaBista bista = new miniJokoaBista(minijokoa);
-        System.out.println("1");
         minijokoa.hasieratuLaukiak();
         minijokoa.TamagochietaTartaHasieratu();
-        System.out.println("5");
         minijokoa.AktBuklea();
         
 
@@ -45,7 +48,6 @@ public class Minijokoa extends Observable{
             }
         }
         setChanged();
-        System.out.println("2");
         notifyObservers("hasieratu");
     }
     public int getLerroa(){
@@ -53,6 +55,12 @@ public class Minijokoa extends Observable{
     }
     public int getZutabea(){
         return tamagochiZutabea;
+    }
+    public static int getAnteriorLerroa(){
+        return yAnterior;
+    }
+    public static int getAnteriorZutabea(){
+        return xAnterior;
     }
     public static int getTartaLerroa()
     {
@@ -68,7 +76,7 @@ public class Minijokoa extends Observable{
     }
     public boolean tartaVisible()
     {
-        if(laukiak[tartaLerroa][tartaZutabea] == 0)
+        if(laukiak[tartaZutabea][tartaLerroa] == 0)
         {
             return true;
         }
@@ -95,23 +103,22 @@ public class Minijokoa extends Observable{
         if(tamagochiVisible()){
             if (norabidea == 1)
             {
-                if (tamagochiLerroa >= 0 && tamagochiLerroa <= 11 && laukiak[tamagochiLerroa + 1][tamagochiZutabea] == 0)
+                if (tamagochiLerroa > 0 && tamagochiLerroa <= 12 && laukiak[tamagochiLerroa - 1][tamagochiZutabea] == 0)
                 {
-                    System.out.println("puede moverse arriba");
 
                     return true;
                 }
                 else
                 {
-                    System.out.println("no puede moverse arriba");
 
                     return false;
                 }
             }
             else if (norabidea == 2)
             {
-                if (tamagochiLerroa <= 12 & tamagochiLerroa >= 1 && laukiak[tamagochiLerroa - 1][tamagochiZutabea] == 0)
+                if (tamagochiLerroa <= 10 & tamagochiLerroa >= 0 && laukiak[tamagochiLerroa + 1][tamagochiZutabea] == 0)
                 {
+
                     return true;
                 }
                 else
@@ -132,7 +139,7 @@ public class Minijokoa extends Observable{
             }
             else if (norabidea == 4)
             {
-                if (tamagochiZutabea <= 11 && tamagochiZutabea >= 0 && laukiak[tamagochiLerroa][tamagochiZutabea + 1] == 0)
+                if (tamagochiZutabea <= 10 && tamagochiZutabea >= 0 && laukiak[tamagochiLerroa][tamagochiZutabea + 1] == 0)
                 {
                     return true;
                 }
@@ -160,6 +167,7 @@ public class Minijokoa extends Observable{
             System.out.println("ha entrado en el norabide 1");
             if (mugimenduaEginDaiteke(1))
             {
+
                 tamagochiLerroa--;
                 System.out.println("posicion actualizada");
                 if(irabaziDu())
@@ -179,6 +187,7 @@ public class Minijokoa extends Observable{
         {
             if (mugimenduaEginDaiteke(2))
             {
+
                 tamagochiLerroa++;
                 if(irabaziDu())
                 {
@@ -195,7 +204,8 @@ public class Minijokoa extends Observable{
         else if (norabidea == 3)
         {
             if (mugimenduaEginDaiteke(3))
-            {
+            {   
+
                 tamagochiZutabea--;
                 if(irabaziDu())
                 {
@@ -213,7 +223,8 @@ public class Minijokoa extends Observable{
         else if (norabidea == 4)
         {
             if (mugimenduaEginDaiteke(4))
-            {
+            {   
+
                 tamagochiZutabea++;
                 if(irabaziDu())
                 {
@@ -227,13 +238,13 @@ public class Minijokoa extends Observable{
                 }
             }
         }
-    }
+    }      
     private  void TamagochietaTartaHasieratu()
     {
-        tamagochiLerroa = (int) (Math.random() * 12);
-        tamagochiZutabea = (int) (Math.random() * 12);
-        tartaLerroa = (int) (Math.random() * 12);
-        tartaZutabea = (int) (Math.random() * 12);
+        tamagochiLerroa = (int) (Math.random() * 11)+1;
+        tamagochiZutabea = (int) (Math.random() * 11)+1;
+        tartaLerroa = (int) (Math.random() * 11)+1;
+        tartaZutabea = (int) (Math.random() * 11)+1;
         if(osoGertu(tartaLerroa, tartaZutabea))
         {
             while(osoGertu(tartaLerroa, tartaZutabea))
@@ -243,7 +254,6 @@ public class Minijokoa extends Observable{
             }
         }
         setChanged();
-        System.out.println("4");
         notifyObservers("tamagochietaTartaHasieratu");
     }
     private void AktBuklea()
@@ -259,6 +269,9 @@ public class Minijokoa extends Observable{
                 e.printStackTrace();
             }
         }
+        setChanged();
+        notifyObservers("irabaziDu");
+        
     }
     public void laukiaAktualizatu(int lerroa, int zutabea)
     {
@@ -291,7 +304,8 @@ public class Minijokoa extends Observable{
     }
     public static boolean irabaziDu()
     {
-        if (tamagochiLerroa == tartaLerroa && tamagochiZutabea == tartaZutabea)
+        //aqui estan al reves por el bien del programa
+        if (tamagochiLerroa == tartaZutabea && tamagochiZutabea == tartaLerroa)
         {
             return true;
 

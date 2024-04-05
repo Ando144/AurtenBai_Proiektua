@@ -46,7 +46,7 @@ public class miniJokoaBista implements Observer{
             case "hasieratu":
                 Hasieratu();
                 break;
-            case "laukiAktualizatu"://NO SALTA ESTE CASE
+            case "laukiAktualizatu":
                 LaukiakAktualizatu();
                 break;
             case "tamagochiMugitu":
@@ -58,7 +58,7 @@ public class miniJokoaBista implements Observer{
             case "irabaziDu":
                 irabaziDu();
                 break;
-            case "galdu":
+            case "galduDu":
                 galduDu();
                 break;
         }
@@ -69,7 +69,6 @@ public class miniJokoaBista implements Observer{
     {
         
      //metodo que inicializa una matriz de 12 x 12 de laukias
-        System.out.println("3");
         laukiak = new JLabel[12][12];
         frame = new JFrame("MiniJokua");
         frame.setLayout(new GridLayout(12, 12));
@@ -173,7 +172,6 @@ public class miniJokoaBista implements Observer{
     }
     public void tamagochiMugitu()
     {
-        System.out.println("tamagochiMugitu");
         int x = Minijokoa.getMinijokoa().getZutabea();
         int y = Minijokoa.getMinijokoa().getLerroa();
         int yTarta = Minijokoa.getTartaZutabea();
@@ -184,6 +182,7 @@ public class miniJokoaBista implements Observer{
             //ESTO PONERLO CUANDO ESTÉ CONECTADO CON TODO LO DEMÁS
             //Mimitchi tamagochi= new Mimitchi(y, x, false, false);
             //String aux=tamagochi.zeinEboluzioDa();
+            
             String aux="Mimitchi";
             ImageIcon pertsonaia;
             if (aux=="Egg"){
@@ -201,12 +200,14 @@ public class miniJokoaBista implements Observer{
             else {
                 pertsonaia = new ImageIcon(this.getClass().getResource("/sprites/Marutchi1.png"));
             }     
+            garbituAurrekoa();
+
             Image image = pertsonaia.getImage().getScaledInstance(20, 20, 20);
             ImageIcon pertsonaiak = new ImageIcon(image);
             laukiak[y][x].setIcon(pertsonaiak);
             laukiak[y][x].revalidate();
             laukiak[y][x].repaint();
-            //Printear la Tarta
+
          
         }
 
@@ -220,6 +221,7 @@ public class miniJokoaBista implements Observer{
             
         }
     }
+
     private void tamagochietatartaKokatu()
     { 
         int xTama = Minijokoa.getMinijokoa().getLerroa();
@@ -236,11 +238,33 @@ public class miniJokoaBista implements Observer{
 
         if(Minijokoa.getMinijokoa().tartaVisible())
         {
+            
             laukiak[yTarta][xTarta].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Tarta.png")));
         }
         
 
     }
+    private void garbituAurrekoa() {
+        int xTama = Minijokoa.getMinijokoa().getLerroa();
+        int yTama = Minijokoa.getMinijokoa().getZutabea();
+
+        for (int i = 0; i < laukiak.length; i++) {
+            for (int j = 0; j < laukiak[i].length; j++) {
+                if (laukiak[i][j].getIcon() != null && (i != yTama || j != xTama) && !esTarta(i, j)) {
+                    laukiak[i][j].setIcon(null);
+                    laukiak[i][j].revalidate();
+                    laukiak[i][j].repaint();
+                }
+            }
+        }
+    }
+
+    private boolean esTarta(int lerroa, int zutabea) {
+        int xTarta = Minijokoa.getTartaLerroa();
+        int yTarta = Minijokoa.getTartaZutabea();
+        return lerroa == yTarta && zutabea == xTarta;
+    }
+
     private static class CustomMouseListener extends MouseAdapter 
     {
         private int lerroa;
@@ -270,25 +294,19 @@ public class miniJokoaBista implements Observer{
                 int key = e.getKeyCode();
                 if (key == KeyEvent.VK_UP)
                 {
-                    System.out.println("UP");
-                    System.out.println("la posicion de la tarta es: "+ Minijokoa.getTartaZutabea()+" "+Minijokoa.getTartaLerroa());
-                    System.out.println("la posicion del tamagochi es: " + Minijokoa.getMinijokoa().getZutabea() + " " + Minijokoa.getMinijokoa().getLerroa());
-
                     Minijokoa.getMinijokoa().TamagochiMugitu(1);
+                    
                 }
                 else if (key == KeyEvent.VK_DOWN)
                 {
-                    System.out.println("DOWN");
                     Minijokoa.getMinijokoa().TamagochiMugitu(2);
                 }
                 else if (key == KeyEvent.VK_LEFT)
                 {
-                    System.out.println("LEFT");
                     Minijokoa.getMinijokoa().TamagochiMugitu(3);
                 }
                 else if (key == KeyEvent.VK_RIGHT)
                 {
-                    System.out.println("RIGHT");
                     Minijokoa.getMinijokoa().TamagochiMugitu(4);
                 }
             }
