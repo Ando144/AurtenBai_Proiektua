@@ -19,7 +19,7 @@ public class Partida extends Observable{
         //this.izena = "";
         this.candy = 0;
         this.soup = 0;
-        this.tamagotchi = new Kuchipatchi(15, 15, false, false);
+        this.tamagotchi = new Egg(40, 40, false, false);
     }
 
 	public void resetPartida(){
