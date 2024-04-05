@@ -35,8 +35,7 @@ public class miniJokoaBista implements Observer{
 
     public miniJokoaBista (Observable pMinijokoa){
         pMinijokoa.addObserver(this);
-    }
-    
+    } 
     @Override
     public void update(Observable arg0, Object arg1)
     {
@@ -120,6 +119,7 @@ public class miniJokoaBista implements Observer{
         /*aceptarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // KONEXIOA CON MONGE
+                //Aqui hay que conectar con monge, es como un boton de aceptar
             }
         });
         panel.add(aceptarButton);
@@ -144,6 +144,7 @@ public class miniJokoaBista implements Observer{
         /*aceptarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // KONEXIOA CON MONGE
+                //Aqui hay que conectar con monge, es como un boton de aceptar
             }
         });
         panel.add(aceptarButton);

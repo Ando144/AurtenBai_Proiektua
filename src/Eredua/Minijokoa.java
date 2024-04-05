@@ -4,6 +4,8 @@ import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 import src.Bista.miniJokoaBista;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class Minijokoa extends Observable{
@@ -17,17 +19,19 @@ public class Minijokoa extends Observable{
    private static int tartaZutabea;
    private static int xAnterior;
     private static int yAnterior;
-    
+    private Timer timer;
+
     private static Minijokoa NireMinijokoa = null;
     public static Minijokoa getMinijokoa()
     {
         if(NireMinijokoa == null)
         {
             NireMinijokoa = new Minijokoa();
+            NireMinijokoa.timer = new Timer();
+
         }
         return NireMinijokoa;
     }
-
     public static void main(String[] args) 
     {
         Minijokoa minijokoa = new Minijokoa();
@@ -245,6 +249,19 @@ public class Minijokoa extends Observable{
         tamagochiZutabea = (int) (Math.random() * 11)+1;
         tartaLerroa = (int) (Math.random() * 11)+1;
         tartaZutabea = (int) (Math.random() * 11)+1;
+
+        //Cuenta atras para terminar el juego
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+
+                setChanged();
+                notifyObservers("galduDu");
+            }
+            //30 segundos
+        },  30000);
+
         if(osoGertu(tartaLerroa, tartaZutabea))
         {
             while(osoGertu(tartaLerroa, tartaZutabea))
@@ -258,6 +275,7 @@ public class Minijokoa extends Observable{
     }
     private void AktBuklea()
     {
+
         while (!irabaziDu()) {
             setChanged();
             notifyObservers("laukiAktualizatu");
@@ -268,10 +286,12 @@ public class Minijokoa extends Observable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
         }
         setChanged();
         notifyObservers("irabaziDu");
-        
+        NireMinijokoa.timer.cancel();
+
     }
     public void laukiaAktualizatu(int lerroa, int zutabea)
     {
@@ -315,6 +335,15 @@ public class Minijokoa extends Observable{
             return false;
         }
     }
+    public static boolean galduDu() {
+        long startTime = System.currentTimeMillis();
+        long elapsedTime = 0;
+        while (elapsedTime < 30000) {
+            elapsedTime = System.currentTimeMillis() - startTime;
+        }
+        return true;
+    }
+    
     public static boolean osoGertu(int lerroa, int zutabea)
     {
         if (lerroa == tamagochiLerroa && zutabea == tamagochiZutabea)
