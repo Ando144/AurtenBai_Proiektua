@@ -16,7 +16,7 @@ public class Kuchipatchi extends Tamagotchi{
         }
         this.bizitza -= 2;
         this.asetasuna -= 5;
-		setChanged();
-		notifyObservers();
+		//setChanged();
+		//notifyObservers();
     }
 }

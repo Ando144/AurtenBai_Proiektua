@@ -43,8 +43,11 @@ public abstract class Tamagotchi extends Observable{
     private Tamagotchi getTamagotchi(){
         return this;
     }
-    
     public Tamagotchi eboluzionatuTama(boolean kaka, boolean gaixorik){
+        Tamagotchi nireTama= new Kuchipatchi(bizitza, asetasuna, gaixorik, kaka);
+        return nireTama;
+     }
+    public Tamagotchi eboluzionatuTama2(boolean kaka, boolean gaixorik){
        Tamagotchi nireTama= new Mimitchi(bizitza, asetasuna, gaixorik, kaka);
        return nireTama;
     }
