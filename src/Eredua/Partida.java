@@ -15,7 +15,7 @@ public class Partida extends Observable{
 	private int bizitza;
     private static Partida nirePartida;
 	public Partida(){
-        this.score = 0;
+        this.score = 40;
         //this.izena = "";
         this.candy = 0;
         this.soup = 0;

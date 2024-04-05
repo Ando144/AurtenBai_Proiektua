@@ -582,7 +582,10 @@ public class panelNagusia extends JFrame implements Observer{
 		Tamagochi_Izena.setText("Maskutchi");
 	 }
 	private void PuntuazioaEguneratuEtaBistaratu(){
-		
+		int aldagaia= Partida.getPartida().getScore();
+		Puntuazioa.setText(""+aldagaia);
+		Puntuazioa.setForeground(new Color(255, 255, 255));
+		Puntuazioa.setBounds(282, 4, 45, 13);
 	}
 	private class Kontroladorea implements ActionListener{
 		@Override
