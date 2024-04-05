@@ -582,7 +582,7 @@ public class panelNagusia extends JFrame implements Observer{
 		Tamagochi_Izena.setText("Maskutchi");
 	 }
 	private void PuntuazioaEguneratuEtaBistaratu(){
-
+		
 	}
 	private class Kontroladorea implements ActionListener{
 		@Override
