@@ -29,6 +29,27 @@ public abstract class Tamagotchi extends Observable{
         }
     }
 
+    public boolean bizirikDago(){
+        return (bizitza > 0 && asetasuna > 0);
+    }
+    public void setKaka(boolean pKaka){
+        this.kaka = pKaka;
+    }
+    public void setGaixorik(boolean pGaixorik){
+        this.gaixorik = pGaixorik;
+    }
+    public void jokoaEgin(){
+        if (bizirikDago()){
+            if (kaka){
+                osasunaGalduKaka();
+            }
+            if (gaixorik){
+                osasunaGalduGaixorik();
+            }
+        }
+        kontadoreakEguneratu();
+    }
+
     public abstract void kontadoreakEguneratu();
 
     protected void osasunaGalduKaka(){

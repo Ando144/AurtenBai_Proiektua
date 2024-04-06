@@ -15,7 +15,7 @@ public class Partida extends Observable{
 	private int bizitza;
     private static Partida nirePartida;
 	public Partida(){
-        this.score = 40;
+        this.score = 0;
         //this.izena = "";
         this.candy = 0;
         this.soup = 0;
@@ -35,10 +35,15 @@ public class Partida extends Observable{
         return nirePartida;
     }
     public static void main(String [] args){
+		Partida.getPartida().partidaBatJokatu();
+	}
+    public void partidaBatJokatu(){
+			boolean bukatuta = false;
+
 			Partida nirePartida =new Partida();
 			panelNagusia frame = new panelNagusia(nirePartida);
-
 			nirePartida.hasieratuPartida();
+			//frame.setVisible(true);
 			try{
 				Thread.sleep(4000);
 			}
@@ -48,8 +53,8 @@ public class Partida extends Observable{
 			nirePartida.eboluzionatuTamagotchi();
 			nirePartida.tamagotchiEguneratu();
 			Thread lausegundo = new Thread(()->{
-					while(true){
-						System.out.println("lau segundo pasa dira");
+					while(!bukatuta){
+						System.out.println("lau seg    "+this.tamagotchi.kaka+ "   /////////////////////");
 						nirePartida.bihotzakEguneratu();
 						nirePartida.sopakEguneratu(); 
 						nirePartida.scoreEguneratu();
@@ -155,6 +160,12 @@ public class Partida extends Observable{
 	private boolean getKaka(){
 		return this.tamagotchi.kaka;
 	}
+	public void tamaSendatu(){
+		this.tamagotchi.setGaixorik(false);
+	}
+	public void tamaKakaGarbitu(){
+		this.tamagotchi.setKaka(false);
+	}
 	private void hasieratuPartida(){
 		setChanged();
 		notifyObservers("hasieratu");
@@ -216,19 +227,19 @@ public class Partida extends Observable{
 		System.out.println("KAIXO");
 		int zenbakia = probabilitatea.nextInt(101);
 		System.out.println("kaka zenb "+zenbakia);
-		if(1<=zenbakia && zenbakia<=20){
-			this.tamagotchi.kaka =true;
-			kakaBistaratu(this.tamagotchi.kaka); //aqui si se hace kk salta
+		if(1<=zenbakia && zenbakia<=20 && this.tamagotchi.kaka==false){
+			this.tamagotchi.setKaka(true);
+			kakaBistaratu(true);
 		}
 		else{
 			System.out.println("kaka ez du egin");
-			this.tamagotchi.kaka=false;
+			this.tamagotchi.setKaka(false);
 			gaixotuAhalDa(this.tamagotchi.kaka); //aqui salta a otro metodo para ver si se puede enfermar (no puede hacer kaka y enfermar a la misma vez)
 		}
 	}
 	private void gaixotuAhalDa(boolean kaka){
-		System.out.println(kaka);
 		if (kaka==false) {
+			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 			this.tamagotchi.kaka=false;
 			gaixorikEgon();
 		}
@@ -242,7 +253,7 @@ public class Partida extends Observable{
 			gaixoBistaratu(this.tamagotchi.gaixorik );
 		}
 	}
-	private boolean minijokoaJokaatu(){
+	private boolean minijokoaJokatu(){
 		Random probabilitatea = new Random();
 		int zenbakia = probabilitatea.nextInt(101);
 		if(1<=zenbakia && zenbakia<=12){

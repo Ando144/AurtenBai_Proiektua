@@ -14,6 +14,7 @@ import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.util.Observer;
@@ -324,6 +325,7 @@ public class panelNagusia extends JFrame implements Observer{
 			kakaIrudi = new JLabel("");
 			kakaIrudi.setBounds(100, 100, 100, 100);
 			kakaIrudi.setIcon(new ImageIcon(this.getClass().getResource("/sprites/kk.png")));
+			kakaIrudi.addMouseListener((MouseListener) getKontroladorea());
 		}
 		return kakaIrudi;
 	}
@@ -332,6 +334,7 @@ public class panelNagusia extends JFrame implements Observer{
 			gaixoIrudi = new JLabel("");
 			gaixoIrudi.setBounds(80, 0, 100, 100);
 			gaixoIrudi.setIcon(new ImageIcon(this.getClass().getResource("/sprites/Virus.png")));
+			gaixoIrudi.addMouseListener((MouseListener) getKontroladorea());
 		}
 		return gaixoIrudi;
 	}
@@ -587,7 +590,7 @@ public class panelNagusia extends JFrame implements Observer{
 		Puntuazioa.setForeground(new Color(255, 255, 255));
 		Puntuazioa.setBounds(282, 4, 45, 13);
 	}
-	private class Kontroladorea implements ActionListener{
+	private class Kontroladorea implements ActionListener, MouseListener{
 		@Override
 		public void actionPerformed(ActionEvent e){
 			if(e.getSource().equals(boton_exit)){
@@ -595,9 +598,33 @@ public class panelNagusia extends JFrame implements Observer{
 				frame2.setVisible(true);
 				PartidaErregistro.getPartidaErregistro().getLehenengoBostak();
 				frame.dispose();
+			}else if(e.getSource().equals(kakaIrudi)){
+				panel_tamagochi.remove(kakaIrudi);
+			}else if(e.getSource().equals(gaixoIrudi)){
+				panel_tamagochi.remove(gaixoIrudi);
 			}
 			//dispose();
 		}
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			if(e.getSource().equals(kakaIrudi)){
+				panel_tamagochi.remove(kakaIrudi);
+				Partida.getPartida().tamaKakaGarbitu();
+			}else if(e.getSource().equals(gaixoIrudi)){	
+				panel_tamagochi.remove(gaixoIrudi);
+				Partida.getPartida().tamaSendatu();
+			}
+		}
+		
+		@Override
+		public void mousePressed(MouseEvent e) {}
+		@Override
+		public void mouseReleased(MouseEvent e) {}
+		@Override
+		public void mouseEntered(MouseEvent e) {}
+		@Override
+		public void mouseExited(MouseEvent e) {}
 	}
 }
 
