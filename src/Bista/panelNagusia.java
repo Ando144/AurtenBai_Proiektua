@@ -419,8 +419,11 @@ public class panelNagusia extends JFrame implements Observer{
 			case "bihotz1jarri":
 				bihotzBatJarri();
 				break;
-			case "hildaDago":
-				hildaDago();
+			case "hildaDagoKat":
+				hildaDagoKatilu();
+				break;
+			case "hildaDagoBihotz":
+				hildaDagoBihotz();
 				break;
 		
 			case "4sopajarri":
@@ -488,7 +491,20 @@ public class panelNagusia extends JFrame implements Observer{
 		bihotza3.setEnabled(false);
 		bihotza4.setEnabled(false);
 	}
-	private void hildaDago(){}	
+	private void hildaDagoKatilu(){
+		katilu1.setEnabled(false);
+		katilu2.setEnabled(false);
+		katilu3.setEnabled(false);
+		katilu4.setEnabled(false);
+		
+	}	
+	private void hildaDagoBihotz(){
+		bihotza1.setEnabled(false);
+		bihotza2.setEnabled(false);
+		bihotza3.setEnabled(false);
+		bihotza4.setEnabled(false);
+		
+	}	
 	private void lauKatiluJarri(){
 		katilu1.setEnabled(true);
 		katilu2.setEnabled(true);

@@ -58,6 +58,7 @@ public class Partida extends Observable{
 						nirePartida.bihotzakEguneratu();
 						nirePartida.sopakEguneratu(); 
 						nirePartida.scoreEguneratu();
+						nirePartida.minijokoaJokatu();
 						//nirePartida.tamagotchiEguneratu();
 						try{
 							Thread.sleep(4000);
@@ -73,7 +74,7 @@ public class Partida extends Observable{
 				while (nirePartida.getGaixorik()==false && nirePartida.getKaka()==false) {
 					nirePartida.kakaEgin();
 					try {
-						Thread.sleep(5000); // Espera 20 segundo
+						Thread.sleep(20000); // Espera 20 segundo
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -82,7 +83,7 @@ public class Partida extends Observable{
 			hilo20segundo.start();
 
 			try {
-				Thread.sleep(5000); // Espera 20 segundo
+				Thread.sleep(20000); // Espera 20 segundo
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -191,9 +192,9 @@ public class Partida extends Observable{
 			setChanged();
             notifyObservers("bihotz1jarri");
 		}
-        else{
+        if (zenb<=0){
 			setChanged();
-            notifyObservers("hildaDago");
+            notifyObservers("hildaDagoBihotz");
 		}
 	}
     private void sopakEguneratu( ) {
@@ -217,9 +218,9 @@ public class Partida extends Observable{
 			setChanged();
             notifyObservers("sopa1jarri");
 		}
-		else{
+		if(zenb<=0){
 			setChanged();
-            notifyObservers("hildaDago");
+            notifyObservers("hildaDagoKat");
 		}
 	}
 	private void kakaEgin(){ //mira si se hace kk
