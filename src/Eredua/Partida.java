@@ -167,6 +167,10 @@ public class Partida extends Observable{
 	public void tamaKakaGarbitu(){
 		this.tamagotchi.setKaka(false);
 	}
+	public void tamaJan(int biz, int ase){
+		this.tamagotchi.bizitza = this.tamagotchi.bizitza + biz;
+		this.tamagotchi.asetasuna = this.tamagotchi.asetasuna + ase;
+	}
 	private void hasieratuPartida(){
 		setChanged();
 		notifyObservers("hasieratu");
