@@ -11,10 +11,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.util.*;
+import javax.swing.Timer;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 
@@ -26,13 +30,10 @@ import src.Eredua.Tamagotchi;
 
 import java.util.Observer;
 import java.util.Observable;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Image;
 
 
 
-public class miniJokoaBista implements Observer{
+public class miniJokoaBista extends JFrame implements Observer{
     private JFrame frame;
     private static JLabel laukiak[][];
     private static JLabel Tamagochi;
@@ -40,9 +41,16 @@ public class miniJokoaBista implements Observer{
     private int y;
     private JPanel puntosPanel;
     private JLabel puntosLabel;
+    private JButton aceptarButton;
+    private Kontroladorea kontroladorea = null;
 
- 
-
+	private Kontroladorea getKontroladorea() {
+		if (kontroladorea == null) {
+			kontroladorea = new Kontroladorea();
+		}
+		return kontroladorea;
+	}
+    
 
     public miniJokoaBista (Observable pMinijokoa){
         pMinijokoa.addObserver(this);
@@ -138,8 +146,9 @@ public class miniJokoaBista implements Observer{
         JLabel mensajeLabel = new JLabel("GALDU DUZU!");
         panel.add(mensajeLabel);
         
-        JButton aceptarButton = new JButton("Aceptar");
-        aceptarButton.addActionListener(new ActionListener() {
+        panel.add(getAceptarButton());
+        /*JButton aceptarButton = new JButton("Aceptar");
+        aceptarButton.addActionListener(getKontroladorea()new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource().equals(aceptarButton)){
                     //panelNagusia pn = new panelNagusia(Partida.getPartida());
@@ -149,10 +158,21 @@ public class miniJokoaBista implements Observer{
                 }
             }
         });
-        panel.add(aceptarButton);
+        panel.add(aceptarButton);*/
         
         perdedorFrame.setSize(300, 200);
         perdedorFrame.setVisible(true);
+    }
+    private JButton getAceptarButton() {
+		if (aceptarButton == null) {
+			aceptarButton = new JButton("Aceptar");
+			aceptarButton.setFont(new Font("Arial Black", Font.PLAIN, 15));
+			aceptarButton.setForeground(SystemColor.desktop);
+			aceptarButton.setBackground(Color.red);
+			aceptarButton.setBounds(283, 13, 89, 23);
+			aceptarButton.addActionListener(getKontroladorea());
+		}
+		return aceptarButton;
     }
     public void irabaziDu()//falta por conectar con monge
     {
@@ -167,8 +187,9 @@ public class miniJokoaBista implements Observer{
         JLabel mensajeLabel = new JLabel("IRABAZI DUZU!");
         panel.add(mensajeLabel);
         
-        JButton aceptarButton = new JButton("Aceptar");
-        aceptarButton.addActionListener(new ActionListener(){
+        panel.add(getAceptarButton());
+        /*JButton aceptarButton = new JButton("Aceptar");
+        aceptarButton.addActionListener(getKontroladorea()/*new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource().equals(aceptarButton)){
                     //panelNagusia pn = new panelNagusia(Partida.getPartida());
@@ -178,7 +199,7 @@ public class miniJokoaBista implements Observer{
                 }
             }
         });
-        panel.add(aceptarButton);
+        panel.add(aceptarButton);*/
         
         ganadorFrame.setSize(300, 200);
         ganadorFrame.setVisible(true);
@@ -352,6 +373,16 @@ public class miniJokoaBista implements Observer{
 
        
     }
-    
+    private class Kontroladorea implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource().equals(aceptarButton)){
+				//panelNagusia pn = new panelNagusia(Partida.getPartida());
+				//pn.setVisible(true);
+                dispose();
+				Partida.getPartida().main(null);
+			}
+		}
+	}
     
 }
