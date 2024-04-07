@@ -327,6 +327,13 @@ public class Partida extends Observable{
 		if (this.tamagotchi.zeinEboluzioDa()=="Marutchi"){
 			this.score =this.score + 20;
 		}
+		Minijokoa minijokoa=Minijokoa.getMinijokoa();
+		if(minijokoa.irabaziDu()==true){
+			this.score =this.score + 20;
+		}
+		if(minijokoa.irabaziDu()==false){
+			this.score =this.score - 20;
+		}
 		//si se da una piruleta o sopa +5 
 		setChanged();
 		notifyObservers("Puntuazioa");

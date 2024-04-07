@@ -14,10 +14,14 @@ import java.awt.event.KeyListener;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+import java.awt.event.ActionEvent;
+import javax.swing.border.EmptyBorder;
+
 
 import src.Eredua.Marutchi;
 import src.Eredua.Mimitchi;
 import src.Eredua.Minijokoa;
+import src.Eredua.Partida;
 import src.Eredua.Tamagotchi;
 
 import java.util.Observer;
@@ -36,6 +40,8 @@ public class miniJokoaBista implements Observer{
     private int y;
     private JPanel puntosPanel;
     private JLabel puntosLabel;
+
+ 
 
 
     public miniJokoaBista (Observable pMinijokoa){
@@ -133,14 +139,18 @@ public class miniJokoaBista implements Observer{
         panel.add(mensajeLabel);
         
         JButton aceptarButton = new JButton("Aceptar");
-        /*aceptarButton.addActionListener(new ActionListener() {
+        aceptarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // KONEXIOA CON MONGE
-                //Aqui hay que conectar con monge, es como un boton de aceptar
+                if(e.getSource().equals(aceptarButton)){
+                    //panelNagusia pn = new panelNagusia(Partida.getPartida());
+                    //pn.setVisible(true);
+                    dispose();
+                    Partida.getPartida().main(null);
+                }
             }
         });
         panel.add(aceptarButton);
-        */
+        
         perdedorFrame.setSize(300, 200);
         perdedorFrame.setVisible(true);
     }
@@ -158,14 +168,18 @@ public class miniJokoaBista implements Observer{
         panel.add(mensajeLabel);
         
         JButton aceptarButton = new JButton("Aceptar");
-        /*aceptarButton.addActionListener(new ActionListener() {
+        aceptarButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                // KONEXIOA CON MONGE
-                //Aqui hay que conectar con monge, es como un boton de aceptar
+                if(e.getSource().equals(aceptarButton)){
+                    //panelNagusia pn = new panelNagusia(Partida.getPartida());
+                    //pn.setVisible(true);
+                    dispose();
+                    Partida.getPartida().main(null);
+                }
             }
         });
         panel.add(aceptarButton);
-        */
+        
         ganadorFrame.setSize(300, 200);
         ganadorFrame.setVisible(true);
     }
@@ -335,7 +349,9 @@ public class miniJokoaBista implements Observer{
         public void keyTyped(KeyEvent e)
         {
         }
-    }
 
+       
+    }
+    
     
 }
