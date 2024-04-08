@@ -62,6 +62,9 @@ public class panelNagusia extends JFrame implements Observer{
 	private JLabel koilara2;
 	private JLabel koilara3;
 	private JLabel tamagotchiIrudi;
+	private int kontadorea1 = 0;
+	private int kontadorea2 = 0;
+	private int puntuazioa;
 	private int offsetx,offsety;
 	/**
 	 * Launch the application.
@@ -485,6 +488,7 @@ public class panelNagusia extends JFrame implements Observer{
 		bihotza3.setEnabled(false);
 		bihotza4.setEnabled(false);
 		
+		
 	}	
 	private void lauKatiluJarri(){
 		katilu1.setEnabled(true);
@@ -582,10 +586,11 @@ public class panelNagusia extends JFrame implements Observer{
 		Tamagochi_Izena.setText("Maskutchi");
 	 }
 	private void PuntuazioaEguneratuEtaBistaratu(){
-		int aldagaia= Partida.getPartida().getScore();
-		Puntuazioa.setText(""+aldagaia);
+		int aldagaia= this.kontadorea1;
 		Puntuazioa.setForeground(new Color(255, 255, 255));
 		Puntuazioa.setBounds(282, 4, 45, 13);
+		Puntuazioa.setText(Integer.toString(aldagaia));
+		System.out.println("la puntuacion del this.get es: "+ Partida.getPartida().getScore());
 	}
 	private boolean panelContains(JPanel panel, JLabel label) {
 		for (Component component : panel.getComponents()) {
@@ -620,6 +625,11 @@ public class panelNagusia extends JFrame implements Observer{
 				panel_tamagochi.remove(gaixoIrudi);
 				Partida.getPartida().tamaSendatu();
 			}else if(e.getSource().equals(panel_candy)){
+				kontadorea1++;
+				System.out.println("clikatu da piruleta"+kontadorea1+"aldiz");
+				
+
+				/* 
 				if(panelContains(getPanel_candy(),getCandy3())){
 				}else if(panelContains(getPanel_candy(),getCandy2())){
 					panel_candy.add(getCandy3());
@@ -627,8 +637,12 @@ public class panelNagusia extends JFrame implements Observer{
 					panel_candy.add(getCandy2());
 				}else{	
 					panel_candy.add(getCandy1());
-				}
+				}*/
 			}else if(e.getSource().equals(panel__soup)){
+				kontadorea2++;
+				System.out.println("clikatu da sopas"+kontadorea2+"aldiz");
+
+				/*
 				if(panelContains(getPanel__soup(),getKoilara3())){
 				}else if(panelContains(getPanel__soup(),getKoilara2())){
 					panel__soup.add(getKoilara3());
@@ -636,9 +650,12 @@ public class panelNagusia extends JFrame implements Observer{
 					panel__soup.add(getKoilara2());
 				}else{	
 					panel__soup.add(getKoilara1());
-				}
+				}*/
 			}else if(e.getSource().equals(tamagotchiIrudi)){
-				int gehitzekoBizitza = 0;
+				bihotzakEtaSopakGehitu(kontadorea1,kontadorea2);
+				kontadorea1=0;
+				kontadorea2=0;
+				/*int gehitzekoBizitza = 0;
 				int gehitzekoAsetasuna = 0;
 				if(panelContains(getPanel_candy(),getCandy3())){
 					gehitzekoBizitza=30;
@@ -666,8 +683,13 @@ public class panelNagusia extends JFrame implements Observer{
 					gehitzekoAsetasuna=10;
 					panel__soup.remove(getKoilara1());
 				}
-				Partida.getPartida().tamaJan(gehitzekoBizitza, gehitzekoAsetasuna);
+				Partida.getPartida().tamaJan(gehitzekoBizitza, gehitzekoAsetasuna);*/
 			}
+		}
+		public void bihotzakEtaSopakGehitu(int kont1, int kont2){
+				int gehitzekoBizitza=10 * kont1;
+				int gehitzekoAsetasuna=10 * kont2;
+				Partida.getPartida().tamaJan(gehitzekoBizitza,gehitzekoAsetasuna);
 		}
 		
 		@Override

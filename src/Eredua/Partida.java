@@ -14,6 +14,8 @@ public class Partida extends Observable{
     private Tamagotchi tamagotchi;
 	private int bizitza;
     private static Partida nirePartida;
+	private int Puntuazioa;
+
 	public Partida(){
         this.score = 0;
         //this.izena = "";
@@ -30,6 +32,7 @@ public class Partida extends Observable{
     {
         if(nirePartida == null)
         {
+			System.out.println("partida berria egin da");
             nirePartida = new Partida();
         }
         return nirePartida;
@@ -162,10 +165,10 @@ public class Partida extends Observable{
 		return this.tamagotchi.kaka;
 	}
 	public void tamaSendatu(){
-		this.tamagotchi.setGaixorik(false);
+		this.tamagotchi.gaixorik=false;
 	}
 	public void tamaKakaGarbitu(){
-		this.tamagotchi.setKaka(false);
+		this.tamagotchi.kaka=false;
 	}
 	public void tamaJan(int biz, int ase){
 		this.tamagotchi.bizitza = this.tamagotchi.bizitza + biz;
@@ -316,32 +319,36 @@ public class Partida extends Observable{
 				tamagotchiEguneratu();
 	}
 	public int getScore(){
-		int Puntuazioa=0;
-		Puntuazioa = this.score;
-		return Puntuazioa;
+		//Puntuazioa = this.score;
+		System.out.println("El score del this.score es: "+this.score);
+		return scoreEguneratu();
 	}
-	private void scoreEguneratu(){
+	private int Puntuacion;
+	private int scoreEguneratu(){
 		//+1 cada vez que pasan 4 segundos
-		this.score=this.score +1;
+		Puntuacion=Puntuacion +1;
 		if (this.tamagotchi.gaixorik==true){
-			this.score =this.score - 5;
+			Puntuacion =Puntuacion - 5;
 		}
 		if (this.tamagotchi.kaka==true){
-			this.score =this.score - 5;
+			Puntuacion =Puntuacion - 5;
 		}
 		if (this.tamagotchi.zeinEboluzioDa()=="Marutchi"){
-			this.score =this.score + 20;
+			Puntuacion =Puntuacion + 20;
 		}
 		Minijokoa minijokoa=Minijokoa.getMinijokoa();
 		if(minijokoa.irabaziDu()==true){
-			this.score =this.score + 20;
+			Puntuacion =Puntuacion + 20;
 		}
 		if(minijokoa.irabaziDu()==false){
-			this.score =this.score - 20;
+			Puntuacion =Puntuacion - 20;
 		}
+		System.out.println("Puntuacion "+ Puntuacion);
+
 		//si se da una piruleta o sopa +5 
 		setChanged();
 		notifyObservers("Puntuazioa");
+		return Puntuacion;
 	}
 
 	private void azkeneboluzioa(){
