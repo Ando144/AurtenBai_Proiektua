@@ -139,10 +139,9 @@ public class miniJokoaBista extends JFrame implements Observer{
         
         
     }
-    public void galduDu()//falta por conectar con monge
+    public void galduDu()
     {
-        frame.dispose(); // Close the main frame
-        
+        frame.dispose();
 
         perdedorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -393,7 +392,8 @@ public class miniJokoaBista extends JFrame implements Observer{
                     //pn.setVisible(true);
                     dispose();
                     Minijokoa.getMinijokoa().apagarMinijokoa();
-                    Partida.getPartida().main(null);
+                    ganadorFrame.dispose();
+                    perdedorFrame.dispose();
 
                     
                 }

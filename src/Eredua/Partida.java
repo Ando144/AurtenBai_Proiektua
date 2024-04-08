@@ -258,7 +258,6 @@ public class Partida extends Observable{
 	}
 	private void gaixotuAhalDa(boolean kaka){
 		if (kaka==false) {
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 			this.tamagotchi.kaka=false;
 			gaixorikEgon();
 		}

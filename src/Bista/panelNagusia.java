@@ -529,7 +529,7 @@ public class panelNagusia extends JFrame implements Observer{
 		panel_tamagochi.add(getgaixoIrudi());
 	}
 	private void minijokuaBistaratu(){
-		
+		Minijokoa.main(null);
 	}
 	private void marutchiBistaratu(){
 		TamaIrudiak= new ImageIcon[] {
