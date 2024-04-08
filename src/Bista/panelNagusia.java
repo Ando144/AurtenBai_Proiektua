@@ -49,6 +49,7 @@ public class panelNagusia extends JFrame implements Observer{
 	private ImageIcon irudiak;
 	private JLabel eggIrudi;
 	private JLabel kakaIrudi;
+	private JLabel hilIrudi;
 	private JLabel gaixoIrudi;
 	private int pBizitza;
 	private int pAsetasuna;
@@ -335,6 +336,16 @@ public class panelNagusia extends JFrame implements Observer{
 		}
 		return kakaIrudi;
 	}
+
+	private JLabel getHilIrudi( ) {
+		if (hilIrudi == null) {
+			hilIrudi = new JLabel("");
+			hilIrudi.setBounds(100, 100, 100, 100);
+			hilIrudi.setIcon(new ImageIcon(this.getClass().getResource("/sprites/death.gif")));
+		}
+		return hilIrudi;
+	}
+
 	private JLabel getgaixoIrudi( ) {
 		if (gaixoIrudi == null) {
 			gaixoIrudi = new JLabel("");
@@ -488,7 +499,13 @@ public class panelNagusia extends JFrame implements Observer{
 		katilu2.setEnabled(false);
 		katilu3.setEnabled(false);
 		katilu4.setEnabled(false);
-		
+		panel_tamagochi.add(getHilIrudi());
+		try {
+			Thread.sleep(5000); // Espera 20 segundo
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		frame.dispose();
 		
 	}	
 	private void hildaDagoBihotz(){
@@ -496,8 +513,17 @@ public class panelNagusia extends JFrame implements Observer{
 		bihotza2.setEnabled(false);
 		bihotza3.setEnabled(false);
 		bihotza4.setEnabled(false);
-		
-		
+		panel_tamagochi.add(getHilIrudi());
+		try {
+			Thread.sleep(5000); // Espera 20 segundo
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		frame.dispose();
+		PartidaErregistro.getPartidaErregistro().eguneratu(Partida.getPartida().getScore(), getName());
+		HasieraMenua frame2 = new HasieraMenua(PartidaErregistro.getPartidaErregistro());
+		PartidaErregistro.getPartidaErregistro().getLehenengoBostak();
+		frame2.setVisible(true);
 	}	
 	private void lauKatiluJarri(){
 		katilu1.setEnabled(true);
