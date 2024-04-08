@@ -53,6 +53,8 @@ public abstract class Tamagotchi extends Observable{
     public abstract void kontadoreakEguneratu(); 
     public abstract void bihotzakEguneratu(int multiplikatzaile1);
     public abstract void katiluakEguneratu(int multiplikatzaile2 );
+    public abstract int getBizitzaTama();
+    public abstract int getAseTama();
     protected void osasunaGalduKaka(){
         bizitza = bizitza - 5;
         asetasuna = asetasuna + 10;

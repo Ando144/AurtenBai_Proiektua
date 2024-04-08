@@ -25,4 +25,11 @@ public class Mimitchi extends Tamagotchi{
     public void katiluakEguneratu(int multi2){
         this.asetasuna = this.asetasuna +(10 * multi2);
     }
+    public int getBizitzaTama(){
+        return this.bizitza;
+    }
+    public int getAseTama(){
+        return this.asetasuna;
+    }
+
 }
