@@ -56,11 +56,13 @@ public class Partida extends Observable{
 			nirePartida.eboluzionatuTamagotchi();
 			nirePartida.tamagotchiEguneratu();
 			Thread lausegundo = new Thread(()->{
+				if(!amaituDa()){
 					while(!bukatuta){
 						nirePartida.bihotzakEguneratu();
 						nirePartida.sopakEguneratu(); 
 						nirePartida.scoreEguneratu();
 						nirePartida.minijokoaJokatu();
+						
 						//nirePartida.tamagotchiEguneratu();
 						try{
 							Thread.sleep(5000);
@@ -70,9 +72,11 @@ public class Partida extends Observable{
 						}
 	
 					}
+				}
 				});
 			lausegundo.start();
 			Thread hilo20segundo= new Thread(()->{
+				if(!amaituDa()){
 				while (nirePartida.getGaixorik()==false && nirePartida.getKaka()==false) {
 					nirePartida.kakaEgin();
 					try {
@@ -81,6 +85,7 @@ public class Partida extends Observable{
 						e.printStackTrace();
 					}
 				}
+			}
 			});
 			hilo20segundo.start();
 
@@ -90,9 +95,11 @@ public class Partida extends Observable{
 				e.printStackTrace();
 			}
 
-			
+			if(!amaituDa()){
+				nirePartida.eboluzionatuTamagotchi2();
+			}
 			System.out.println("40 falta");
-			nirePartida.eboluzionatuTamagotchi2();
+			
 			try{
 				Thread.sleep(10000);
 			}
@@ -101,8 +108,10 @@ public class Partida extends Observable{
 			}
 
 			System.out.println("azkenboluzioa");
-
-			nirePartida.azkeneboluzioa();
+			if(!amaituDa()){
+				nirePartida.azkeneboluzioa();
+			}
+			
 			//nirePartida.tamagotchiEguneratu();
 			/* 
 			Thread lausegundo = new Thread(()->{
@@ -387,6 +396,23 @@ public class Partida extends Observable{
 		setChanged();
 		notifyObservers("Puntuazioa");
 		return Puntuacion;
+	}
+	public boolean amaituDa( ){
+		//int zenb = tamagotchi.getTamagotchi().getBizitza();
+		int zenb1= tamagotchi.getTamagotchi().getAsetasuna();
+		int zenb=0;
+		boolean amaitu =false;
+		if (zenb<=0){
+			amaitu=true;
+			notifyObservers("hildaDagoBihotz");
+			setChanged();
+		}
+		if (zenb1<=0){
+			amaitu=true;
+			notifyObservers("hildaDagoKat");
+			setChanged();
+		}
+		return amaitu;
 	}
 	public void sumarPuntuacion(int puntuacion){
 		Puntuacion = Puntuacion + puntuacion;
