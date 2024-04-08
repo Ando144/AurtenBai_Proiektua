@@ -51,8 +51,8 @@ public abstract class Tamagotchi extends Observable{
     }
     
     public abstract void kontadoreakEguneratu(); 
-    public abstract void bihotzakEguneratu(int multiplikatzaile1);
-    public abstract void katiluakEguneratu(int multiplikatzaile2 );
+   // public abstract void bihotzakEguneratu(int multiplikatzaile1);
+    //public abstract void katiluakEguneratu(int multiplikatzaile2 );
     public abstract int getBizitzaTama();
     public abstract int getAseTama();
     protected void osasunaGalduKaka(){
@@ -64,7 +64,7 @@ public abstract class Tamagotchi extends Observable{
         bizitza = bizitza - 7;
         asetasuna = asetasuna - 5;
     }
-    private Tamagotchi getTamagotchi(){
+    public Tamagotchi getTamagotchi(){
         return this;
     }
     public Tamagotchi eboluzionatuTama(boolean kaka, boolean gaixorik){
@@ -74,6 +74,21 @@ public abstract class Tamagotchi extends Observable{
     public Tamagotchi eboluzionatuTama2(boolean kaka, boolean gaixorik){
        Tamagotchi nireTama= new Mimitchi(bizitza, asetasuna, gaixorik, kaka);
        return nireTama;
+    }
+    public void katiluakEguneratu2(int multi2){     
+        this.asetasuna = this.asetasuna +(10*multi2);
+    }
+    public int getBizitza(){
+        return this.bizitza;
+    }
+    public int getAsetasuna(){
+        return this.asetasuna;
+    }
+    public void bihotzakEguneratu(int multi1){
+        this.bizitza=this.bizitza +(10*multi1);
+    }
+    public void katiluakEguneratu(int multi2){
+        this.asetasuna=this.asetasuna +(10*multi2);
     }
    public Tamagotchi azkenEbol(boolean kaka, boolean gaixo){
         Tamagotchi nireTama = this.getTamagotchi();

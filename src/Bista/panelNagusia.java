@@ -489,6 +489,7 @@ public class panelNagusia extends JFrame implements Observer{
 		katilu3.setEnabled(false);
 		katilu4.setEnabled(false);
 		
+		
 	}	
 	private void hildaDagoBihotz(){
 		bihotza1.setEnabled(false);
@@ -598,7 +599,6 @@ public class panelNagusia extends JFrame implements Observer{
 		Puntuazioa.setForeground(new Color(255, 255, 255));
 		Puntuazioa.setBounds(282, 4, 45, 13);
 		Puntuazioa.setText(Integer.toString(aldagaia));
-		System.out.println("la puntuacion del this.get es: "+ Partida.getPartida().getScore());
 	}
 	private boolean panelContains(JPanel panel, JLabel label) {
 		for (Component component : panel.getComponents()) {

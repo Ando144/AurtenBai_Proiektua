@@ -141,33 +141,37 @@ public class miniJokoaBista extends JFrame implements Observer{
     }
     public void galduDu()
     {
-        frame.dispose();
+        if(Minijokoa.irabaziDu()==false)
+        {
+            frame.dispose();
 
-        perdedorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        JPanel panel = new JPanel();
-        perdedorFrame.add(panel);
-        
-        JLabel mensajeLabel = new JLabel("GALDU DUZU!");
-        panel.add(mensajeLabel);
-        Partida.getPartida().sumarPuntuacion(-20);
+            perdedorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            
+            JPanel panel = new JPanel();
+            perdedorFrame.add(panel);
+            
+            JLabel mensajeLabel = new JLabel("GALDU DUZU!");
+            panel.add(mensajeLabel);
+            Partida.getPartida().sumarPuntuacion(-20);
 
-        panel.add(getAceptarButton());
-        /*JButton aceptarButton = new JButton("Aceptar");
-        aceptarButton.addActionListener(getKontroladorea()new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if(e.getSource().equals(aceptarButton)){
-                    //panelNagusia pn = new panelNagusia(Partida.getPartida());
-                    //pn.setVisible(true);
-                    dispose();
-                    Partida.getPartida().main(null);
+            panel.add(getAceptarButton());
+            /*JButton aceptarButton = new JButton("Aceptar");
+            aceptarButton.addActionListener(getKontroladorea()new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    if(e.getSource().equals(aceptarButton)){
+                        //panelNagusia pn = new panelNagusia(Partida.getPartida());
+                        //pn.setVisible(true);
+                        dispose();
+                        Partida.getPartida().main(null);
+                    }
                 }
-            }
-        });
-        panel.add(aceptarButton);*/
-        
-        perdedorFrame.setSize(300, 200);
-        perdedorFrame.setVisible(true);
+            });
+            panel.add(aceptarButton);*/
+            
+            perdedorFrame.setSize(300, 200);
+            perdedorFrame.setVisible(true);
+        }
+       
     }
     private JButton getAceptarButton() {
 		if (aceptarButton == null) {

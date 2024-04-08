@@ -336,6 +336,7 @@ public class Minijokoa extends Observable{
         }
     }
     public static boolean galduDu() {
+       
         long startTime = System.currentTimeMillis();
         long elapsedTime = 0;
         while (elapsedTime < 30000) {
