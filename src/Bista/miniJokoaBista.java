@@ -35,6 +35,9 @@ import java.util.Observable;
 
 public class miniJokoaBista extends JFrame implements Observer{
     private JFrame frame;
+    JFrame perdedorFrame = new JFrame("GALDU DUZU!");
+    JFrame ganadorFrame = new JFrame("IRABAZI DUZU!");
+
     private static JLabel laukiak[][];
     private static JLabel Tamagochi;
     private int x;
@@ -79,6 +82,9 @@ public class miniJokoaBista extends JFrame implements Observer{
             case "galduDu":
                 galduDu();
                 break;
+            case "itzali":
+                itzali();
+            break;
         }
         
     }
@@ -137,7 +143,7 @@ public class miniJokoaBista extends JFrame implements Observer{
     {
         frame.dispose(); // Close the main frame
         
-        JFrame perdedorFrame = new JFrame("GALDU DUZU!");
+
         perdedorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JPanel panel = new JPanel();
@@ -174,11 +180,15 @@ public class miniJokoaBista extends JFrame implements Observer{
 		}
 		return aceptarButton;
     }
+    private void itzali()
+    {
+        perdedorFrame.dispose();
+        ganadorFrame.dispose();
+    }
     public void irabaziDu()//falta por conectar con monge
     {
         frame.dispose(); // Close the main frame
         
-        JFrame ganadorFrame = new JFrame("IRABAZI DUZU!");
         ganadorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JPanel panel = new JPanel();
@@ -373,16 +383,19 @@ public class miniJokoaBista extends JFrame implements Observer{
 
        
     }
-    private class Kontroladorea implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			if(e.getSource().equals(aceptarButton)){
-				//panelNagusia pn = new panelNagusia(Partida.getPartida());
-				//pn.setVisible(true);
-                dispose();
-				Partida.getPartida().main(null);
-			}
-		}
-	}
+        private class Kontroladorea implements ActionListener {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource().equals(aceptarButton)){
+                    //panelNagusia pn = new panelNagusia(Partida.getPartida());
+                    //pn.setVisible(true);
+                    dispose();
+                    Minijokoa.getMinijokoa().apagarMinijokoa();
+                    Partida.getPartida().main(null);
+
+                    
+                }
+            }
+        }
     
 }

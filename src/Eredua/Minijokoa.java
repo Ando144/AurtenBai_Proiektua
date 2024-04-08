@@ -343,7 +343,11 @@ public class Minijokoa extends Observable{
         }
         return true;
     }
-    
+    public void apagarMinijokoa()
+    {
+        setChanged();
+        notifyObservers("itzali");
+    }
     public static boolean osoGertu(int lerroa, int zutabea)
     {
         if (lerroa == tamagochiLerroa && zutabea == tamagochiZutabea)
