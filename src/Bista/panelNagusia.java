@@ -207,9 +207,7 @@ public class panelNagusia extends JFrame implements Observer{
 			panel_candy.setBackground(new Color(0, 0, 0));
 			panel_candy.setBorder(new LineBorder(new Color(128, 128, 128)));
 			panel_candy.setBounds(50, 354, 103, 34);
-			panel_candy.add(getCandy1());
-			panel_candy.add(getCandy2());
-			panel_candy.add(getCandy3());
+			panel_candy.addMouseListener((MouseListener) getKontroladorea());
 		}
 		return panel_candy;
 	}
@@ -220,9 +218,7 @@ public class panelNagusia extends JFrame implements Observer{
 			panel__soup.setForeground(new Color(255, 255, 255));
 			panel__soup.setBorder(new LineBorder(new Color(128, 128, 128)));
 			panel__soup.setBounds(351, 354, 85, 34);
-			panel__soup.add(getKoilara1());
-			panel__soup.add(getKoilara2());
-			panel__soup.add(getKoilara3());
+			panel__soup.addMouseListener((MouseListener) getKontroladorea());
 		}
 		return panel__soup;
 	}
@@ -343,21 +339,6 @@ public class panelNagusia extends JFrame implements Observer{
 			candy1 = new JLabel("");
 			candy1.setIcon(new ImageIcon(this.getClass().getResource("/sprites/candy.png")));
 			candy1.setBounds(0, 0, 29, 34);
-			candy1.addMouseListener(new MouseAdapter(){
-				public void mousePressed(MouseEvent e){
-					offsetx=e.getX();
-					offsety=e.getY();
-				}
-			});
-			candy1.addMouseMotionListener(new MouseAdapter() {
-				public void mouseDragged(MouseEvent e){
-					int newX=e.getXOnScreen()-frame.getLocationOnScreen().x -offsetx;
-					int newY=e.getYOnScreen()-frame.getLocationOnScreen().y- offsety;
-					candy1.setLocation(newX, newY);
-					repaint();
-				}	
-			}
-			);
 		}
 		return candy1;
 	}
@@ -606,6 +587,14 @@ public class panelNagusia extends JFrame implements Observer{
 		Puntuazioa.setForeground(new Color(255, 255, 255));
 		Puntuazioa.setBounds(282, 4, 45, 13);
 	}
+	private boolean panelContains(JPanel panel, JLabel label) {
+		for (Component component : panel.getComponents()) {
+			if (component.equals(label)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	private class Kontroladorea implements ActionListener, MouseListener{
 		@Override
 		public void actionPerformed(ActionEvent e){
@@ -630,6 +619,54 @@ public class panelNagusia extends JFrame implements Observer{
 			}else if(e.getSource().equals(gaixoIrudi)){	
 				panel_tamagochi.remove(gaixoIrudi);
 				Partida.getPartida().tamaSendatu();
+			}else if(e.getSource().equals(panel_candy)){
+				if(panelContains(getPanel_candy(),getCandy3())){
+				}else if(panelContains(getPanel_candy(),getCandy2())){
+					panel_candy.add(getCandy3());
+				}else if(panelContains(getPanel_candy(),getCandy1())){
+					panel_candy.add(getCandy2());
+				}else{	
+					panel_candy.add(getCandy1());
+				}
+			}else if(e.getSource().equals(panel__soup)){
+				if(panelContains(getPanel__soup(),getKoilara3())){
+				}else if(panelContains(getPanel__soup(),getKoilara2())){
+					panel__soup.add(getKoilara3());
+				}else if(panelContains(getPanel__soup(),getKoilara1())){
+					panel__soup.add(getKoilara2());
+				}else{	
+					panel__soup.add(getKoilara1());
+				}
+			}else if(e.getSource().equals(tamagotchiIrudi)){
+				int gehitzekoBizitza = 0;
+				int gehitzekoAsetasuna = 0;
+				if(panelContains(getPanel_candy(),getCandy3())){
+					gehitzekoBizitza=30;
+					panel_candy.remove(getCandy3());
+					panel_candy.remove(getCandy2());
+					panel_candy.remove(getCandy1());
+				}else if(panelContains(getPanel_candy(),getCandy2())){
+					gehitzekoBizitza=20;
+					panel_candy.remove(getCandy2());
+					panel_candy.remove(getCandy1());
+				}else if(panelContains(getPanel_candy(),getCandy1())){
+					gehitzekoBizitza=10;
+					panel_candy.remove(getCandy1());
+				}
+				if(panelContains(getPanel__soup(),getKoilara3())){
+					gehitzekoAsetasuna=30;
+					panel__soup.remove(getKoilara3());
+					panel__soup.remove(getKoilara2());
+					panel__soup.remove(getKoilara1());
+				}else if(panelContains(getPanel__soup(),getKoilara2())){
+					gehitzekoAsetasuna=20;
+					panel__soup.remove(getKoilara2());
+					panel__soup.remove(getKoilara1());
+				}else if(panelContains(getPanel__soup(),getKoilara1())){
+					gehitzekoAsetasuna=10;
+					panel__soup.remove(getKoilara1());
+				}
+				Partida.getPartida().tamaJan(gehitzekoBizitza, gehitzekoAsetasuna);
 			}
 		}
 		
