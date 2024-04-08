@@ -137,6 +137,7 @@ public class panelNagusia extends JFrame implements Observer{
 			panel_tamagochi.add(getEggIrudi());
 			panel_tamagochi.setBounds(100, 108, 294, 165);
 			panel_tamagochi.setLayout(null);
+			panel_tamagochi.addMouseListener((MouseListener) getKontroladorea());
 		}
 		return panel_tamagochi;
 	}
@@ -210,6 +211,9 @@ public class panelNagusia extends JFrame implements Observer{
 			panel_candy.setBackground(new Color(0, 0, 0));
 			panel_candy.setBorder(new LineBorder(new Color(128, 128, 128)));
 			panel_candy.setBounds(50, 354, 103, 34);
+			panel_candy.add(getCandy1());
+			panel_candy.add(getCandy2());
+			panel_candy.add(getCandy3());
 			panel_candy.addMouseListener((MouseListener) getKontroladorea());
 		}
 		return panel_candy;
@@ -221,6 +225,9 @@ public class panelNagusia extends JFrame implements Observer{
 			panel__soup.setForeground(new Color(255, 255, 255));
 			panel__soup.setBorder(new LineBorder(new Color(128, 128, 128)));
 			panel__soup.setBounds(351, 354, 85, 34);
+			panel__soup.add(getKoilara1());
+			panel__soup.add(getKoilara2());
+			panel__soup.add(getKoilara3());
 			panel__soup.addMouseListener((MouseListener) getKontroladorea());
 		}
 		return panel__soup;
@@ -651,7 +658,8 @@ public class panelNagusia extends JFrame implements Observer{
 				}else{	
 					panel__soup.add(getKoilara1());
 				}*/
-			}else if(e.getSource().equals(tamagotchiIrudi)){
+			}else if(e.getSource().equals(panel_tamagochi)){
+				System.out.println("ikutu da tamagotchi");
 				bihotzakEtaSopakGehitu(kontadorea1,kontadorea2);
 				kontadorea1=0;
 				kontadorea2=0;
@@ -689,6 +697,7 @@ public class panelNagusia extends JFrame implements Observer{
 		public void bihotzakEtaSopakGehitu(int kont1, int kont2){
 				int gehitzekoBizitza=10 * kont1;
 				int gehitzekoAsetasuna=10 * kont2;
+				System.out.println("gehitu bizitzaaaaaa");
 				Partida.getPartida().tamaJan(gehitzekoBizitza,gehitzekoAsetasuna);
 		}
 		

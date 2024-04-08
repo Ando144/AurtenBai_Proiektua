@@ -64,7 +64,7 @@ public class Partida extends Observable{
 						nirePartida.minijokoaJokatu();
 						//nirePartida.tamagotchiEguneratu();
 						try{
-							Thread.sleep(4000);
+							Thread.sleep(5000);
 						}
 						catch (InterruptedException e) {
 							e.printStackTrace();
@@ -171,8 +171,15 @@ public class Partida extends Observable{
 		this.tamagotchi.kaka=false;
 	}
 	public void tamaJan(int biz, int ase){
+		System.out.println("bizitza hasieran"+this.tamagotchi.bizitza);
+		System.out.println("asetasuna hasieran"+this.tamagotchi.asetasuna);
+		System.out.println("partida clasean nagggo");
+		System.out.println(biz);
+		System.out.println(ase);
 		this.tamagotchi.bizitza = this.tamagotchi.bizitza + biz;
 		this.tamagotchi.asetasuna = this.tamagotchi.asetasuna + ase;
+		System.out.println("tama bizitza"+this.tamagotchi.bizitza);
+		System.out.println("tamagotchi asetasuna"+this.tamagotchi.asetasuna);
 	}
 	private void hasieratuPartida(){
 		setChanged();
