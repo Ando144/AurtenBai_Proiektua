@@ -172,9 +172,6 @@ public class Partida extends Observable{
 	}
 	public void tamaJan(int biz, int ase){
 
-		System.out.println("bizitza hasieran"+this.tamagotchi.bizitza);
-		System.out.println("asetasuna hasieran"+this.tamagotchi.asetasuna);
-		System.out.println("partida clasean nagggo");
 		System.out.println(biz);
 		System.out.println(ase);
 		//this.tamagotchi.bizitza = this.tamagotchi.bizitza + biz;
@@ -182,7 +179,7 @@ public class Partida extends Observable{
 		bihotzakEguneratu();
 		this.tamagotchi.katiluakEguneratu(ase);
 		sopakEguneratu();
-		this.tamagotchi.asetasuna = this.tamagotchi.asetasuna + ase;
+		//this.tamagotchi.asetasuna = this.tamagotchi.asetasuna + ase;
 	
 		System.out.println("tama bizitza"+this.tamagotchi.bizitza);
 		System.out.println("tamagotchi asetasuna"+this.tamagotchi.asetasuna);
@@ -198,7 +195,7 @@ public class Partida extends Observable{
 		int zenb1 = this.tamagotchi.bizitza;
 		System.out.println("bihotz--------------"+zenb1);
 		//int kont=0;
-		if (zenb1>=31 && zenb1<=40) {
+		if (zenb1>=31) {
 			setChanged();
             notifyObservers("4bihotzjarri");
 		}
@@ -221,11 +218,11 @@ public class Partida extends Observable{
 	}
     private void sopakEguneratu() {
 		this.tamagotchi.kontadoreakEguneratu();
-		System.out.println("-------------------/"+ this.tamagotchi.bizitza);
+		System.out.println("-------------------/"+ this.tamagotchi.asetasuna);
 		int zenb = this.tamagotchi.asetasuna;
 		System.out.println("asetasun"+zenb);
 		//int kont=0;
-		if (zenb>=31 && zenb<=40) {
+		if (zenb>=31) {
 			setChanged();
             notifyObservers("4sopajarri");
 		}

@@ -21,6 +21,7 @@ public class Kuchipatchi extends Tamagotchi{
     }
     public void bihotzakEguneratu(int multi1){
         this.bizitza = this.bizitza +(10 * multi1);
+        System.out.println("tama claseko bizitza"+this.bizitza);
     }
     public void katiluakEguneratu(int multi2){
         this.asetasuna = this.asetasuna +(10 * multi2);
