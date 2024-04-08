@@ -49,17 +49,18 @@ public abstract class Tamagotchi extends Observable{
         }
         kontadoreakEguneratu();
     }
-
-    public abstract void kontadoreakEguneratu();
-
+    
+    public abstract void kontadoreakEguneratu(); 
+    public abstract void bihotzakEguneratu(int multiplikatzaile1);
+    public abstract void katiluakEguneratu(int multiplikatzaile2 );
     protected void osasunaGalduKaka(){
-        bizitza -= 5;
-        asetasuna += 10;
+        bizitza = bizitza - 5;
+        asetasuna = asetasuna + 10;
     }
 
     protected void osasunaGalduGaixorik(){
-        bizitza -= 7;
-        asetasuna += 5;
+        bizitza = bizitza - 7;
+        asetasuna = asetasuna - 5;
     }
     private Tamagotchi getTamagotchi(){
         return this;

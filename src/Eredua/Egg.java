@@ -17,5 +17,11 @@ public class Egg extends Tamagotchi{
 		setChanged();
 		notifyObservers();
     }
+    public void bihotzakEguneratu(int multi1){
+        this.bizitza = this.bizitza +(10 * multi1);
+    }
+    public void katiluakEguneratu(int multi2){
+        this.asetasuna = this.asetasuna +(10 * multi2);
+    }
 
 }

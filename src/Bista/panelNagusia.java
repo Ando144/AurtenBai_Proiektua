@@ -187,7 +187,7 @@ public class panelNagusia extends JFrame implements Observer{
 	private JLabel getPuntuazioa() {
 		if (Puntuazioa == null) {
 			int aldagai= Partida.getPartida().getScore();
-			Puntuazioa = new JLabel(""+aldagai);
+			Puntuazioa = new JLabel(Integer.toString(aldagai));
 			Puntuazioa.setForeground(new Color(255, 255, 255));
 			Puntuazioa.setBounds(282, 4, 45, 13);
 		}
@@ -399,6 +399,7 @@ public class panelNagusia extends JFrame implements Observer{
 				break;
 			case "4bihotzjarri":
 				lauBihotzJarri();
+				System.out.println("--------------4bihotzjarri----------------");
 				break;
 		
 			case "3bihotzjarri":
@@ -593,7 +594,7 @@ public class panelNagusia extends JFrame implements Observer{
 		Tamagochi_Izena.setText("Maskutchi");
 	 }
 	private void PuntuazioaEguneratuEtaBistaratu(){
-		int aldagaia= this.kontadorea1;
+		int aldagaia= Partida.getPartida().getScore();
 		Puntuazioa.setForeground(new Color(255, 255, 255));
 		Puntuazioa.setBounds(282, 4, 45, 13);
 		Puntuazioa.setText(Integer.toString(aldagaia));
@@ -695,10 +696,10 @@ public class panelNagusia extends JFrame implements Observer{
 			}
 		}
 		public void bihotzakEtaSopakGehitu(int kont1, int kont2){
-				int gehitzekoBizitza=10 * kont1;
-				int gehitzekoAsetasuna=10 * kont2;
+				int multiplikatzaileBiz=kont1;
+				int multiplikatzaileAse=kont2;
 				System.out.println("gehitu bizitzaaaaaa");
-				Partida.getPartida().tamaJan(gehitzekoBizitza,gehitzekoAsetasuna);
+				Partida.getPartida().tamaJan(multiplikatzaileBiz,multiplikatzaileAse);
 		}
 		
 		@Override

@@ -151,7 +151,8 @@ public class miniJokoaBista extends JFrame implements Observer{
         
         JLabel mensajeLabel = new JLabel("GALDU DUZU!");
         panel.add(mensajeLabel);
-        
+        Partida.getPartida().sumarPuntuacion(-20);
+
         panel.add(getAceptarButton());
         /*JButton aceptarButton = new JButton("Aceptar");
         aceptarButton.addActionListener(getKontroladorea()new ActionListener() {
@@ -185,7 +186,7 @@ public class miniJokoaBista extends JFrame implements Observer{
         perdedorFrame.dispose();
         ganadorFrame.dispose();
     }
-    public void irabaziDu()//falta por conectar con monge
+    public void irabaziDu()
     {
         frame.dispose(); // Close the main frame
         
@@ -196,6 +197,7 @@ public class miniJokoaBista extends JFrame implements Observer{
         
         JLabel mensajeLabel = new JLabel("IRABAZI DUZU!");
         panel.add(mensajeLabel);
+        Partida.getPartida().sumarPuntuacion(20);
         
         panel.add(getAceptarButton());
         /*JButton aceptarButton = new JButton("Aceptar");
