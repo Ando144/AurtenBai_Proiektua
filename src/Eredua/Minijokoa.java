@@ -296,32 +296,33 @@ public class Minijokoa extends Observable{
     }
     public void laukiaAktualizatu(int lerroa, int zutabea)
     {
+        laukiak[lerroa][zutabea].ikutu();
         //PROBLEMA: cuando llega al notifyObservers no salta a el update de minijokoaBista y no se porque
         //si te fijas cuando ejecutas el codigo funciona bien pero no se actualiza la vista
         // esto puedes saberlo por los prints qie he puesto pq si pasas dos veces el raton por encima de 
         //una casilla esta perdera fuerzas, pero lo q pasa que no se actualiza la vista.
         //EN RESUMEN, mirar pq no salta del notifyObservers al update de minijokoaBista
-        if (laukiak[lerroa][zutabea].getIndarra() == 1)
+        /*if (laukiak[lerroa][zutabea].getIndarra() == 1)
         {
-            laukiak[lerroa][zutabea].setIndarra(0);
+            laukiak[lerroa][zutabea].ikutu();
             setChanged();
             notifyObservers("laukiAktualizatu");//cambiar el color del panel
             //convertirlo en invisible
         }
         else if (laukiak[lerroa][zutabea].getIndarra() == 2)
         {
-            laukiak[lerroa][zutabea].setIndarra(1);
+            laukiak[lerroa][zutabea].ikutu();
             setChanged();
             notifyObservers("laukiAktualizatu");//cambiar el color del panel
 
         }
         else if (laukiak[lerroa][zutabea].getIndarra() == 3)
         {
-            laukiak[lerroa][zutabea].setIndarra(2);
+            laukiak[lerroa][zutabea].ikutu();
             setChanged();
             notifyObservers("laukiAktualizatu");//cambiar el color del panel
 
-        }
+        }*/
     }
     public static boolean irabaziDu()
     {
