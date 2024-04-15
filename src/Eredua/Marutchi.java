@@ -2,11 +2,11 @@ package src.Eredua;
 
 public class Marutchi extends Tamagotchi{
 
-    public Marutchi(int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka){
-        super(pBizitza, pAsetasuna, pGaixorik, pKaka);
+    public Marutchi(/*int pBizitza, int pAsetasuna,*/ boolean pGaixorik, boolean pKaka){
+        super(/*int pBizitza, int pAsetasuna,*/ pGaixorik, pKaka);
     }
 
-    @Override
+  /*  @Override
     public void kontadoreakEguneratu(){  
         if (this.kaka){
             this.osasunaGalduKaka();
@@ -30,6 +30,6 @@ public class Marutchi extends Tamagotchi{
     }
     public int getAseTama(){
         return this.asetasuna;
-    }
+    }*/
 
 }

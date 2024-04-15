@@ -80,9 +80,9 @@ public class panelNagusia extends JFrame implements Observer{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Partida part = new Partida();
-					panelNagusia frame = new panelNagusia(part);
-					frame.setVisible(true);
+					//Partida part = new Partida();
+					//panelNagusia frame = new panelNagusia(part);
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -404,6 +404,7 @@ public class panelNagusia extends JFrame implements Observer{
 		return koilara3;
 	}
 	public void update(Observable o, Object arg){
+		System.out.println("observer nagooo----------------------");
 		switch ((String)arg) {
 			case "hasieratu":
 				hasieratu();

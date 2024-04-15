@@ -2,12 +2,12 @@ package src.Eredua;
 
 public class Kuchipatchi extends Tamagotchi{
 
-    public Kuchipatchi(int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka){
-        super(pBizitza, pAsetasuna, pGaixorik, pKaka);
+    public Kuchipatchi(/*int pBizitza, int pAsetasuna,*/ boolean pGaixorik, boolean pKaka){
+        super(/*int pBizitza, int pAsetasuna,*/pGaixorik, pKaka);
     }
 
-    @Override
-    public void kontadoreakEguneratu(){
+   /* @Override
+  /*  public void kontadoreakEguneratu(){
         if (this.kaka){
             this.osasunaGalduKaka();
         }
@@ -34,6 +34,6 @@ public class Kuchipatchi extends Tamagotchi{
     public int getAseTama(){
         return this.asetasuna;
 
-    }
+    }*/
     
 }

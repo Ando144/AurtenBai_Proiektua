@@ -13,15 +13,18 @@ public class Partida extends Observable{
     private int soup;
     private Tamagotchi tamagotchi;
 	private int bizitza;
+	private int asetasuna;
     private static Partida nirePartida;
 	private int Puntuazioa;
 
-	public Partida(){
+	private Partida(){
         this.score = 0;
         //this.izena = "";
         this.candy = 0;
         this.soup = 0;
-        this.tamagotchi = new Egg(40, 40, false, false);
+		this.bizitza = 20;
+		this.asetasuna = 40;
+        this.tamagotchi = new Egg(false, false);
     }
 
 	public void resetPartida(){
@@ -38,8 +41,39 @@ public class Partida extends Observable{
         return nirePartida;
     }
     public static void main(String [] args){
-		Partida.getPartida().partidaBatJokatu();
+		Partida.getPartida().partidaBuklea();
 	}
+
+	public void partidaBuklea(){
+			boolean bukatuta = false;
+
+			Partida nirePartida =new Partida();
+			panelNagusia frame = new panelNagusia(nirePartida);
+			nirePartida.hasieratuPartida();
+			try{
+				Thread.sleep(4000);
+			}
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		while(!amaituDa()){		
+			nirePartida.minijokoaJokatu();
+			nirePartida.bihotzakEguneratu();
+			nirePartida.sopakEguneratu(); 
+			nirePartida.scoreEguneratu();
+			if(nirePartida.getGaixorik()==false && nirePartida.getKaka()==false) {
+					nirePartida.kakaEgin();
+			}
+			try{
+				Thread.sleep(4000);
+			}
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			nirePartida.eboluzionatuTamagotchi();
+		}
+	}
+
     public void partidaBatJokatu(){
 			boolean bukatuta = false;
 
@@ -58,6 +92,7 @@ public class Partida extends Observable{
 			Thread lausegundo = new Thread(()->{
 				if(!amaituDa()){
 					while(!bukatuta){
+						System.out.println("sartu da lausegundoan");
 						nirePartida.bihotzakEguneratu();
 						nirePartida.sopakEguneratu(); 
 						nirePartida.scoreEguneratu();
@@ -65,7 +100,7 @@ public class Partida extends Observable{
 						
 						//nirePartida.tamagotchiEguneratu();
 						try{
-							Thread.sleep(5000);
+							Thread.sleep(20000);
 						}
 						catch (InterruptedException e) {
 							e.printStackTrace();
@@ -73,7 +108,7 @@ public class Partida extends Observable{
 	
 					}
 				}
-				});
+			});
 			lausegundo.start();
 			Thread hilo20segundo= new Thread(()->{
 				if(!amaituDa()){
@@ -96,7 +131,7 @@ public class Partida extends Observable{
 			}
 
 			if(!amaituDa()){
-				nirePartida.eboluzionatuTamagotchi2();
+				nirePartida.eboluzionatuTamagotchi();
 			}
 			System.out.println("40 falta");
 			
@@ -109,11 +144,12 @@ public class Partida extends Observable{
 
 			System.out.println("azkenboluzioa");
 			if(!amaituDa()){
-				nirePartida.azkeneboluzioa();
+				nirePartida.eboluzionatuTamagotchi();
 			}
+			lausegundo.interrupt();
+			/*
+			nirePartida.tamagotchiEguneratu();
 			
-			//nirePartida.tamagotchiEguneratu();
-			/* 
 			Thread lausegundo = new Thread(()->{
 				while(true){
 					nirePartida.bihotzakEguneratu();
@@ -184,6 +220,10 @@ public class Partida extends Observable{
 		System.out.println("kaka garbitu dut");
 		System.out.println(tamagotchi.getTamagotchi().kaka);
 	}
+	private void hasieratuPartida(){
+		setChanged();
+		notifyObservers("hasieratu");
+	}
 	public int tamaJan(int biz, int ase){
 		int punt=0;
 		System.out.println(biz);
@@ -192,88 +232,88 @@ public class Partida extends Observable{
 		if(biz!=0){
 			punt=biz * 3;
 			//this.tamagotchi.bihotzakEguneratu(biz);
-			tamagotchi.getTamagotchi().bihotzakEguneratu(punt);
+			this.bizitza = this.bizitza +(10 * biz);
+			System.out.println(bizitza+" bizitzan sartu nahiz");
 			bihotzakEguneratu();
 		}
 		if (ase!=0) {
 			punt= ase * 3;
 			//this.tamagotchi.katiluakEguneratu(ase);
-			tamagotchi.getTamagotchi().katiluakEguneratu2(punt);
+			this.asetasuna = this.asetasuna +(10 * ase);
 			sopakEguneratu();
 		}
 		if(biz!=0 && ase!=0){
 			punt=(ase + biz)*(ase *3 + biz *3);
 		}
 		//this.tamagotchi.asetasuna = this.tamagotchi.asetasuna + ase;
-		System.out.println("tama bizitza con getter"+tamagotchi.getTamagotchi().getBizitzaTama());
+		/*System.out.println("tama bizitza con getter"+tamagotchi.getTamagotchi().getBizitzaTama());
 		System.out.println("tama bizitza sin geter---------------/"+this.tamagotchi.getBizitzaTama());
 		System.out.println("tamagotchi asetasuna(tamajan)-----------/"+this.tamagotchi.getAseTama());
-		System.out.println("asetasuna tama con geter -----------------/ "+ tamagotchi.getTamagotchi().getAseTama());
+		System.out.println("asetasuna tama con geter -----------------/ "+ tamagotchi.getTamagotchi().getAseTama());*/
 		return punt;
 	}
-	private void hasieratuPartida(){
-		setChanged();
-		notifyObservers("hasieratu");
-	}
+
     private void bihotzakEguneratu() {
 		//this.tamagotchi.kontadoreakEguneratu();
 		//int zenb1 = this.tamagotchi.getBizitzaTama();
-		int zenb3= tamagotchi.getTamagotchi().getBizitza();
 		//int kont=0;
-		if(zenb3>40){
-			diferencia = tamagotchi.getTamagotchi().getBizitzaTama()-40;
-			tamagotchi.getTamagotchi().bizitza = zenb3 - diferencia - 5 ;
+		System.out.println(bizitza+" de bihotzak eguneratu");
+		if(this.bizitza > 40){
+			diferencia = this.bizitza-40;
+			this.bizitza= this.bizitza - diferencia - 5 ;
+			System.out.println("ha entrado en la diferencia con vida"+this.bizitza + "diferencia"+diferencia);
 		}
-		int zenb1 = this.tamagotchi.getAsetasuna();
-		if (zenb1>=31) {
+		
+		if (this.bizitza>=31) {
+			System.out.println("4 bihotz jarriko ditut");
 			setChanged();
             notifyObservers("4bihotzjarri");
 		}
-		if (zenb1>=21 && zenb1<=30) {
+		if (this.bizitza>=21 && this.bizitza<=30) {
 			setChanged();
             notifyObservers("3bihotzjarri");
 		}
-		if (zenb1>=11 && zenb1<=20) {
+		if (this.bizitza>=11 && this.bizitza<=20) {
 			setChanged();
             notifyObservers("2bihotzjarri");
 		}
-		if (zenb1>=1 && zenb1<=10) {
+		if (this.bizitza>=1 && this.bizitza<=10) {
 			setChanged();
             notifyObservers("bihotz1jarri");
 		}
-        if (zenb1<=0){
+        if (this.bizitza<=0){
 			setChanged();
             notifyObservers("hildaDagoBihotz");
 		}
 	}
     private void sopakEguneratu() {
-		tamagotchi.getTamagotchi().kontadoreakEguneratu();
-		int zenb = tamagotchi.getTamagotchi().getAseTama();
-		System.out.println("asetasun(zenb de sopakeguneratu)------------/"+zenb);
+		//tamagotchi.getTamagotchi().kontadoreakEguneratu();
+		
+		System.out.println("asetasun(zenb de sopakeguneratu)------------/"+ this.asetasuna);
 		//int kont=0;
-		if (zenb>41){
-			diferencia = tamagotchi.getTamagotchi().getAseTama()-40;
-			tamagotchi.getTamagotchi().asetasuna = zenb - diferencia - 5 ;
+		if (this.asetasuna>41){
+			diferencia = this.asetasuna-40;
+			
+			this.asetasuna = this.asetasuna - diferencia - 5 ;
 
 		}
-		int zenb2 =  tamagotchi.getTamagotchi().getAsetasuna();
-		if (zenb2>=31) {
+		if (this.asetasuna>=31) {
 			setChanged();
             notifyObservers("4sopajarri");
 		}
-		if (zenb2>=21 && zenb2<=30) {
+		if (this.asetasuna>=21 && this.asetasuna<=30) {
 			setChanged();
             notifyObservers("3sopajarri");
 		}
-		if (zenb2>=11 && zenb2<=20) {
+		if (this.asetasuna>=11 && this.asetasuna<=20) {
 			setChanged();
             notifyObservers("2sopajarri");
 		}
-		if (zenb2>=1 && zenb2<=10) {
+		if (this.asetasuna>=1 && this.asetasuna<=10) {
 			setChanged();
             notifyObservers("sopa1jarri");
 		}
-		if(zenb2<=0){
+		if(this.asetasuna<=0){
 			setChanged();
             notifyObservers("hildaDagoKat");
 		}
@@ -281,7 +321,7 @@ public class Partida extends Observable{
 	private void kakaEgin(){ //mira si se hace kk
 		Random probabilitatea = new Random();
 		System.out.println("KAIXO");
-		int zenbakia = 1;//probabilitatea.nextInt(101);
+		int zenbakia = probabilitatea.nextInt(101);
 		System.out.println("kaka zenb "+zenbakia);
 		if(1<=zenbakia && zenbakia<=20 && this.tamagotchi.kaka==false){
 			this.tamagotchi.getTamagotchi().setKaka(true);
@@ -356,17 +396,21 @@ public class Partida extends Observable{
 
 	}
 	private void eboluzionatuTamagotchi(){
-		this.tamagotchi = this.tamagotchi.getTamagotchi().eboluzionatuTama(this.tamagotchi.getTamagotchi().getKaka(), this.tamagotchi.getTamagotchi().getGaixorik());
-		tamagotchiEguneratu();
+		if(tamagotchi instanceof Egg || tamagotchi instanceof Kuchipatchi || tamagotchi instanceof Mimitchi){
+			tamagotchi = tamagotchi.eboluzionatuTama();
+			tamagotchiEguneratu();
+		}
 	}
-	private void eboluzionatuTamagotchi2(){//esto hay que ponerlo bien solamente era una prueba ra ver si funcionaban las co
+	/*private void eboluzionatuTamagotchi2(){//esto hay que ponerlo bien solamente era una prueba ra ver si funcionaban las co
 		//this.tamagotchi = new Mimitchi(40, 40, false, false);
 		//tamagotchiEguneratu();
 		System.out.println("mimimi");
-		this.tamagotchi = this.tamagotchi.getTamagotchi().eboluzionatuTama2(this.tamagotchi.getTamagotchi().getKaka(), this.tamagotchi.getTamagotchi().getGaixorik());
+		//this.tamagotchi = this.tamagotchi.getTamagotchi().eboluzionatuTama2(this.tamagotchi.getTamagotchi().getKaka(), this.tamagotchi.getTamagotchi().getGaixorik());
+		tamagotchi= tamagotchi.getTamagotchi();
+		this.tamagotchi= tamagotchi.eboluzionatuTama2(tamagotchi.kaka,tamagotchi.gaixorik);
 		System.out.println(tamagotchi.getTamagotchi().kaka);
 		tamagotchiEguneratu();
-	}
+	}*/
 	public int getScore(){
 		//Puntuazioa = this.score;
 		return scoreEguneratu();
@@ -382,13 +426,13 @@ public class Partida extends Observable{
 		if (this.tamagotchi.kaka==true){
 			Puntuacion =Puntuacion - 5;
 		}
-		if (this.tamagotchi.zeinEboluzioDa()=="Marutchi"){
+		if (this.tamagotchi.zeinEboluzioDa().equals("Marutchi")){
 			Puntuacion =Puntuacion + 20;
 		}
-		if(tamagotchi.getTamagotchi().getBizitzaTama()>40){
+		if(bizitza>40){
 			Puntuacion = Puntuacion -5;
 		}
-		if(tamagotchi.getTamagotchi().getAseTama()>40){
+		if(asetasuna>40){
 			Puntuacion = Puntuacion -5;
 		}
 		/*Minijokoa minijokoa=Minijokoa.getMinijokoa();
@@ -406,15 +450,17 @@ public class Partida extends Observable{
 	}
 	public boolean amaituDa( ){
 		//int zenb = tamagotchi.getTamagotchi().getBizitza();
-		int zenb1= tamagotchi.getTamagotchi().getAsetasuna();
-		int zenb=tamagotchi.getTamagotchi().getBizitza();
+		//int zenb1= tamagotchi.getTamagotchi().getAsetasuna();
+		//int zenb=tamagotchi.getTamagotchi().getBizitza();
+		int b = bizitza;
+		int a = asetasuna;
 		boolean amaitu =false;
-		if (zenb<=0){
+		if (b<=0){
 			amaitu=true;
 			notifyObservers("hildaDagoBihotz");
 			setChanged();
 		}
-		if (zenb1<=0){
+		if (a<=0){
 			amaitu=true;
 			notifyObservers("hildaDagoKat");
 			setChanged();
@@ -425,8 +471,9 @@ public class Partida extends Observable{
 		Puntuacion = Puntuacion + puntuacion;
 	}
 
-	private void azkeneboluzioa(){
-		this.tamagotchi=this.tamagotchi.azkenEbol(this.tamagotchi.getTamagotchi().getKaka(), this.tamagotchi.getTamagotchi().getGaixorik());
+	/*private void azkeneboluzioa(){
+		tamagotchi = tamagotchi.getTamagotchi();
+		this.tamagotchi=tamagotchi.azkenEbol(tamagotchi.kaka, tamagotchi.gaixorik);
 		tamagotchiEguneratu();
-	}
+	}*/
 }

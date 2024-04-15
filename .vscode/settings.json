@@ -2,5 +2,6 @@
     "liveshare.allowGuestDebugControl": true,
     "liveshare.allowGuestTaskControl": true,
     "liveshare.languages.allowGuestCommandControl": true,
-    "liveshare.notebooks.allowGuestExecuteCells": true
+    "liveshare.notebooks.allowGuestExecuteCells": true,
+    "r.lsp.promptToInstall": false
 }
