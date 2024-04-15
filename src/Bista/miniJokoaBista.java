@@ -46,6 +46,7 @@ public class miniJokoaBista extends JFrame implements Observer{
     private JLabel puntosLabel;
     private JButton aceptarButton;
     private Kontroladorea kontroladorea = null;
+    private Minijokoa aux;
 
 	private Kontroladorea getKontroladorea() {
 		if (kontroladorea == null) {
@@ -221,15 +222,15 @@ public class miniJokoaBista extends JFrame implements Observer{
     }
     private Color koloreaAtera(int lerroa, int zutabea)
     {
-        if (Minijokoa.getMinijokoa().getLaukiak()[lerroa][zutabea] == 1)
+        if (Minijokoa.getMinijokoa().getLaukiak()[lerroa][zutabea].getIndarra()==1)
         {
             return Color.LIGHT_GRAY;
         }
-        else if (Minijokoa.getMinijokoa().getLaukiak()[lerroa][zutabea] == 2)
+        else if (Minijokoa.getMinijokoa().getLaukiak()[lerroa][zutabea].getIndarra() == 2)
         {
             return Color.GRAY;
         }
-        else if (Minijokoa.getMinijokoa().getLaukiak()[lerroa][zutabea] == 3)
+        else if (Minijokoa.getMinijokoa().getLaukiak()[lerroa][zutabea].getIndarra() == 3)
         {
             return Color.DARK_GRAY;
         }
