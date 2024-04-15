@@ -12,7 +12,7 @@ public class Minijokoa extends Observable{
    // Tanto aqui como en vista los ejes estan al reves, primero es lerroa(y) y luego zutabea(x)
    //durante el desarrollo de la aplicacion algunos se han liado con los ejes y han puesto al reves
    //pero por el bien del funcionamiento de la aplicacion se ha decidido dejarlo asi.
-   private static int[][] laukiak = new int [12][12]; 
+   private static Gelaxka[][] laukiak = new Gelaxka [12][12]; 
    private static int tamagochiLerroa;
    private static int tamagochiZutabea;
    private static int tartaLerroa;
@@ -20,6 +20,7 @@ public class Minijokoa extends Observable{
    private static int xAnterior;
     private static int yAnterior;
     private Timer timer;
+
 
     private static Minijokoa NireMinijokoa = null;
     public static Minijokoa getMinijokoa()
@@ -48,7 +49,7 @@ public class Minijokoa extends Observable{
         {
             for (int j = 0; j < 12; j++)
             {
-                laukiak[i][j] = (int) (Math.random() * 3) + 1;//mirar esto pq el random no debe ser 0 tmb
+                laukiak[i][j] = GelaxkaFactory.getGF().createGelaxka((int)(Math.random() * 3) + 1);
             }
         }
         setChanged();
@@ -74,13 +75,13 @@ public class Minijokoa extends Observable{
     {
         return tartaZutabea;
     }   
-    public int[][] getLaukiak()
+    public Gelaxka[][] getLaukiak()
     {
         return laukiak;
     }
     public boolean tartaVisible()
     {
-        if(laukiak[tartaZutabea][tartaLerroa] == 0)
+        if(laukiak[tartaZutabea][tartaLerroa].getIndarra() == 0)
         {
             return true;
         }
@@ -91,7 +92,7 @@ public class Minijokoa extends Observable{
     }
     public static boolean tamagochiVisible()
     {
-        if(laukiak[tamagochiLerroa][tamagochiZutabea] == 0)
+        if(laukiak[tamagochiLerroa][tamagochiZutabea].getIndarra()== 0)
         {
             return true;
         }
@@ -107,7 +108,7 @@ public class Minijokoa extends Observable{
         if(tamagochiVisible()){
             if (norabidea == 1)
             {
-                if (tamagochiLerroa > 0 && tamagochiLerroa <= 12 && laukiak[tamagochiLerroa - 1][tamagochiZutabea] == 0)
+                if (tamagochiLerroa > 0 && tamagochiLerroa <= 12 && laukiak[tamagochiLerroa - 1][tamagochiZutabea].getIndarra() == 0)
                 {
 
                     return true;
@@ -120,7 +121,7 @@ public class Minijokoa extends Observable{
             }
             else if (norabidea == 2)
             {
-                if (tamagochiLerroa <= 10 & tamagochiLerroa >= 0 && laukiak[tamagochiLerroa + 1][tamagochiZutabea] == 0)
+                if (tamagochiLerroa <= 10 & tamagochiLerroa >= 0 && laukiak[tamagochiLerroa + 1][tamagochiZutabea].getIndarra() == 0)
                 {
 
                     return true;
@@ -132,7 +133,7 @@ public class Minijokoa extends Observable{
             }
             else if (norabidea == 3)
             {
-                if (tamagochiZutabea >= 1 && tamagochiZutabea <= 12 && laukiak[tamagochiLerroa][tamagochiZutabea - 1] == 0)
+                if (tamagochiZutabea >= 1 && tamagochiZutabea <= 12 && laukiak[tamagochiLerroa][tamagochiZutabea - 1].getIndarra() == 0)
                 {
                     return true;
                 }
@@ -143,7 +144,7 @@ public class Minijokoa extends Observable{
             }
             else if (norabidea == 4)
             {
-                if (tamagochiZutabea <= 10 && tamagochiZutabea >= 0 && laukiak[tamagochiLerroa][tamagochiZutabea + 1] == 0)
+                if (tamagochiZutabea <= 10 && tamagochiZutabea >= 0 && laukiak[tamagochiLerroa][tamagochiZutabea + 1].getIndarra() == 0)
                 {
                     return true;
                 }
@@ -300,23 +301,23 @@ public class Minijokoa extends Observable{
         // esto puedes saberlo por los prints qie he puesto pq si pasas dos veces el raton por encima de 
         //una casilla esta perdera fuerzas, pero lo q pasa que no se actualiza la vista.
         //EN RESUMEN, mirar pq no salta del notifyObservers al update de minijokoaBista
-        if (laukiak[lerroa][zutabea] == 1)
+        if (laukiak[lerroa][zutabea].getIndarra() == 1)
         {
-            laukiak[lerroa][zutabea] = 0;
+            laukiak[lerroa][zutabea].setIndarra(0);
             setChanged();
             notifyObservers("laukiAktualizatu");//cambiar el color del panel
             //convertirlo en invisible
         }
-        else if (laukiak[lerroa][zutabea] == 2)
+        else if (laukiak[lerroa][zutabea].getIndarra() == 2)
         {
-            laukiak[lerroa][zutabea] = 1;
+            laukiak[lerroa][zutabea].setIndarra(1);
             setChanged();
             notifyObservers("laukiAktualizatu");//cambiar el color del panel
 
         }
-        else if (laukiak[lerroa][zutabea] == 3)
+        else if (laukiak[lerroa][zutabea].getIndarra() == 3)
         {
-            laukiak[lerroa][zutabea] = 2;
+            laukiak[lerroa][zutabea].setIndarra(2);
             setChanged();
             notifyObservers("laukiAktualizatu");//cambiar el color del panel
 
