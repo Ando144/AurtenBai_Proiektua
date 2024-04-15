@@ -167,16 +167,22 @@ public class Partida extends Observable{
 			nirePartida.azkeneboluzioa();*/
     }
 	private boolean getGaixorik(){
-		return this.tamagotchi.gaixorik;
+		return tamagotchi.getTamagotchi().gaixorik;
 	}
 	private boolean getKaka(){
-		return this.tamagotchi.kaka;
+		return tamagotchi.getTamagotchi().kaka;
 	}
 	public void tamaSendatu(){
-		this.tamagotchi.gaixorik=false;
+		//this.tamagotchi.gaixorik=false;
+		tamagotchi.getTamagotchi().setGaixorik(false);
+		System.out.println("gaixo garbitu dut");
+		System.out.println(tamagotchi.getTamagotchi().gaixorik);
 	}
 	public void tamaKakaGarbitu(){
-		this.tamagotchi.kaka=false;
+		//this.tamagotchi.kaka=false;
+		tamagotchi.getTamagotchi().setKaka(false);
+		System.out.println("kaka garbitu dut");
+		System.out.println(tamagotchi.getTamagotchi().kaka);
 	}
 	public int tamaJan(int biz, int ase){
 		int punt=0;
@@ -275,15 +281,15 @@ public class Partida extends Observable{
 	private void kakaEgin(){ //mira si se hace kk
 		Random probabilitatea = new Random();
 		System.out.println("KAIXO");
-		int zenbakia = probabilitatea.nextInt(101);
+		int zenbakia = 1;//probabilitatea.nextInt(101);
 		System.out.println("kaka zenb "+zenbakia);
 		if(1<=zenbakia && zenbakia<=20 && this.tamagotchi.kaka==false){
-			this.tamagotchi.setKaka(true);
+			this.tamagotchi.getTamagotchi().setKaka(true);
 			kakaBistaratu(true);
 		}
 		else{
 			System.out.println("kaka ez du egin");
-			this.tamagotchi.setKaka(false);
+			this.tamagotchi.getTamagotchi().setKaka(false);
 			gaixotuAhalDa(this.tamagotchi.kaka); //aqui salta a otro metodo para ver si se puede enfermar (no puede hacer kaka y enfermar a la misma vez)
 		}
 	}
@@ -350,14 +356,15 @@ public class Partida extends Observable{
 
 	}
 	private void eboluzionatuTamagotchi(){
-		this.tamagotchi = this.tamagotchi.eboluzionatuTama(this.tamagotchi.kaka, this.tamagotchi.gaixorik);
+		this.tamagotchi = this.tamagotchi.getTamagotchi().eboluzionatuTama(this.tamagotchi.getTamagotchi().getKaka(), this.tamagotchi.getTamagotchi().getGaixorik());
 		tamagotchiEguneratu();
 	}
 	private void eboluzionatuTamagotchi2(){//esto hay que ponerlo bien solamente era una prueba ra ver si funcionaban las co
 		//this.tamagotchi = new Mimitchi(40, 40, false, false);
 		//tamagotchiEguneratu();
 		System.out.println("mimimi");
-		this.tamagotchi = this.tamagotchi.eboluzionatuTama2(this.tamagotchi.kaka, this.tamagotchi.gaixorik);
+		this.tamagotchi = this.tamagotchi.getTamagotchi().eboluzionatuTama2(this.tamagotchi.getTamagotchi().getKaka(), this.tamagotchi.getTamagotchi().getGaixorik());
+		System.out.println(tamagotchi.getTamagotchi().kaka);
 		tamagotchiEguneratu();
 	}
 	public int getScore(){
@@ -400,7 +407,7 @@ public class Partida extends Observable{
 	public boolean amaituDa( ){
 		//int zenb = tamagotchi.getTamagotchi().getBizitza();
 		int zenb1= tamagotchi.getTamagotchi().getAsetasuna();
-		int zenb=0;
+		int zenb=tamagotchi.getTamagotchi().getBizitza();
 		boolean amaitu =false;
 		if (zenb<=0){
 			amaitu=true;
@@ -419,7 +426,7 @@ public class Partida extends Observable{
 	}
 
 	private void azkeneboluzioa(){
-		this.tamagotchi=this.tamagotchi.azkenEbol(this.tamagotchi.kaka, this.tamagotchi.gaixorik);
+		this.tamagotchi=this.tamagotchi.azkenEbol(this.tamagotchi.getTamagotchi().getKaka(), this.tamagotchi.getTamagotchi().getGaixorik());
 		tamagotchiEguneratu();
 	}
 }

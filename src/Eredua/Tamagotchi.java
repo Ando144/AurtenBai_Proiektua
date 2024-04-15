@@ -35,6 +35,12 @@ public abstract class Tamagotchi extends Observable{
     public void setKaka(boolean pKaka){
         this.kaka = pKaka;
     }
+    public boolean getKaka(){
+        return this.kaka;
+    }
+    public boolean getGaixorik(){
+        return this.gaixorik;
+    }
     public void setGaixorik(boolean pGaixorik){
         this.gaixorik = pGaixorik;
     }
