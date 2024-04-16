@@ -16,6 +16,7 @@ public class Partida extends Observable{
 	private int asetasuna;
     private static Partida nirePartida;
 	private int Puntuazioa;
+	private Timer lausegundo;
 
 	private Partida(){
         this.score = 0;
@@ -25,6 +26,18 @@ public class Partida extends Observable{
 		this.bizitza = 20;
 		this.asetasuna = 40;
         this.tamagotchi = new Egg(false, false);
+		this.lausegundo = new Timer();
+		this.lausegundo.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+				nirePartida.minijokoaJokatu();
+				nirePartida.scoreEguneratu();
+				if(nirePartida.getGaixorik()==false && nirePartida.getKaka()==false) {
+						nirePartida.kakaEgin();
+				}
+				nirePartida.eboluzionatuTamagotchi();
+            }
+        }, 0, 4000);
     }
 
 	public void resetPartida(){
@@ -41,37 +54,18 @@ public class Partida extends Observable{
         return nirePartida;
     }
     public static void main(String [] args){
-		Partida.getPartida().partidaBuklea();
+		Partida nirePartida =new Partida();
+		panelNagusia frame = new panelNagusia(nirePartida);
+		nirePartida.hasieratuPartida();
+		nirePartida.partidaBuklea();
 	}
 
 	public void partidaBuklea(){
-			boolean bukatuta = false;
-
-			Partida nirePartida =new Partida();
-			panelNagusia frame = new panelNagusia(nirePartida);
-			nirePartida.hasieratuPartida();
-			try{
-				Thread.sleep(4000);
-			}
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		while(!amaituDa()){		
-			nirePartida.minijokoaJokatu();
 			nirePartida.bihotzakEguneratu();
-			nirePartida.sopakEguneratu(); 
-			nirePartida.scoreEguneratu();
-			if(nirePartida.getGaixorik()==false && nirePartida.getKaka()==false) {
-					nirePartida.kakaEgin();
-			}
-			try{
-				Thread.sleep(4000);
-			}
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			nirePartida.eboluzionatuTamagotchi();
+			nirePartida.sopakEguneratu();
 		}
+		lausegundo.cancel();
 	}
 
     public void partidaBatJokatu(){
