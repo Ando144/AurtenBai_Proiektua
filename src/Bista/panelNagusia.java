@@ -405,68 +405,68 @@ public class panelNagusia extends JFrame implements Observer{
 	}
 	public void update(Observable o, Object arg){
 		System.out.println("observer nagooo----------------------");
-		switch ((String)arg) {
-			case "hasieratu":
+		switch ((Integer)arg) {
+			case 1:
 				hasieratu();
 				break;
-			case "4bihotzjarri":
+			case 2:
 				lauBihotzJarri();
 				System.out.println("--------------4bihotzjarri----------------");
 				break;
 		
-			case "3bihotzjarri":
+			case 3:
 				hiruBihotzJarri();
 				break;
-			case "2bihotzjarri":
+			case 4:
 				biBihotzJarri();
 				break;
-			case "bihotz1jarri":
+			case 5:
 				bihotzBatJarri();
 				break;
-			case "hildaDagoKat":
+			case 6:
 				hildaDagoKatilu();
 				break;
-			case "hildaDagoBihotz":
+			case 7:
 				hildaDagoBihotz();
 				break;
 		
-			case "4sopajarri":
+			case 8:
 				lauKatiluJarri();
 				break;
 		
-			case "3sopajarri":
+			case 9:
 				hiruKatiluJarri();
 				break;
-			case "2sopajarri":
+			case 10:
 				biKatiluJarri();
 				break; 
-			case "sopa1jarri":
+			case 11:
 				katiluBatJarri();
 				break;
-			case "kaka":
+			case 12:
 				kaka();
 				break;
-			case "gaixo":
+			case 13:
 				gaixo();
 				break;
-			case "MiniJokua":
+			case 14:
 				minijokuaBistaratu();
 				break;
-			case "marutchi":
+			case 15:
 				marutchiBistaratu();
 				break;
-			case "mimitchi":
+			case 16:
 				System.out.println("pasatu dut");
 				mimitchiBistaratu();
 				break;
-			case "kuchipatchi":
+			case 17:
 				System.out.println("kuchichcihoda");
 				kuchipatchiBistaratu();
 				break;
-			case "maskutchi":
+			case 18:
 				maskutchiBistaratu();
 				break;
-			case "Puntuazioa":
+			case 19:
 				PuntuazioaEguneratuEtaBistaratu();
 				break;
 		}

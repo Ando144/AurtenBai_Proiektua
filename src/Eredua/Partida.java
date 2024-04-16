@@ -54,10 +54,11 @@ public class Partida extends Observable{
         return nirePartida;
     }
     public static void main(String [] args){
-		Partida nirePartida =new Partida();
-		panelNagusia frame = new panelNagusia(nirePartida);
-		nirePartida.hasieratuPartida();
-		nirePartida.partidaBuklea();
+		//Partida nirePartida =new Partida();
+		//panelNagusia frame = new panelNagusia(nirePartida);
+		//nirePartida.hasieratuPartida();
+		//nirePartida.partidaBuklea();
+		Partida.getPartida().partidaBatJokatu();
 	}
 
 	public void partidaBuklea(){
@@ -216,7 +217,7 @@ public class Partida extends Observable{
 	}
 	private void hasieratuPartida(){
 		setChanged();
-		notifyObservers("hasieratu");
+		notifyObservers(1);
 	}
 	public int tamaJan(int biz, int ase){
 		int punt=0;
@@ -261,23 +262,23 @@ public class Partida extends Observable{
 		if (this.bizitza>=31) {
 			System.out.println("4 bihotz jarriko ditut");
 			setChanged();
-            notifyObservers("4bihotzjarri");
+            notifyObservers(2);
 		}
 		if (this.bizitza>=21 && this.bizitza<=30) {
 			setChanged();
-            notifyObservers("3bihotzjarri");
+            notifyObservers(3);
 		}
 		if (this.bizitza>=11 && this.bizitza<=20) {
 			setChanged();
-            notifyObservers("2bihotzjarri");
+            notifyObservers(4);
 		}
 		if (this.bizitza>=1 && this.bizitza<=10) {
 			setChanged();
-            notifyObservers("bihotz1jarri");
+            notifyObservers(5);
 		}
         if (this.bizitza<=0){
 			setChanged();
-            notifyObservers("hildaDagoBihotz");
+            notifyObservers(7);
 		}
 	}
     private void sopakEguneratu() {
@@ -293,23 +294,23 @@ public class Partida extends Observable{
 		}
 		if (this.asetasuna>=31) {
 			setChanged();
-            notifyObservers("4sopajarri");
+            notifyObservers(8);
 		}
 		if (this.asetasuna>=21 && this.asetasuna<=30) {
 			setChanged();
-            notifyObservers("3sopajarri");
+            notifyObservers(9);
 		}
 		if (this.asetasuna>=11 && this.asetasuna<=20) {
 			setChanged();
-            notifyObservers("2sopajarri");
+            notifyObservers(10);
 		}
 		if (this.asetasuna>=1 && this.asetasuna<=10) {
 			setChanged();
-            notifyObservers("sopa1jarri");
+            notifyObservers(11);
 		}
 		if(this.asetasuna<=0){
 			setChanged();
-            notifyObservers("hildaDagoKat");
+            notifyObservers(6);
 		}
 	}
 	private void kakaEgin(){ //mira si se hace kk
@@ -348,7 +349,7 @@ public class Partida extends Observable{
 	
 		if(1<=zenbakia && zenbakia<=12){
 			setChanged();
-			notifyObservers("MiniJokua");
+			notifyObservers(14);
 			return true;
 		}
 		else{
@@ -358,34 +359,34 @@ public class Partida extends Observable{
 	private void kakaBistaratu(boolean kaka){
 		if(kaka==true){
 			setChanged();
-			notifyObservers("kaka");
+			notifyObservers(12);
 		}
 	}
 	private  void gaixoBistaratu(boolean gaixo){
 		if(gaixo==true){
 			setChanged();
-			notifyObservers("gaixo");
+			notifyObservers(13);
 		}
 	}
 	private void tamagotchiEguneratu( ){
 		String izena =this.tamagotchi.zeinEboluzioDa();
 		System.out.println(izena);
-		if (izena == "Marutchi") {
+		if (izena == "marutchi") {
 			setChanged();
-			notifyObservers("marutchi");
+			notifyObservers(15);
 		}
 		if (izena == "Kuchipatchi") {
 			setChanged();
-			notifyObservers("kuchipatchi");
+			notifyObservers(17);
 		}
-		if (izena == "Maskutchi") {
+		if (izena == "maskutchi") {
 			setChanged();
-			notifyObservers("maskutchi");
+			notifyObservers(18);
 		}
-		if (izena == "Mimitchi") {
+		if (izena == "mimitchi") {
 			System.out.println("hemen nago mimi");
 			setChanged();
-			notifyObservers("mimitchi");
+			notifyObservers(16);
 		}
 
 	}
@@ -420,7 +421,7 @@ public class Partida extends Observable{
 		if (this.tamagotchi.kaka==true){
 			Puntuacion =Puntuacion - 5;
 		}
-		if (this.tamagotchi.zeinEboluzioDa().equals("Marutchi")){
+		if (this.tamagotchi.zeinEboluzioDa().equals(15)){
 			Puntuacion =Puntuacion + 20;
 		}
 		if(bizitza>40){
@@ -439,7 +440,7 @@ public class Partida extends Observable{
 
 		//si se da una piruleta o sopa +5 
 		setChanged();
-		notifyObservers("Puntuazioa");
+		notifyObservers(19);
 		return Puntuacion;
 	}
 	public boolean amaituDa( ){
@@ -451,12 +452,12 @@ public class Partida extends Observable{
 		boolean amaitu =false;
 		if (b<=0){
 			amaitu=true;
-			notifyObservers("hildaDagoBihotz");
+			notifyObservers(7);
 			setChanged();
 		}
 		if (a<=0){
 			amaitu=true;
-			notifyObservers("hildaDagoKat");
+			notifyObservers(6);
 			setChanged();
 		}
 		return amaitu;
