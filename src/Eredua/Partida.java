@@ -17,6 +17,7 @@ public class Partida extends Observable{
     private static Partida nirePartida;
 	private int Puntuazioa;
 	private Timer lausegundo;
+	
 
 	private Partida(){
         this.score = 0;
@@ -88,6 +89,7 @@ public class Partida extends Observable{
 				if(!amaituDa()){
 					while(!bukatuta){
 						System.out.println("sartu da lausegundoan");
+						System.out.println("bizitza en 4 segs "+nirePartida.bizitza);
 						nirePartida.bihotzakEguneratu();
 						nirePartida.sopakEguneratu(); 
 						nirePartida.scoreEguneratu();
@@ -95,7 +97,7 @@ public class Partida extends Observable{
 						
 						//nirePartida.tamagotchiEguneratu();
 						try{
-							Thread.sleep(20000);
+							Thread.sleep(10000);
 						}
 						catch (InterruptedException e) {
 							e.printStackTrace();
@@ -253,10 +255,8 @@ public class Partida extends Observable{
 		//int zenb1 = this.tamagotchi.getBizitzaTama();
 		//int kont=0;
 		System.out.println(bizitza+" de bihotzak eguneratu");
-		if(this.bizitza > 40){
-			diferencia = this.bizitza-40;
-			this.bizitza= this.bizitza - diferencia - 5 ;
-			System.out.println("ha entrado en la diferencia con vida"+this.bizitza + "diferencia"+diferencia);
+		if(this.bizitza > 41){
+			this.bizitza = 35;
 		}
 		
 		if (this.bizitza>=31) {
