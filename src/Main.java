@@ -1,22 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 package src;
 
 import src.Bista.HasieraMenua;

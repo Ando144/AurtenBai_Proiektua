@@ -16,7 +16,7 @@ public class Partida extends Observable{
 	private int asetasuna;
 	private int Puntuazioa;
 	private Timer lausegundo;
-	
+	private static Partida partida = null;
 
 	public Partida(){
         this.score = 0;
@@ -42,14 +42,14 @@ public class Partida extends Observable{
 
 
 
-	public  Partida getPartida()
+	public static Partida getPartida()
     {
-        if(this == null)
+        if(Partida.partida == null)
         {
 			System.out.println("partida berria egin da");
-            return new Partida();
+            Partida.partida = new Partida();
         }
-        return this;
+        return Partida.partida;
     }
    /* public static void PartidaHasiera(){
 		//Partida this =new Partida();
@@ -404,8 +404,8 @@ public class Partida extends Observable{
 		tamagotchiEguneratu();
 	}*/
 	public int getScore(){
-		//Puntuazioa = this.score;
-		return scoreEguneratu();
+		Puntuazioa = this.score;
+		return Puntuazioa;
 	}
 	private int Puntuacion;
 	private int diferencia;
