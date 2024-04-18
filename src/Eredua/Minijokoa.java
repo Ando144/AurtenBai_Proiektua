@@ -33,15 +33,14 @@ public class Minijokoa extends Observable{
         }
         return NireMinijokoa;
     }
-    public static void main(String[] args) 
+    public void hasieratuMinijokoa()
     {
-        Minijokoa minijokoa = new Minijokoa();
-        miniJokoaBista bista = new miniJokoaBista(minijokoa);
-        minijokoa.hasieratuLaukiak();
-        minijokoa.TamagochietaTartaHasieratu();
-        minijokoa.AktBuklea();
+       // Minijokoa minijokoa = new Minijokoa();
+        new miniJokoaBista(this);
+        hasieratuLaukiak();
+        TamagochietaTartaHasieratu();
+        AktBuklea();
         
-
     }
     private void hasieratuLaukiak()
     {

@@ -14,12 +14,11 @@ public class Partida extends Observable{
     private Tamagotchi tamagotchi;
 	private int bizitza;
 	private int asetasuna;
-    private static Partida nirePartida;
 	private int Puntuazioa;
 	private Timer lausegundo;
 	
 
-	private Partida(){
+	public Partida(){
         this.score = 0;
         //this.izena = "";
         this.candy = 0;
@@ -28,44 +27,42 @@ public class Partida extends Observable{
 		this.asetasuna = 40;
         this.tamagotchi = new Egg(false, false);
 		this.lausegundo = new Timer();
-		this.lausegundo.scheduleAtFixedRate(new TimerTask() {
+		/*this.lausegundo.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-				nirePartida.minijokoaJokatu();
-				nirePartida.scoreEguneratu();
-				if(nirePartida.getGaixorik()==false && nirePartida.getKaka()==false) {
-						nirePartida.kakaEgin();
+				this.minijokoaJokatu();
+				this.scoreEguneratu();
+				if(this.getGaixorik()==false && this.getKaka()==false) {
+						this.kakaEgin();
 				}
-				nirePartida.eboluzionatuTamagotchi();
+				this.eboluzionatuTamagotchi();
             }
-        }, 0, 4000);
+        }, 0, 4000);*/
     }
 
-	public void resetPartida(){
-		nirePartida = null;
-	}
 
-	public static Partida getPartida()
+
+	public  Partida getPartida()
     {
-        if(nirePartida == null)
+        if(this == null)
         {
 			System.out.println("partida berria egin da");
-            nirePartida = new Partida();
+            return new Partida();
         }
-        return nirePartida;
+        return this;
     }
-    public static void main(String [] args){
-		//Partida nirePartida =new Partida();
-		//panelNagusia frame = new panelNagusia(nirePartida);
-		//nirePartida.hasieratuPartida();
-		//nirePartida.partidaBuklea();
+   /* public static void PartidaHasiera(){
+		//Partida this =new Partida();
+		//panelNagusia frame = new panelNagusia(this);
+		//this.hasieratuPartida();
+		//this.partidaBuklea();
 		Partida.getPartida().partidaBatJokatu();
-	}
+	}*/
 
 	public void partidaBuklea(){
 		while(!amaituDa()){		
-			nirePartida.bihotzakEguneratu();
-			nirePartida.sopakEguneratu();
+			this.bihotzakEguneratu();
+			this.sopakEguneratu();
 		}
 		lausegundo.cancel();
 	}
@@ -73,9 +70,9 @@ public class Partida extends Observable{
     public void partidaBatJokatu(){
 			boolean bukatuta = false;
 
-			Partida nirePartida =new Partida();
-			panelNagusia frame = new panelNagusia(nirePartida);
-			nirePartida.hasieratuPartida();
+			//Partida this =new Partida();---------------------------
+			panelNagusia frame = new panelNagusia(this);
+			this.hasieratuPartida();
 			//frame.setVisible(true);
 			try{
 				Thread.sleep(4000);
@@ -83,19 +80,19 @@ public class Partida extends Observable{
 			catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			nirePartida.eboluzionatuTamagotchi();
-			nirePartida.tamagotchiEguneratu();
+			this.eboluzionatuTamagotchi();
+			this.tamagotchiEguneratu();
 			Thread lausegundo = new Thread(()->{
 				if(!amaituDa()){
 					while(!bukatuta){
 						System.out.println("sartu da lausegundoan");
-						System.out.println("bizitza en 4 segs "+nirePartida.bizitza);
-						nirePartida.bihotzakEguneratu();
-						nirePartida.sopakEguneratu(); 
-						nirePartida.scoreEguneratu();
-						nirePartida.minijokoaJokatu();
+						System.out.println("bizitza en 4 segs "+this.bizitza);
+						this.bihotzakEguneratu();
+						this.sopakEguneratu(); 
+						this.scoreEguneratu();
+						this.minijokoaJokatu();
 						
-						//nirePartida.tamagotchiEguneratu();
+						//this.tamagotchiEguneratu();
 						try{
 							Thread.sleep(10000);
 						}
@@ -109,8 +106,8 @@ public class Partida extends Observable{
 			lausegundo.start();
 			Thread hilo20segundo= new Thread(()->{
 				if(!amaituDa()){
-				while (nirePartida.getGaixorik()==false && nirePartida.getKaka()==false) {
-					nirePartida.kakaEgin();
+				while (this.getGaixorik()==false && this.getKaka()==false) {
+					this.kakaEgin();
 					try {
 						Thread.sleep(20000); // Espera 20 segundo
 					} catch (InterruptedException e) {
@@ -128,7 +125,7 @@ public class Partida extends Observable{
 			}
 
 			if(!amaituDa()){
-				nirePartida.eboluzionatuTamagotchi();
+				this.eboluzionatuTamagotchi();
 			}
 			System.out.println("40 falta");
 			
@@ -141,18 +138,18 @@ public class Partida extends Observable{
 
 			System.out.println("azkenboluzioa");
 			if(!amaituDa()){
-				nirePartida.eboluzionatuTamagotchi();
+				this.eboluzionatuTamagotchi();
 			}
 			lausegundo.interrupt();
 			/*
-			nirePartida.tamagotchiEguneratu();
+			this.tamagotchiEguneratu();
 			
 			Thread lausegundo = new Thread(()->{
 				while(true){
-					nirePartida.bihotzakEguneratu();
-					nirePartida.sopakEguneratu(); 
-					nirePartida.scoreEguneratu();
-					nirePartida.tamagotchiEguneratu();
+					this.bihotzakEguneratu();
+					this.sopakEguneratu(); 
+					this.scoreEguneratu();
+					this.tamagotchiEguneratu();
 					try{
 						Thread.sleep(4000);
 					}
@@ -164,8 +161,8 @@ public class Partida extends Observable{
 			});
 			lausegundo.start();
 			Thread hilo20segundo= new Thread(()->{
-				while (nirePartida.kakaEgin()==false && nirePartida.gaixorikEgon()==false) {
-					nirePartida.kakaEgin();
+				while (this.kakaEgin()==false && this.gaixorikEgon()==false) {
+					this.kakaEgin();
 					try {
 						Thread.sleep(10000); // Espera 20 segundo
 					} catch (InterruptedException e) {
@@ -181,7 +178,7 @@ public class Partida extends Observable{
 			hilo20segundo.start();
 			Thread hilo15segundo =new Thread(()->{
 				while (true) {
-					nirePartida.eboluzionatuTamagotchi();
+					this.eboluzionatuTamagotchi();
 					try{
 						Thread.sleep(15000);
 					}
@@ -197,7 +194,7 @@ public class Partida extends Observable{
 			catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			nirePartida.azkeneboluzioa();*/
+			this.azkeneboluzioa();*/
     }
 	private boolean getGaixorik(){
 		return tamagotchi.getTamagotchi().gaixorik;

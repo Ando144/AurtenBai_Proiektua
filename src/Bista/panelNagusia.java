@@ -92,6 +92,7 @@ public class panelNagusia extends JFrame implements Observer{
 	public panelNagusia(Observable pObservable){
 		pObservable.addObserver(this);
 	}
+
 	private void hasieratu() {
 		frame = new JFrame();
 		frame.setBackground(new Color(0, 0, 0));
@@ -405,13 +406,14 @@ public class panelNagusia extends JFrame implements Observer{
 	}
 	public void update(Observable o, Object arg){
 		System.out.println("observer nagooo----------------------");
-		switch ((Integer)arg) {
+		switch ((int)arg) {
 			case 1:
 				hasieratu();
 				break;
 			case 2:
-				lauBihotzJarri();
 				System.out.println("--------------4bihotzjarri----------------");
+				lauBihotzJarri();
+				
 				break;
 		
 			case 3:
@@ -557,7 +559,8 @@ public class panelNagusia extends JFrame implements Observer{
 		panel_tamagochi.add(getgaixoIrudi());
 	}
 	private void minijokuaBistaratu(){
-		Minijokoa.main(null);
+		Minijokoa Minijokoa = new Minijokoa();
+		Minijokoa.hasieratuMinijokoa();
 	}
 	private void marutchiBistaratu(){
 		TamaIrudiak= new ImageIcon[] {

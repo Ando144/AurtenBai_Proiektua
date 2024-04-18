@@ -491,7 +491,9 @@ public class HasieraMenua extends JFrame implements Observer{
 				//panelNagusia pn = new panelNagusia(Partida.getPartida());
 				//pn.setVisible(true);
 				dispose();
-				Partida.getPartida().main(null);
+				Partida p = new Partida();
+				p.getPartida().partidaBatJokatu();
+				//Partida.getPartida().main(null);
 			}else if(e.getSource().equals(ExitBotoi)){
 				System.exit(0);
 			}
