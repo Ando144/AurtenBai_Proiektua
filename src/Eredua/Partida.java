@@ -248,7 +248,7 @@ public class Partida extends Observable{
 	}
 
     private void bihotzakEguneratu() {
-		//this.tamagotchi.kontadoreakEguneratu();
+		kontadoreakEguneratu();
 		//int zenb1 = this.tamagotchi.getBizitzaTama();
 		//int kont=0;
 		System.out.println(bizitza+" de bihotzak eguneratu");
@@ -279,7 +279,7 @@ public class Partida extends Observable{
 		}
 	}
     private void sopakEguneratu() {
-		//tamagotchi.getTamagotchi().kontadoreakEguneratu();
+		kontadoreakEguneratu();
 		
 		System.out.println("asetasun(zenb de sopakeguneratu)------------/"+ this.asetasuna);
 		//int kont=0;
@@ -462,7 +462,42 @@ public class Partida extends Observable{
 	public void sumarPuntuacion(int puntuacion){
 		Puntuacion = Puntuacion + puntuacion;
 	}
+	public void kontadoreakEguneratu(){
+		String izena =this.tamagotchi.zeinEboluzioDa();
+		System.out.println(izena);
+		if (this.tamagotchi.kaka){
+            this.osasunaGalduKaka();
+        }
+        if (this.tamagotchi.gaixorik){
+            this.osasunaGalduGaixorik();
+        }
+		if (izena == "marutchi") {
+			this.bizitza -= 1;
+        	this.asetasuna -= 1;
+		}
+		if (izena == "Kuchipatchi") {
+			this.bizitza -= 2;
+			this.asetasuna -= 5;
+		}
+		if (izena == "maskutchi") {
+			this.bizitza -= 3;
+        	this.asetasuna -= 14;
+		}
+		if (izena == "mimitchi") {
+			this.bizitza -= 7;
+       	 	this.asetasuna -= 7;
+		}
 
+	}
+	public void osasunaGalduKaka(){
+        bizitza = bizitza - 5;
+        asetasuna = asetasuna + 10;
+    }
+
+    public void osasunaGalduGaixorik(){
+        bizitza = bizitza - 7;
+        asetasuna = asetasuna - 5;
+    }
 	/*private void azkeneboluzioa(){
 		tamagotchi = tamagotchi.getTamagotchi();
 		this.tamagotchi=tamagotchi.azkenEbol(tamagotchi.kaka, tamagotchi.gaixorik);
