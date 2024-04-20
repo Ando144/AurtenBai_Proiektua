@@ -154,6 +154,18 @@ public class PartidaErregistro extends Observable{
 		catch(IOException e) {e.printStackTrace();}
 		getLehenengoBostak();
 	}
+
+	public void reset(){
+		File file= new File(this.getClass().getResource("/TamagotchiDB/TamagotchiDB.txt").toString().replace("file:/", ""));
+		try{
+			FileWriter fw = new FileWriter(file);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write("");
+			bw.close();
+		}
+		catch(IOException e) {e.printStackTrace();}
+
+	}
 	
  
 }
