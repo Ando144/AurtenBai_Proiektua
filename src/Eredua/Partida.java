@@ -23,24 +23,22 @@ public class Partida extends Observable{
         //this.izena = "";
         this.candy = 0;
         this.soup = 0;
-		this.bizitza = 20;
+		this.bizitza = 40;
 		this.asetasuna = 40;
         this.tamagotchi = new Egg(false, false);
 		this.lausegundo = new Timer();
-		/*this.lausegundo.scheduleAtFixedRate(new TimerTask() {
+		this.lausegundo.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-				this.minijokoaJokatu();
-				this.scoreEguneratu();
-				if(this.getGaixorik()==false && this.getKaka()==false) {
-						this.kakaEgin();
+				Partida.getPartida().minijokoaJokatu();
+				Partida.getPartida().scoreEguneratu();
+				if(Partida.getPartida().getGaixorik()==false && Partida.getPartida().getKaka()==false) {
+					Partida.getPartida().kakaEgin();
 				}
-				this.eboluzionatuTamagotchi();
+				Partida.getPartida().eboluzionatuTamagotchi();
             }
-        }, 0, 4000);*/
+        }, 4000, 4000);
     }
-
-
 
 	public static Partida getPartida()
     {
@@ -51,13 +49,17 @@ public class Partida extends Observable{
         }
         return Partida.partida;
     }
-   /* public static void PartidaHasiera(){
-		//Partida this =new Partida();
-		//panelNagusia frame = new panelNagusia(this);
-		//this.hasieratuPartida();
-		//this.partidaBuklea();
-		Partida.getPartida().partidaBatJokatu();
-	}*/
+
+	public static void main(String[] args) {
+		Partida.getPartida().PartidaHasiera();
+	}
+
+    public void PartidaHasiera(){
+		panelNagusia frame = new panelNagusia(this);
+		frame.setVisible(true);
+		this.hasieratuPanelNagusia();
+		this.partidaBuklea();
+	} 
 
 	public void partidaBuklea(){
 		while(!amaituDa()){		
@@ -72,7 +74,7 @@ public class Partida extends Observable{
 
 			//Partida this =new Partida();---------------------------
 			panelNagusia frame = new panelNagusia(this);
-			this.hasieratuPartida();
+			this.hasieratuPanelNagusia();
 			//frame.setVisible(true);
 			try{
 				Thread.sleep(4000);
@@ -214,7 +216,7 @@ public class Partida extends Observable{
 		System.out.println("kaka garbitu dut");
 		System.out.println(tamagotchi.getTamagotchi().kaka);
 	}
-	private void hasieratuPartida(){
+	private void hasieratuPanelNagusia(){
 		setChanged();
 		notifyObservers(1);
 	}
@@ -251,13 +253,11 @@ public class Partida extends Observable{
 		kontadoreakEguneratu();
 		//int zenb1 = this.tamagotchi.getBizitzaTama();
 		//int kont=0;
-		System.out.println(bizitza+" de bihotzak eguneratu");
 		if(this.bizitza > 41){
 			this.bizitza = 35;
 		}
 		
 		if (this.bizitza>=31) {
-			System.out.println("4 bihotz jarriko ditut");
 			setChanged();
             notifyObservers(2);
 		}
@@ -273,15 +273,13 @@ public class Partida extends Observable{
 			setChanged();
             notifyObservers(5);
 		}
-        if (this.bizitza<=0){
+        /*if (this.bizitza<=0){
 			setChanged();
             notifyObservers(7);
-		}
+		}*/
 	}
     private void sopakEguneratu() {
 		kontadoreakEguneratu();
-		
-		System.out.println("asetasun(zenb de sopakeguneratu)------------/"+ this.asetasuna);
 		//int kont=0;
 		if (this.asetasuna>41){
 			diferencia = this.asetasuna-40;
@@ -305,10 +303,10 @@ public class Partida extends Observable{
 			setChanged();
             notifyObservers(11);
 		}
-		if(this.asetasuna<=0){
+		/*if(this.asetasuna<=0){
 			setChanged();
             notifyObservers(6);
-		}
+		}*/
 	}
 	private void kakaEgin(){ //mira si se hace kk
 		Random probabilitatea = new Random();

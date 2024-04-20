@@ -488,12 +488,11 @@ public class HasieraMenua extends JFrame implements Observer{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource().equals(PlayBotoi)){
+				dispose();
 				//panelNagusia pn = new panelNagusia(Partida.getPartida());
 				//pn.setVisible(true);
-				dispose();
-				Partida p = new Partida();
 				System.out.println("se ha creadi la partida");
-				p.getPartida().partidaBatJokatu();
+				Partida.getPartida().PartidaHasiera();
 				//Partida.getPartida().main(null);
 			}else if(e.getSource().equals(ExitBotoi)){
 				System.exit(0);

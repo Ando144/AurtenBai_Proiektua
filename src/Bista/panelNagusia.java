@@ -405,102 +405,81 @@ public class panelNagusia extends JFrame implements Observer{
 		return koilara3;
 	}
 	public void update(Observable o, Object arg){
-		System.out.println("observer nagooo----------------------");
+		//System.out.println("observer nagooo----------------------");
 		switch ((int)arg) {
 			case 1:
 				hasieratu();
 				break;
 			case 2:
-				System.out.println("--------------4bihotzjarri----------------");
+				//System.out.println("--------------4bihotzjarri----------------");
 				lauBihotzJarri();
-				
 				break;
-		
 			case 3:
-			System.out.println("--------------Obvserber 3----------------");
-
+			//System.out.println("--------------Obvserber 3----------------");
 				hiruBihotzJarri();
 				break;
 			case 4:
-			System.out.println("--------------Obvserver 4----------------");
-
+			//System.out.println("--------------Obvserver 4----------------");
 				biBihotzJarri();
 				break;
 			case 5:
-			System.out.println("--------------Obvserver 5----------------");
-
+			//System.out.println("--------------Obvserver 5----------------");
 				bihotzBatJarri();
 				break;
 			case 6:
-			System.out.println("--------------Obvserver 6----------------");
-
+			//System.out.println("--------------Obvserver 6----------------");
 				hildaDagoKatilu();
 				break;
 			case 7:
-			System.out.println("--------------Obvserver 7----------------");
-
+			//System.out.println("--------------Obvserver 7----------------");
 				hildaDagoBihotz();
 				break;
-		
 			case 8:
-			System.out.println("--------------Obvserver 8----------------");
-
+			//System.out.println("--------------Obvserver 8----------------");
 				lauKatiluJarri();
 				break;
-		
 			case 9:
-			System.out.println("--------------Obvserver 9----------------");
-
+			//System.out.println("--------------Obvserver 9----------------");
 				hiruKatiluJarri();
 				break;
 			case 10:
-			System.out.println("--------------Obvserver 10----------------");
-
+			//System.out.println("--------------Obvserver 10----------------");
 				biKatiluJarri();
 				break; 
 			case 11:
-			System.out.println("--------------Obvserver 11----------------");
+			//System.out.println("--------------Obvserver 11----------------");
 				katiluBatJarri();
 				break;
 			case 12:
-			System.out.println("--------------Obvserver 12----------------");
-
+			//System.out.println("--------------Obvserver 12----------------");
 				kaka();
 				break;
 			case 13:
-			System.out.println("--------------Obvserver 13----------------");
-
+			//System.out.println("--------------Obvserver 13----------------");
 				gaixo();
 				break;
 			case 14:
-			System.out.println("--------------Obvserver 14----------------");
-
+			//System.out.println("--------------Obvserver 14----------------");
 				minijokuaBistaratu();
 				break;
 			case 15:
-			System.out.println("--------------Obvserver 15----------------");
-
+			//System.out.println("--------------Obvserver 15----------------");
 				marutchiBistaratu();
 				break;
 			case 16:
-			System.out.println("--------------Obvserver 16----------------");
-
-				System.out.println("pasatu dut");
+			//System.out.println("--------------Obvserver 16----------------");
 				mimitchiBistaratu();
 				break;
 			case 17:
-			System.out.println("--------------Obvserver 17----------------");
-
-				System.out.println("kuchichcihoda");
+			//System.out.println("--------------Obvserver 17----------------");
 				kuchipatchiBistaratu();
 				break;
 			case 18:
-			System.out.println("--------------Obvserver 18----------------");
-
+			//System.out.println("--------------Obvserver 18----------------");
 				maskutchiBistaratu();
 				break;
 			case 19:
-			System.out.println("--------------Obvserver 19----------------");
+			//System.out.println("--------------Obvserver 19----------------");
 				PuntuazioaEguneratuEtaBistaratu();
 				break;
 		}
@@ -536,7 +515,7 @@ public class panelNagusia extends JFrame implements Observer{
 		katilu4.setEnabled(false);
 		panel_tamagochi.add(getHilIrudi());
 		try {
-			Thread.sleep(5000); // Espera 20 segundo
+			Thread.sleep(5000); // Espera 5 segundo
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

@@ -6,7 +6,7 @@ public class Marutchi extends Tamagotchi{
         super(/*int pBizitza, int pAsetasuna,*/ pGaixorik, pKaka);
     }
 
-  /*  @Override
+    @Override
     public void kontadoreakEguneratu(){  
         if (this.kaka){
             this.osasunaGalduKaka();
@@ -19,7 +19,7 @@ public class Marutchi extends Tamagotchi{
 		setChanged();
 		notifyObservers();
     }
-     public void bihotzakEguneratu(int multi1){
+    /* public void bihotzakEguneratu(int multi1){
         this.bizitza = this.bizitza +(10 * multi1);
     }
     public void katiluakEguneratu(int multi2){
