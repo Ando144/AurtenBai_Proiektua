@@ -67,15 +67,13 @@ public class panelNagusia extends JFrame implements Observer{
 	private int kontadorea2 = 0;
 	private int puntuazioa;
 	private int offsetx,offsety;
-	/**
-	 * Launch the application.
-	 */
 	private Kontroladorea getKontroladorea(){
 		if(kontroladorea == null){
 			kontroladorea = new Kontroladorea();
 		}
 		return kontroladorea;
 	}
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -91,6 +89,7 @@ public class panelNagusia extends JFrame implements Observer{
 	}
 	public panelNagusia(Observable pObservable){
 		pObservable.addObserver(this);
+		hasieratu();
 	}
 
 	private void hasieratu() {
@@ -529,7 +528,7 @@ public class panelNagusia extends JFrame implements Observer{
 		bihotza4.setEnabled(false);
 		panel_tamagochi.add(getHilIrudi());
 		try {
-			Thread.sleep(5000); // Espera 20 segundo
+			Thread.sleep(5000); // Espera 5 segundo
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

@@ -2,12 +2,12 @@ package src.Eredua;
 
 public class Kuchipatchi extends Tamagotchi{
 
-    public Kuchipatchi(/*int pBizitza, int pAsetasuna,*/ boolean pGaixorik, boolean pKaka){
-        super(/*int pBizitza, int pAsetasuna,*/pGaixorik, pKaka);
+    public Kuchipatchi(int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka){
+        super(pBizitza, pAsetasuna, pGaixorik, pKaka);
     }
 
-   /* @Override
-  /*  public void kontadoreakEguneratu(){
+    @Override
+    public void kontadoreakEguneratu(){
         if (this.kaka){
             this.osasunaGalduKaka();
         }
@@ -16,10 +16,10 @@ public class Kuchipatchi extends Tamagotchi{
         }
         this.bizitza -= 2;
         this.asetasuna -= 5;
-		//setChanged();
-		//notifyObservers();
+		setChanged();
+		notifyObservers();
     }
-    public void bihotzakEguneratu(int multi1){
+    /*public void bihotzakEguneratu(int multi1){
         int bizitza1=getBizitzaTama();
         this.bizitza = bizitza1 +(10 * multi1);
         System.out.println("tama claseko bizitza"+this.bizitza);
