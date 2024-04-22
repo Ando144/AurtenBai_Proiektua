@@ -276,7 +276,7 @@ public class Minijokoa extends Observable{
     private void AktBuklea()
     {
 
-        while (!irabaziDu()) {
+      /*  while (!irabaziDu()) {
             setChanged();
             notifyObservers("laukiAktualizatu");
             setChanged();
@@ -290,7 +290,7 @@ public class Minijokoa extends Observable{
         }
         setChanged();
         notifyObservers("irabaziDu");
-        NireMinijokoa.timer.cancel();
+        NireMinijokoa.timer.cancel();*/
 
     }
     public void laukiaAktualizatu(int lerroa, int zutabea)

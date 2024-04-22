@@ -12,29 +12,34 @@ public class Partida extends Observable{
     private int candy;
     private int soup;
     private Tamagotchi tamagotchi;
-	private int Puntuazioa;
+	private boolean minijokoaMartxan;
 	private Timer lausegundo;
 	private static Partida partida = null;
 
 	public Partida(){
         this.score = 0;
-        //this.izena = "";
+        this.izena = "¡zen #ar¡K";
         this.candy = 0;
         this.soup = 0;
+		this.minijokoaMartxan = false;
         this.tamagotchi = new Egg(40, 40, false, false);
 		this.lausegundo = new Timer();
 		this.lausegundo.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-				Partida.getPartida().minijokoaJokatu();
-				Partida.getPartida().scoreEguneratu();
-				if(Partida.getPartida().getGaixorik()==false && Partida.getPartida().getKaka()==false) {
-					Partida.getPartida().kakaEgin();
+				if(!minijokoaMartxan){
+					//Partida.getPartida().minijokoaJokatu();
+					score = Partida.getPartida().scoreEguneratu();
+					if(Partida.getPartida().getGaixorik()==false && Partida.getPartida().getKaka()==false) {
+						Partida.getPartida().kakaEgin();
+					}
+					Partida.getPartida().eboluzionatuTamagotchi();
+					Partida.getPartida().tamagotchi.kontadoreakEguneratu();
+					bihotzakEguneratu();
+					sopakEguneratu();
+					System.out.println("--------------------------BIZITZA:    "+Partida.getPartida().tamagotchi.bizitza);
+					System.out.println("--------------------------ASETASUNA:  "+Partida.getPartida().tamagotchi.asetasuna);
 				}
-				Partida.getPartida().eboluzionatuTamagotchi();
-				Partida.getPartida().tamagotchi.kontadoreakEguneratu();
-				System.out.println("--------------------------BIZITZA:    "+Partida.getPartida().tamagotchi.bizitza);
-				System.out.println("--------------------------ASETASUNA:  "+Partida.getPartida().tamagotchi.asetasuna);
             }
         }, 4000, 4000);
     }
@@ -50,7 +55,10 @@ public class Partida extends Observable{
     }
 
 	public void reset(){
-		partida = null;
+		this.tamagotchi = null;
+		this.lausegundo.cancel();
+		this.lausegundo = null;
+		Partida.partida = null;
 	}
 
 	public static void main(String[] args) {
@@ -61,18 +69,22 @@ public class Partida extends Observable{
 		new panelNagusia(this);
 		//frame.setVisible(true);
 		//this.hasieratuPanelNagusia();
-		this.partidaBuklea();
+		//this.partidaBuklea();
 	} 
 
-	public void partidaBuklea(){
+	/*public void partidaBuklea(){
 		while(!amaituDa()){		
 			this.bihotzakEguneratu();
 			this.sopakEguneratu();
 		}
 		lausegundo.cancel();
+	}*/
+
+	public void gordePartida(){
+		PartidaErregistro.getPartidaErregistro().eguneratu(this.score, this.izena);
 	}
 
-    public void partidaBatJokatu(){
+    /*public void partidaBatJokatu(){
 			boolean bukatuta = false;
 
 			//Partida this =new Partida();---------------------------
@@ -199,13 +211,16 @@ public class Partida extends Observable{
 			catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			this.azkeneboluzioa();*/
-    }
+			this.azkeneboluzioa();
+    }*/
 	private boolean getGaixorik(){
 		return tamagotchi.gaixorik;
 	}
 	private boolean getKaka(){
 		return tamagotchi.kaka;
+	}
+	public void minijokoaAmaituDa(){
+		minijokoaMartxan = false;
 	}
 	public void tamaSendatu(){
 		//this.tamagotchi.gaixorik=false;
@@ -314,7 +329,7 @@ public class Partida extends Observable{
 	private void kakaEgin(){ //mira si se hace kk
 		Random probabilitatea = new Random();
 		System.out.println("KAIXO");
-		int zenbakia = probabilitatea.nextInt(20);
+		int zenbakia = probabilitatea.nextInt(101);
 		System.out.println("kaka zenb "+zenbakia);
 		if(1<=zenbakia && zenbakia<=20 && this.tamagotchi.kaka==false){
 			this.tamagotchi.setKaka(true);
@@ -347,6 +362,7 @@ public class Partida extends Observable{
 		if(1<=zenbakia && zenbakia<=12){
 			setChanged();
 			notifyObservers(14);
+			minijokoaMartxan = true;
 			return true;
 		}
 		else{
@@ -403,8 +419,7 @@ public class Partida extends Observable{
 		tamagotchiEguneratu();
 	}*/
 	public int getScore(){
-		Puntuazioa = this.score;
-		return Puntuazioa;
+		return score;
 	}
 	private int Puntuacion;
 	private int diferencia;
