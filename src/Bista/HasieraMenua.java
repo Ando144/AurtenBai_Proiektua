@@ -493,6 +493,7 @@ public class HasieraMenua extends JFrame implements Observer{
 				//pn.setVisible(true);
 				Partida.getPartida().reset();
 				Partida.getPartida().PartidaHasiera();
+				System.out.println("partida berria");
 				//Partida.getPartida().main(null);
 			}else if(e.getSource().equals(ExitBotoi)){
 				System.exit(0);
