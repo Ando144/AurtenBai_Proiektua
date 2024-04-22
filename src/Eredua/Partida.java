@@ -87,7 +87,7 @@ public class Partida extends Observable{
 			}
 			this.eboluzionatuTamagotchi();
 			this.tamagotchiEguneratu();
-			Thread lausegundo = new Thread(()->{
+			Thread bostSegundo = new Thread(()->{
 				if(!amaituDa()){
 					while(!bukatuta){
 						System.out.println("sartu da lausegundoan");
@@ -108,7 +108,7 @@ public class Partida extends Observable{
 					}
 				}
 			});
-			lausegundo.start();
+			bostSegundo.start();
 			Thread hilo20segundo= new Thread(()->{
 				if(!amaituDa()){
 				while (this.getGaixorik()==false && this.getKaka()==false) {
@@ -145,7 +145,7 @@ public class Partida extends Observable{
 			if(!amaituDa()){
 				this.eboluzionatuTamagotchi();
 			}
-			lausegundo.interrupt();
+			bostSegundo.interrupt();
 			/*
 			this.tamagotchiEguneratu();
 			
