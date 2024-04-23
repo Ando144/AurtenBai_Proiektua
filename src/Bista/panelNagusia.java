@@ -213,9 +213,12 @@ public class panelNagusia extends JFrame implements Observer{
 			panel_candy.setBackground(new Color(0, 0, 0));
 			panel_candy.setBorder(new LineBorder(new Color(128, 128, 128)));
 			panel_candy.setBounds(50, 354, 103, 34);
-			/*panel_candy.add(getCandy1());
+			panel_candy.add(getCandy1());
 			panel_candy.add(getCandy2());
-			panel_candy.add(getCandy3());*/
+			panel_candy.add(getCandy3());
+			getCandy1().setVisible(false);
+			getCandy2().setVisible(false);
+			getCandy3().setVisible(false);
 			panel_candy.addMouseListener((MouseListener) getKontroladorea());
 		}
 		return panel_candy;
@@ -227,9 +230,12 @@ public class panelNagusia extends JFrame implements Observer{
 			panel__soup.setForeground(new Color(255, 255, 255));
 			panel__soup.setBorder(new LineBorder(new Color(128, 128, 128)));
 			panel__soup.setBounds(351, 354, 85, 34);
-			/*panel__soup.add(getKoilara1());
+			panel__soup.add(getKoilara1());
 			panel__soup.add(getKoilara2());
-			panel__soup.add(getKoilara3());*/
+			panel__soup.add(getKoilara3());
+			getKoilara1().setVisible(false);
+			getKoilara2().setVisible(false);
+			getKoilara3().setVisible(false);
 			panel__soup.addMouseListener((MouseListener) getKontroladorea());
 		}
 		return panel__soup;
@@ -641,14 +647,14 @@ public class panelNagusia extends JFrame implements Observer{
 		Puntuazioa.setBounds(282, 4, 45, 13);
 		Puntuazioa.setText(Integer.toString(aldagaia));
 	}
-	private boolean panelContains(JPanel panel, JLabel label) {
+	/*private boolean panelContains(JPanel panel, JLabel label) {
 		for (Component component : panel.getComponents()) {
 			if (component.equals(label)) {
 				return true;
 			}
 		}
 		return false;
-	}
+	}*/
 	private class Kontroladorea implements ActionListener, MouseListener{
 		@Override
 		public void actionPerformed(ActionEvent e){
@@ -677,69 +683,62 @@ public class panelNagusia extends JFrame implements Observer{
 				Partida.getPartida().tamaSendatu();
 			}else if(e.getSource().equals(panel_candy)){
 				kontadorea1++;
-				System.out.println("clikatu da piruleta"+kontadorea1+"aldiz");
+				System.out.println("clikatu da piruleta "+kontadorea1+" aldiz");
 				
-				if(panelContains(getPanel_candy(),getCandy3())){
-				}else if(panelContains(getPanel_candy(),getCandy2())){
-					panel_candy.add(getCandy3());
-				}else if(panelContains(getPanel_candy(),getCandy1())){
-					panel_candy.add(getCandy2());
+				if(getCandy3().isVisible()){
+				}else if(getCandy2().isVisible()){
+					getCandy3().setVisible(true);
+				}else if(getCandy1().isVisible()){
+					getCandy2().setVisible(true);
 				}else{	
-					panel_candy.add(getCandy1());
+					getCandy1().setVisible(true);
 				}
 			}else if(e.getSource().equals(panel__soup)){
 				kontadorea2++;
-				System.out.println("clikatu da sopas"+kontadorea2+"aldiz");
-
+				System.out.println("clikatu da sopa "+kontadorea2+" aldiz");
 				
-				if(panelContains(getPanel__soup(),getKoilara3())){
-				}else if(panelContains(getPanel__soup(),getKoilara2())){
-					panel__soup.add(getKoilara3());
-				}else if(panelContains(getPanel__soup(),getKoilara1())){
-					panel__soup.add(getKoilara2());
+				if(getKoilara3().isVisible()){
+				}else if(getKoilara2().isVisible()){
+					getKoilara3().setVisible(true);
+				}else if(getKoilara1().isVisible()){
+					getKoilara2().setVisible(true);
 				}else{	
-					panel__soup.add(getKoilara1());
+					getKoilara1().setVisible(true);
 				}
 			}else if(e.getSource().equals(panel_tamagochi)){
-				panel_candy.remove(getCandy3());
-				panel_candy.remove(getCandy2());
-				panel_candy.remove(getCandy1());
-				panel__soup.remove(getKoilara3());
-				panel__soup.remove(getKoilara2());
-				panel__soup.remove(getKoilara1());
+				if(getCandy3().isVisible()){
+					getCandy3().setVisible(false);
+					getCandy2().setVisible(false);
+					getCandy1().setVisible(false);
+				}else if(getCandy2().isVisible()){
+					getCandy2().setVisible(false);
+					getCandy1().setVisible(false);
+				}else if(getCandy1().isVisible()){
+					getCandy1().setVisible(false);
+				}
+				if(getKoilara3().isVisible()){
+					getKoilara3().setVisible(false);
+					getKoilara2().setVisible(false);
+					getKoilara1().setVisible(false);
+				}else if(getKoilara2().isVisible()){
+					getKoilara2().setVisible(false);
+					getKoilara1().setVisible(false);
+				}else if(getKoilara1().isVisible()){
+					getKoilara1().setVisible(false);
+				}
 				System.out.println("ikutu da tamagotchi");
-				bihotzakEtaSopakGehitu(kontadorea1,kontadorea2);
+				Partida.getPartida().tamaJan(kontadorea1,kontadorea2);
 				kontadorea1=0;
 				kontadorea2=0;
-				/*if(panelContains(getPanel_candy(),getCandy3())){
-					panel_candy.remove(getCandy3());
-					panel_candy.remove(getCandy2());
-					panel_candy.remove(getCandy1());
-				}else if(panelContains(getPanel_candy(),getCandy2())){
-					panel_candy.remove(getCandy2());
-					panel_candy.remove(getCandy1());
-				}else if(panelContains(getPanel_candy(),getCandy1())){
-					panel_candy.remove(getCandy1());
-				}
-				if(panelContains(getPanel__soup(),getKoilara3())){
-					panel__soup.remove(getKoilara3());
-					panel__soup.remove(getKoilara2());
-					panel__soup.remove(getKoilara1());
-				}else if(panelContains(getPanel__soup(),getKoilara2())){
-					panel__soup.remove(getKoilara2());
-					panel__soup.remove(getKoilara1());
-				}else if(panelContains(getPanel__soup(),getKoilara1())){
-					panel__soup.remove(getKoilara1());
-				}*/
 				
 			}
 		}
-		public void bihotzakEtaSopakGehitu(int kont1, int kont2){
+		/*public void bihotzakEtaSopakGehitu(int kont1, int kont2){
 				int multiplikatzaileBiz=kont1;
 				int multiplikatzaileAse=kont2;
 				System.out.println("gehitu bizitzaaaaaa");
 				Partida.getPartida().tamaJan(multiplikatzaileBiz,multiplikatzaileAse);
-		}
+		}*/
 		
 		@Override
 		public void mousePressed(MouseEvent e) {}

@@ -29,7 +29,7 @@ public class Partida extends Observable{
             public void run() {
 				if(!minijokoaMartxan && !amaituDa()){
 					//Partida.getPartida().minijokoaJokatu();
-					score = Partida.getPartida().scoreEguneratu();
+					scoreEguneratu();
 					if(Partida.getPartida().getGaixorik()==false && Partida.getPartida().getKaka()==false) {
 						Partida.getPartida().kakaEgin();
 					}
@@ -152,10 +152,10 @@ public class Partida extends Observable{
 			setChanged();
             notifyObservers(5);
 		}
-        /*if (this.bizitza<=0){
+        if (this.tamagotchi.bizitza<=0){
 			setChanged();
             notifyObservers(7);
-		}*/
+		}
 	}
     private void sopakEguneratu() {
 		if (this.tamagotchi.asetasuna>41){
@@ -180,10 +180,10 @@ public class Partida extends Observable{
 			setChanged();
             notifyObservers(11);
 		}
-		/*if(this.asetasuna<=0){
+		if(this.tamagotchi.asetasuna<=0){
 			setChanged();
             notifyObservers(6);
-		}*/
+		}
 	}
 	private void kakaEgin(){ //mira si se hace kk
 		Random probabilitatea = new Random();
@@ -272,7 +272,7 @@ public class Partida extends Observable{
 	}
 	private int Puntuacion;
 	private int diferencia;
-	private int scoreEguneratu(){
+	private void scoreEguneratu(){
 		//+1 cada vez que pasan 4 segundos
 		Puntuacion=Puntuacion +1;
 		if (this.tamagotchi.gaixorik==true){
@@ -299,9 +299,9 @@ public class Partida extends Observable{
 		}*/
 
 		//si se da una piruleta o sopa +5 
+		score = Puntuacion;
 		setChanged();
 		notifyObservers(19);
-		return Puntuacion;
 	}
 	public boolean amaituDa( ){
 		//int zenb = tamagotchi.getBizitza();
