@@ -397,6 +397,7 @@ public class miniJokoaBista extends JFrame implements Observer{
                     //pn.setVisible(true);
                     dispose();
                     Minijokoa.getMinijokoa().apagarMinijokoa();
+                    Partida.getPartida().minijokoaAmaituDa();
                     ganadorFrame.dispose();
                     perdedorFrame.dispose();
 

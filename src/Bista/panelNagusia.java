@@ -94,26 +94,27 @@ public class panelNagusia extends JFrame implements Observer{
 
 	private void hasieratu() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(SystemColor.desktop);
 		frame.setBackground(new Color(0, 0, 0));
 		panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 0));
 		//panel.setLayout(new GridLayout(12,12));
-		frame.add(panel);
+		frame.getContentPane().add(panel);
 		frame.setForeground(new Color(0, 0, 0));
 		frame.setBounds(100, 100, 500, 450);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLayout(null);
-		frame.add(getPanel_tamagochi());
-		frame.add(getPanel_bihotzak());
-		frame.add(getPanel_platos());
-		frame.add(getTamagochi_Izena());
-		frame.add(getScore_label());
-		frame.add(getPuntuazioa());
-		frame.add(getBoton_exit());
-		frame.add(getPanel_candy());
-		frame.add(getPanel__soup());
-		frame.add(getLblNewLabel_3());
-		frame.add(getLblNewLabel_4());
+		frame.getContentPane().setLayout(null);
+		frame.getContentPane().add(getPanel_tamagochi());
+		frame.getContentPane().add(getPanel_bihotzak());
+		frame.getContentPane().add(getPanel_platos());
+		frame.getContentPane().add(getTamagochi_Izena());
+		frame.getContentPane().add(getScore_label());
+		frame.getContentPane().add(getPuntuazioa());
+		frame.getContentPane().add(getBoton_exit());
+		frame.getContentPane().add(getPanel_candy());
+		frame.getContentPane().add(getPanel__soup());
+		frame.getContentPane().add(getLblNewLabel_3());
+		frame.getContentPane().add(getLblNewLabel_4());
 		TamaIrudiak= new ImageIcon[] {
 				new ImageIcon((this.getClass().getResource("/sprites/egg1.png"))),
 				new ImageIcon((this.getClass().getResource("/sprites/egg2.png")))
@@ -136,7 +137,7 @@ public class panelNagusia extends JFrame implements Observer{
 			panel_tamagochi.setBackground(new Color(0, 0, 0));
 			panel_tamagochi.setLayout(null);
 			panel_tamagochi.add(getEggIrudi());
-			panel_tamagochi.setBounds(100, 108, 294, 165);
+			panel_tamagochi.setBounds(100, 108, 294, 197);
 			panel_tamagochi.setLayout(null);
 			panel_tamagochi.addMouseListener((MouseListener) getKontroladorea());
 		}
@@ -173,7 +174,7 @@ public class panelNagusia extends JFrame implements Observer{
 			Tamagochi_Izena = new JLabel("Egg");
 			Tamagochi_Izena.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			Tamagochi_Izena.setForeground(new Color(192, 192, 192));
-			Tamagochi_Izena.setBounds(71, -5, 64, 28);
+			Tamagochi_Izena.setBounds(50, -5, 85, 28);
 		}
 		return Tamagochi_Izena;
 	}
@@ -212,9 +213,9 @@ public class panelNagusia extends JFrame implements Observer{
 			panel_candy.setBackground(new Color(0, 0, 0));
 			panel_candy.setBorder(new LineBorder(new Color(128, 128, 128)));
 			panel_candy.setBounds(50, 354, 103, 34);
-			panel_candy.add(getCandy1());
+			/*panel_candy.add(getCandy1());
 			panel_candy.add(getCandy2());
-			panel_candy.add(getCandy3());
+			panel_candy.add(getCandy3());*/
 			panel_candy.addMouseListener((MouseListener) getKontroladorea());
 		}
 		return panel_candy;
@@ -226,9 +227,9 @@ public class panelNagusia extends JFrame implements Observer{
 			panel__soup.setForeground(new Color(255, 255, 255));
 			panel__soup.setBorder(new LineBorder(new Color(128, 128, 128)));
 			panel__soup.setBounds(351, 354, 85, 34);
-			panel__soup.add(getKoilara1());
+			/*panel__soup.add(getKoilara1());
 			panel__soup.add(getKoilara2());
-			panel__soup.add(getKoilara3());
+			panel__soup.add(getKoilara3());*/
 			panel__soup.addMouseListener((MouseListener) getKontroladorea());
 		}
 		return panel__soup;
@@ -652,6 +653,8 @@ public class panelNagusia extends JFrame implements Observer{
 		@Override
 		public void actionPerformed(ActionEvent e){
 			if(e.getSource().equals(boton_exit)){
+				Partida.getPartida().gordePartida();
+				Partida.getPartida().reset();
 				HasieraMenua frame2 = new HasieraMenua(PartidaErregistro.getPartidaErregistro());
 				frame2.setVisible(true);
 				PartidaErregistro.getPartidaErregistro().getLehenengoBostak();
@@ -676,8 +679,6 @@ public class panelNagusia extends JFrame implements Observer{
 				kontadorea1++;
 				System.out.println("clikatu da piruleta"+kontadorea1+"aldiz");
 				
-
-				/* 
 				if(panelContains(getPanel_candy(),getCandy3())){
 				}else if(panelContains(getPanel_candy(),getCandy2())){
 					panel_candy.add(getCandy3());
@@ -685,12 +686,12 @@ public class panelNagusia extends JFrame implements Observer{
 					panel_candy.add(getCandy2());
 				}else{	
 					panel_candy.add(getCandy1());
-				}*/
+				}
 			}else if(e.getSource().equals(panel__soup)){
 				kontadorea2++;
 				System.out.println("clikatu da sopas"+kontadorea2+"aldiz");
 
-				/*
+				
 				if(panelContains(getPanel__soup(),getKoilara3())){
 				}else if(panelContains(getPanel__soup(),getKoilara2())){
 					panel__soup.add(getKoilara3());
@@ -698,41 +699,39 @@ public class panelNagusia extends JFrame implements Observer{
 					panel__soup.add(getKoilara2());
 				}else{	
 					panel__soup.add(getKoilara1());
-				}*/
+				}
 			}else if(e.getSource().equals(panel_tamagochi)){
+				panel_candy.remove(getCandy3());
+				panel_candy.remove(getCandy2());
+				panel_candy.remove(getCandy1());
+				panel__soup.remove(getKoilara3());
+				panel__soup.remove(getKoilara2());
+				panel__soup.remove(getKoilara1());
 				System.out.println("ikutu da tamagotchi");
 				bihotzakEtaSopakGehitu(kontadorea1,kontadorea2);
 				kontadorea1=0;
 				kontadorea2=0;
-				/*int gehitzekoBizitza = 0;
-				int gehitzekoAsetasuna = 0;
-				if(panelContains(getPanel_candy(),getCandy3())){
-					gehitzekoBizitza=30;
+				/*if(panelContains(getPanel_candy(),getCandy3())){
 					panel_candy.remove(getCandy3());
 					panel_candy.remove(getCandy2());
 					panel_candy.remove(getCandy1());
 				}else if(panelContains(getPanel_candy(),getCandy2())){
-					gehitzekoBizitza=20;
 					panel_candy.remove(getCandy2());
 					panel_candy.remove(getCandy1());
 				}else if(panelContains(getPanel_candy(),getCandy1())){
-					gehitzekoBizitza=10;
 					panel_candy.remove(getCandy1());
 				}
 				if(panelContains(getPanel__soup(),getKoilara3())){
-					gehitzekoAsetasuna=30;
 					panel__soup.remove(getKoilara3());
 					panel__soup.remove(getKoilara2());
 					panel__soup.remove(getKoilara1());
 				}else if(panelContains(getPanel__soup(),getKoilara2())){
-					gehitzekoAsetasuna=20;
 					panel__soup.remove(getKoilara2());
 					panel__soup.remove(getKoilara1());
 				}else if(panelContains(getPanel__soup(),getKoilara1())){
-					gehitzekoAsetasuna=10;
 					panel__soup.remove(getKoilara1());
-				}
-				Partida.getPartida().tamaJan(gehitzekoBizitza, gehitzekoAsetasuna);*/
+				}*/
+				
 			}
 		}
 		public void bihotzakEtaSopakGehitu(int kont1, int kont2){

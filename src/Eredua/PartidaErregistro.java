@@ -162,6 +162,16 @@ public class PartidaErregistro extends Observable{
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write("");
 			bw.close();
+			this.leh="Ongi Etorri";
+			this.big="Bienvenido";
+			this.hir="Welcome";	
+			this.lau="Bienvenue";	
+			this.bos="Benvenuto";	
+			this.lehSc="0";
+			this.bigSc="0";
+			this.hirSc="0";
+			this.lauSc="0";
+			this.bosSc="0";
 		}
 		catch(IOException e) {e.printStackTrace();}
 
