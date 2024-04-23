@@ -18,7 +18,6 @@ public class Partida extends Observable{
 
 	public Partida(){
         this.score = 0;
-        this.izena = "¡zen #ar¡K";
         this.candy = 0;
         this.soup = 0;
 		this.minijokoaMartxan = false;
@@ -79,7 +78,13 @@ public class Partida extends Observable{
 		}
 		lausegundo.cancel();
 	}*/
-
+	public void setIzena(String izena){
+		if(izena.length() > 0){
+			this.izena = izena;
+		}else{
+        	this.izena = "¡zen #ar¡K";
+		}
+	}
 	public void gordePartida(){
 		PartidaErregistro.getPartidaErregistro().eguneratu(this.score, this.izena);
 	}
