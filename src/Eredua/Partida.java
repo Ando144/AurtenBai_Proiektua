@@ -27,7 +27,7 @@ public class Partida extends Observable{
             @Override
             public void run() {
 				if(!minijokoaMartxan && !amaituDa()){
-					//Partida.getPartida().minijokoaJokatu();
+					Partida.getPartida().minijokoaJokatu();
 					scoreEguneratu();
 					if(Partida.getPartida().getGaixorik()==false && Partida.getPartida().getKaka()==false) {
 						Partida.getPartida().kakaEgin();
@@ -222,7 +222,7 @@ public class Partida extends Observable{
 	private boolean minijokoaJokatu(){
 		Random probabilitatea = new Random();
 		int zenbakia = probabilitatea.nextInt(101);
-	
+		
 		if(1<=zenbakia && zenbakia<=12){
 			setChanged();
 			notifyObservers(14);
