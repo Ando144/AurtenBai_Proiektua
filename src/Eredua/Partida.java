@@ -27,7 +27,7 @@ public class Partida extends Observable{
 		this.lausegundo.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-				if(!minijokoaMartxan){
+				if(!minijokoaMartxan && !amaituDa()){
 					//Partida.getPartida().minijokoaJokatu();
 					score = Partida.getPartida().scoreEguneratu();
 					if(Partida.getPartida().getGaixorik()==false && Partida.getPartida().getKaka()==false) {
@@ -83,136 +83,6 @@ public class Partida extends Observable{
 	public void gordePartida(){
 		PartidaErregistro.getPartidaErregistro().eguneratu(this.score, this.izena);
 	}
-
-    /*public void partidaBatJokatu(){
-			boolean bukatuta = false;
-
-			//Partida this =new Partida();---------------------------
-			panelNagusia frame = new panelNagusia(this);
-			this.hasieratuPanelNagusia();
-			//frame.setVisible(true);
-			try{
-				Thread.sleep(4000);
-			}
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			this.eboluzionatuTamagotchi();
-			this.tamagotchiEguneratu();
-			Thread bostSegundo = new Thread(()->{
-				if(!amaituDa()){
-					while(!bukatuta){
-						System.out.println("sartu da lausegundoan");
-						System.out.println("bizitza en 4 segs "+this.tamagotchi.bizitza);
-						this.bihotzakEguneratu();
-						this.sopakEguneratu(); 
-						this.scoreEguneratu();
-						this.minijokoaJokatu();
-						
-						//this.tamagotchiEguneratu();
-						try{
-							Thread.sleep(10000);
-						}
-						catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-	
-					}
-				}
-			});
-			bostSegundo.start();
-			Thread hilo20segundo= new Thread(()->{
-				if(!amaituDa()){
-				while (this.getGaixorik()==false && this.getKaka()==false) {
-					this.kakaEgin();
-					try {
-						Thread.sleep(20000); // Espera 20 segundo
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-			});
-			hilo20segundo.start();
-
-			try {
-				Thread.sleep(20000); // Espera 20 segundo
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
-			if(!amaituDa()){
-				this.eboluzionatuTamagotchi();
-			}
-			System.out.println("40 falta");
-			
-			try{
-				Thread.sleep(10000);
-			}
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
-			System.out.println("azkenboluzioa");
-			if(!amaituDa()){
-				this.eboluzionatuTamagotchi();
-			}
-			bostSegundo.interrupt();
-			/*
-			this.tamagotchiEguneratu();
-			
-			Thread lausegundo = new Thread(()->{
-				while(true){
-					this.bihotzakEguneratu();
-					this.sopakEguneratu(); 
-					this.scoreEguneratu();
-					this.tamagotchiEguneratu();
-					try{
-						Thread.sleep(4000);
-					}
-					catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-
-				}
-			});
-			lausegundo.start();
-			Thread hilo20segundo= new Thread(()->{
-				while (this.kakaEgin()==false && this.gaixorikEgon()==false) {
-					this.kakaEgin();
-					try {
-						Thread.sleep(10000); // Espera 20 segundo
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			});
-			try {
-				Thread.sleep(10000);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			hilo20segundo.start();
-			Thread hilo15segundo =new Thread(()->{
-				while (true) {
-					this.eboluzionatuTamagotchi();
-					try{
-						Thread.sleep(15000);
-					}
-					catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			});
-			hilo15segundo.start();
-			try{
-				Thread.sleep(40000);
-			}
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			this.azkeneboluzioa();
-    }*/
 	private boolean getGaixorik(){
 		return tamagotchi.gaixorik;
 	}
@@ -252,25 +122,16 @@ public class Partida extends Observable{
 		}
 		if (ase!=0) {
 			punt= ase * 3;
-			//this.tamagotchi.katiluakEguneratu(ase);
 			this.tamagotchi.asetasuna = this.tamagotchi.asetasuna +(10 * ase);
 			sopakEguneratu();
 		}
 		if(biz!=0 && ase!=0){
 			punt=(ase + biz)*(ase *3 + biz *3);
 		}
-		//this.tamagotchi.asetasuna = this.tamagotchi.asetasuna + ase;
-		/*System.out.println("tama bizitza con getter"+tamagotchi.getBizitzaTama());
-		System.out.println("tama bizitza sin geter---------------/"+this.tamagotchi.getBizitzaTama());
-		System.out.println("tamagotchi asetasuna(tamajan)-----------/"+this.tamagotchi.getAseTama());
-		System.out.println("asetasuna tama con geter -----------------/ "+ tamagotchi.getAseTama());*/
 		return punt;
 	}
 
     private void bihotzakEguneratu() {
-		//kontadoreakEguneratu();
-		//int zenb1 = this.tamagotchi.getBizitzaTama();
-		//int kont=0;
 		if(this.tamagotchi.bizitza > 41){
 			this.tamagotchi.bizitza = 35;
 		}
@@ -297,8 +158,6 @@ public class Partida extends Observable{
 		}*/
 	}
     private void sopakEguneratu() {
-		//kontadoreakEguneratu();
-		//int kont=0;
 		if (this.tamagotchi.asetasuna>41){
 			diferencia = this.tamagotchi.asetasuna-40;
 			
@@ -408,16 +267,6 @@ public class Partida extends Observable{
 			tamagotchiEguneratu();
 		}
 	}
-	/*private void eboluzionatuTamagotchi2(){//esto hay que ponerlo bien solamente era una prueba ra ver si funcionaban las co
-		//this.tamagotchi = new Mimitchi(40, 40, false, false);
-		//tamagotchiEguneratu();
-		System.out.println("mimimi");
-		//this.tamagotchi = this.tamagotchi.eboluzionatuTama2(this.tamagotchi.getKaka(), this.tamagotchi.getGaixorik());
-		tamagotchi= tamagotchi.getTamagotchi();
-		this.tamagotchi= tamagotchi.eboluzionatuTama2(tamagotchi.kaka,tamagotchi.gaixorik);
-		System.out.println(tamagotchi.kaka);
-		tamagotchiEguneratu();
-	}*/
 	public int getScore(){
 		return score;
 	}
@@ -476,45 +325,4 @@ public class Partida extends Observable{
 	public void sumarPuntuacion(int puntuacion){
 		Puntuacion = Puntuacion + puntuacion;
 	}
-	/*public void kontadoreakEguneratu(){
-		String izena =this.tamagotchi.zeinEboluzioDa();
-		//System.out.println(izena);
-		if (this.tamagotchi.kaka){
-            this.osasunaGalduKaka();
-        }
-        if (this.tamagotchi.gaixorik){
-            this.osasunaGalduGaixorik();
-        }
-		if (izena == "marutchi") {
-			this.tamagotchi.bizitza -= 1;
-        	this.tamagotchi.asetasuna -= 1;
-		}
-		if (izena == "Kuchipatchi") {
-			this.tamagotchi.bizitza -= 2;
-			this.tamagotchi.asetasuna -= 5;
-		}
-		if (izena == "maskutchi") {
-			this.tamagotchi.bizitza -= 3;
-        	this.tamagotchi.asetasuna -= 14;
-		}
-		if (izena == "mimitchi") {
-			this.tamagotchi.bizitza -= 7;
-       	 	this.tamagotchi.asetasuna -= 7;
-		}
-
-	}
-	public void osasunaGalduKaka(){
-        tamagotchi.bizitza = tamagotchi.bizitza - 5;
-        tamagotchi.asetasuna = tamagotchi.asetasuna + 10;
-    }
-
-    public void osasunaGalduGaixorik(){
-        tamagotchi.bizitza = tamagotchi.bizitza - 7;
-        tamagotchi.asetasuna = tamagotchi.asetasuna - 5;
-    }
-	/*private void azkeneboluzioa(){
-		tamagotchi = tamagotchi.getTamagotchi();
-		this.tamagotchi=tamagotchi.azkenEbol(tamagotchi.kaka, tamagotchi.gaixorik);
-		tamagotchiEguneratu();
-	}*/
 }
