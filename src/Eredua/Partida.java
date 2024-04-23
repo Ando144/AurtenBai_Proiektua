@@ -116,18 +116,24 @@ public class Partida extends Observable{
 		//this.tamagotchi.bizitza = this.tamagotchi.bizitza + biz;
 		if(biz!=0){
 			punt=biz * 3;
+			score = score + punt;
 			//this.tamagotchi.bihotzakEguneratu(biz);
 			this.tamagotchi.bizitza = this.tamagotchi.bizitza +(10 * biz);
 			System.out.println(this.tamagotchi.bizitza+" bizitzan sartu nahiz");
 			bihotzakEguneratu();
+			//scoreEguneratu();
 		}
 		if (ase!=0) {
 			punt= ase * 3;
+			score = score + punt;
 			this.tamagotchi.asetasuna = this.tamagotchi.asetasuna +(10 * ase);
 			sopakEguneratu();
+			//scoreEguneratu();
 		}
 		if(biz!=0 && ase!=0){
 			punt=(ase + biz)*(ase *3 + biz *3);
+			score= score + punt;
+			//scoreEguneratu();
 		}
 		return punt;
 	}
