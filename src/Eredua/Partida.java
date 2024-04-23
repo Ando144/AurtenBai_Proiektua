@@ -9,8 +9,6 @@ import java.io.*;
 public class Partida extends Observable{
     private int score;
     private String izena;
-    private int candy;
-    private int soup;
     private Tamagotchi tamagotchi;
 	private boolean minijokoaMartxan;
 	private Timer lausegundo;
@@ -18,8 +16,6 @@ public class Partida extends Observable{
 
 	public Partida(){
         this.score = 0;
-        this.candy = 0;
-        this.soup = 0;
 		this.minijokoaMartxan = false;
         this.tamagotchi = new Egg(40, 40, false, false);
 		this.lausegundo = new Timer();
@@ -304,6 +300,9 @@ public class Partida extends Observable{
 		}*/
 
 		//si se da una piruleta o sopa +5 
+		if(Puntuacion<0){
+			Puntuacion=0;
+		}
 		score = Puntuacion;
 		setChanged();
 		notifyObservers(19);
