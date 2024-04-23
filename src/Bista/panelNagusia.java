@@ -525,6 +525,11 @@ public class panelNagusia extends JFrame implements Observer{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		Partida.getPartida().gordePartida();
+		Partida.getPartida().reset();
+		HasieraMenua frame2 = new HasieraMenua(PartidaErregistro.getPartidaErregistro());
+		frame2.setVisible(true);
+		PartidaErregistro.getPartidaErregistro().getLehenengoBostak();
 		frame.dispose();
 		
 	}	
@@ -539,11 +544,12 @@ public class panelNagusia extends JFrame implements Observer{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		frame.dispose();
-		PartidaErregistro.getPartidaErregistro().eguneratu(Partida.getPartida().getScore(), getName());
+		Partida.getPartida().gordePartida();
+		Partida.getPartida().reset();
 		HasieraMenua frame2 = new HasieraMenua(PartidaErregistro.getPartidaErregistro());
-		PartidaErregistro.getPartidaErregistro().getLehenengoBostak();
 		frame2.setVisible(true);
+		PartidaErregistro.getPartidaErregistro().getLehenengoBostak();
+		frame.dispose();
 	}	
 	private void lauKatiluJarri(){
 		katilu1.setEnabled(true);
