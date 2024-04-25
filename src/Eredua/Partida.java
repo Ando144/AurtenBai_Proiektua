@@ -38,6 +38,9 @@ public class Partida extends Observable{
             }
         }, 4000, 4000);
     }
+	public void setMinijokoaMartxan(boolean pMinijokoaMartxan){
+		this.minijokoaMartxan = pMinijokoaMartxan;
+	}
 
 	public static Partida getPartida()
     {
@@ -198,7 +201,10 @@ public class Partida extends Observable{
 		int zenbakia = probabilitatea.nextInt(101);
 		System.out.println("kaka zenb "+zenbakia);
 		if(1<=zenbakia && zenbakia<=20 && this.tamagotchi.kaka==false){
-			this.tamagotchi.setKaka(true);
+			//this.tamagotchi.setKaka(true);
+			//REVISAR-------------------------------------!!!
+			this.tamagotchi.setEgoera(new Kaka());
+			this.tamagotchi.egoeraAldatu();
 			kakaBistaratu(true);
 		}
 		else{
@@ -217,7 +223,10 @@ public class Partida extends Observable{
 		int zenbakia = probabilitatea.nextInt(101);
 		System.out.println("gaixo zenb "+zenbakia);
 		if(1<=zenbakia && zenbakia<=30){
-			this.tamagotchi.gaixorik = true;
+			//this.tamagotchi.gaixorik = true;
+			//REVISAR-------------------------------------!!!
+			this.tamagotchi.setEgoera(new Gaixorik());
+			this.tamagotchi.egoeraAldatu();
 			gaixoBistaratu(this.tamagotchi.gaixorik );
 		}
 	}

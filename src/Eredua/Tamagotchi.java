@@ -7,6 +7,7 @@ public abstract class Tamagotchi extends Observable{
     protected int asetasuna;
     protected boolean gaixorik;
     protected boolean kaka;
+    private Egoera egoera;
 
     protected Tamagotchi(int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka) {
         this.bizitza = pBizitza;
@@ -38,9 +39,17 @@ public abstract class Tamagotchi extends Observable{
     public boolean getGaixorik(){
         return this.gaixorik;
     }
+    public void setEgoera(Egoera pEgoera){
+        this.egoera = pEgoera;
+    }
+    public void egoeraAldatu(){
+        this.egoera.egoeraKudeatu(this);
+    }
     public void setGaixorik(boolean pGaixorik){
         this.gaixorik = pGaixorik;
+
     }
+
    /* public void jokoaEgin(){
         if (bizirikDago()){
             if (kaka){
@@ -83,6 +92,7 @@ public abstract class Tamagotchi extends Observable{
         }
         return nireTama;
     }
+
     /* public Tamagotchi eboluzionatuTama2(boolean kaka, boolean gaixorik){
        Tamagotchi nireTama= new Mimitchi(/*bizitza, asetasuna, gaixorik, kaka);
        return nireTama;
