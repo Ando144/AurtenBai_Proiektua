@@ -1,9 +1,19 @@
 package src.Eredua;
 
-public class Gaixorik implements Egoera{
+public class Gaixorik implements EgoeraGK{
     @Override
-    public void egoeraKudeatu(Tamagotchi tamagotchi) {
-        // TODO Auto-generated method stub
-        tamagotchi.setGaixorik(true);
+    public void sendatu(Tamagotchi tamagotchi) {
+        System.out.println("SSSSSSSSSSSSIIIIIIIIIIIIUUUUUUUUUUU");
+        Partida.getPartida().getTamagotchi().setEgoeraGK(new Osasuntsu());
+        Partida.getPartida().getTamagotchi().setGaixorik(false);
     }
+
+    @Override
+    public void kakaEgin(Tamagotchi tamagotchi) {}
+
+    @Override
+    public void gaixotu(Tamagotchi tamagotchi) {}
+
+    @Override
+    public void eboluzionatu(Tamagotchi tamagotchi) {}
 }

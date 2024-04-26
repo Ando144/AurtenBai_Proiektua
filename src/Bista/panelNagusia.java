@@ -137,6 +137,10 @@ public class panelNagusia extends JFrame implements Observer{
 			panel_tamagochi.setBackground(new Color(0, 0, 0));
 			panel_tamagochi.setLayout(null);
 			panel_tamagochi.add(getEggIrudi());
+			panel_tamagochi.add(getKakaIrudi());
+			panel_tamagochi.add(getgaixoIrudi());
+			getKakaIrudi().setVisible(false);
+			getgaixoIrudi().setVisible(false);
 			panel_tamagochi.setBounds(100, 108, 294, 197);
 			panel_tamagochi.setLayout(null);
 			panel_tamagochi.addMouseListener((MouseListener) getKontroladorea());
@@ -576,10 +580,10 @@ public class panelNagusia extends JFrame implements Observer{
 		katilu4.setEnabled(false);
 	}
 	private void kaka(){
-		panel_tamagochi.add(getKakaIrudi());
+		getKakaIrudi().setVisible(true);
 	}
 	private void gaixo(){
-		panel_tamagochi.add(getgaixoIrudi());
+		getgaixoIrudi().setVisible(true);
 	}
 	private void minijokuaBistaratu(){
 		Minijokoa Minijokoa = new Minijokoa();
@@ -682,11 +686,11 @@ public class panelNagusia extends JFrame implements Observer{
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			if(e.getSource().equals(kakaIrudi)){
-				panel_tamagochi.remove(kakaIrudi);
+				getKakaIrudi().setVisible(false);
 				Partida.getPartida().tamaKakaGarbitu();
-			}else if(e.getSource().equals(gaixoIrudi)){	
-				panel_tamagochi.remove(gaixoIrudi);
-				Partida.getPartida().tamaSendatu();
+			}else if(e.getSource().equals(gaixoIrudi)){
+				getgaixoIrudi().setVisible(false);
+				Partida.getPartida().tamaBirusKendu();
 			}else if(e.getSource().equals(panel_candy)){
 				kontadorea1++;
 				System.out.println("clikatu da piruleta "+kontadorea1+" aldiz");

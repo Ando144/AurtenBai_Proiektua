@@ -34,6 +34,8 @@ public class Partida extends Observable{
 					sopakEguneratu();
 					System.out.println("--------------------------BIZITZA:    "+Partida.getPartida().tamagotchi.bizitza);
 					System.out.println("--------------------------ASETASUNA:  "+Partida.getPartida().tamagotchi.asetasuna);
+					System.out.println("--------------------------KAKA:    "+Partida.getPartida().tamagotchi.kaka);
+					System.out.println("--------------------------GAIXO:  "+Partida.getPartida().tamagotchi.gaixorik);
 				}
             }
         }, 4000, 4000);
@@ -93,18 +95,21 @@ public class Partida extends Observable{
 	private boolean getKaka(){
 		return tamagotchi.kaka;
 	}
+	public Tamagotchi getTamagotchi(){
+		return tamagotchi;
+	}
 	public void minijokoaAmaituDa(){
 		minijokoaMartxan = false;
 	}
-	public void tamaSendatu(){
-		//this.tamagotchi.gaixorik=false;
-		tamagotchi.setGaixorik(false);
-		System.out.println("gaixo garbitu dut");
+	public void tamaBirusKendu(){
+		//tamagotchi.setGaixorik(false);
+		tamagotchi.sendatu();
+		System.out.println("gaixo sendatu dut");
 		System.out.println(tamagotchi.gaixorik);
 	}
 	public void tamaKakaGarbitu(){
-		//this.tamagotchi.kaka=false;
-		tamagotchi.setKaka(false);
+		//tamagotchi.setKaka(false);
+		tamagotchi.sendatu();
 		System.out.println("kaka garbitu dut");
 		System.out.println(tamagotchi.kaka);
 	}
@@ -203,18 +208,12 @@ public class Partida extends Observable{
 		if(1<=zenbakia && zenbakia<=20 && this.tamagotchi.kaka==false){
 			//this.tamagotchi.setKaka(true);
 			//REVISAR-------------------------------------!!!
-			this.tamagotchi.setEgoera(new Kaka());
-			this.tamagotchi.egoeraAldatu();
+			this.tamagotchi.kakaEgin();
 			kakaBistaratu(true);
 		}
 		else{
 			System.out.println("kaka ez du egin");
 			this.tamagotchi.setKaka(false);
-			gaixotuAhalDa(this.tamagotchi.kaka); //aqui salta a otro metodo para ver si se puede enfermar (no puede hacer kaka y enfermar a la misma vez)
-		}
-	}
-	private void gaixotuAhalDa(boolean kaka){
-		if (kaka==false) {
 			gaixorikEgon();
 		}
 	}
@@ -224,10 +223,8 @@ public class Partida extends Observable{
 		System.out.println("gaixo zenb "+zenbakia);
 		if(1<=zenbakia && zenbakia<=30){
 			//this.tamagotchi.gaixorik = true;
-			//REVISAR-------------------------------------!!!
-			this.tamagotchi.setEgoera(new Gaixorik());
-			this.tamagotchi.egoeraAldatu();
-			gaixoBistaratu(this.tamagotchi.gaixorik );
+			this.tamagotchi.gaixotu();
+			gaixoBistaratu(this.tamagotchi.gaixorik);
 		}
 	}
 	private boolean minijokoaJokatu(){

@@ -7,13 +7,16 @@ public abstract class Tamagotchi extends Observable{
     protected int asetasuna;
     protected boolean gaixorik;
     protected boolean kaka;
-    private Egoera egoera;
+    private EgoeraGK egoeraGK;
+    private EgoeraGK egoeraEboluzioa;
 
     protected Tamagotchi(int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka) {
         this.bizitza = pBizitza;
         this.asetasuna = pAsetasuna;
         this.gaixorik = pGaixorik;
         this.kaka = pKaka;
+        this.egoeraGK = new Osasuntsu();
+        //this.egoeraEboluzioa = new Egg();
     }
     
     public String zeinEboluzioDa(){
@@ -36,18 +39,30 @@ public abstract class Tamagotchi extends Observable{
     public boolean getKaka(){
         return this.kaka;
     }
+    public void setGaixorik(boolean pGaixorik){
+        this.gaixorik = pGaixorik;
+    }
     public boolean getGaixorik(){
         return this.gaixorik;
     }
-    public void setEgoera(Egoera pEgoera){
-        this.egoera = pEgoera;
+    public void setEgoeraGK(EgoeraGK pEgoera){
+        this.egoeraGK = null;
+        this.egoeraGK = pEgoera;
     }
-    public void egoeraAldatu(){
-        this.egoera.egoeraKudeatu(this);
+    public void gaixotu(){
+        this.egoeraGK.gaixotu(this);
     }
-    public void setGaixorik(boolean pGaixorik){
-        this.gaixorik = pGaixorik;
-
+    public void kakaEgin(){
+        this.egoeraGK.kakaEgin(this);
+    }
+    public void sendatu(){
+        this.egoeraGK.sendatu(this);
+    }
+    public void setEgoeraEboluzioa(EgoeraGK pEgoera){
+        this.egoeraEboluzioa = pEgoera;
+    }
+    public void eboluzionatu(){
+        this.egoeraEboluzioa.eboluzionatu(this);
     }
 
    /* public void jokoaEgin(){

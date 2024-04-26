@@ -1,6 +1,18 @@
 package src.Eredua;
 
-public class Egg extends Tamagotchi{
+public class Egg /*implements EgoeraGK*/ extends Tamagotchi{
+
+    /*@Override
+    public void sendatu(Tamagotchi tamagotchi) {}
+    @Override
+    public void kakaEgin(Tamagotchi tamagotchi) {}
+    @Override
+    public void gaixotu(Tamagotchi tamagotchi) {}
+
+    @Override
+    public void eboluzionatu(Tamagotchi tamagotchi) {
+        tamagotchi.setEgoeraGK(new Kuchipatchi());
+    }*/
     
     public Egg (int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka){
         super(pBizitza, pAsetasuna, pGaixorik, pKaka);
