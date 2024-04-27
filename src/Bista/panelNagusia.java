@@ -675,12 +675,7 @@ public class panelNagusia extends JFrame implements Observer{
 				frame2.setVisible(true);
 				PartidaErregistro.getPartidaErregistro().getLehenengoBostak();
 				frame.dispose();
-			}else if(e.getSource().equals(kakaIrudi)){
-				panel_tamagochi.remove(kakaIrudi);
-			}else if(e.getSource().equals(gaixoIrudi)){
-				panel_tamagochi.remove(gaixoIrudi);
 			}
-			//dispose();
 		}
 
 		@Override

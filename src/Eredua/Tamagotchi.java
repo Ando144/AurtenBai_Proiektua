@@ -64,6 +64,15 @@ public abstract class Tamagotchi extends Observable{
     public void eboluzionatu(){
         this.egoeraEboluzioa.eboluzionatu(this);
     }
+    /*public void zeinEgoeraGK(){
+        if(this.egoeraGK instanceof Osasuntsu){
+            System.out.println("Osasuntsu");
+        }else if(this.egoeraGK instanceof Kaka){
+            System.out.println("Kaka");
+        }else if(this.egoeraGK instanceof Gaixorik){
+            System.out.println("Gaixorik");
+        }
+    }
 
    /* public void jokoaEgin(){
         if (bizirikDago()){

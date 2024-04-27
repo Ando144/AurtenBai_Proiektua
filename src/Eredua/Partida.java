@@ -104,14 +104,10 @@ public class Partida extends Observable{
 	public void tamaBirusKendu(){
 		//tamagotchi.setGaixorik(false);
 		tamagotchi.sendatu();
-		System.out.println("gaixo sendatu dut");
-		System.out.println(tamagotchi.gaixorik);
 	}
 	public void tamaKakaGarbitu(){
 		//tamagotchi.setKaka(false);
 		tamagotchi.sendatu();
-		System.out.println("kaka garbitu dut");
-		System.out.println(tamagotchi.kaka);
 	}
 	private void hasieratuPanelNagusia(){
 		setChanged();
@@ -224,7 +220,7 @@ public class Partida extends Observable{
 		if(1<=zenbakia && zenbakia<=30){
 			//this.tamagotchi.gaixorik = true;
 			this.tamagotchi.gaixotu();
-			gaixoBistaratu(this.tamagotchi.gaixorik);
+			gaixoBistaratu(true);
 		}
 	}
 	private boolean minijokoaJokatu(){

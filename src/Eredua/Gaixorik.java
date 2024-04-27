@@ -3,7 +3,6 @@ package src.Eredua;
 public class Gaixorik implements EgoeraGK{
     @Override
     public void sendatu(Tamagotchi tamagotchi) {
-        System.out.println("SSSSSSSSSSSSIIIIIIIIIIIIUUUUUUUUUUU");
         Partida.getPartida().getTamagotchi().setEgoeraGK(new Osasuntsu());
         Partida.getPartida().getTamagotchi().setGaixorik(false);
     }
