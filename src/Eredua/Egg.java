@@ -14,8 +14,8 @@ public class Egg /*implements EgoeraGK*/ extends Tamagotchi{
         tamagotchi.setEgoeraGK(new Kuchipatchi());
     }*/
     
-    public Egg (int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka){
-        super(pBizitza, pAsetasuna, pGaixorik, pKaka);
+    public Egg (int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka, EgoeraGK pEgoeraGK){
+        super(pBizitza, pAsetasuna, pGaixorik, pKaka, pEgoeraGK);
     }
 
     @Override

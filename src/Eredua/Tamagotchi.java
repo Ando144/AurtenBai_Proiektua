@@ -10,12 +10,12 @@ public abstract class Tamagotchi extends Observable{
     private EgoeraGK egoeraGK;
     private EgoeraGK egoeraEboluzioa;
 
-    protected Tamagotchi(int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka) {
+    protected Tamagotchi(int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka, EgoeraGK pEgoeraGK) {
         this.bizitza = pBizitza;
         this.asetasuna = pAsetasuna;
         this.gaixorik = pGaixorik;
         this.kaka = pKaka;
-        this.egoeraGK = new Osasuntsu();
+        this.egoeraGK = pEgoeraGK;
         //this.egoeraEboluzioa = new Egg();
     }
     
@@ -104,14 +104,14 @@ public abstract class Tamagotchi extends Observable{
     public Tamagotchi eboluzionatuTama(){
         Tamagotchi nireTama;
         if(this instanceof Egg){
-            nireTama = new Kuchipatchi(bizitza, asetasuna, gaixorik, kaka);
+            nireTama = new Kuchipatchi(bizitza, asetasuna, gaixorik, kaka, egoeraGK);
         }else if(this instanceof Kuchipatchi){
-            nireTama = new Mimitchi(bizitza, asetasuna, gaixorik, kaka);
+            nireTama = new Mimitchi(bizitza, asetasuna, gaixorik, kaka, egoeraGK);
         }else{
             if((gaixorik==false) && (kaka==false)){
-                nireTama = new Marutchi(bizitza, asetasuna, gaixorik, kaka);
+                nireTama = new Marutchi(bizitza, asetasuna, gaixorik, kaka, egoeraGK);
             }else{
-                nireTama = new Maskutchi(bizitza, asetasuna, gaixorik, kaka);
+                nireTama = new Maskutchi(bizitza, asetasuna, gaixorik, kaka, egoeraGK);
             }
         }
         return nireTama;

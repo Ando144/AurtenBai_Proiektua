@@ -17,7 +17,7 @@ public class Partida extends Observable{
 	public Partida(){
         this.score = 0;
 		this.minijokoaMartxan = false;
-        this.tamagotchi = new Egg(40, 40, false, false);
+        this.tamagotchi = new Egg(40, 40, false, false, new Osasuntsu());
 		this.lausegundo = new Timer();
 		this.lausegundo.scheduleAtFixedRate(new TimerTask() {
             @Override

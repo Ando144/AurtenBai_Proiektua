@@ -2,8 +2,8 @@ package src.Eredua;
 
 public class Mimitchi extends Tamagotchi{
 
-    public Mimitchi(int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka){
-        super(pBizitza, pAsetasuna, pGaixorik, pKaka);
+    public Mimitchi(int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka, EgoeraGK pEgoeraGK){
+        super(pBizitza, pAsetasuna, pGaixorik, pKaka, pEgoeraGK);
     }
 
     @Override

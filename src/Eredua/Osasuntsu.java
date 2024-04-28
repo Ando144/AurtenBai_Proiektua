@@ -2,11 +2,7 @@ package src.Eredua;
 
 public class Osasuntsu implements EgoeraGK{
     @Override
-    public void sendatu(Tamagotchi tamagotchi) {
-        tamagotchi.setEgoeraGK(new Osasuntsu());
-        tamagotchi.setGaixorik(false);
-        tamagotchi.setKaka(false);
-    }
+    public void sendatu(Tamagotchi tamagotchi) {}
 
     @Override
     public void kakaEgin(Tamagotchi tamagotchi) {
