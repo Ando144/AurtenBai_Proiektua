@@ -1,8 +1,8 @@
 package src.Eredua;
 
-public class Egg /*implements EgoeraGK*/ extends Tamagotchi{
+public class Egg implements Egoera /*extends Tamagotchi*/{
 
-    /*@Override
+    @Override
     public void sendatu(Tamagotchi tamagotchi) {}
     @Override
     public void kakaEgin(Tamagotchi tamagotchi) {}
@@ -11,10 +11,19 @@ public class Egg /*implements EgoeraGK*/ extends Tamagotchi{
 
     @Override
     public void eboluzionatu(Tamagotchi tamagotchi) {
-        tamagotchi.setEgoeraGK(new Kuchipatchi());
-    }*/
+        tamagotchi.setEgoeraEbol(new Kuchipatchi());
+    }
+
+    @Override
+    public void kontadoreakEguneratu(Tamagotchi tamagotchi){
+        // Ez dira bizitza ezta asetasuna kendu behar
+    }
+
     
-    public Egg (int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka, EgoeraGK pEgoeraGK){
+
+    // STATE GABE:
+    
+    /*public Egg (int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka, EgoeraGK pEgoeraGK){
         super(pBizitza, pAsetasuna, pGaixorik, pKaka, pEgoeraGK);
     }
 
@@ -35,5 +44,5 @@ public class Egg /*implements EgoeraGK*/ extends Tamagotchi{
         }
 		setChanged();
 		notifyObservers();
-    }
+    }*/
 }

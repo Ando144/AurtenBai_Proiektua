@@ -2,31 +2,31 @@ package src.Eredua;
 
 import java.util.Observable;
 
-public abstract class Tamagotchi extends Observable{
+public class Tamagotchi extends Observable{
     protected int bizitza;
     protected int asetasuna;
     protected boolean gaixorik;
     protected boolean kaka;
-    private EgoeraGK egoeraGK;
-    private EgoeraGK egoeraEboluzioa;
+    private Egoera egoeraGK;
+    private Egoera egoeraEbol;
 
-    protected Tamagotchi(int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka, EgoeraGK pEgoeraGK) {
+    public Tamagotchi(int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka) {
         this.bizitza = pBizitza;
         this.asetasuna = pAsetasuna;
         this.gaixorik = pGaixorik;
         this.kaka = pKaka;
-        this.egoeraGK = pEgoeraGK;
-        //this.egoeraEboluzioa = new Egg();
+        this.egoeraGK = new Osasuntsu();
+        this.egoeraEbol = new Egg();
     }
     
     public String zeinEboluzioDa(){
-        if (this instanceof Egg){
+        if (this.egoeraEbol instanceof Egg){
             return "Egg";
-        }else if (this instanceof Kuchipatchi){
+        }else if (this.egoeraEbol instanceof Kuchipatchi){
             return "Kuchipatchi";
-        }else if (this instanceof Mimitchi){
+        }else if (this.egoeraEbol instanceof Mimitchi){
             return "Mimitchi";
-        }else if (this instanceof Maskutchi){    
+        }else if (this.egoeraEbol instanceof Maskutchi){    
             return "Maskutchi";
         }else{    
             return "Marutchi";
@@ -45,9 +45,11 @@ public abstract class Tamagotchi extends Observable{
     public boolean getGaixorik(){
         return this.gaixorik;
     }
-    public void setEgoeraGK(EgoeraGK pEgoera){
-        this.egoeraGK = null;
+    public void setEgoeraGK(Egoera pEgoera){
         this.egoeraGK = pEgoera;
+    }
+    public void setEgoeraEbol(Egoera pEgoera){
+        this.egoeraEbol = pEgoera;
     }
     public void gaixotu(){
         this.egoeraGK.gaixotu(this);
@@ -58,12 +60,47 @@ public abstract class Tamagotchi extends Observable{
     public void sendatu(){
         this.egoeraGK.sendatu(this);
     }
-    public void setEgoeraEboluzioa(EgoeraGK pEgoera){
-        this.egoeraEboluzioa = pEgoera;
+    public void eboluzionatuTama(){
+        /*Tamagotchi nireTama;
+        if(this instanceof Egg){
+            nireTama = new Kuchipatchi(bizitza, asetasuna, gaixorik, kaka, egoeraGK);
+        }else if(this instanceof Kuchipatchi){
+            nireTama = new Mimitchi(bizitza, asetasuna, gaixorik, kaka, egoeraGK);
+        }else{
+            if((gaixorik==false) && (kaka==false)){                                                STATE GABE
+                nireTama = new Marutchi(bizitza, asetasuna, gaixorik, kaka, egoeraGK);
+            }else{
+                nireTama = new Maskutchi(bizitza, asetasuna, gaixorik, kaka, egoeraGK);
+            }
+        }*/
+        this.egoeraEbol.eboluzionatu(this);                                          //              STATE-EKIN
     }
-    public void eboluzionatu(){
-        this.egoeraEboluzioa.eboluzionatu(this);
+    public void kontadoreakEguneratu(){
+        if (this.kaka){
+            this.osasunaGalduKaka();
+        }
+        else if (this.gaixorik){
+            this.osasunaGalduGaixorik();
+        }
+        this.egoeraEbol.kontadoreakEguneratu(this);
+        if(this.bizitza <= 0){
+            this.bizitza = 0;
+        }
+        if(this.asetasuna <= 0){
+            this.asetasuna = 0;
+        }
+		setChanged();
+		notifyObservers();
     }
+    private void osasunaGalduKaka(){
+        bizitza = bizitza - 5;
+        asetasuna = asetasuna + 10;
+    }
+    private void osasunaGalduGaixorik(){
+        bizitza = bizitza - 7;
+        asetasuna = asetasuna - 5;
+    }
+
     /*public void zeinEgoeraGK(){
         if(this.egoeraGK instanceof Osasuntsu){
             System.out.println("Osasuntsu");
@@ -72,79 +109,5 @@ public abstract class Tamagotchi extends Observable{
         }else if(this.egoeraGK instanceof Gaixorik){
             System.out.println("Gaixorik");
         }
-    }
-
-   /* public void jokoaEgin(){
-        if (bizirikDago()){
-            if (kaka){
-                osasunaGalduKaka();
-            }
-            if (gaixorik){
-                osasunaGalduGaixorik();
-            }
-        }
-        kontadoreakEguneratu();
     }*/
-    
-    public abstract void kontadoreakEguneratu(); 
-   // public abstract void bihotzakEguneratu(int multiplikatzaile1);
-    //public abstract void katiluakEguneratu(int multiplikatzaile2 );
-  //  public abstract int getBizitzaTama();
-    //public abstract int getAseTama();
-    protected void osasunaGalduKaka(){
-        bizitza = bizitza - 5;
-        asetasuna = asetasuna + 10;
-    }
-
-    protected void osasunaGalduGaixorik(){
-        bizitza = bizitza - 7;
-        asetasuna = asetasuna - 5;
-    }
-
-    public Tamagotchi eboluzionatuTama(){
-        Tamagotchi nireTama;
-        if(this instanceof Egg){
-            nireTama = new Kuchipatchi(bizitza, asetasuna, gaixorik, kaka, egoeraGK);
-        }else if(this instanceof Kuchipatchi){
-            nireTama = new Mimitchi(bizitza, asetasuna, gaixorik, kaka, egoeraGK);
-        }else{
-            if((gaixorik==false) && (kaka==false)){
-                nireTama = new Marutchi(bizitza, asetasuna, gaixorik, kaka, egoeraGK);
-            }else{
-                nireTama = new Maskutchi(bizitza, asetasuna, gaixorik, kaka, egoeraGK);
-            }
-        }
-        return nireTama;
-    }
-
-    /* public Tamagotchi eboluzionatuTama2(boolean kaka, boolean gaixorik){
-       Tamagotchi nireTama= new Mimitchi(/*bizitza, asetasuna, gaixorik, kaka);
-       return nireTama;
-    }
-    public void katiluakEguneratu2(int multi2){     
-        this.asetasuna = this.asetasuna +(10*multi2);
-    } */
-    /*public int getBizitza(){
-        return this.bizitza;
-    }*/
-   /* public int getAsetasuna(){
-        return this.asetasuna;
-    }*/
-    /*public void bihotzakEguneratu(int multi1){
-        this.bizitza=this.bizitza +(10*multi1);
-    }*/
-   /* public void katiluakEguneratu(int multi2){
-        this.asetasuna=this.asetasuna +(10*multi2);
-    }
-   public Tamagotchi azkenEbol(boolean kaka, boolean gaixo){
-        Tamagotchi nireTama = this.getTamagotchi();
-        if((gaixo==false) && (kaka==false)){
-            nireTama = new Marutchi(/*bizitza, asetasuna, gaixorik, kaka);
-        }
-        else{
-            nireTama = new Maskutchi(/*bizitza, asetasuna, gaixorik, kaka);
-        }
-        return nireTama;
-   }*/
-
 }

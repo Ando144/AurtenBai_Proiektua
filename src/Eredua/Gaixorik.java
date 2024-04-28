@@ -1,6 +1,6 @@
 package src.Eredua;
 
-public class Gaixorik implements EgoeraGK{
+public class Gaixorik implements Egoera{
     @Override
     public void sendatu(Tamagotchi tamagotchi) {
         Partida.getPartida().getTamagotchi().setEgoeraGK(new Osasuntsu());
@@ -15,4 +15,8 @@ public class Gaixorik implements EgoeraGK{
 
     @Override
     public void eboluzionatu(Tamagotchi tamagotchi) {}
+
+    @Override
+    public void kontadoreakEguneratu(Tamagotchi tamagotchi){}
+
 }

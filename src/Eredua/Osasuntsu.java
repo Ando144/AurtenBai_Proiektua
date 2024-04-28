@@ -1,6 +1,6 @@
 package src.Eredua;
 
-public class Osasuntsu implements EgoeraGK{
+public class Osasuntsu implements Egoera{
     @Override
     public void sendatu(Tamagotchi tamagotchi) {}
 
@@ -18,5 +18,8 @@ public class Osasuntsu implements EgoeraGK{
 
     @Override
     public void eboluzionatu(Tamagotchi tamagotchi) {}
+
+    @Override
+    public void kontadoreakEguneratu(Tamagotchi tamagotchi) {}
     
 }

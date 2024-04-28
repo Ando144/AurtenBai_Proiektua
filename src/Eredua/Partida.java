@@ -17,7 +17,7 @@ public class Partida extends Observable{
 	public Partida(){
         this.score = 0;
 		this.minijokoaMartxan = false;
-        this.tamagotchi = new Egg(40, 40, false, false, new Osasuntsu());
+        this.tamagotchi = new Tamagotchi(40, 40, false, false);
 		this.lausegundo = new Timer();
 		this.lausegundo.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -251,7 +251,7 @@ public class Partida extends Observable{
 	}
 	private void tamagotchiEguneratu( ){
 		String izena =this.tamagotchi.zeinEboluzioDa();
-		System.out.println(izena);
+		//System.out.println(izena);
 		if (izena == "Marutchi") {
 			setChanged();
 			notifyObservers(15);
@@ -271,10 +271,8 @@ public class Partida extends Observable{
 
 	}
 	private void eboluzionatuTamagotchi(){
-		if(tamagotchi instanceof Egg || tamagotchi instanceof Kuchipatchi || tamagotchi instanceof Mimitchi){
-			tamagotchi = tamagotchi.eboluzionatuTama();
-			tamagotchiEguneratu();
-		}
+		tamagotchi.eboluzionatuTama();
+		tamagotchiEguneratu();
 	}
 	public int getScore(){
 		return score;

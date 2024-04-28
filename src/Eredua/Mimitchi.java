@@ -1,8 +1,30 @@
 package src.Eredua;
 
-public class Mimitchi extends Tamagotchi{
+public class Mimitchi implements Egoera /*extends Tamagotchi*/{
 
-    public Mimitchi(int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka, EgoeraGK pEgoeraGK){
+    @Override
+    public void sendatu(Tamagotchi tamagotchi) {}
+    @Override
+    public void kakaEgin(Tamagotchi tamagotchi) {}
+    @Override
+    public void gaixotu(Tamagotchi tamagotchi) {}
+
+    @Override
+    public void eboluzionatu(Tamagotchi tamagotchi) {
+        if(tamagotchi.kaka || tamagotchi.gaixorik){
+            tamagotchi.setEgoeraEbol(new Maskutchi());
+        }else{
+            tamagotchi.setEgoeraEbol(new Marutchi());
+        }
+    }
+
+    @Override
+    public void kontadoreakEguneratu(Tamagotchi tamagotchi){
+        tamagotchi.bizitza -= 7;
+        tamagotchi.asetasuna -= 7;
+    }
+
+    /*public Mimitchi(int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka, EgoeraGK pEgoeraGK){
         super(pBizitza, pAsetasuna, pGaixorik, pKaka, pEgoeraGK);
     }
 
@@ -25,5 +47,5 @@ public class Mimitchi extends Tamagotchi{
         }
 		setChanged();
 		notifyObservers();
-    }
+    }*/
 }
