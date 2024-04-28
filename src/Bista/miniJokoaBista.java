@@ -101,7 +101,7 @@ public class miniJokoaBista extends JFrame implements Observer{
 
         puntosPanel = new JPanel();
         puntosPanel.setLayout(new BoxLayout(puntosPanel, BoxLayout.X_AXIS));
-        puntosLabel = new JLabel("Puntuazioa: 0");
+        puntosLabel = new JLabel("Puntuazioa: " + Partida.getPartida().getScore())  ;
         //Aqui hay que llamar a la clase de monge para ponerle puntos
         //tambien hay que hacer para que se actualize la puntuacion si se gana el juego
         puntosPanel.add(puntosLabel);
@@ -153,6 +153,7 @@ public class miniJokoaBista extends JFrame implements Observer{
             
             JLabel mensajeLabel = new JLabel("GALDU DUZU!");
             panel.add(mensajeLabel);
+            Minijokoa.setFlag(true);
             Partida.getPartida().sumarPuntuacion(-20);
 
             panel.add(getAceptarButton());
@@ -187,8 +188,10 @@ public class miniJokoaBista extends JFrame implements Observer{
     }
     private void itzali()
     {
+        
         perdedorFrame.dispose();
         ganadorFrame.dispose();
+        Minijokoa.getMinijokoa().apagarTimer();
     }
     public void irabaziDu()
     {
@@ -399,6 +402,7 @@ public class miniJokoaBista extends JFrame implements Observer{
                     Minijokoa.getMinijokoa().apagarMinijokoa();
                     Partida.getPartida().minijokoaAmaituDa();
                     Partida.getPartida().setMinijokoaMartxan(false);
+                
                     
                     ganadorFrame.dispose();
                     perdedorFrame.dispose();

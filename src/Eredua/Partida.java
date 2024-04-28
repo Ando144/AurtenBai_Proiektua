@@ -313,6 +313,7 @@ public class Partida extends Observable{
 		setChanged();
 		notifyObservers(19);
 	}
+	
 	public boolean amaituDa( ){
 		//int zenb = tamagotchi.getBizitza();
 		//int zenb1= tamagotchi.getAsetasuna();

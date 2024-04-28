@@ -17,6 +17,7 @@ public class Minijokoa extends Observable{
    private static int tamagochiZutabea;
    private static int tartaLerroa;
    private static int tartaZutabea;
+   private static boolean flag = false;
    private static int xAnterior;
     private static int yAnterior;
     private Timer timer;
@@ -28,7 +29,6 @@ public class Minijokoa extends Observable{
         if(NireMinijokoa == null)
         {
             NireMinijokoa = new Minijokoa();
-            NireMinijokoa.timer = new Timer();
 
         }
         return NireMinijokoa;
@@ -275,8 +275,9 @@ public class Minijokoa extends Observable{
     }
     private void AktBuklea()
     {
-
-       while (!irabaziDu()) {
+        flag = false;
+       while (!irabaziDu() && !flag)
+        {
             setChanged();
             notifyObservers("laukiAktualizatu");
             setChanged();
@@ -288,9 +289,19 @@ public class Minijokoa extends Observable{
             }
 
         }
-        setChanged();
-        notifyObservers("irabaziDu");
-        NireMinijokoa.timer.cancel();
+        if(irabaziDu())
+        {
+            timer.cancel();
+            setChanged();
+            notifyObservers("irabaziDu");
+        }
+        else
+        {
+            timer.cancel();
+            setChanged();
+            notifyObservers("galduDu");
+        }
+       
 
     }
     public void laukiaAktualizatu(int lerroa, int zutabea)
@@ -304,12 +315,14 @@ public class Minijokoa extends Observable{
         if (laukiak[lerroa][zutabea].getIndarra() == 1)
         {
             laukiak[lerroa][zutabea].ikutu();
+            Partida.getPartida().sumarPuntuacion(1);
             setChanged();
             notifyObservers("laukiAktualizatu");//cambiar el color del panel
             //convertirlo en invisible
         }
         else if (laukiak[lerroa][zutabea].getIndarra() == 2)
         {
+            Partida.getPartida().sumarPuntuacion(2);
             laukiak[lerroa][zutabea].ikutu();
             setChanged();
             notifyObservers("laukiAktualizatu");//cambiar el color del panel
@@ -317,11 +330,17 @@ public class Minijokoa extends Observable{
         }
         else if (laukiak[lerroa][zutabea].getIndarra() == 3)
         {
+            Partida.getPartida().sumarPuntuacion(3);
             laukiak[lerroa][zutabea].ikutu();
             setChanged();
             notifyObservers("laukiAktualizatu");//cambiar el color del panel
 
         }
+    }
+
+    public static void setFlag(boolean x)
+    {
+        flag = x;
     }
     public static boolean irabaziDu()
     {
@@ -344,6 +363,11 @@ public class Minijokoa extends Observable{
             elapsedTime = System.currentTimeMillis() - startTime;
         }
         return true;
+        
+    }
+    public void apagarTimer()
+    {
+        timer.cancel();
     }
     public void apagarMinijokoa()
     {
