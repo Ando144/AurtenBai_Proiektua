@@ -185,16 +185,14 @@ public class PartidaErregistro extends Observable{
 				j++;
 			}
 			FileWriter fw1 = new FileWriter(file);
-			BufferedWriter writer = new BufferedWriter(fw1);
+			BufferedWriter writer2 = new BufferedWriter(fw1);
 			i = 0;
 			while (i < 5) {
-				writer.write(izenakAux[i] + " ### " + scoreakAux[i]);
-				writer.newLine();
+				writer2.write(izenakAux[i] + " ### " + scoreakAux[i]);
+				writer2.newLine();
 				i++;
 			}
-			writer.close();
-			setChanged();
-			notifyObservers();
+			writer2.close();
 		}
 		catch(IOException e) {e.printStackTrace();}
 
