@@ -172,6 +172,29 @@ public class PartidaErregistro extends Observable{
 			this.hirSc="0";
 			this.lauSc="0";
 			this.bosSc="0";
+			String[] izenak = {leh, big, hir, lau, bos};
+			String[] scoreak = {lehSc, bigSc, hirSc, lauSc, bosSc};
+			String[] izenakAux = new String[5];
+			String[] scoreakAux = new String[5];
+			int i = 0;
+			int j = 0;
+			while (j < 5) {
+				izenakAux[j] = izenak[i];
+				scoreakAux[j] = scoreak[i];
+				i++;
+				j++;
+			}
+			FileWriter fw1 = new FileWriter(file);
+			BufferedWriter writer = new BufferedWriter(fw1);
+			i = 0;
+			while (i < 5) {
+				writer.write(izenakAux[i] + " ### " + scoreakAux[i]);
+				writer.newLine();
+				i++;
+			}
+			writer.close();
+			setChanged();
+			notifyObservers();
 		}
 		catch(IOException e) {e.printStackTrace();}
 
