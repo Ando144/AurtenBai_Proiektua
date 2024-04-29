@@ -492,6 +492,13 @@ public class panelNagusia extends JFrame implements Observer{
 			//System.out.println("--------------Obvserver 19----------------");
 				PuntuazioaEguneratuEtaBistaratu();
 				break;
+			case 20:
+				marutchiKaka();
+				break;
+			case 21:
+				marutchiGaixo();
+				break;
+			
 		}
 	}
 	private void lauBihotzJarri(){
@@ -593,7 +600,7 @@ public class panelNagusia extends JFrame implements Observer{
 		TamaIrudiak= new ImageIcon[] {
 			new ImageIcon((this.getClass().getResource("/sprites/Marutchi1.png"))),
 			new ImageIcon((this.getClass().getResource("/sprites/Marutchi2.png"))),
-			new ImageIcon((this.getClass().getResource("/sprites/Marutchi3.png"))),
+			//new ImageIcon((this.getClass().getResource("/sprites/Marutchi3.png"))),
 			new ImageIcon((this.getClass().getResource("/sprites/Marutchi2.png")))
 		};
 		timer = new Timer(1000, new ActionListener() {
@@ -656,6 +663,16 @@ public class panelNagusia extends JFrame implements Observer{
 		Puntuazioa.setForeground(new Color(255, 255, 255));
 		Puntuazioa.setBounds(282, 4, 45, 13);
 		Puntuazioa.setText(Integer.toString(aldagaia));
+	}
+	private void marutchiKaka(){
+		TamaIrudiak= new ImageIcon[]{
+			new ImageIcon((this.getClass().getResource("/sprites/Marutchi3.png")))
+		};
+	}
+	private void marutchiGaixo(){
+		TamaIrudiak= new ImageIcon[]{
+			new ImageIcon((this.getClass().getResource("/sprites/Marutchi3.png")))
+		};
 	}
 	/*private boolean panelContains(JPanel panel, JLabel label) {
 		for (Component component : panel.getComponents()) {

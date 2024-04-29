@@ -237,15 +237,24 @@ public class Partida extends Observable{
 		}
 	}
 	private void kakaBistaratu(boolean kaka){
+		String izena=this.tamagotchi.zeinEboluzioDa();
 		if(kaka==true){
 			setChanged();
 			notifyObservers(12);
+			if (izena == "Marutchi") {
+				setChanged();
+				notifyObservers(20);
+			}
 		}
 	}
 	private  void gaixoBistaratu(boolean gaixo){
 		if(gaixo==true){
 			setChanged();
 			notifyObservers(13);
+			if (izena == "Marutchi") {
+				setChanged();
+				notifyObservers(21);
+			}
 		}
 	}
 	private void tamagotchiEguneratu( ){
