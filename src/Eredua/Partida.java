@@ -60,10 +60,11 @@ public class Partida extends Observable{
 		Partida.partida = null;
 	}
 
-	public static void main(String[] args) {
+	//NO HACE FALTA EL MAIN AQUÍ
+	/*public static void main(String[] args) {
 		Partida.getPartida().PartidaHasiera();
 	}
-
+*/
     public void PartidaHasiera(){
 		new panelNagusia(this);
 		//frame.setVisible(true);
