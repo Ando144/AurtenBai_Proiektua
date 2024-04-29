@@ -48,7 +48,6 @@ public class Partida extends Observable{
     {
         if(Partida.partida == null)
         {
-			System.out.println("partida berria egin da");
             Partida.partida = new Partida();
         }
         return Partida.partida;
@@ -119,7 +118,7 @@ public class Partida extends Observable{
 		System.out.println(ase);
 		//this.tamagotchi.bizitza = this.tamagotchi.bizitza + biz;
 		if(biz!=0){
-			Puntuacion= Puntuacion+(biz * 3);
+			Puntuacion= Puntuacion+(biz * 3)-1;
 			//score = score + punt;
 			//this.tamagotchi.bihotzakEguneratu(biz);
 			this.tamagotchi.bizitza = this.tamagotchi.bizitza +(10 * biz);
@@ -128,14 +127,14 @@ public class Partida extends Observable{
 			scoreEguneratu();
 		}
 		if (ase!=0) {
-			Puntuacion= Puntuacion+(ase * 3);
+			Puntuacion= Puntuacion+(ase * 3)-1;
 			score = score + punt;
 			this.tamagotchi.asetasuna = this.tamagotchi.asetasuna +(10 * ase);
 			sopakEguneratu();
 			scoreEguneratu();
 		}
 		if(biz!=0 && ase!=0){
-			Puntuacion=Puntuacion+((ase + biz)*(ase *3 + biz *3));
+			Puntuacion=Puntuacion+((ase + biz)*(ase *3 + biz *3))-1;
 			//score= score + punt;
 			scoreEguneratu();
 		}
