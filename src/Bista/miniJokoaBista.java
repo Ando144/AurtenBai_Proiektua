@@ -339,7 +339,7 @@ public class miniJokoaBista extends JFrame implements Observer{
 
     private static class CustomMouseListener extends MouseAdapter 
     {
-        private int lerroa;
+        private int lerroa;           // HAU KENDU
         private int zutabea;
         
         public CustomMouseListener(int lerroa, int zutabea)

@@ -8,7 +8,7 @@ public abstract class Gelaxka extends Observable{
             this.indarra=pIndarra;
         }
         public void ikutu(){
-            this.indarra-=1;
+            this.indarra-=1; //HACER EL CAMBIO A LA BISTA
         }
         public int getIndarra(){
             return this.indarra;

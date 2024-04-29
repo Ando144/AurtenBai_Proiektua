@@ -12,6 +12,8 @@ public class Partida extends Observable{
     private Tamagotchi tamagotchi;
 	private boolean minijokoaMartxan;
 	private Timer lausegundo;
+	private int piruletak;
+	private int koilarak;
 	private static Partida partida = null;
 
 	public Partida(){
@@ -19,6 +21,8 @@ public class Partida extends Observable{
 		this.minijokoaMartxan = false;
         this.tamagotchi = new Tamagotchi(40, 40, false, false);
 		this.lausegundo = new Timer();
+		this.piruletak = 0;
+		this.koilarak = 0;
 		this.lausegundo.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -98,8 +102,11 @@ public class Partida extends Observable{
 		setChanged();
 		notifyObservers(1);
 	}
-	public void tamaJan(int biz, int ase){
+	public void tamaJan(){
 		int punt=0;
+		int biz = this.piruletak;
+		int ase = this.koilarak;
+		this.piruletak = 0; this.koilarak = 0; 
 		System.out.println(biz);
 		System.out.println(ase);
 		if(biz!=0){
@@ -320,5 +327,11 @@ public class Partida extends Observable{
 	}
 	public void sumarPuntuacion(int puntuacion){
 		Puntuacion = Puntuacion + puntuacion;
+	}
+	public void gehituPiruleta(){
+		this.piruletak++;
+	}
+	public void gehituKoilara(){
+		this.koilarak++;
 	}
 }

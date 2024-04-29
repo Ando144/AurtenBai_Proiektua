@@ -63,8 +63,6 @@ public class panelNagusia extends JFrame implements Observer{
 	private JLabel koilara2;
 	private JLabel koilara3;
 	private JLabel tamagotchiIrudi;
-	private int kontadorea1 = 0;
-	private int kontadorea2 = 0;
 	private int puntuazioa;
 	private int offsetx,offsety;
 	private Kontroladorea getKontroladorea(){
@@ -704,27 +702,27 @@ public class panelNagusia extends JFrame implements Observer{
 				getgaixoIrudi().setVisible(false);
 				Partida.getPartida().tamaBirusKendu();
 			}else if(e.getSource().equals(panel_candy)){
-				kontadorea1++;
-				//System.out.println("clikatu da piruleta "+kontadorea1+" aldiz");
-				
 				if(getCandy3().isVisible()){
 				}else if(getCandy2().isVisible()){
+					Partida.getPartida().gehituPiruleta();
 					getCandy3().setVisible(true);
 				}else if(getCandy1().isVisible()){
+					Partida.getPartida().gehituPiruleta();
 					getCandy2().setVisible(true);
 				}else{	
+					Partida.getPartida().gehituPiruleta();
 					getCandy1().setVisible(true);
 				}
 			}else if(e.getSource().equals(panel__soup)){
-				kontadorea2++;
-				//System.out.println("clikatu da sopa "+kontadorea2+" aldiz");
-				
 				if(getKoilara3().isVisible()){
 				}else if(getKoilara2().isVisible()){
+					Partida.getPartida().gehituKoilara();
 					getKoilara3().setVisible(true);
 				}else if(getKoilara1().isVisible()){
+					Partida.getPartida().gehituKoilara();
 					getKoilara2().setVisible(true);
 				}else{	
+					Partida.getPartida().gehituKoilara();
 					getKoilara1().setVisible(true);
 				}
 			}else if(e.getSource().equals(panel_tamagochi)){
@@ -749,10 +747,7 @@ public class panelNagusia extends JFrame implements Observer{
 					getKoilara1().setVisible(false);
 				}
 				//System.out.println("ikutu da tamagotchi");
-				Partida.getPartida().tamaJan(kontadorea1,kontadorea2);
-				kontadorea1=0;
-				kontadorea2=0;
-				
+				Partida.getPartida().tamaJan();
 			}
 		}
 		/*public void bihotzakEtaSopakGehitu(int kont1, int kont2){
