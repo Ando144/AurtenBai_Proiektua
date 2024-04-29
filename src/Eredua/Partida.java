@@ -25,10 +25,10 @@ public class Partida extends Observable{
 				if(!minijokoaMartxan && !amaituDa()){
 					Partida.getPartida().minijokoaJokatu();
 					scoreEguneratu();
+					Partida.getPartida().eboluzionatuTamagotchi();
 					if(Partida.getPartida().getGaixorik()==false && Partida.getPartida().getKaka()==false) {
 						Partida.getPartida().kakaEgin();
 					}
-					Partida.getPartida().eboluzionatuTamagotchi();
 					Partida.getPartida().tamagotchi.kontadoreakEguneratu();
 					bihotzakEguneratu();
 					sopakEguneratu();
@@ -60,25 +60,10 @@ public class Partida extends Observable{
 		Partida.partida = null;
 	}
 
-	//NO HACE FALTA EL MAIN AQUÍ
-	/*public static void main(String[] args) {
-		Partida.getPartida().PartidaHasiera();
-	}
-*/
     public void PartidaHasiera(){
 		new panelNagusia(this);
-		//frame.setVisible(true);
-		//this.hasieratuPanelNagusia();
-		//this.partidaBuklea();
 	} 
 
-	/*public void partidaBuklea(){
-		while(!amaituDa()){		
-			this.bihotzakEguneratu();
-			this.sopakEguneratu();
-		}
-		lausegundo.cancel();
-	}*/
 	public void setIzena(String izena){
 		if(izena.length() > 0){
 			this.izena = izena;
@@ -117,11 +102,8 @@ public class Partida extends Observable{
 		int punt=0;
 		System.out.println(biz);
 		System.out.println(ase);
-		//this.tamagotchi.bizitza = this.tamagotchi.bizitza + biz;
 		if(biz!=0){
 			Puntuacion= Puntuacion+(biz * 3)-1;
-			//score = score + punt;
-			//this.tamagotchi.bihotzakEguneratu(biz);
 			this.tamagotchi.bizitza = this.tamagotchi.bizitza +(10 * biz);
 			System.out.println(this.tamagotchi.bizitza+" bizitzan sartu nahiz");
 			bihotzakEguneratu();
@@ -136,7 +118,6 @@ public class Partida extends Observable{
 		}
 		if(biz!=0 && ase!=0){
 			Puntuacion=Puntuacion+((ase + biz)*(ase *3 + biz *3))-1;
-			//score= score + punt;
 			scoreEguneratu();
 		}
 	}
@@ -195,14 +176,13 @@ public class Partida extends Observable{
             notifyObservers(6);
 		}
 	}
-	private void kakaEgin(){ //mira si se hace kk
+	private void kakaEgin(){
 		Random probabilitatea = new Random();
 		System.out.println("KAIXO");
 		int zenbakia = probabilitatea.nextInt(101);
 		System.out.println("kaka zenb "+zenbakia);
 		if(1<=zenbakia && zenbakia<=20 && this.tamagotchi.kaka==false){
 			//this.tamagotchi.setKaka(true);
-			//REVISAR-------------------------------------!!!
 			this.tamagotchi.kakaEgin();
 			kakaBistaratu(true);
 		}
@@ -323,9 +303,6 @@ public class Partida extends Observable{
 	}
 	
 	public boolean amaituDa( ){
-		//int zenb = tamagotchi.getBizitza();
-		//int zenb1= tamagotchi.getAsetasuna();
-		//int zenb=tamagotchi.getBizitza();
 		int b = this.tamagotchi.bizitza;
 		int a = this.tamagotchi.asetasuna;
 		boolean amaitu =false;
