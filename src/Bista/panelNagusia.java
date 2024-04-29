@@ -705,7 +705,7 @@ public class panelNagusia extends JFrame implements Observer{
 				Partida.getPartida().tamaBirusKendu();
 			}else if(e.getSource().equals(panel_candy)){
 				kontadorea1++;
-				System.out.println("clikatu da piruleta "+kontadorea1+" aldiz");
+				//System.out.println("clikatu da piruleta "+kontadorea1+" aldiz");
 				
 				if(getCandy3().isVisible()){
 				}else if(getCandy2().isVisible()){
@@ -717,7 +717,7 @@ public class panelNagusia extends JFrame implements Observer{
 				}
 			}else if(e.getSource().equals(panel__soup)){
 				kontadorea2++;
-				System.out.println("clikatu da sopa "+kontadorea2+" aldiz");
+				//System.out.println("clikatu da sopa "+kontadorea2+" aldiz");
 				
 				if(getKoilara3().isVisible()){
 				}else if(getKoilara2().isVisible()){
@@ -748,7 +748,7 @@ public class panelNagusia extends JFrame implements Observer{
 				}else if(getKoilara1().isVisible()){
 					getKoilara1().setVisible(false);
 				}
-				System.out.println("ikutu da tamagotchi");
+				//System.out.println("ikutu da tamagotchi");
 				Partida.getPartida().tamaJan(kontadorea1,kontadorea2);
 				kontadorea1=0;
 				kontadorea2=0;

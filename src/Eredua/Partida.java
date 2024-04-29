@@ -112,7 +112,7 @@ public class Partida extends Observable{
 		setChanged();
 		notifyObservers(1);
 	}
-	public int tamaJan(int biz, int ase){
+	public void tamaJan(int biz, int ase){
 		int punt=0;
 		System.out.println(biz);
 		System.out.println(ase);
@@ -138,7 +138,6 @@ public class Partida extends Observable{
 			//score= score + punt;
 			scoreEguneratu();
 		}
-		return punt;
 	}
 
     private void bihotzakEguneratu() {
