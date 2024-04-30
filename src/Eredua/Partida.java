@@ -134,6 +134,8 @@ public class Partida extends Observable{
 
     private void bihotzakEguneratu() {
 		if(this.tamagotchi.bizitza > 41){
+			score= score - 6;
+			scoreEguneratu();
 			this.tamagotchi.bizitza = 35;
 		}
 		
@@ -160,10 +162,9 @@ public class Partida extends Observable{
 	}
     private void sopakEguneratu() {
 		if (this.tamagotchi.asetasuna>41){
-			diferencia = this.tamagotchi.asetasuna-40;
-			
-			this.tamagotchi.asetasuna = this.tamagotchi.asetasuna - diferencia - 5 ;
-
+			score= score - 6;
+			scoreEguneratu();
+			this.tamagotchi.asetasuna = 35;
 		}
 		if (this.tamagotchi.asetasuna>=31) {
 			setChanged();
@@ -289,12 +290,12 @@ public class Partida extends Observable{
 		if (this.tamagotchi.zeinEboluzioDa().equals("Marutchi")){
 			score =score + 20;
 		}
-		if(this.tamagotchi.bizitza>40){
+		/*if(this.tamagotchi.bizitza>40){
 			score = score -5;
 		}
 		if(this.tamagotchi.asetasuna>40){
 			score = score -5;
-		}
+		}*/
 		/*Minijokoa minijokoa=Minijokoa.getMinijokoa();
 		if(minijokoa.irabaziDu()==true){
 			Puntuacion =Puntuacion + 20;
@@ -304,9 +305,9 @@ public class Partida extends Observable{
 		}*/
 
 		//si se da una piruleta o sopa +5 
-		if(score<0){
+		/*if(score<0){
 			score=0;
-		}
+		}*/
 		//score = Puntuacion;
 		setChanged();
 		notifyObservers(19);
