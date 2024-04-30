@@ -29,21 +29,19 @@ public class Partida extends Observable{
             @Override
             public void run() {
 				if(!minijokoaMartxan && !amaituDa()){
-					Partida.getPartida().minijokoaJokatu();
+					minijokoaJokatu();
 					scoreEguneratu();
-					Partida.getPartida().eboluzionatuTamagotchi();
-					if(Partida.getPartida().getGaixorik()==false && Partida.getPartida().getKaka()==false) {
-						Partida.getPartida().kakaEgin();
-					}
-					Partida.getPartida().tamagotchi.kontadoreakEguneratu();
+					eboluzioaSaiatu();
+					kakaEdoGaixoSaiatu();
+					tamagotchi.kontadoreakEguneratu();
 					bihotzakEguneratu();
 					sopakEguneratu();
-					System.out.println("--------------------------BIZITZA:    "+Partida.getPartida().tamagotchi.bizitza);
-					System.out.println("--------------------------ASETASUNA:  "+Partida.getPartida().tamagotchi.asetasuna);
-					System.out.println("--------------------------KAKA:    "+Partida.getPartida().tamagotchi.kaka);
-					System.out.println("--------------------------GAIXO:  "+Partida.getPartida().tamagotchi.gaixorik);
+					System.out.println("--------------------------BIZITZA:     "+Partida.getPartida().tamagotchi.bizitza);
+					System.out.println("--------------------------ASETASUNA:   "+Partida.getPartida().tamagotchi.asetasuna);
+					System.out.println("--------------------------KAKA:        "+Partida.getPartida().tamagotchi.kaka);
+					System.out.println("--------------------------GAIXO:       "+Partida.getPartida().tamagotchi.gaixorik);
 				}
-            }
+            }		
         }, 4000, 4000);
     }
 	public void setMinijokoaMartxan(boolean pMinijokoaMartxan){
@@ -67,7 +65,7 @@ public class Partida extends Observable{
 	}
 
     public void PartidaHasiera(){
-		new panelNagusia(this);
+		new panelNagusia(this, this.tamagotchi);
 	} 
 
 	public void setIzena(String izena){
@@ -187,31 +185,8 @@ public class Partida extends Observable{
             notifyObservers(6);
 		}
 	}
-	private void kakaEgin(){
-		Random probabilitatea = new Random();
-		System.out.println("KAIXO");
-		int zenbakia = probabilitatea.nextInt(101);
-		System.out.println("kaka zenb "+zenbakia);
-		if(1<=zenbakia && zenbakia<=20 && this.tamagotchi.kaka==false){
-			//this.tamagotchi.setKaka(true);
-			this.tamagotchi.kakaEgin();
-			kakaBistaratu(true);
-		}
-		else{
-			System.out.println("kaka ez du egin");
-			this.tamagotchi.setKaka(false);
-			gaixorikEgon();
-		}
-	}
-	private void gaixorikEgon(){
-		Random probabilitatea = new Random();
-		int zenbakia = probabilitatea.nextInt(101);
-		System.out.println("gaixo zenb "+zenbakia);
-		if(1<=zenbakia && zenbakia<=30){
-			//this.tamagotchi.gaixorik = true;
-			this.tamagotchi.gaixotu();
-			gaixoBistaratu(true);
-		}
+	private void kakaEdoGaixoSaiatu(){
+		tamagotchi.kakaEdoGaixoSaiatu();
 	}
 	private boolean minijokoaJokatu(){
 		Random probabilitatea = new Random();
@@ -227,51 +202,8 @@ public class Partida extends Observable{
 			return false;
 		}
 	}
-	private void kakaBistaratu(boolean kaka){
-		String izena=this.tamagotchi.zeinEboluzioDa();
-		if(kaka==true){
-			setChanged();
-			notifyObservers(12);
-			if (izena == "Marutchi") {
-				setChanged();
-				notifyObservers(20);
-			}
-		}
-	}
-	private  void gaixoBistaratu(boolean gaixo){
-		if(gaixo==true){
-			setChanged();
-			notifyObservers(13);
-			if (izena == "Marutchi") {
-				setChanged();
-				notifyObservers(21);
-			}
-		}
-	}
-	private void tamagotchiEguneratu( ){
-		String izena =this.tamagotchi.zeinEboluzioDa();
-		//System.out.println(izena);
-		if (izena == "Marutchi") {
-			setChanged();
-			notifyObservers(15);
-		}
-		if (izena == "Kuchipatchi") {
-			setChanged();
-			notifyObservers(17);
-		}
-		if (izena == "Maskutchi") {
-			setChanged();
-			notifyObservers(18);
-		}
-		if (izena == "Mimitchi") {
-			setChanged();
-			notifyObservers(16);
-		}
-
-	}
-	private void eboluzionatuTamagotchi(){
+	private void eboluzioaSaiatu(){
 		tamagotchi.eboluzionatuTama();
-		tamagotchiEguneratu();
 	}
 	public int getScore(){
 		return score;
@@ -287,10 +219,10 @@ public class Partida extends Observable{
 		if (this.tamagotchi.kaka==true){
 			score =score - 5;
 		}
-		if (this.tamagotchi.zeinEboluzioDa().equals("Marutchi")){
+		/*if (this.tamagotchi.zeinEboluzioDa().equals("Marutchi")){
 			score =score + 20;
 		}
-		/*if(this.tamagotchi.bizitza>40){
+		if(this.tamagotchi.bizitza>40){
 			score = score -5;
 		}
 		if(this.tamagotchi.asetasuna>40){

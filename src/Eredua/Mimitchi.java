@@ -15,6 +15,7 @@ public class Mimitchi implements Egoera /*extends Tamagotchi*/{
             tamagotchi.setEgoeraEbol(new Maskutchi());
         }else{
             tamagotchi.setEgoeraEbol(new Marutchi());
+            Partida.getPartida().sumarPuntuacion(20);
         }
     }
 

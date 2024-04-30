@@ -1,6 +1,7 @@
 package src.Eredua;
 
 import java.util.Observable;
+import java.util.Random;
 
 public class Tamagotchi extends Observable{
     protected int bizitza;
@@ -9,6 +10,7 @@ public class Tamagotchi extends Observable{
     protected boolean kaka;
     private Egoera egoeraGK;
     private Egoera egoeraEbol;
+    private int kontTimerZikloak;
 
     public Tamagotchi(int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka) {
         this.bizitza = pBizitza;
@@ -17,6 +19,7 @@ public class Tamagotchi extends Observable{
         this.kaka = pKaka;
         this.egoeraGK = new Osasuntsu();
         this.egoeraEbol = new Egg();
+        this.kontTimerZikloak = 0;
     }
     
     public String zeinEboluzioDa(){
@@ -73,8 +76,34 @@ public class Tamagotchi extends Observable{
                 nireTama = new Maskutchi(bizitza, asetasuna, gaixorik, kaka, egoeraGK);
             }
         }*/
-        this.egoeraEbol.eboluzionatu(this);                                          //              STATE-EKIN
+        kontTimerZikloak++;
+        if(kontTimerZikloak == 3){
+            this.egoeraEbol.eboluzionatu(this);                                          //              STATE-EKIN
+            tamagotchiEguneratu();
+            kontTimerZikloak = 0;
+        }
     }
+	private void tamagotchiEguneratu( ){
+		String izena =this.zeinEboluzioDa();
+		//System.out.println(izena);
+		if (izena == "Marutchi") {
+			setChanged();
+			notifyObservers(15);
+		}
+		if (izena == "Kuchipatchi") {
+			setChanged();
+			notifyObservers(17);
+		}
+		if (izena == "Maskutchi") {
+			setChanged();
+			notifyObservers(18);
+		}
+		if (izena == "Mimitchi") {
+			setChanged();
+			notifyObservers(16);
+		}
+
+	}
     public void kontadoreakEguneratu(){
         if (this.kaka){
             this.osasunaGalduKaka();
@@ -89,8 +118,8 @@ public class Tamagotchi extends Observable{
         if(this.asetasuna <= 0){
             this.asetasuna = 0;
         }
-		setChanged();
-		notifyObservers();
+		//setChanged();
+		//notifyObservers();
     }
     private void osasunaGalduKaka(){
         bizitza = bizitza - 5;
@@ -110,4 +139,49 @@ public class Tamagotchi extends Observable{
             System.out.println("Gaixorik");
         }
     }*/
+	public void kakaEdoGaixoSaiatu(){
+        if(this.kaka==false && this.gaixorik==false){
+            Random probabilitatea = new Random();
+            System.out.println("KAIXO");
+            int zenbakia = probabilitatea.nextInt(101);
+            System.out.println("kaka zenb "+zenbakia);
+            if(1<=zenbakia && zenbakia<=20 && this.kaka==false){
+                //this.tamagotchi.setKaka(true);
+                this.kakaEgin();
+                kakaBistaratu(true);
+            }
+            else{
+                probabilitatea = new Random();
+                zenbakia = probabilitatea.nextInt(101);
+                System.out.println("gaixo zenb "+zenbakia);
+                if(1<=zenbakia && zenbakia<=30){
+                    //this.tamagotchi.gaixorik = true;
+                    this.gaixotu();
+                    gaixoBistaratu(true);
+                }
+            }
+        }
+	}
+	private void kakaBistaratu(boolean kaka){
+		String izena=this.zeinEboluzioDa();
+		if(kaka==true){
+			setChanged();
+			notifyObservers(12);
+			if (izena == "Marutchi") {
+				setChanged();
+				notifyObservers(20);
+			}
+		}
+	}
+	private void gaixoBistaratu(boolean gaixo){
+		String izena=this.zeinEboluzioDa();
+		if(gaixo==true){
+			setChanged();
+			notifyObservers(13);
+			if (izena == "Marutchi") {
+				setChanged();
+				notifyObservers(21);
+			}
+		}
+	}
 }

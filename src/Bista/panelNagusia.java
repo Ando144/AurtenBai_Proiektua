@@ -85,8 +85,9 @@ public class panelNagusia extends JFrame implements Observer{
 			}
 		});
 	}
-	public panelNagusia(Observable pObservable){
-		pObservable.addObserver(this);
+	public panelNagusia(Observable part, Observable tama){
+		part.addObserver(this);
+		tama.addObserver(this);
 		hasieratu();
 	}
 
