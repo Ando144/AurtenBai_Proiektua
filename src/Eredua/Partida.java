@@ -12,8 +12,9 @@ public class Partida extends Observable{
     private Tamagotchi tamagotchi;
 	private boolean minijokoaMartxan;
 	private Timer lausegundo;
-	private int piruletak;
-	private int koilarak;
+	//private int piruletak;
+	//private int koilarak;
+	private JanariMultzoa janariMultzoa;
 	private static Partida partida = null;
 
 	public Partida(){
@@ -21,8 +22,9 @@ public class Partida extends Observable{
 		this.minijokoaMartxan = false;
         this.tamagotchi = new Tamagotchi(40, 40, false, false);
 		this.lausegundo = new Timer();
-		this.piruletak = 0;
-		this.koilarak = 0;
+		//this.piruletak = 0;
+		//this.koilarak = 0;
+		this.janariMultzoa = new JanariMultzoa();
 		this.lausegundo.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -103,7 +105,7 @@ public class Partida extends Observable{
 		notifyObservers(1);
 	}
 	public void tamaJan(){
-		int punt=0;
+		/*int punt=0;
 		int biz = this.piruletak;
 		int ase = this.koilarak;
 		this.piruletak = 0; this.koilarak = 0; 
@@ -119,14 +121,15 @@ public class Partida extends Observable{
 		if (ase!=0) {
 			Puntuacion= Puntuacion+(ase * 3)-1;
 			score = score + punt;
-			this.tamagotchi.asetasuna = this.tamagotchi.asetasuna +(10 * ase);
+			this.tamagotchi.asetasuna = this.tamagotchi.asetasuna +(10 * ase);               COMPOSITE GABE
 			sopakEguneratu();
 			scoreEguneratu();
 		}
 		if(biz!=0 && ase!=0){
 			Puntuacion=Puntuacion+((ase + biz)*(ase *3 + biz *3))-1;
 			scoreEguneratu();
-		}
+		}*/
+		this.janariMultzoa.jan();                                                      //    COMPOSITE-EKIN
 	}
 
     private void bihotzakEguneratu() {
@@ -272,25 +275,25 @@ public class Partida extends Observable{
 	public int getScore(){
 		return score;
 	}
-	private int Puntuacion;
+	//private int Puntuacion;
 	private int diferencia;
 	private void scoreEguneratu(){
 		//+1 cada vez que pasan 4 segundos
-		Puntuacion=Puntuacion +1;
+		score=score +1;
 		if (this.tamagotchi.gaixorik==true){
-			Puntuacion =Puntuacion - 5;
+			score =score - 5;
 		}
 		if (this.tamagotchi.kaka==true){
-			Puntuacion =Puntuacion - 5;
+			score =score - 5;
 		}
 		if (this.tamagotchi.zeinEboluzioDa().equals("Marutchi")){
-			Puntuacion =Puntuacion + 20;
+			score =score + 20;
 		}
 		if(this.tamagotchi.bizitza>40){
-			Puntuacion = Puntuacion -5;
+			score = score -5;
 		}
 		if(this.tamagotchi.asetasuna>40){
-			Puntuacion = Puntuacion -5;
+			score = score -5;
 		}
 		/*Minijokoa minijokoa=Minijokoa.getMinijokoa();
 		if(minijokoa.irabaziDu()==true){
@@ -301,10 +304,10 @@ public class Partida extends Observable{
 		}*/
 
 		//si se da una piruleta o sopa +5 
-		if(Puntuacion<0){
-			Puntuacion=0;
+		if(score<0){
+			score=0;
 		}
-		score = Puntuacion;
+		//score = Puntuacion;
 		setChanged();
 		notifyObservers(19);
 	}
@@ -325,13 +328,25 @@ public class Partida extends Observable{
 		}
 		return amaitu;
 	}
-	public void sumarPuntuacion(int puntuacion){
-		Puntuacion = Puntuacion + puntuacion;
+	public void sumarPuntuacion(int pScore){
+		this.score = this.score + pScore;
+		setChanged();
+		notifyObservers(19);
 	}
 	public void gehituPiruleta(){
-		this.piruletak++;
+		//this.piruletak++;
+		this.janariMultzoa.addJanaria(new Piruleta());
 	}
 	public void gehituKoilara(){
-		this.koilarak++;
+		//this.koilarak++;
+		this.janariMultzoa.addJanaria(new Koilara());
+	}
+	public void gehituBizitza(int pBizitza){
+		this.tamagotchi.bizitza = this.tamagotchi.bizitza + pBizitza;
+		bihotzakEguneratu();
+	}
+	public void gehituAsetasuna(int pAsetasuna){
+		this.tamagotchi.asetasuna = this.tamagotchi.asetasuna + pAsetasuna;
+		sopakEguneratu();
 	}
 }

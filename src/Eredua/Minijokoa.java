@@ -322,7 +322,7 @@ public class Minijokoa extends Observable{
         }
         else if (laukiak[lerroa][zutabea].getIndarra() == 2)
         {
-            Partida.getPartida().sumarPuntuacion(2);
+            Partida.getPartida().sumarPuntuacion(1);
             laukiak[lerroa][zutabea].ikutu();
             setChanged();
             notifyObservers("laukiAktualizatu");//cambiar el color del panel
@@ -330,7 +330,7 @@ public class Minijokoa extends Observable{
         }
         else if (laukiak[lerroa][zutabea].getIndarra() == 3)
         {
-            Partida.getPartida().sumarPuntuacion(3);
+            Partida.getPartida().sumarPuntuacion(1);
             laukiak[lerroa][zutabea].ikutu();
             setChanged();
             notifyObservers("laukiAktualizatu");//cambiar el color del panel
