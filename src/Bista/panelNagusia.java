@@ -592,8 +592,8 @@ public class panelNagusia extends JFrame implements Observer{
 		getgaixoIrudi().setVisible(true);
 	}
 	private void minijokuaBistaratu(){
-		Minijokoa Minijokoa = new Minijokoa();
-		Minijokoa.hasieratuMinijokoa();
+		Minijokoa.getMinijokoa().reset();
+		Minijokoa.getMinijokoa().hasieratuMinijokoa();
 	}
 	private void marutchiBistaratu(){
 		TamaIrudiak= new ImageIcon[] {

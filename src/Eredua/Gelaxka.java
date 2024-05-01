@@ -7,8 +7,16 @@ public abstract class Gelaxka extends Observable{
         protected Gelaxka(int pIndarra){
             this.indarra=pIndarra;
         }
+        public void laukiaAktualizatu(){
+            if(this.indarra>0){
+                this.indarra-=1;
+                Partida.getPartida().sumarPuntuacion(1);
+                setChanged();
+                notifyObservers("laukiAktualizatu");//cambiar el color del panel
+                //convertirlo en invisible
+            }
+        }
         public void ikutu(){
-            this.indarra-=1; //HACER EL CAMBIO A LA BISTA
         }
         public int getIndarra(){
             return this.indarra;

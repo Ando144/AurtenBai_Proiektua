@@ -12,35 +12,35 @@ public class Minijokoa extends Observable{
    // Tanto aqui como en vista los ejes estan al reves, primero es lerroa(y) y luego zutabea(x)
    //durante el desarrollo de la aplicacion algunos se han liado con los ejes y han puesto al reves
    //pero por el bien del funcionamiento de la aplicacion se ha decidido dejarlo asi.
-   private static Gelaxka[][] laukiak = new Gelaxka [12][12]; 
-   private static int tamagochiLerroa;
-   private static int tamagochiZutabea;
-   private static int tartaLerroa;
-   private static int tartaZutabea;
-   private static boolean flag = false;
-   private static int xAnterior;
+    private static Gelaxka[][] laukiak = new Gelaxka [12][12]; 
+    private static int tamagochiLerroa;
+    private static int tamagochiZutabea;
+    private static int tartaLerroa;
+    private static int tartaZutabea;
+    private static boolean flag = false;
+    private static int xAnterior;
     private static int yAnterior;
     private Timer timer;
-
-
     private static Minijokoa NireMinijokoa = null;
-    public static Minijokoa getMinijokoa()
-    {
-        if(NireMinijokoa == null)
-        {
-            NireMinijokoa = new Minijokoa();
 
+    private Minijokoa(){}
+
+    public static Minijokoa getMinijokoa(){
+        if(NireMinijokoa == null){
+            NireMinijokoa = new Minijokoa();
         }
         return NireMinijokoa;
     }
-    public void hasieratuMinijokoa()
-    {
-       // Minijokoa minijokoa = new Minijokoa();
+
+    public void reset(){
+        NireMinijokoa = null;
+    }
+
+    public void hasieratuMinijokoa(){
         new miniJokoaBista(this);
         hasieratuLaukiak();
         TamagochietaTartaHasieratu();
         AktBuklea();
-        
     }
     private void hasieratuLaukiak()
     {
@@ -78,6 +78,10 @@ public class Minijokoa extends Observable{
     {
         return laukiak;
     }
+    public Gelaxka getGelaxka(int i, int j)
+    {
+        return laukiak[i][j];
+    }
     public boolean tartaVisible()
     {
         if(laukiak[tartaZutabea][tartaLerroa].getIndarra() == 0)
@@ -89,8 +93,7 @@ public class Minijokoa extends Observable{
             return false;
         }
     }
-    public static boolean tamagochiVisible()
-    {
+    public static boolean tamagochiVisible(){
         if(laukiak[tamagochiLerroa][tamagochiZutabea].getIndarra()== 0)
         {
             return true;
@@ -168,12 +171,10 @@ public class Minijokoa extends Observable{
         
         if (norabidea == 1)
         {
-            System.out.println("ha entrado en el norabide 1");
             if (mugimenduaEginDaiteke(1))
             {
 
                 tamagochiLerroa--;
-                System.out.println("posicion actualizada");
                 if(irabaziDu())
                 {
                     setChanged();
@@ -182,7 +183,6 @@ public class Minijokoa extends Observable{
                 else
                 {
                     setChanged();
-                    System.out.println("ha entrado en el norabide 1");
                     notifyObservers("tamagochiMugitu");
                 }
             }
@@ -303,39 +303,6 @@ public class Minijokoa extends Observable{
         }
        
 
-    }
-    public void laukiaAktualizatu(int lerroa, int zutabea)
-    {
-   
-        //PROBLEMA: cuando llega al notifyObservers no salta a el update de minijokoaBista y no se porque
-        //si te fijas cuando ejecutas el codigo funciona bien pero no se actualiza la vista
-        // esto puedes saberlo por los prints qie he puesto pq si pasas dos veces el raton por encima de 
-        //una casilla esta perdera fuerzas, pero lo q pasa que no se actualiza la vista.
-        //EN RESUMEN, mirar pq no salta del notifyObservers al update de minijokoaBista
-        if (laukiak[lerroa][zutabea].getIndarra() == 1)
-        {
-            laukiak[lerroa][zutabea].ikutu();
-            Partida.getPartida().sumarPuntuacion(1);
-            setChanged();
-            notifyObservers("laukiAktualizatu");//cambiar el color del panel
-            //convertirlo en invisible
-        }
-        else if (laukiak[lerroa][zutabea].getIndarra() == 2)
-        {
-            Partida.getPartida().sumarPuntuacion(1);
-            laukiak[lerroa][zutabea].ikutu();
-            setChanged();
-            notifyObservers("laukiAktualizatu");//cambiar el color del panel
-
-        }
-        else if (laukiak[lerroa][zutabea].getIndarra() == 3)
-        {
-            Partida.getPartida().sumarPuntuacion(1);
-            laukiak[lerroa][zutabea].ikutu();
-            setChanged();
-            notifyObservers("laukiAktualizatu");//cambiar el color del panel
-
-        }
     }
 
     public static void setFlag(boolean x)

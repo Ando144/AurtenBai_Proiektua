@@ -38,7 +38,7 @@ public class miniJokoaBista extends JFrame implements Observer{
     JFrame perdedorFrame = new JFrame("GALDU DUZU!");
     JFrame ganadorFrame = new JFrame("IRABAZI DUZU!");
 
-    private static JLabel laukiak[][];
+    private static GelaxkaBista laukiak[][];
     private static JLabel Tamagochi;
     private int x;
     private int y;
@@ -62,15 +62,14 @@ public class miniJokoaBista extends JFrame implements Observer{
     @Override
     public void update(Observable arg0, Object arg1)
     {
-        
         switch((String)arg1)//((MiniJokoa)arg0).get...
         {
             case "hasieratu":
                 Hasieratu();
                 break;
-            case "laukiAktualizatu":
+            /*case "laukiAktualizatu":
                 LaukiakAktualizatu();
-                break;
+                break;*/
             case "tamagochiMugitu":
                 tamagochiMugitu();
                 break;
@@ -94,7 +93,7 @@ public class miniJokoaBista extends JFrame implements Observer{
     {
         
      //metodo que inicializa una matriz de 12 x 12 de laukias
-        laukiak = new JLabel[12][12];
+        laukiak = new GelaxkaBista[12][12];
         frame = new JFrame("MiniJokua");
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -113,22 +112,21 @@ public class miniJokoaBista extends JFrame implements Observer{
         {
             for (int j = 0; j < 12; j++)
             {
-                laukiak[i][j] = new JLabel();
-                laukiak[i][j].setOpaque(true);
+                laukiak[i][j] = new GelaxkaBista(i,j);
+                /*laukiak[i][j].setOpaque(true);
                 laukiak[i][j].setBackground(koloreaAtera(i, j));
-                laukiak[i][j].addMouseListener(new CustomMouseListener(i,j));
+                laukiak[i][j].addMouseListener(new CustomMouseListener(i,j));*/
                 matrizea.add(laukiak[i][j]);
+                Minijokoa.getMinijokoa().getGelaxka(i, j).addObserver(laukiak[i][j]);
             }
         }
         frame.add(matrizea, BorderLayout.CENTER);
         frame.addKeyListener(new CustomKeyListener());
-        
         frame.setSize(500, 500);
         frame.setVisible(true);
-        
     }
-    public void LaukiakAktualizatu()
-    {
+
+    /*public void LaukiakAktualizatu(){
          
         for (int i = 0; i < 12; i++)
         {
@@ -137,9 +135,7 @@ public class miniJokoaBista extends JFrame implements Observer{
                 laukiak[i][j].setBackground(koloreaAtera(i, j));
             }
         }
-        
-        
-    }
+    }*/
     public void galduDu()
     {
         if(Minijokoa.irabaziDu()==false)
@@ -223,7 +219,7 @@ public class miniJokoaBista extends JFrame implements Observer{
         ganadorFrame.setSize(300, 200);
         ganadorFrame.setVisible(true);
     }
-    private Color koloreaAtera(int lerroa, int zutabea)
+    /*private Color koloreaAtera(int lerroa, int zutabea)
     {
         if (Minijokoa.getMinijokoa().getLaukiak()[lerroa][zutabea].getIndarra()==1)
         {
@@ -241,7 +237,7 @@ public class miniJokoaBista extends JFrame implements Observer{
         {
             return Color.BLACK;
         }
-    }
+    }*/
     public void tamagochiMugitu()
     {
         int x = Minijokoa.getMinijokoa().getZutabea();
@@ -337,7 +333,7 @@ public class miniJokoaBista extends JFrame implements Observer{
         return lerroa == yTarta && zutabea == xTarta;
     }
 
-    private static class CustomMouseListener extends MouseAdapter 
+    /*private static class CustomMouseListener extends MouseAdapter 
     {
         private int lerroa;           // HAU KENDU
         private int zutabea;
@@ -351,35 +347,35 @@ public class miniJokoaBista extends JFrame implements Observer{
         @Override
         public void mouseEntered(MouseEvent e)
         {
-            Minijokoa.getMinijokoa().laukiaAktualizatu(lerroa, zutabea);
+            Minijokoa.getMinijokoa().getGelaxka(lerroa, zutabea).laukiaAktualizatu();
         }
-    }
+    }*/
     public class CustomKeyListener extends KeyAdapter{
      
         //input de las flechas del teclado
         @Override
-        public void keyPressed(KeyEvent e)
-        {
-            if(!Minijokoa.irabaziDu() && Minijokoa.tamagochiVisible())
-            {
-                
+        public void keyPressed(KeyEvent e){
+            if(!Minijokoa.irabaziDu() && Minijokoa.tamagochiVisible()){
                 int key = e.getKeyCode();
                 if (key == KeyEvent.VK_UP)
                 {
                     Minijokoa.getMinijokoa().TamagochiMugitu(1);
-                    
+                    System.out.println("UP");
                 }
                 else if (key == KeyEvent.VK_DOWN)
                 {
                     Minijokoa.getMinijokoa().TamagochiMugitu(2);
+                    System.out.println("DOWN");
                 }
                 else if (key == KeyEvent.VK_LEFT)
                 {
                     Minijokoa.getMinijokoa().TamagochiMugitu(3);
+                    System.out.println("LEFT");
                 }
                 else if (key == KeyEvent.VK_RIGHT)
                 {
                     Minijokoa.getMinijokoa().TamagochiMugitu(4);
+                    System.out.println("RIGHT");
                 }
             }
         }
