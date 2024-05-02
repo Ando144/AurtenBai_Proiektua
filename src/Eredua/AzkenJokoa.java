@@ -2,6 +2,8 @@ package src.Eredua;
 
 import java.util.Observable;
 
+import src.Bista.AzkenJokoaBista;
+
 
 public class AzkenJokoa extends Observable{
     private static AzkenJokoa nireAzkenJokoa = null;
@@ -13,6 +15,16 @@ public class AzkenJokoa extends Observable{
         }
         return nireAzkenJokoa;
     }
+
+
+    
+
+	public static void main(String[] args) {
+        AzkenJokoa part = new AzkenJokoa();
+		AzkenJokoaBista instance = new AzkenJokoaBista(part);
+	}
+
+
     public void partidaBatJokatu()
     {
         setChanged();
@@ -43,7 +55,7 @@ public class AzkenJokoa extends Observable{
         } else {
             setChanged();
             notifyObservers("Lose");
-            return false;
+            //return false;
         }
     }
     private String randomAukera(){

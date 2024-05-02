@@ -1,7 +1,5 @@
 package src.Bista;
-import java.util.Observer;
 import javax.swing.*;
-import java.awt.EventQueue;
 
 import java.awt.*;
 import java.util.*;
@@ -45,7 +43,8 @@ public class AzkenJokoaBista implements Observer{
        o.addObserver(this);
        hasieratu();
 	}
-    private void hasieratu(){
+
+    public void hasieratu(){
         frame= new JFrame();
         frame.getContentPane().setBackground(new Color(229, 229, 229));
         frame.setBackground(new Color(229, 229, 229));
@@ -100,7 +99,7 @@ public class AzkenJokoaBista implements Observer{
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("");
-			lblNewLabel.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\proba\\harria.png"));
+			lblNewLabel.setIcon(new ImageIcon(this.getClass().getResource("sprites/harria.png")));
 			lblNewLabel.setBounds(96, 10, 113, 105);
 		}
 		return lblNewLabel;
@@ -108,7 +107,7 @@ public class AzkenJokoaBista implements Observer{
 	private JLabel getLblNewLabel_1() {
 		if (lblNewLabel_1 == null) {
 			lblNewLabel_1 = new JLabel("");
-			lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\proba\\orria.png"));
+			lblNewLabel_1.setIcon(new ImageIcon(this.getClass().getResource("sprites/orria.png")));
 			lblNewLabel_1.setBounds(96, 125, 113, 129);
 		}
 		return lblNewLabel_1;
@@ -116,12 +115,12 @@ public class AzkenJokoaBista implements Observer{
 	private JLabel getLblNewLabel_2() {
 		if (lblNewLabel_2 == null) {
 			lblNewLabel_2 = new JLabel("");
-			lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\mikel\\Desktop\\proba\\artazia.png"));
+			lblNewLabel_2.setIcon(new ImageIcon(this.getClass().getResource("sprites/artazia.png")));
 			lblNewLabel_2.setBounds(96, 264, 132, 129);
 		}
 		return lblNewLabel_2;
 	}
-	private JPanel getEmaitszen_panela() {
+	private JPanel getEmaitzen_panela() {
 		if (emaitzen_panela == null) {
 			emaitzen_panela = new JPanel();
 			emaitzen_panela.setBackground(new Color(229, 229, 229));
