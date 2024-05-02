@@ -10,8 +10,10 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
-public class HasieraMenua extends JFrame implements Observer{
+public class HasieraMenua extends JFrame implements Observer, WindowListener{
 	
 	private Timer timer;
 	private ImageIcon[] tamagotchiIrudiak;
@@ -53,6 +55,7 @@ public class HasieraMenua extends JFrame implements Observer{
 	private JLabel LauScore;
 	private JLabel BosName;
 	private JLabel BosScore;
+	private PartidaErregistro pE;
 
 	private Kontroladorea kontroladorea = null;
 
@@ -61,6 +64,10 @@ public class HasieraMenua extends JFrame implements Observer{
 			kontroladorea = new Kontroladorea();
 		}
 		return kontroladorea;
+	}
+
+	public void setPartidaErregistro(PartidaErregistro pErreg) {
+		this.pE = pErreg;
 	}
 
 	/**
@@ -72,8 +79,9 @@ public class HasieraMenua extends JFrame implements Observer{
 				try {
 					PartidaErregistro pe = new PartidaErregistro();
 					HasieraMenua frame = new HasieraMenua(pe);
+					frame.setPartidaErregistro(pe);
 					frame.setVisible(true);
-					pe.getLehenengoBostak();
+					//pe.getLehenengoBostak();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -95,6 +103,7 @@ public class HasieraMenua extends JFrame implements Observer{
 		getContentPane().add(getPanel_1());
 		
 		pErreg.addObserver(this);
+		addWindowListener(this);
 		
 		koloreak = new Color[]{
 				Color.CYAN,
@@ -497,5 +506,34 @@ public class HasieraMenua extends JFrame implements Observer{
 				System.exit(0);
 			}
 		}
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		this.pE.getLehenengoBostak();
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
 	}
 }
