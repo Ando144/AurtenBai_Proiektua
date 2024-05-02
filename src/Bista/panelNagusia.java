@@ -138,8 +138,10 @@ public class panelNagusia extends JFrame implements Observer{
 			panel_tamagochi.add(getEggIrudi());
 			panel_tamagochi.add(getKakaIrudi());
 			panel_tamagochi.add(getgaixoIrudi());
+			panel_tamagochi.add(getHilIrudi());
 			getKakaIrudi().setVisible(false);
 			getgaixoIrudi().setVisible(false);
+			getHilIrudi().setVisible(false);
 			panel_tamagochi.setBounds(100, 108, 294, 197);
 			panel_tamagochi.setLayout(null);
 			panel_tamagochi.addMouseListener((MouseListener) getKontroladorea());
@@ -497,7 +499,12 @@ public class panelNagusia extends JFrame implements Observer{
 			case 21:
 				marutchiGaixo();
 				break;
-			
+			case 22:
+				tamagotchiErrebibitu();
+				break;
+			case 23:
+				partidaBukatu();
+				break;
 		}
 	}
 	private void lauBihotzJarri(){
@@ -524,43 +531,51 @@ public class panelNagusia extends JFrame implements Observer{
 		bihotza3.setEnabled(false);
 		bihotza4.setEnabled(false);
 	}
+	private boolean hildaFlag = false;
 	private void hildaDagoKatilu(){
 		katilu1.setEnabled(false);
 		katilu2.setEnabled(false);
 		katilu3.setEnabled(false);
 		katilu4.setEnabled(false);
-		panel_tamagochi.add(getHilIrudi());
-		try {
-			Thread.sleep(5000); // Espera 5 segundo
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		if(!hildaFlag){
+			hildaFlag = true;
+			hilDa();
 		}
-		Partida.getPartida().gordePartida();
-		Partida.getPartida().reset();
-		HasieraMenua frame2 = new HasieraMenua(PartidaErregistro.getPartidaErregistro());
-		frame2.setVisible(true);
-		PartidaErregistro.getPartidaErregistro().getLehenengoBostak();
-		frame.dispose();
-		
 	}	
 	private void hildaDagoBihotz(){
 		bihotza1.setEnabled(false);
 		bihotza2.setEnabled(false);
 		bihotza3.setEnabled(false);
 		bihotza4.setEnabled(false);
-		panel_tamagochi.add(getHilIrudi());
+		if(!hildaFlag){
+			hildaFlag = true;
+			hilDa();
+		}
+	}
+	private void hilDa(){
+		getHilIrudi().setVisible(true);
 		try {
-			Thread.sleep(5000); // Espera 5 segundo
+			Thread.sleep(3000); // Espera 3 segundo
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		Partida.getPartida().gordePartida();
-		Partida.getPartida().reset();
+		frame.setVisible(false);
+		AzkenJokoa.getAzkenJokoa().reset();
+		AzkenJokoa.getAzkenJokoa().partidaBatJokatu();
+	}
+	private void tamagotchiErrebibitu(){
+		hildaFlag = false;
+		frame.setVisible(true);
+		getKakaIrudi().setVisible(false);
+		getgaixoIrudi().setVisible(false);
+		getHilIrudi().setVisible(false);
+	}	
+	private void partidaBukatu(){
 		HasieraMenua frame2 = new HasieraMenua(PartidaErregistro.getPartidaErregistro());
 		frame2.setVisible(true);
 		PartidaErregistro.getPartidaErregistro().getLehenengoBostak();
 		frame.dispose();
-	}	
+	}
 	private void lauKatiluJarri(){
 		katilu1.setEnabled(true);
 		katilu2.setEnabled(true);

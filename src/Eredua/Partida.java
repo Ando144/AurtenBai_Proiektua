@@ -12,6 +12,7 @@ public class Partida extends Observable{
     private Tamagotchi tamagotchi;
 	private boolean minijokoaMartxan;
 	private Timer lausegundo;
+	private TimerTask task;
 	//private int piruletak;
 	//private int koilarak;
 	private JanariMultzoa janariMultzoa;
@@ -21,10 +22,10 @@ public class Partida extends Observable{
         this.score = 0;
 		this.minijokoaMartxan = false;
         this.tamagotchi = new Tamagotchi(40, 40, false, false);
-		this.lausegundo = new Timer();
 		//this.piruletak = 0;
 		//this.koilarak = 0;
 		this.janariMultzoa = new JanariMultzoa();
+		this.lausegundo = new Timer();
 		this.lausegundo.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -154,6 +155,7 @@ public class Partida extends Observable{
             notifyObservers(5);
 		}
         if (this.tamagotchi.bizitza<=0){
+			lausegundo.cancel();
 			setChanged();
             notifyObservers(7);
 		}
@@ -181,6 +183,7 @@ public class Partida extends Observable{
             notifyObservers(11);
 		}
 		if(this.tamagotchi.asetasuna<=0){
+			lausegundo.cancel();
 			setChanged();
             notifyObservers(6);
 		}
@@ -251,13 +254,15 @@ public class Partida extends Observable{
 		boolean amaitu =false;
 		if (b<=0){
 			amaitu=true;
-			notifyObservers(7);
-			setChanged();
+			//lausegundo.cancel();
+			//setChanged();
+			//notifyObservers(7);
 		}
 		if (a<=0){
 			amaitu=true;
-			notifyObservers(6);
-			setChanged();
+			//lausegundo.cancel();
+			//setChanged();
+			//notifyObservers(6);
 		}
 		return amaitu;
 	}
@@ -281,5 +286,39 @@ public class Partida extends Observable{
 	public void gehituAsetasuna(int pAsetasuna){
 		this.tamagotchi.asetasuna = this.tamagotchi.asetasuna + pAsetasuna;
 		sopakEguneratu();
+	}
+	public void tamagotchiErrebibitu(){
+		this.tamagotchi.errebibitu();
+		setChanged();
+		notifyObservers(22);
+		setChanged();
+		notifyObservers(2);
+		setChanged();
+		notifyObservers(8);
+		lausegundo = new Timer();
+		lausegundo.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+				if(!minijokoaMartxan && !amaituDa()){
+					minijokoaJokatu();
+					scoreEguneratu();
+					eboluzioaSaiatu();
+					kakaEdoGaixoSaiatu();
+					tamagotchi.kontadoreakEguneratu();
+					bihotzakEguneratu();
+					sopakEguneratu();
+					System.out.println("--------------------------BIZITZA:     "+Partida.getPartida().tamagotchi.bizitza);
+					System.out.println("--------------------------ASETASUNA:   "+Partida.getPartida().tamagotchi.asetasuna);
+					System.out.println("--------------------------KAKA:        "+Partida.getPartida().tamagotchi.kaka);
+					System.out.println("--------------------------GAIXO:       "+Partida.getPartida().tamagotchi.gaixorik);
+				}
+            }		
+        }, 4000, 4000);
+	}
+	public void partidaBukatu(){
+		gordePartida();
+		reset();
+		setChanged();
+		notifyObservers(23);
 	}
 }

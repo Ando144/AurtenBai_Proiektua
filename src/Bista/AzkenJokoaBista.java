@@ -10,6 +10,7 @@ import javax.swing.border.LineBorder;
 import src.Eredua.AzkenJokoa;
 import src.Eredua.Harria;
 import src.Eredua.Orria;
+import src.Eredua.Partida;
 import src.Eredua.Artazia;
 
 import java.awt.event.ActionEvent;
@@ -27,15 +28,16 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 	private JLabel orriIrudia;
 	private JLabel artaziIrudia;
 	private JPanel emaitzen_panela;
-	private JLabel harriIrudia_3;
-	private JLabel harriIrudia_4;
-	private JLabel harriIrudia_5;
+	private JLabel labelPuntuak;
+	private JLabel labelZurePuntuak;
+	private JLabel labelPuntuakMakina;
 	private JLabel jokalari_emaitza;
 	private JLabel makina_emaitza;
 	private JButton jokatuBotoia;
 	private JLabel makina_irudi;
-	private JLabel harriIrudia_8;
+	private JLabel labelIrudiMakina;
 	private Kontroladorea kontroladorea = null;
+
 	private Kontroladorea getKontroladorea(){
 		if(kontroladorea == null){
 			kontroladorea = new Kontroladorea();
@@ -43,14 +45,6 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 		return kontroladorea;
 	}
 
-	/**
-	 * Launch the application.
-	 */
-	
-
-	/**
-	 * Create the frame.
-	 */
 	public AzkenJokoaBista(Observable o) {
        o.addObserver(this);
        hasieratu();
@@ -80,7 +74,7 @@ public class AzkenJokoaBista extends JFrame implements Observer{
         frame.getContentPane().add(getEmaitzen_panela());
         frame.getContentPane().add(getJokatuBotoia());
         frame.getContentPane().add(getMakina_irudi());
-        frame.getContentPane().add(getharriIrudia_8());
+        frame.getContentPane().add(getLabelIrudiMakina());
         frame.setVisible(true);
 
     }
@@ -142,34 +136,34 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 			emaitzen_panela.setBorder(new LineBorder(new Color(0, 0, 0)));
 			emaitzen_panela.setBounds(244, 10, 210, 105);
 			emaitzen_panela.setLayout(null);
-			emaitzen_panela.add(getharriIrudia_3());
-			emaitzen_panela.add(getharriIrudia_4());
-			emaitzen_panela.add(getharriIrudia_5());
+			emaitzen_panela.add(getLabelPuntuak());
+			emaitzen_panela.add(getLabelZurePuntuak());
+			emaitzen_panela.add(getLabelPuntuakMakina());
 			emaitzen_panela.add(getJokalari_emaitza());
 			emaitzen_panela.add(getMakina_emaitza());
 		}
 		return emaitzen_panela;
 	}
-	private JLabel getharriIrudia_3() {
-		if (harriIrudia_3 == null) {
-			harriIrudia_3 = new JLabel("EMAITZA");
-			harriIrudia_3.setBounds(71, 10, 71, 13);
+	private JLabel getLabelPuntuak() {
+		if (labelPuntuak == null) {
+			labelPuntuak = new JLabel("EMAITZA");
+			labelPuntuak.setBounds(71, 10, 71, 13);
 		}
-		return harriIrudia_3;
+		return labelPuntuak;
 	}
-	private JLabel getharriIrudia_4() {
-		if (harriIrudia_4 == null) {
-			harriIrudia_4 = new JLabel("ZU");
-			harriIrudia_4.setBounds(22, 32, 52, 13);
+	private JLabel getLabelZurePuntuak() {
+		if (labelZurePuntuak == null) {
+			labelZurePuntuak = new JLabel("ZU");
+			labelZurePuntuak.setBounds(22, 32, 52, 13);
 		}
-		return harriIrudia_4;
+		return labelZurePuntuak;
 	}
-	private JLabel getharriIrudia_5() {
-		if (harriIrudia_5 == null) {
-			harriIrudia_5 = new JLabel("MAKINA");
-			harriIrudia_5.setBounds(117, 32, 83, 13);
+	private JLabel getLabelPuntuakMakina() {
+		if (labelPuntuakMakina == null) {
+			labelPuntuakMakina = new JLabel("MAKINA");
+			labelPuntuakMakina.setBounds(117, 32, 83, 13);
 		}
-		return harriIrudia_5;
+		return labelPuntuakMakina;
 	}
 	private JLabel getJokalari_emaitza() {
 		if (jokalari_emaitza == null) {
@@ -197,17 +191,17 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 	private JLabel getMakina_irudi() {
 		if (makina_irudi == null) {
 			makina_irudi = new JLabel("");
-			makina_irudi.setIcon(new ImageIcon(this.getClass().getResource("sprites/harria.png")));
+			//makina_irudi.setIcon(new ImageIcon(this.getClass().getResource("sprites/harria.png")));
 			makina_irudi.setBounds(469, 155, 114, 99);
 		}
 		return makina_irudi;
 	}
-	private JLabel getharriIrudia_8() {
-		if (harriIrudia_8 == null) {
-			harriIrudia_8 = new JLabel("MAKINA");
-			harriIrudia_8.setBounds(488, 125, 65, 13);
+	private JLabel getLabelIrudiMakina() {
+		if (labelIrudiMakina == null) {
+			labelIrudiMakina = new JLabel("MAKINA");
+			labelIrudiMakina.setBounds(488, 125, 65, 13);
 		}
-		return harriIrudia_8;
+		return labelIrudiMakina;
 	}
 
 	/*private void irudiakAlternatu(){
@@ -221,9 +215,47 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 		}
 	}*/
 
+	public void puntuazioakEguneratu(){
+		jokalari_emaitza.setText(Integer.toString(AzkenJokoa.getAzkenJokoa().getPuntJokalaria()));
+		makina_emaitza.setText(Integer.toString(AzkenJokoa.getAzkenJokoa().getPuntOrdenagailua()));
+	}
+
 	public void update(Observable o, Object arg){
 		switch ((String)arg) {
-			
+			case "Harria":
+				makina_irudi.setIcon(new ImageIcon(this.getClass().getResource("sprites/harria.png")));
+				break;
+			case "Orria":
+				makina_irudi.setIcon(new ImageIcon(this.getClass().getResource("sprites/orria.png")));
+				break;
+			case "Artazia":
+				makina_irudi.setIcon(new ImageIcon(this.getClass().getResource("sprites/artazia.png")));
+				break;
+			case "rIrabazi":
+				puntuazioakEguneratu();
+            	JOptionPane.showMessageDialog(this, "Ronda hau irabazi duzu.");
+				break;
+			case "rGaldu":
+				puntuazioakEguneratu();
+				JOptionPane.showMessageDialog(this, "Ronda hau galdu duzu.");
+				break;
+			case "rBerdinketa":
+				JOptionPane.showMessageDialog(this, "Berdinketa egon da. Ronda errepikatu.");
+				break;
+			case "jIrabazi":
+				puntuazioakEguneratu();
+				JOptionPane.showMessageDialog(this, "Jokoa irabazi duzu. Tamagotchiak errebibitu du.");
+				frame.dispose();
+				AzkenJokoa.getAzkenJokoa().reset();
+				Partida.getPartida().tamagotchiErrebibitu();
+				break;
+			case "jGaldu":
+				puntuazioakEguneratu();
+				JOptionPane.showMessageDialog(this, "Jokoa galdu duzu. Tamagotchia hil da.");
+				frame.dispose();
+				AzkenJokoa.getAzkenJokoa().reset();
+				Partida.getPartida().partidaBukatu();
+				break;
 		}
 	}
 

@@ -510,7 +510,7 @@ public class HasieraMenua extends JFrame implements Observer, WindowListener{
 
 	@Override
 	public void windowOpened(WindowEvent e) {
-		this.pE.getLehenengoBostak();
+		PartidaErregistro.getPartidaErregistro().getLehenengoBostak();
 	}
 
 	@Override

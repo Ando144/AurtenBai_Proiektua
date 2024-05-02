@@ -7,9 +7,9 @@ import src.Eredua.PartidaErregistro;
 public class Main {
     public static void main(String[] args) {
         //PartidaErregistro.getPartidaErregistro().reset();
-        PartidaErregistro.getPartidaErregistro().getLehenengoBostak();
+        //PartidaErregistro.getPartidaErregistro().getLehenengoBostak();
         //PartidaErregistro.getPartidaErregistro().eguneratu(78, "Jon Ander");
-        System.out.println(PartidaErregistro.getPartidaErregistro().getLehSc());
+        //System.out.println(PartidaErregistro.getPartidaErregistro().getLehSc());
         HasieraMenua.main(args);
 	}
 }

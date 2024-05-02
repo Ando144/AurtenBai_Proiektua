@@ -11,7 +11,7 @@ public class AzkenJokoa extends Observable{
     private Aukera aukeraOrdenagailua;
     private int puntJokalaria;
     private int puntOrdenagailua;
-    private boolean jokIrabazi;
+    //private boolean jokIrabazi;
 
 
     private AzkenJokoa(){
@@ -19,7 +19,7 @@ public class AzkenJokoa extends Observable{
         aukeraOrdenagailua = null;
         puntJokalaria = 0;
         puntOrdenagailua = 0;
-        jokIrabazi = false;
+        //jokIrabazi = false;
     }
 
     public static AzkenJokoa getAzkenJokoa(){
@@ -33,7 +33,7 @@ public class AzkenJokoa extends Observable{
         aukeraOrdenagailua = null;
         puntJokalaria = 0;
         puntOrdenagailua = 0;
-        jokIrabazi = false;
+        //jokIrabazi = false;
         nireAzkenJokoa = null;
     }
 	public static void main(String[] args) {
@@ -42,30 +42,12 @@ public class AzkenJokoa extends Observable{
     public void partidaBatJokatu(){
         new AzkenJokoaBista(this);
     }
-    public void setEmaitza(int pIndex, int pBalioa){
-
+    public int getPuntJokalaria(){
+        return puntJokalaria;
     }
-
-    /*private void rondaJokatu(String pAukera){
-        Aukera randomAukera = randomAukera();
-        if (pAukera.equals(randomAukera)) 
-        {
-            setChanged();
-            notifyObservers("Enpate");
-        } 
-        else if ((pAukera.equals("piedra") && randomAukera.equals("tijera")) ||
-               (pAukera.equals("papel") && randomAukera.equals("piedra")) ||
-               (pAukera.equals("tijera") && randomAukera.equals("papel"))) 
-        {
-            setChanged();
-            notifyObservers("Win");
-            puntJokalaria++;
-        } else {
-            setChanged();
-            notifyObservers("Lose");
-            puntOrdenagailua++;
-        }
-    }*/
+    public int getPuntOrdenagailua(){
+        return puntOrdenagailua;
+    }
     public void rondaBatJokatu(){
         if(aukeraJokalaria != null){
             aukeraJokalaria.jokatu(this, randomAukera());
@@ -77,7 +59,7 @@ public class AzkenJokoa extends Observable{
         puntJokalaria++;
         setChanged();
         if(puntJokalaria >= 2){
-            jokIrabazi = true;
+            //jokIrabazi = true;
             notifyObservers("jIrabazi");
         }else{
             notifyObservers("rIrabazi");

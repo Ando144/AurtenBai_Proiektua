@@ -63,6 +63,11 @@ public class Tamagotchi extends Observable{
     public void sendatu(){
         this.egoeraGK.sendatu(this);
     }
+    public void errebibitu(){
+        this.egoeraGK.sendatu(this);
+        this.bizitza = 40;
+        this.asetasuna = 40;
+    }
     public void eboluzionatuTama(){
         /*Tamagotchi nireTama;
         if(this instanceof Egg){
