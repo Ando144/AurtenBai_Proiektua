@@ -6,8 +6,8 @@ import java.util.Random;
 public class Tamagotchi extends Observable{
     protected int bizitza;
     protected int asetasuna;
-    protected boolean gaixorik;
-    protected boolean kaka;
+    //protected boolean gaixorik;
+    //protected boolean kaka;
     private Egoera egoeraGK;
     private Egoera egoeraEbol;
     private int kontTimerZikloak;
@@ -15,8 +15,8 @@ public class Tamagotchi extends Observable{
     public Tamagotchi(int pBizitza, int pAsetasuna, boolean pGaixorik, boolean pKaka) {
         this.bizitza = pBizitza;
         this.asetasuna = pAsetasuna;
-        this.gaixorik = pGaixorik;
-        this.kaka = pKaka;
+        //this.gaixorik = pGaixorik;
+        //this.kaka = pKaka;
         this.egoeraGK = new Osasuntsu();
         this.egoeraEbol = new Egg();
         this.kontTimerZikloak = 0;
@@ -36,17 +36,17 @@ public class Tamagotchi extends Observable{
         }
     }
 
-    public void setKaka(boolean pKaka){
+    /*public void setKaka(boolean pKaka){
         this.kaka = pKaka;
-    }
-    public boolean getKaka(){
-        return this.kaka;
     }
     public void setGaixorik(boolean pGaixorik){
         this.gaixorik = pGaixorik;
+    }*/
+    public boolean getKaka(){
+        return this.egoeraGK instanceof Kaka;
     }
     public boolean getGaixorik(){
-        return this.gaixorik;
+        return this.egoeraGK instanceof Gaixorik;
     }
     public void setEgoeraGK(Egoera pEgoera){
         this.egoeraGK = pEgoera;
@@ -110,10 +110,10 @@ public class Tamagotchi extends Observable{
 
 	}
     public void kontadoreakEguneratu(){
-        if (this.kaka){
+        if (this.getKaka()){
             this.osasunaGalduKaka();
         }
-        else if (this.gaixorik){
+        else if (this.getGaixorik()){
             this.osasunaGalduGaixorik();
         }
         this.egoeraEbol.kontadoreakEguneratu(this);
@@ -132,7 +132,7 @@ public class Tamagotchi extends Observable{
     }
     private void osasunaGalduGaixorik(){
         bizitza = bizitza - 7;
-        asetasuna = asetasuna - 5;
+        asetasuna = asetasuna + 5;
     }
 
     /*public void zeinEgoeraGK(){
@@ -145,12 +145,12 @@ public class Tamagotchi extends Observable{
         }
     }*/
 	public void kakaEdoGaixoSaiatu(){
-        if(this.kaka==false && this.gaixorik==false){
+        if(this.getKaka()==false && this.getGaixorik()==false){
             Random probabilitatea = new Random();
             System.out.println("KAIXO");
             int zenbakia = probabilitatea.nextInt(101);
             System.out.println("kaka zenb "+zenbakia);
-            if(1<=zenbakia && zenbakia<=20 && this.kaka==false){
+            if(1<=zenbakia && zenbakia<=20 && this.getKaka()==false){
                 //this.tamagotchi.setKaka(true);
                 this.kakaEgin();
                 kakaBistaratu(true);

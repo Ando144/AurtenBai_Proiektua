@@ -11,7 +11,7 @@ public class Mimitchi implements Egoera /*extends Tamagotchi*/{
 
     @Override
     public void eboluzionatu(Tamagotchi tamagotchi) {
-        if(tamagotchi.kaka || tamagotchi.gaixorik){
+        if(tamagotchi.getKaka() || tamagotchi.getGaixorik()){
             tamagotchi.setEgoeraEbol(new Maskutchi());
         }else{
             tamagotchi.setEgoeraEbol(new Marutchi());

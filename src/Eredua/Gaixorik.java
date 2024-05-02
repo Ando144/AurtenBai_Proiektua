@@ -4,7 +4,7 @@ public class Gaixorik implements Egoera{
     @Override
     public void sendatu(Tamagotchi tamagotchi) {
         Partida.getPartida().getTamagotchi().setEgoeraGK(new Osasuntsu());
-        Partida.getPartida().getTamagotchi().setGaixorik(false);
+        //Partida.getPartida().getTamagotchi().setGaixorik(false);
     }
 
     @Override

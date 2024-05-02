@@ -4,7 +4,7 @@ public class Kaka implements Egoera{
     @Override
     public void sendatu(Tamagotchi tamagotchi) {
         Partida.getPartida().getTamagotchi().setEgoeraGK(new Osasuntsu());
-        Partida.getPartida().getTamagotchi().setKaka(false);
+        //Partida.getPartida().getTamagotchi().setKaka(false);
     }
 
     @Override

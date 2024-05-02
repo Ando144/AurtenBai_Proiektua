@@ -12,7 +12,6 @@ public class Partida extends Observable{
     private Tamagotchi tamagotchi;
 	private boolean minijokoaMartxan;
 	private Timer lausegundo;
-	private TimerTask task;
 	//private int piruletak;
 	//private int koilarak;
 	private JanariMultzoa janariMultzoa;
@@ -39,8 +38,8 @@ public class Partida extends Observable{
 					sopakEguneratu();
 					System.out.println("--------------------------BIZITZA:     "+Partida.getPartida().tamagotchi.bizitza);
 					System.out.println("--------------------------ASETASUNA:   "+Partida.getPartida().tamagotchi.asetasuna);
-					System.out.println("--------------------------KAKA:        "+Partida.getPartida().tamagotchi.kaka);
-					System.out.println("--------------------------GAIXO:       "+Partida.getPartida().tamagotchi.gaixorik);
+					System.out.println("--------------------------KAKA:        "+Partida.getPartida().tamagotchi.getKaka());
+					System.out.println("--------------------------GAIXO:       "+Partida.getPartida().tamagotchi.getGaixorik());
 				}
             }		
         }, 4000, 4000);
@@ -78,12 +77,6 @@ public class Partida extends Observable{
 	}
 	public void gordePartida(){
 		PartidaErregistro.getPartidaErregistro().eguneratu(this.score, this.izena);
-	}
-	private boolean getGaixorik(){
-		return tamagotchi.gaixorik;
-	}
-	private boolean getKaka(){
-		return tamagotchi.kaka;
 	}
 	public Tamagotchi getTamagotchi(){
 		return tamagotchi;
@@ -129,32 +122,30 @@ public class Partida extends Observable{
 			scoreEguneratu();
 		}*/
 		this.janariMultzoa.jan();                                                      //    COMPOSITE-EKIN
+		bihotzakEguneratu();
+		sopakEguneratu();
 	}
 
     private void bihotzakEguneratu() {
-		if(this.tamagotchi.bizitza > 41){
-			score= score - 6;
-			scoreEguneratu();
-			this.tamagotchi.bizitza = 35;
+		if(this.tamagotchi.bizitza > 40){
+			this.tamagotchi.bizitza = 40;
+			score= score - 5;
+			setChanged();
+			notifyObservers(19);
 		}
-		
 		if (this.tamagotchi.bizitza>=31) {
 			setChanged();
             notifyObservers(2);
-		}
-		if (this.tamagotchi.bizitza>=21 && this.tamagotchi.bizitza<=30) {
+		}else if (this.tamagotchi.bizitza>=21 && this.tamagotchi.bizitza<=30) {
 			setChanged();
             notifyObservers(3);
-		}
-		if (this.tamagotchi.bizitza>=11 && this.tamagotchi.bizitza<=20) {
+		}else if (this.tamagotchi.bizitza>=11 && this.tamagotchi.bizitza<=20) {
 			setChanged();
             notifyObservers(4);
-		}
-		if (this.tamagotchi.bizitza>=1 && this.tamagotchi.bizitza<=10) {
+		}else if (this.tamagotchi.bizitza>=1 && this.tamagotchi.bizitza<=10) {
 			setChanged();
             notifyObservers(5);
-		}
-        if (this.tamagotchi.bizitza<=0){
+		}else if (this.tamagotchi.bizitza<=0){
 			lausegundo.cancel();
 			setChanged();
             notifyObservers(7);
@@ -162,28 +153,25 @@ public class Partida extends Observable{
 		}
 	}
     private void sopakEguneratu() {
-		if (this.tamagotchi.asetasuna>41){
-			score= score - 6;
-			scoreEguneratu();
-			this.tamagotchi.asetasuna = 35;
+		if (this.tamagotchi.asetasuna>40){
+			this.tamagotchi.asetasuna = 40;
+			score= score - 5;
+			setChanged();
+			notifyObservers(19);
 		}
 		if (this.tamagotchi.asetasuna>=31) {
 			setChanged();
             notifyObservers(8);
-		}
-		if (this.tamagotchi.asetasuna>=21 && this.tamagotchi.asetasuna<=30) {
+		}else if (this.tamagotchi.asetasuna>=21 && this.tamagotchi.asetasuna<=30) {
 			setChanged();
             notifyObservers(9);
-		}
-		if (this.tamagotchi.asetasuna>=11 && this.tamagotchi.asetasuna<=20) {
+		}else if (this.tamagotchi.asetasuna>=11 && this.tamagotchi.asetasuna<=20) {
 			setChanged();
             notifyObservers(10);
-		}
-		if (this.tamagotchi.asetasuna>=1 && this.tamagotchi.asetasuna<=10) {
+		}else if (this.tamagotchi.asetasuna>=1 && this.tamagotchi.asetasuna<=10) {
 			setChanged();
             notifyObservers(11);
-		}
-		if(this.tamagotchi.asetasuna<=0){
+		}else if(this.tamagotchi.asetasuna<=0){
 			lausegundo.cancel();
 			setChanged();
             notifyObservers(6);
@@ -217,10 +205,10 @@ public class Partida extends Observable{
 	private void scoreEguneratu(){
 		//+1 cada vez que pasan 4 segundos
 		score=score +1;
-		if (this.tamagotchi.gaixorik==true){
+		if (this.tamagotchi.getGaixorik()==true){
 			score =score - 5;
 		}
-		if (this.tamagotchi.kaka==true){
+		if (this.tamagotchi.getKaka()==true){
 			score =score - 5;
 		}
 		/*if (this.tamagotchi.zeinEboluzioDa().equals("Marutchi")){
@@ -282,11 +270,9 @@ public class Partida extends Observable{
 	}
 	public void gehituBizitza(int pBizitza){
 		this.tamagotchi.bizitza = this.tamagotchi.bizitza + pBizitza;
-		bihotzakEguneratu();
 	}
 	public void gehituAsetasuna(int pAsetasuna){
 		this.tamagotchi.asetasuna = this.tamagotchi.asetasuna + pAsetasuna;
-		sopakEguneratu();
 	}
 	public void tamagotchiErrebibitu(){
 		this.tamagotchi.errebibitu();
@@ -310,8 +296,8 @@ public class Partida extends Observable{
 					sopakEguneratu();
 					System.out.println("--------------------------BIZITZA:     "+Partida.getPartida().tamagotchi.bizitza);
 					System.out.println("--------------------------ASETASUNA:   "+Partida.getPartida().tamagotchi.asetasuna);
-					System.out.println("--------------------------KAKA:        "+Partida.getPartida().tamagotchi.kaka);
-					System.out.println("--------------------------GAIXO:       "+Partida.getPartida().tamagotchi.gaixorik);
+					System.out.println("--------------------------KAKA:        "+Partida.getPartida().tamagotchi.getKaka());
+					System.out.println("--------------------------GAIXO:       "+Partida.getPartida().tamagotchi.getGaixorik());
 				}
             }		
         }, 4000, 4000);

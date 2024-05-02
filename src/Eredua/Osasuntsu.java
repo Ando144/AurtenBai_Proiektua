@@ -7,13 +7,13 @@ public class Osasuntsu implements Egoera{
     @Override
     public void kakaEgin(Tamagotchi tamagotchi) {
         tamagotchi.setEgoeraGK(new Kaka());
-        tamagotchi.setKaka(true);
+        //tamagotchi.setKaka(true);
     }
 
     @Override
     public void gaixotu(Tamagotchi tamagotchi) {
         tamagotchi.setEgoeraGK(new Gaixorik());
-        tamagotchi.setGaixorik(true);
+        //tamagotchi.setGaixorik(true);
     }
 
     @Override
