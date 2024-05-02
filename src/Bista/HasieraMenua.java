@@ -66,9 +66,10 @@ public class HasieraMenua extends JFrame implements Observer, WindowListener{
 		return kontroladorea;
 	}
 
+	/* 
 	public void setPartidaErregistro(PartidaErregistro pErreg) {
 		this.pE = pErreg;
-	}
+	}*/
 
 	/**
 	 * Launch the application.
@@ -77,9 +78,9 @@ public class HasieraMenua extends JFrame implements Observer, WindowListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PartidaErregistro pe = new PartidaErregistro();
-					HasieraMenua frame = new HasieraMenua(pe);
-					frame.setPartidaErregistro(pe);
+					//PartidaErregistro pe = new PartidaErregistro();
+					HasieraMenua frame = new HasieraMenua(PartidaErregistro.getPartidaErregistro());
+					//frame.setPartidaErregistro(pe);
 					frame.setVisible(true);
 					//pe.getLehenengoBostak();
 				} catch (Exception e) {
