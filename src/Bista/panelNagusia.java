@@ -560,8 +560,6 @@ public class panelNagusia extends JFrame implements Observer{
 			e.printStackTrace();
 		}
 		frame.setVisible(false);
-		AzkenJokoa.getAzkenJokoa().reset();
-		AzkenJokoa.getAzkenJokoa().partidaBatJokatu();
 	}
 	private void tamagotchiErrebibitu(){
 		hildaFlag = false;

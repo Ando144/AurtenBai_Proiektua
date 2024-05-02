@@ -158,6 +158,7 @@ public class Partida extends Observable{
 			lausegundo.cancel();
 			setChanged();
             notifyObservers(7);
+			AzkenJokoa.getAzkenJokoa().partidaBatJokatu();
 		}
 	}
     private void sopakEguneratu() {
