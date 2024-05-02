@@ -7,39 +7,47 @@ import src.Bista.AzkenJokoaBista;
 
 public class AzkenJokoa extends Observable{
     private static AzkenJokoa nireAzkenJokoa = null;
-    private int emitzaJokalaria;
-    private int emaitzaOrdenagailua;
+    private Aukera aukeraJokalaria;
+    private Aukera aukeraOrdenagailua;
+    private int puntJokalaria;
+    private int puntOrdenagailua;
+    private boolean jokIrabazi;
+
+
+    private AzkenJokoa(){
+        aukeraJokalaria = null;
+        aukeraOrdenagailua = null;
+        puntJokalaria = 0;
+        puntOrdenagailua = 0;
+        jokIrabazi = false;
+    }
+
     public static AzkenJokoa getAzkenJokoa(){
         if (nireAzkenJokoa == null){
             nireAzkenJokoa = new AzkenJokoa();
         }
         return nireAzkenJokoa;
     }
-
-
-    
-
-	public static void main(String[] args) {
-        AzkenJokoa part = new AzkenJokoa();
-		AzkenJokoaBista instance = new AzkenJokoaBista(part);
-	}
-
-
-    public void partidaBatJokatu()
-    {
-        setChanged();
-        notifyObservers("Partida bat jokatu");
-
+    public void reset(){
+        aukeraJokalaria = null;
+        aukeraOrdenagailua = null;
+        puntJokalaria = 0;
+        puntOrdenagailua = 0;
+        jokIrabazi = false;
+        nireAzkenJokoa = null;
     }
-    public void jokoaHasieratu(){
-     
+	public static void main(String[] args) {
+        AzkenJokoa.getAzkenJokoa().partidaBatJokatu();
+	}
+    public void partidaBatJokatu(){
+        new AzkenJokoaBista(this);
     }
     public void setEmaitza(int pIndex, int pBalioa){
 
     }
 
-    private void rondaJokatu(String pAukera){
-        String randomAukera = randomAukera();
+    /*private void rondaJokatu(String pAukera){
+        Aukera randomAukera = randomAukera();
         if (pAukera.equals(randomAukera)) 
         {
             setChanged();
@@ -51,21 +59,53 @@ public class AzkenJokoa extends Observable{
         {
             setChanged();
             notifyObservers("Win");
-            emitzaJokalaria++;
+            puntJokalaria++;
         } else {
             setChanged();
             notifyObservers("Lose");
-            //return false;
+            puntOrdenagailua++;
+        }
+    }*/
+    public void rondaBatJokatu(){
+        if(aukeraJokalaria != null){
+            aukeraJokalaria.jokatu(this, randomAukera());
+            aukeraJokalaria = null;
+            aukeraOrdenagailua = null;
         }
     }
-    private String randomAukera(){
-        String[] opciones = {"piedra", "papel", "tijera"};
-        int randomIndex = (int) (Math.random() * opciones.length);
+    public void jokRondaIrabazi(){
+        puntJokalaria++;
         setChanged();
-        notifyObservers(opciones[randomIndex]);
-        return opciones[randomIndex];
+        if(puntJokalaria >= 2){
+            jokIrabazi = true;
+            notifyObservers("jIrabazi");
+        }else{
+            notifyObservers("rIrabazi");
+        }
     }
-    /*  Eredua                         bista
-     *  empiezalapartida-------------<
-     */
+    public void jokRondaGaldu(){
+        puntOrdenagailua++;
+        setChanged();
+        if(puntOrdenagailua >= 2){
+            notifyObservers("jGaldu");
+        }else{
+            notifyObservers("rGaldu");
+        }
+    }
+    public void rondaBerdinketa(){
+        setChanged();
+        notifyObservers("rBerdinketa");
+    }
+    public void jokalariaAukeraEgin(Aukera pAukera){
+        aukeraJokalaria = pAukera;
+    }
+    private Aukera randomAukera(){
+        Aukera[] aukerak = {new Harria(), new Orria(), new Artazia()};
+        int randomIndex = (int) (Math.random() * aukerak.length);
+        this.aukeraOrdenagailua = aukerak[randomIndex];
+        setChanged();
+        notifyObservers(aukeraOrdenagailua.getClass().getSimpleName());
+        return aukeraOrdenagailua;
+    }
+
 }

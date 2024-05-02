@@ -254,19 +254,19 @@ public class miniJokoaBista extends JFrame implements Observer{
             String aux="Mimitchi";
             ImageIcon pertsonaia;
             if (aux=="Egg"){
-                pertsonaia = new ImageIcon(this.getClass().getResource("/sprites/Egg1.png"));
+                pertsonaia = new ImageIcon(this.getClass().getResource("sprites/Egg1.png"));
             } 
             else if (aux=="Kuchipatchi"){
-                pertsonaia = new ImageIcon(this.getClass().getResource("/sprites/Kuchipatchi1.png"));
+                pertsonaia = new ImageIcon(this.getClass().getResource("sprites/Kuchipatchi1.png"));
             }
             else if (aux=="Mimitchi"){
-                pertsonaia = new ImageIcon(this.getClass().getResource("/sprites/Mimitchi1.png"));
+                pertsonaia = new ImageIcon(this.getClass().getResource("sprites/Mimitchi1.png"));
             }
             else if (aux=="Maskutchi"){
-                pertsonaia = new ImageIcon(this.getClass().getResource("/sprites/Maskutchi1.png"));
+                pertsonaia = new ImageIcon(this.getClass().getResource("sprites/Maskutchi1.png"));
             }
             else {
-                pertsonaia = new ImageIcon(this.getClass().getResource("/sprites/Marutchi1.png"));
+                pertsonaia = new ImageIcon(this.getClass().getResource("sprites/Marutchi1.png"));
             }     
             garbituAurrekoa();
 
@@ -281,7 +281,7 @@ public class miniJokoaBista extends JFrame implements Observer{
 
         if(Minijokoa.getMinijokoa().tartaVisible())
         {
-            ImageIcon tarta = new ImageIcon(this.getClass().getResource("/sprites/dorayaki.png"));
+            ImageIcon tarta = new ImageIcon(this.getClass().getResource("sprites/dorayaki.png"));
 
             laukiak[yTarta][xTarta].setIcon(tarta);
             laukiak[yTarta][xTarta].revalidate();
@@ -297,7 +297,7 @@ public class miniJokoaBista extends JFrame implements Observer{
 
         if(Minijokoa.getMinijokoa().tamagochiVisible())
         {
-            laukiak[yTama][xTama].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Mimitchi1.png")));
+            laukiak[yTama][xTama].setIcon(new ImageIcon(this.getClass().getResource("sprites/Mimitchi1.png")));
             //esto puede dar un problema de que cuando se actualize por un movimiento el tamagochi deje estela de tamagochis
         }
 
@@ -307,7 +307,7 @@ public class miniJokoaBista extends JFrame implements Observer{
         if(Minijokoa.getMinijokoa().tartaVisible())
         {
             
-            laukiak[yTarta][xTarta].setIcon(new ImageIcon(this.getClass().getResource("/sprites/Tarta.png")));
+            laukiak[yTarta][xTarta].setIcon(new ImageIcon(this.getClass().getResource("sprites/Tarta.png")));
         }
         
 
