@@ -123,8 +123,6 @@ public class Tamagotchi extends Observable{
         if(this.asetasuna <= 0){
             this.asetasuna = 0;
         }
-		//setChanged();
-		//notifyObservers();
     }
     private void osasunaGalduKaka(){
         bizitza = bizitza - 5;

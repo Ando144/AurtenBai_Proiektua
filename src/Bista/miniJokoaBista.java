@@ -17,6 +17,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.*;
+import java.util.stream.IntStream;
+
 import javax.swing.Timer;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -27,9 +29,6 @@ import src.Eredua.Mimitchi;
 import src.Eredua.Minijokoa;
 import src.Eredua.Partida;
 import src.Eredua.Tamagotchi;
-
-import java.util.Observer;
-import java.util.Observable;
 
 
 
@@ -108,36 +107,30 @@ public class miniJokoaBista extends JFrame implements Observer{
 
         JPanel matrizea = new JPanel(new GridLayout(12, 12, 0, 0));
 
-        for (int i = 0; i < 12; i++)
+        /*for (int i = 0; i < 12; i++)
         {
             for (int j = 0; j < 12; j++)
             {
                 laukiak[i][j] = new GelaxkaBista(i,j);
-                /*laukiak[i][j].setOpaque(true);
-                laukiak[i][j].setBackground(koloreaAtera(i, j));
-                laukiak[i][j].addMouseListener(new CustomMouseListener(i,j));*/
                 matrizea.add(laukiak[i][j]);
                 Minijokoa.getMinijokoa().getGelaxka(i, j).addObserver(laukiak[i][j]);
             }
-        }
+        }*/
+        IntStream.range(0, 12).forEach(i ->
+            IntStream.range(0, 12).forEach(j -> {
+                laukiak[i][j] = new GelaxkaBista(i,j);
+                matrizea.add(laukiak[i][j]);
+                Minijokoa.getMinijokoa().getGelaxka(i, j).addObserver(laukiak[i][j]);
+            })
+        );
+        
         frame.add(matrizea, BorderLayout.CENTER);
         frame.addKeyListener(new CustomKeyListener());
         frame.setSize(500, 500);
         frame.setVisible(true);
     }
 
-    /*public void LaukiakAktualizatu(){
-         
-        for (int i = 0; i < 12; i++)
-        {
-            for (int j = 0; j < 12; j++)
-            {
-                laukiak[i][j].setBackground(koloreaAtera(i, j));
-            }
-        }
-    }*/
-    public void galduDu()
-    {
+    public void galduDu(){
         if(Minijokoa.irabaziDu()==false)
         {
             frame.dispose();
@@ -316,7 +309,18 @@ public class miniJokoaBista extends JFrame implements Observer{
         int xTama = Minijokoa.getMinijokoa().getLerroa();
         int yTama = Minijokoa.getMinijokoa().getZutabea();
 
-        for (int i = 0; i < laukiak.length; i++) {
+        Arrays.stream(laukiak).forEach(lerro -> 
+            Arrays.stream(lerro).forEach(lauki -> {
+                if (lauki.getIcon()!=null && (lauki.getLerroa() != yTama || lauki.getZutabea() != xTama) && !esTarta(lauki.getLerroa(), lauki.getZutabea())) {
+                    lauki.setIcon(null);
+                    lauki.revalidate();
+                    lauki.repaint();
+                }
+            
+            })
+        );
+
+        /*for (int i = 0; i < laukiak.length; i++) {
             for (int j = 0; j < laukiak[i].length; j++) {
                 if (laukiak[i][j].getIcon() != null && (i != yTama || j != xTama) && !esTarta(i, j)) {
                     laukiak[i][j].setIcon(null);
@@ -324,7 +328,7 @@ public class miniJokoaBista extends JFrame implements Observer{
                     laukiak[i][j].repaint();
                 }
             }
-        }
+        }*/
     }
 
     private boolean esTarta(int lerroa, int zutabea) {

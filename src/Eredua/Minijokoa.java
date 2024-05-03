@@ -3,9 +3,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
+
+import src.Bista.GelaxkaBista;
 import src.Bista.miniJokoaBista;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.stream.IntStream;
 
 
 public class Minijokoa extends Observable{
@@ -42,15 +45,19 @@ public class Minijokoa extends Observable{
         TamagochietaTartaHasieratu();
         AktBuklea();
     }
-    private void hasieratuLaukiak()
-    {
-        for (int i = 0; i < 12; i++)
+    private void hasieratuLaukiak(){
+        /*for (int i = 0; i < 12; i++)
         {
             for (int j = 0; j < 12; j++)
             {
                 laukiak[i][j] = GelaxkaFactory.getGF().createGelaxka((int)(Math.random() * 3) + 1);
             }
-        }
+        }*/
+        IntStream.range(0, 12).forEach(i ->
+            IntStream.range(0, 12).forEach(j -> 
+                laukiak[i][j] = GelaxkaFactory.getGF().createGelaxka((int)(Math.random() * 3) + 1)
+            )
+        );
         setChanged();
         notifyObservers("hasieratu");
     }

@@ -20,6 +20,12 @@ public class GelaxkaBista extends JLabel implements Observer{
         this.addMouseListener(new CustomMouseListener());
         this.setEnabled(true);
     }
+    public int getLerroa(){
+        return this.lerroa;
+    }
+    public int getZutabea(){
+        return this.zutabea;
+    }
     
     public void LaukiaAktualizatu(){
         this.setBackground(koloreaAtera());

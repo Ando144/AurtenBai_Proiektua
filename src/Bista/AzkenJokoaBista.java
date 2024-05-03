@@ -205,7 +205,7 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 	}
 
 	/*private void irudiakAlternatu(){
-		for(int i = 0; i < 3; i++){
+		for (int i = 0; i < 3; i++){
 			makina_irudi.setIcon(new ImageIcon(this.getClass().getResource("sprites/harria.png")));
 			try {Thread.sleep(200);} catch (InterruptedException e) {e.printStackTrace();}
 			makina_irudi.setIcon(new ImageIcon(this.getClass().getResource("sprites/orria.png")));

@@ -686,14 +686,6 @@ public class panelNagusia extends JFrame implements Observer{
 			new ImageIcon((this.getClass().getResource("sprites/Marutchi3.png")))
 		};
 	}
-	/*private boolean panelContains(JPanel panel, JLabel label) {
-		for (Component component : panel.getComponents()) {
-			if (component.equals(label)) {
-				return true;
-			}
-		}
-		return false;
-	}*/
 	private class Kontroladorea implements ActionListener, MouseListener{
 		@Override
 		public void actionPerformed(ActionEvent e){

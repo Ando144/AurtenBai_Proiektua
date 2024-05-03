@@ -8,13 +8,10 @@ public class JanariMultzoa implements Janaria{
 
     @Override
     public void jan() {
-        int kont=0;
-        for(Janaria elem: janariKol){
-            elem.jan();
-            kont++;
-        }
-        int n = kont*(3*kont);
-        Partida.getPartida().sumarPuntuacion(n);
+        janariKol.stream().forEach(Janaria::jan);
+
+        int p = janariKol.size() * (3 * janariKol.size());
+        Partida.getPartida().sumarPuntuacion(p);
         this.janariKol.clear();
     }
 
