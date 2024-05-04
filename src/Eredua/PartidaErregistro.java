@@ -1,23 +1,19 @@
 package src.Eredua;
 import java.util.*;
+import java.util.stream.IntStream;
 import java.io.*;
+import java.net.URI;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class PartidaErregistro extends Observable{
 	private static PartidaErregistro nPartidaErregistro;
-	private String leh;
-	private String big;
-	private String hir;
-	private String lau;
-	private String bos;
-	private String lehSc;
-	private String bigSc;
-	private String hirSc;
-	private String lauSc;
-	private String bosSc;
+	private String[] izenak = new String[5];
+	private String[] scoreak = new String[5];
 	
-	
-	private PartidaErregistro() {
-	}
+	private PartidaErregistro() {}
 	
 	public static PartidaErregistro getPartidaErregistro() {
 		if(nPartidaErregistro == null) {
@@ -27,100 +23,63 @@ public class PartidaErregistro extends Observable{
 	}
 	
 	public String getLeh() {
-		return leh;
+		return izenak[0];
 	}
 	
 	public String getLehSc() {
-		return lehSc;
+		return scoreak[0];
 	}
 	
 	public String getBig() {
-		return big;
+		return izenak[1];
 	}
 	
 	public String getBigSc() {
-		return bigSc;
+		return scoreak[1];
 	}
 	
 	public String getHir() {
-		return hir;
+		return izenak[2];
 	}
 	
 	public String getHirSc() {
-		return hirSc;
+		return scoreak[2];
 	}
 	
 	public String getLau() {
-		return lau;
+		return izenak[3];
 	}
 	
 	public String getLauSc() {
-		return lauSc;
+		return scoreak[3];
 	}
 	
 	public String getBos() {
-		return bos;
+		return izenak[4];
 	}
 	
 	public String getBosSc() {
-		return bosSc;
+		return scoreak[4];
 	}
 	
 	public void getLehenengoBostak() {
-		File file= new File("TamagotchiDB/TamagotchiDB.txt");
-        
-        try{
-        	
-            Scanner entrada = new Scanner(new FileReader(file));
-            String linea;
-            int kont = 0;
-            while (entrada.hasNext() && kont <5) {
-                linea = entrada.nextLine();
-                String[] parts = linea.split(" ### ");
-                String izena = parts[0];
-                String score = parts[1];
-                
-                if (kont == 0) {
-                	leh= izena;        
-                	lehSc = score;
-                }
-           
-                if (kont == 1) {
-                	big= izena;
-                	bigSc = score;
-                }
-                
-                if (kont == 2) {
-                	hir=izena;
-                	hirSc = score;
-                }
-                
-                if (kont == 3) {
-                	lau= izena;
-                	lauSc = score;
-                }
-                
-                if (kont == 4) {
-                	bos=izena;
-                	bosSc = score;
-                }
-
-                kont++;
-            }
-            entrada.close();
-            setChanged();
-            notifyObservers();
-            
-        }
-        catch(IOException e) {e.printStackTrace();}
-
-        
+		Path bidea = Paths.get("TamagotchiDB/TamagotchiDB.txt");
+		try{
+			List<String> lerroak = Files.readAllLines(bidea, Charset.forName("ISO-8859-1"));
+			IntStream.range(0,5).forEach(i -> {
+				String[] zatiak = lerroak.get(i).split(" ### ");
+				izenak[i] = zatiak[0];
+				scoreak[i] = zatiak[1];
+			});
+			setChanged();
+			notifyObservers();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}        
     }
 
 	public void eguneratu(int pScore, String pJokalaria){
 		File file= new File("TamagotchiDB/TamagotchiDB.txt");
-		String[] izenak = {leh, big, hir, lau, bos};
-		String[] scoreak = {lehSc, bigSc, hirSc, lauSc, bosSc};
 		String[] izenakAux = new String[5];
 		String[] scoreakAux = new String[5];
 		int i = 0;
@@ -152,7 +111,6 @@ public class PartidaErregistro extends Observable{
 			writer.close();
 		}
 		catch(IOException e) {e.printStackTrace();}
-		getLehenengoBostak();
 	}
 
 	public void reset(){
@@ -162,18 +120,16 @@ public class PartidaErregistro extends Observable{
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write("");
 			bw.close();
-			this.leh="Ongi Etorri";
-			this.big="Bienvenido";
-			this.hir="Welcome";	
-			this.lau="Bienvenue";	
-			this.bos="Benvenuto";	
-			this.lehSc="0";
-			this.bigSc="0";
-			this.hirSc="0";
-			this.lauSc="0";
-			this.bosSc="0";
-			String[] izenak = {leh, big, hir, lau, bos};
-			String[] scoreak = {lehSc, bigSc, hirSc, lauSc, bosSc};
+			izenak[0]="Ongi Etorri";
+			izenak[1]="Bienvenido";
+			izenak[2]="Welcome";	
+			izenak[3]="Bienvenue";	
+			izenak[4]="Benvenuto";	
+			scoreak[0]="0";
+			scoreak[1]="0";
+			scoreak[2]="0";
+			scoreak[3]="0";
+			scoreak[4]="0";
 			String[] izenakAux = new String[5];
 			String[] scoreakAux = new String[5];
 			int i = 0;
@@ -195,8 +151,5 @@ public class PartidaErregistro extends Observable{
 			writer2.close();
 		}
 		catch(IOException e) {e.printStackTrace();}
-
 	}
-	
- 
 }
