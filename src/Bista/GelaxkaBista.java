@@ -65,7 +65,6 @@ public class GelaxkaBista extends JLabel implements Observer{
 
         @Override
         public void mouseEntered(java.awt.event.MouseEvent e) {
-            //System.out.println("Mouse entered ["+lerroa+"]["+zutabea+"]");
             Minijokoa.getMinijokoa().getGelaxka(lerroa, zutabea).laukiaAktualizatu();
         }
 

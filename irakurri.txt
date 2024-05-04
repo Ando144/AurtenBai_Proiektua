@@ -1,0 +1,1 @@
+.jar fitxategia exekutatzeko, Windows-eko terminaletik egin, fitxategia daukan direktorioan sartuz (ez atera .jar fitxategia bertatik) eta bertan "java -jar AurtenBai_Proiektua.jar" komandoa erabiliz.

@@ -12,9 +12,6 @@ import java.util.stream.IntStream;
 
 
 public class Minijokoa extends Observable{
-   // Tanto aqui como en vista los ejes estan al reves, primero es lerroa(y) y luego zutabea(x)
-   //durante el desarrollo de la aplicacion algunos se han liado con los ejes y han puesto al reves
-   //pero por el bien del funcionamiento de la aplicacion se ha decidido dejarlo asi.
     private static Gelaxka[][] laukiak = new Gelaxka [12][12]; 
     private static int tamagochiLerroa;
     private static int tamagochiZutabea;
@@ -110,10 +107,7 @@ public class Minijokoa extends Observable{
             return false;
         }
     }
-    private static boolean mugimenduaEginDaiteke(int norabidea)
-    /*comprueba si el movimiento esta dentro de la matriz 
-    y si la casilla a la que se quiere desplazar esta con laukiak de valor 0*/
-    {
+    private static boolean mugimenduaEginDaiteke(int norabidea) {
         if(tamagochiVisible()){
             if (norabidea == 1)
             {
@@ -173,7 +167,6 @@ public class Minijokoa extends Observable{
         }
     }
     public void TamagochiMugitu(int norabidea)
-    //mueve el tamagochi en la matriz siempre y cuando sea movimiento valido
     {
         
         if (norabidea == 1)
@@ -257,16 +250,13 @@ public class Minijokoa extends Observable{
         tartaLerroa = (int) (Math.random() * 11)+1;
         tartaZutabea = (int) (Math.random() * 11)+1;
 
-        //Cuenta atras para terminar el juego
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-
                 setChanged();
                 notifyObservers("galduDu");
             }
-            //30 segundos
         },  30000);
 
         if(osoGertu(tartaLerroa, tartaZutabea))
@@ -318,7 +308,6 @@ public class Minijokoa extends Observable{
     }
     public static boolean irabaziDu()
     {
-        //aqui estan al reves por el bien del programa
         if (tamagochiLerroa == tartaZutabea && tamagochiZutabea == tartaLerroa)
         {
             return true;

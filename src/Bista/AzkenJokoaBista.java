@@ -61,7 +61,7 @@ public class AzkenJokoaBista extends JFrame implements Observer{
         frame.setBounds(100, 100, 623, 440);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
-        ButtonGroup group = new ButtonGroup(); //esto es para que no se puedan elegir mas de una opcion
+        ButtonGroup group = new ButtonGroup();
 		group.add(getArtazi_botoia());
 		group.add(getHarri_botoia());
 		group.add(getOrri_botoia());
@@ -108,7 +108,7 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 	private JLabel getHarriIrudia() {
 		if (harriIrudia == null) {
 			harriIrudia = new JLabel("");
-			harriIrudia.setIcon(new ImageIcon(this.getClass().getResource("sprites/harria.png")));
+			harriIrudia.setIcon(new ImageIcon("src/Bista/sprites/harria.png"));
 			harriIrudia.setBounds(96, 10, 113, 105);
 		}
 		return harriIrudia;
@@ -116,7 +116,7 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 	private JLabel getOrriIrudia() {
 		if (orriIrudia == null) {
 			orriIrudia = new JLabel("");
-			orriIrudia.setIcon(new ImageIcon(this.getClass().getResource("sprites/orria.png")));
+			orriIrudia.setIcon(new ImageIcon("src/Bista/sprites/orria.png"));
 			orriIrudia.setBounds(96, 125, 113, 129);
 		}
 		return orriIrudia;
@@ -124,7 +124,7 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 	private JLabel getArtaziIrudia() {
 		if (artaziIrudia == null) {
 			artaziIrudia = new JLabel("");
-			artaziIrudia.setIcon(new ImageIcon(this.getClass().getResource("sprites/artazia.png")));
+			artaziIrudia.setIcon(new ImageIcon("src/Bista/sprites/artazia.png"));
 			artaziIrudia.setBounds(96, 264, 132, 129);
 		}
 		return artaziIrudia;
@@ -191,7 +191,6 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 	private JLabel getMakina_irudi() {
 		if (makina_irudi == null) {
 			makina_irudi = new JLabel("");
-			//makina_irudi.setIcon(new ImageIcon(this.getClass().getResource("sprites/harria.png")));
 			makina_irudi.setBounds(469, 155, 114, 99);
 		}
 		return makina_irudi;
@@ -204,17 +203,6 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 		return labelIrudiMakina;
 	}
 
-	/*private void irudiakAlternatu(){
-		for (int i = 0; i < 3; i++){
-			makina_irudi.setIcon(new ImageIcon(this.getClass().getResource("sprites/harria.png")));
-			try {Thread.sleep(200);} catch (InterruptedException e) {e.printStackTrace();}
-			makina_irudi.setIcon(new ImageIcon(this.getClass().getResource("sprites/orria.png")));
-			try {Thread.sleep(200);} catch (InterruptedException e) {e.printStackTrace();}
-			makina_irudi.setIcon(new ImageIcon(this.getClass().getResource("sprites/artazia.png")));
-			try {Thread.sleep(200);} catch (InterruptedException e) {e.printStackTrace();}
-		}
-	}*/
-
 	public void puntuazioakEguneratu(){
 		jokalari_emaitza.setText(Integer.toString(AzkenJokoa.getAzkenJokoa().getPuntJokalaria()));
 		makina_emaitza.setText(Integer.toString(AzkenJokoa.getAzkenJokoa().getPuntOrdenagailua()));
@@ -223,13 +211,13 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 	public void update(Observable o, Object arg){
 		switch ((String)arg) {
 			case "Harria":
-				makina_irudi.setIcon(new ImageIcon(this.getClass().getResource("sprites/harria.png")));
+				makina_irudi.setIcon(new ImageIcon("src/Bista/sprites/harria.png"));
 				break;
 			case "Orria":
-				makina_irudi.setIcon(new ImageIcon(this.getClass().getResource("sprites/orria.png")));
+				makina_irudi.setIcon(new ImageIcon("src/Bista/sprites/orria.png"));
 				break;
 			case "Artazia":
-				makina_irudi.setIcon(new ImageIcon(this.getClass().getResource("sprites/artazia.png")));
+				makina_irudi.setIcon(new ImageIcon("src/Bista/sprites/artazia.png"));
 				break;
 			case "rIrabazi":
 				puntuazioakEguneratu();
@@ -269,7 +257,6 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 			} else if(e.getSource().equals(getArtazi_botoia())){
 				AzkenJokoa.getAzkenJokoa().jokalariaAukeraEgin(new Artazia());
 			} else if(e.getSource().equals(getJokatuBotoia())){
-				//irudiakAlternatu();
 				AzkenJokoa.getAzkenJokoa().rondaBatJokatu();
 			}
 		}

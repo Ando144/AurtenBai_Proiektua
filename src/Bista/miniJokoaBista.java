@@ -61,8 +61,7 @@ public class miniJokoaBista extends JFrame implements Observer{
     @Override
     public void update(Observable arg0, Object arg1)
     {
-        switch((String)arg1)//((MiniJokoa)arg0).get...
-        {
+        switch((String)arg1) {
             case "hasieratu":
                 Hasieratu();
                 break;
@@ -88,10 +87,7 @@ public class miniJokoaBista extends JFrame implements Observer{
         
     }
 
-    public void Hasieratu() 
-    {
-        
-     //metodo que inicializa una matriz de 12 x 12 de laukias
+    public void Hasieratu() {
         laukiak = new GelaxkaBista[12][12];
         frame = new JFrame("MiniJokua");
         frame.setLayout(new BorderLayout());
@@ -99,9 +95,7 @@ public class miniJokoaBista extends JFrame implements Observer{
 
         puntosPanel = new JPanel();
         puntosPanel.setLayout(new BoxLayout(puntosPanel, BoxLayout.X_AXIS));
-        puntosLabel = new JLabel("Puntuazioa: " + Partida.getPartida().getScore())  ;
-        //Aqui hay que llamar a la clase de monge para ponerle puntos
-        //tambien hay que hacer para que se actualize la puntuacion si se gana el juego
+        puntosLabel = new JLabel("Puntuazioa: " + Partida.getPartida().getScore());
         puntosPanel.add(puntosLabel);
         frame.add(puntosPanel, BorderLayout.NORTH);
 
@@ -146,18 +140,6 @@ public class miniJokoaBista extends JFrame implements Observer{
             Partida.getPartida().sumarPuntuacion(-20);
 
             panel.add(getAceptarButton());
-            /*JButton aceptarButton = new JButton("Aceptar");
-            aceptarButton.addActionListener(getKontroladorea()new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    if(e.getSource().equals(aceptarButton)){
-                        //panelNagusia pn = new panelNagusia(Partida.getPartida());
-                        //pn.setVisible(true);
-                        dispose();
-                        Partida.getPartida().main(null);
-                    }
-                }
-            });
-            panel.add(aceptarButton);*/
             
             perdedorFrame.setSize(300, 200);
             perdedorFrame.setVisible(true);
@@ -184,7 +166,7 @@ public class miniJokoaBista extends JFrame implements Observer{
     }
     public void irabaziDu()
     {
-        frame.dispose(); // Close the main frame
+        frame.dispose();
         
         ganadorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -196,18 +178,6 @@ public class miniJokoaBista extends JFrame implements Observer{
         Partida.getPartida().sumarPuntuacion(20);
         
         panel.add(getAceptarButton());
-        /*JButton aceptarButton = new JButton("Aceptar");
-        aceptarButton.addActionListener(getKontroladorea()/*new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                if(e.getSource().equals(aceptarButton)){
-                    //panelNagusia pn = new panelNagusia(Partida.getPartida());
-                    //pn.setVisible(true);
-                    dispose();
-                    Partida.getPartida().main(null);
-                }
-            }
-        });
-        panel.add(aceptarButton);*/
         
         ganadorFrame.setSize(300, 200);
         ganadorFrame.setVisible(true);
@@ -239,27 +209,22 @@ public class miniJokoaBista extends JFrame implements Observer{
         int xTarta = Minijokoa.getTartaLerroa();
 
         if (Minijokoa.getMinijokoa().tamagochiVisible()==true){
-
-            //ESTO PONERLO CUANDO ESTÉ CONECTADO CON TODO LO DEMÁS
-            //Mimitchi tamagochi= new Mimitchi(y, x, false, false);
-            //String aux=tamagochi.zeinEboluzioDa();
-            
             String aux="Mimitchi";
             ImageIcon pertsonaia;
             if (aux=="Egg"){
-                pertsonaia = new ImageIcon(this.getClass().getResource("sprites/Egg1.png"));
+                pertsonaia = new ImageIcon("src/Bista/sprites/Egg1.png");
             } 
             else if (aux=="Kuchipatchi"){
-                pertsonaia = new ImageIcon(this.getClass().getResource("sprites/Kuchipatchi1.png"));
+                pertsonaia = new ImageIcon("src/Bista/sprites/Kuchipatchi1.png");
             }
             else if (aux=="Mimitchi"){
-                pertsonaia = new ImageIcon(this.getClass().getResource("sprites/Mimitchi1.png"));
+                pertsonaia = new ImageIcon("src/Bista/sprites/Mimitchi1.png");
             }
             else if (aux=="Maskutchi"){
-                pertsonaia = new ImageIcon(this.getClass().getResource("sprites/Maskutchi1.png"));
+                pertsonaia = new ImageIcon("src/Bista/sprites/Maskutchi1.png");
             }
             else {
-                pertsonaia = new ImageIcon(this.getClass().getResource("sprites/Marutchi1.png"));
+                pertsonaia = new ImageIcon("src/Bista/sprites/Marutchi1.png");
             }     
             garbituAurrekoa();
 
@@ -274,7 +239,7 @@ public class miniJokoaBista extends JFrame implements Observer{
 
         if(Minijokoa.getMinijokoa().tartaVisible())
         {
-            ImageIcon tarta = new ImageIcon(this.getClass().getResource("sprites/dorayaki.png"));
+            ImageIcon tarta = new ImageIcon("src/Bista/sprites/dorayaki.png");
 
             laukiak[yTarta][xTarta].setIcon(tarta);
             laukiak[yTarta][xTarta].revalidate();
@@ -290,8 +255,7 @@ public class miniJokoaBista extends JFrame implements Observer{
 
         if(Minijokoa.getMinijokoa().tamagochiVisible())
         {
-            laukiak[yTama][xTama].setIcon(new ImageIcon(this.getClass().getResource("sprites/Mimitchi1.png")));
-            //esto puede dar un problema de que cuando se actualize por un movimiento el tamagochi deje estela de tamagochis
+            laukiak[yTama][xTama].setIcon(new ImageIcon("src/Bista/sprites/Mimitchi1.png"));
         }
 
         int yTarta = Minijokoa.getTartaZutabea();
@@ -300,7 +264,7 @@ public class miniJokoaBista extends JFrame implements Observer{
         if(Minijokoa.getMinijokoa().tartaVisible())
         {
             
-            laukiak[yTarta][xTarta].setIcon(new ImageIcon(this.getClass().getResource("sprites/Tarta.png")));
+            laukiak[yTarta][xTarta].setIcon(new ImageIcon("src/Bista/sprites/Tarta.png"));
         }
         
 
@@ -337,26 +301,7 @@ public class miniJokoaBista extends JFrame implements Observer{
         return lerroa == yTarta && zutabea == xTarta;
     }
 
-    /*private static class CustomMouseListener extends MouseAdapter 
-    {
-        private int lerroa;           // HAU KENDU
-        private int zutabea;
-        
-        public CustomMouseListener(int lerroa, int zutabea)
-        {
-            this.lerroa = lerroa;
-            this.zutabea = zutabea;
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e)
-        {
-            Minijokoa.getMinijokoa().getGelaxka(lerroa, zutabea).laukiaAktualizatu();
-        }
-    }*/
     public class CustomKeyListener extends KeyAdapter{
-     
-        //input de las flechas del teclado
         @Override
         public void keyPressed(KeyEvent e){
             if(!Minijokoa.irabaziDu() && Minijokoa.tamagochiVisible()){
@@ -364,22 +309,18 @@ public class miniJokoaBista extends JFrame implements Observer{
                 if (key == KeyEvent.VK_UP)
                 {
                     Minijokoa.getMinijokoa().TamagochiMugitu(1);
-                    System.out.println("UP");
                 }
                 else if (key == KeyEvent.VK_DOWN)
                 {
                     Minijokoa.getMinijokoa().TamagochiMugitu(2);
-                    System.out.println("DOWN");
                 }
                 else if (key == KeyEvent.VK_LEFT)
                 {
                     Minijokoa.getMinijokoa().TamagochiMugitu(3);
-                    System.out.println("LEFT");
                 }
                 else if (key == KeyEvent.VK_RIGHT)
                 {
                     Minijokoa.getMinijokoa().TamagochiMugitu(4);
-                    System.out.println("RIGHT");
                 }
             }
         }
@@ -396,8 +337,6 @@ public class miniJokoaBista extends JFrame implements Observer{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource().equals(aceptarButton)){
-                    //panelNagusia pn = new panelNagusia(Partida.getPartida());
-                    //pn.setVisible(true);
                     dispose();
                     Minijokoa.getMinijokoa().apagarMinijokoa();
                     Partida.getPartida().minijokoaAmaituDa();

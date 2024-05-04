@@ -36,6 +36,7 @@ public class Partida extends Observable{
 					tamagotchi.kontadoreakEguneratu();
 					bihotzakEguneratu();
 					sopakEguneratu();
+					System.out.println("");
 					System.out.println("--------------------------BIZITZA:     "+Partida.getPartida().tamagotchi.bizitza);
 					System.out.println("--------------------------ASETASUNA:   "+Partida.getPartida().tamagotchi.asetasuna);
 					System.out.println("--------------------------KAKA:        "+Partida.getPartida().tamagotchi.getKaka());
@@ -101,12 +102,9 @@ public class Partida extends Observable{
 		int biz = this.piruletak;
 		int ase = this.koilarak;
 		this.piruletak = 0; this.koilarak = 0; 
-		System.out.println(biz);
-		System.out.println(ase);
 		if(biz!=0){
 			Puntuacion= Puntuacion+(biz * 3)-1;
 			this.tamagotchi.bizitza = this.tamagotchi.bizitza +(10 * biz);
-			System.out.println(this.tamagotchi.bizitza+" bizitzan sartu nahiz");
 			bihotzakEguneratu();
 			scoreEguneratu();
 		}
@@ -200,10 +198,7 @@ public class Partida extends Observable{
 	public int getScore(){
 		return score;
 	}
-	//private int Puntuacion;
-	private int diferencia;
 	private void scoreEguneratu(){
-		//+1 cada vez que pasan 4 segundos
 		score=score +1;
 		if (this.tamagotchi.getGaixorik()==true){
 			score =score - 5;
@@ -211,28 +206,6 @@ public class Partida extends Observable{
 		if (this.tamagotchi.getKaka()==true){
 			score =score - 5;
 		}
-		/*if (this.tamagotchi.zeinEboluzioDa().equals("Marutchi")){
-			score =score + 20;
-		}
-		if(this.tamagotchi.bizitza>40){
-			score = score -5;
-		}
-		if(this.tamagotchi.asetasuna>40){
-			score = score -5;
-		}*/
-		/*Minijokoa minijokoa=Minijokoa.getMinijokoa();
-		if(minijokoa.irabaziDu()==true){
-			Puntuacion =Puntuacion + 20;
-		}
-		if(minijokoa.irabaziDu()==false){
-			Puntuacion =Puntuacion - 20;
-		}*/
-
-		//si se da una piruleta o sopa +5 
-		/*if(score<0){
-			score=0;
-		}*/
-		//score = Puntuacion;
 		setChanged();
 		notifyObservers(19);
 	}
@@ -243,15 +216,9 @@ public class Partida extends Observable{
 		boolean amaitu =false;
 		if (b<=0){
 			amaitu=true;
-			//lausegundo.cancel();
-			//setChanged();
-			//notifyObservers(7);
 		}
 		if (a<=0){
 			amaitu=true;
-			//lausegundo.cancel();
-			//setChanged();
-			//notifyObservers(6);
 		}
 		return amaitu;
 	}
@@ -294,6 +261,7 @@ public class Partida extends Observable{
 					tamagotchi.kontadoreakEguneratu();
 					bihotzakEguneratu();
 					sopakEguneratu();
+					System.out.println("");
 					System.out.println("--------------------------BIZITZA:     "+Partida.getPartida().tamagotchi.bizitza);
 					System.out.println("--------------------------ASETASUNA:   "+Partida.getPartida().tamagotchi.asetasuna);
 					System.out.println("--------------------------KAKA:        "+Partida.getPartida().tamagotchi.getKaka());

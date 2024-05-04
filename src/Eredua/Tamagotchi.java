@@ -90,7 +90,6 @@ public class Tamagotchi extends Observable{
     }
 	private void tamagotchiEguneratu( ){
 		String izena =this.zeinEboluzioDa();
-		//System.out.println(izena);
 		if (izena == "Marutchi") {
 			setChanged();
 			notifyObservers(15);
@@ -132,22 +131,10 @@ public class Tamagotchi extends Observable{
         bizitza = bizitza - 7;
         asetasuna = asetasuna + 5;
     }
-
-    /*public void zeinEgoeraGK(){
-        if(this.egoeraGK instanceof Osasuntsu){
-            System.out.println("Osasuntsu");
-        }else if(this.egoeraGK instanceof Kaka){
-            System.out.println("Kaka");
-        }else if(this.egoeraGK instanceof Gaixorik){
-            System.out.println("Gaixorik");
-        }
-    }*/
 	public void kakaEdoGaixoSaiatu(){
         if(this.getKaka()==false && this.getGaixorik()==false){
             Random probabilitatea = new Random();
-            System.out.println("KAIXO");
             int zenbakia = probabilitatea.nextInt(101);
-            System.out.println("kaka zenb "+zenbakia);
             if(1<=zenbakia && zenbakia<=20 && this.getKaka()==false){
                 //this.tamagotchi.setKaka(true);
                 this.kakaEgin();
@@ -156,7 +143,6 @@ public class Tamagotchi extends Observable{
             else{
                 probabilitatea = new Random();
                 zenbakia = probabilitatea.nextInt(101);
-                System.out.println("gaixo zenb "+zenbakia);
                 if(1<=zenbakia && zenbakia<=30){
                     //this.tamagotchi.gaixorik = true;
                     this.gaixotu();

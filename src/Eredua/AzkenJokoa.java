@@ -11,7 +11,6 @@ public class AzkenJokoa extends Observable{
     private Aukera aukeraOrdenagailua;
     private int puntJokalaria;
     private int puntOrdenagailua;
-    //private boolean jokIrabazi;
 
 
     private AzkenJokoa(){
@@ -19,7 +18,6 @@ public class AzkenJokoa extends Observable{
         aukeraOrdenagailua = null;
         puntJokalaria = 0;
         puntOrdenagailua = 0;
-        //jokIrabazi = false;
     }
 
     public static AzkenJokoa getAzkenJokoa(){
@@ -33,12 +31,8 @@ public class AzkenJokoa extends Observable{
         aukeraOrdenagailua = null;
         puntJokalaria = 0;
         puntOrdenagailua = 0;
-        //jokIrabazi = false;
         nireAzkenJokoa = null;
     }
-	public static void main(String[] args) {
-        AzkenJokoa.getAzkenJokoa().partidaBatJokatu();
-	}
     public void partidaBatJokatu(){
         new AzkenJokoaBista(this);
     }
@@ -59,7 +53,6 @@ public class AzkenJokoa extends Observable{
         puntJokalaria++;
         setChanged();
         if(puntJokalaria >= 2){
-            //jokIrabazi = true;
             notifyObservers("jIrabazi");
         }else{
             notifyObservers("rIrabazi");

@@ -55,7 +55,7 @@ public class HasieraMenua extends JFrame implements Observer, WindowListener{
 	private JLabel LauScore;
 	private JLabel BosName;
 	private JLabel BosScore;
-	private PartidaErregistro pE;
+	private JFrame nireHasieraMenua;
 
 	private Kontroladorea kontroladorea = null;
 
@@ -66,34 +66,21 @@ public class HasieraMenua extends JFrame implements Observer, WindowListener{
 		return kontroladorea;
 	}
 
-	/* 
-	public void setPartidaErregistro(PartidaErregistro pErreg) {
-		this.pE = pErreg;
-	}*/
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					//PartidaErregistro pe = new PartidaErregistro();
-					HasieraMenua frame = new HasieraMenua(PartidaErregistro.getPartidaErregistro());
-					//frame.setPartidaErregistro(pe);
-					frame.setVisible(true);
-					//pe.getLehenengoBostak();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public static HasieraMenua getHasieraMenua() {
+		HasieraMenua nireHasieraMenua = null;
+		if (nireHasieraMenua == null) {
+			nireHasieraMenua = new HasieraMenua(PartidaErregistro.getPartidaErregistro());
+		}
+		return nireHasieraMenua;
 	}
-
-	/**
-	 * Create the frame.
-	 */
-	public HasieraMenua(Observable pErreg) {
+	public void reset(){
+		nireHasieraMenua = null;
+	}
+	public void hasi(){
+		HasieraMenua frame = new HasieraMenua(PartidaErregistro.getPartidaErregistro());
+		frame.setVisible(true);
+	}
+	private HasieraMenua(Observable pErreg) {
 		setFont(new Font("Dialog", Font.PLAIN, 31));
 		getContentPane().setBackground(new Color(0, 0, 0));
 		getContentPane().setForeground(new Color(0, 0, 0));
@@ -114,10 +101,9 @@ public class HasieraMenua extends JFrame implements Observer, WindowListener{
 				Color.YELLOW
 		};
 		tamagotchiIrudiak = new ImageIcon[]{
-                new ImageIcon(this.getClass().getResource("sprites/Marutchi1.png")),
-                new ImageIcon(this.getClass().getResource("sprites/Marutchi2.png")),
-                new ImageIcon(this.getClass().getResource("sprites/Marutchi4.png"))
-                // Irudiak
+                new ImageIcon("src/Bista/sprites/Marutchi1.png"),
+                new ImageIcon("src/Bista/sprites/Marutchi2.png"),
+                new ImageIcon("src/Bista/sprites/Marutchi4.png")
         };
 		intOrain = 0;
         intOrain1= 0;
@@ -234,7 +220,7 @@ public class HasieraMenua extends JFrame implements Observer, WindowListener{
 	private JLabel getTituluIrudi() {
 		if (TituluIrudi == null) {
 			TituluIrudi = new JLabel("");
-			TituluIrudi.setIcon(new ImageIcon(this.getClass().getResource("sprites/MainTitle.png")));
+			TituluIrudi.setIcon(new ImageIcon("src/Bista/sprites/MainTitle.png"));
 		}
 		return TituluIrudi;
 	}
@@ -242,7 +228,7 @@ public class HasieraMenua extends JFrame implements Observer, WindowListener{
 		if (MarutchiIrudi == null) {
 			MarutchiIrudi = new JLabel("");
 			MarutchiIrudi.setBounds(80, 0, 200, 200);
-			MarutchiIrudi.setIcon(new ImageIcon(this.getClass().getResource("sprites/Marutchi1.png")));
+			MarutchiIrudi.setIcon(new ImageIcon("src/Bista/sprites/Marutchi1.png"));
 		}
 		else {
 			MarutchiIrudi.setIcon(tamagotchiIrudiak[intOrain]);
@@ -254,7 +240,7 @@ public class HasieraMenua extends JFrame implements Observer, WindowListener{
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("");
 			lblNewLabel.setBounds(28, 124, 54, 48);
-			lblNewLabel.setIcon(new ImageIcon(this.getClass().getResource("sprites/gudetama1.gif")));
+			lblNewLabel.setIcon(new ImageIcon("src/Bista/sprites/gudetama1.gif"));
 		}
 		return lblNewLabel;
 	}
@@ -358,10 +344,7 @@ public class HasieraMenua extends JFrame implements Observer, WindowListener{
 			Lau.setBounds(10, 115, 43, 14);
 		}
 		return Lau;
-	}
-	
-	//   ((PartidaErregistroa)arg0).metodo1()
-	
+	}	
 	
 	private JLabel getBos() {
 		if (Bos == null) {
@@ -376,7 +359,6 @@ public class HasieraMenua extends JFrame implements Observer, WindowListener{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
 		LehName.setText(((PartidaErregistro)o).getLeh());
 		LehScore.setText(((PartidaErregistro)o).getLehSc());
 		
@@ -501,7 +483,6 @@ public class HasieraMenua extends JFrame implements Observer, WindowListener{
 				Partida.getPartida().reset();
 				Partida.getPartida().setIzena(PartIztxt.getText());
 				Partida.getPartida().PartidaHasiera();
-				System.out.println("partida berria");
 				dispose();
 			}else if(e.getSource().equals(ExitBotoi)){
 				System.exit(0);

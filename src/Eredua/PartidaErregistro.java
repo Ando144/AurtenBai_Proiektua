@@ -16,7 +16,7 @@ public class PartidaErregistro extends Observable{
 	private String bosSc;
 	
 	
-	public PartidaErregistro() {
+	private PartidaErregistro() {
 	}
 	
 	public static PartidaErregistro getPartidaErregistro() {
@@ -67,7 +67,7 @@ public class PartidaErregistro extends Observable{
 	}
 	
 	public void getLehenengoBostak() {
-		File file= new File(this.getClass().getResource("/TamagotchiDB/TamagotchiDB.txt").toString().replace("file:/", ""));
+		File file= new File("TamagotchiDB/TamagotchiDB.txt");
         
         try{
         	
@@ -118,7 +118,7 @@ public class PartidaErregistro extends Observable{
     }
 
 	public void eguneratu(int pScore, String pJokalaria){
-		File file= new File(this.getClass().getResource("/TamagotchiDB/TamagotchiDB.txt").toString().replace("file:/", ""));
+		File file= new File("TamagotchiDB/TamagotchiDB.txt");
 		String[] izenak = {leh, big, hir, lau, bos};
 		String[] scoreak = {lehSc, bigSc, hirSc, lauSc, bosSc};
 		String[] izenakAux = new String[5];
@@ -156,7 +156,7 @@ public class PartidaErregistro extends Observable{
 	}
 
 	public void reset(){
-		File file= new File(this.getClass().getResource("/TamagotchiDB/TamagotchiDB.txt").toString().replace("file:/", ""));
+		File file= new File("TamagotchiDB/TamagotchiDB.txt");
 		try{
 			FileWriter fw = new FileWriter(file);
 			BufferedWriter bw = new BufferedWriter(fw);
