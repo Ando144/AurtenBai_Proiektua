@@ -20,7 +20,7 @@ public class AzkenJokoaBista extends JFrame implements Observer{
     private static final long serialVersionUID = 1L;
     private JFrame frame;
 	private JPanel panel;
-	private JPanel contentPane;
+	private ButtonGroup group;
 	private JRadioButton harri_botoia;
 	private JRadioButton orri_botoia;
 	private JRadioButton artazi_botoia;
@@ -61,7 +61,7 @@ public class AzkenJokoaBista extends JFrame implements Observer{
         frame.setBounds(100, 100, 623, 440);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
-        ButtonGroup group = new ButtonGroup();
+        group = new ButtonGroup();
 		group.add(getArtazi_botoia());
 		group.add(getHarri_botoia());
 		group.add(getOrri_botoia());
@@ -222,13 +222,16 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 			case "rIrabazi":
 				puntuazioakEguneratu();
             	JOptionPane.showMessageDialog(this, "Ronda hau irabazi duzu.");
+				group.clearSelection();
 				break;
 			case "rGaldu":
 				puntuazioakEguneratu();
 				JOptionPane.showMessageDialog(this, "Ronda hau galdu duzu.");
+				group.clearSelection();
 				break;
 			case "rBerdinketa":
 				JOptionPane.showMessageDialog(this, "Berdinketa egon da. Ronda errepikatu.");
+				group.clearSelection();
 				break;
 			case "jIrabazi":
 				puntuazioakEguneratu();
