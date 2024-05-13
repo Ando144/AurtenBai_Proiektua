@@ -52,10 +52,10 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 
     public void hasieratu(){
         frame= new JFrame();
-        frame.getContentPane().setBackground(new Color(229, 229, 229));
-        frame.setBackground(new Color(229, 229, 229));
+        frame.getContentPane().setBackground(new Color(0, 0, 0));
+        frame.setBackground(new Color(0, 0, 0));
         panel = new JPanel();
-        panel.setBackground(new Color(229, 229, 229));
+        panel.setBackground(new Color(0, 0, 0));
         frame.getContentPane().add(panel);
         frame.setForeground(new Color(0, 0, 0));
         frame.setBounds(100, 100, 623, 440);
@@ -81,7 +81,8 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 	private JRadioButton getHarri_botoia() {
 		if (harri_botoia == null) {
 			harri_botoia = new JRadioButton("Harria");
-			harri_botoia.setBackground(new Color(229, 229, 229));
+			harri_botoia.setBackground(new Color(0, 0, 0));
+			harri_botoia.setForeground(new Color(255, 0, 0));
 			harri_botoia.setBounds(6, 53, 84, 21);
 			harri_botoia.addActionListener(getKontroladorea());
 		}
@@ -90,7 +91,8 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 	private JRadioButton getOrri_botoia() {
 		if (orri_botoia == null) {
 			orri_botoia = new JRadioButton("Orria");
-			orri_botoia.setBackground(new Color(229, 229, 229));
+			orri_botoia.setBackground(new Color(0, 0, 0));
+			orri_botoia.setForeground(new Color(255, 0, 0));
 			orri_botoia.setBounds(6, 178, 84, 21);
 			orri_botoia.addActionListener(getKontroladorea());
 		}
@@ -99,7 +101,8 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 	private JRadioButton getArtazi_botoia() {
 		if (artazi_botoia == null) {
 			artazi_botoia = new JRadioButton("Artazia");
-			artazi_botoia.setBackground(new Color(229, 229, 229));
+			artazi_botoia.setBackground(new Color(0, 0, 0));
+			artazi_botoia.setForeground(new Color(255, 0, 0));
 			artazi_botoia.setBounds(6, 320, 84, 21);
 			artazi_botoia.addActionListener(getKontroladorea());
 		}
@@ -132,7 +135,7 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 	private JPanel getEmaitzen_panela() {
 		if (emaitzen_panela == null) {
 			emaitzen_panela = new JPanel();
-			emaitzen_panela.setBackground(new Color(229, 229, 229));
+			emaitzen_panela.setBackground(new Color(0, 0, 0));
 			emaitzen_panela.setBorder(new LineBorder(new Color(0, 0, 0)));
 			emaitzen_panela.setBounds(244, 10, 210, 105);
 			emaitzen_panela.setLayout(null);
@@ -147,27 +150,31 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 	private JLabel getLabelPuntuak() {
 		if (labelPuntuak == null) {
 			labelPuntuak = new JLabel("EMAITZA");
-			labelPuntuak.setBounds(71, 10, 71, 13);
+			labelPuntuak.setForeground(new Color(255, 0, 0));
+			labelPuntuak.setBounds(57, 10, 71, 13);
 		}
 		return labelPuntuak;
 	}
 	private JLabel getLabelZurePuntuak() {
 		if (labelZurePuntuak == null) {
 			labelZurePuntuak = new JLabel("ZU");
-			labelZurePuntuak.setBounds(22, 32, 52, 13);
+			labelZurePuntuak.setForeground(new Color(255, 0, 0));
+			labelZurePuntuak.setBounds(24, 32, 52, 13);
 		}
 		return labelZurePuntuak;
 	}
 	private JLabel getLabelPuntuakMakina() {
 		if (labelPuntuakMakina == null) {
 			labelPuntuakMakina = new JLabel("MAKINA");
-			labelPuntuakMakina.setBounds(117, 32, 83, 13);
+			labelPuntuakMakina.setForeground(new Color(255, 0, 0));
+			labelPuntuakMakina.setBounds(110, 32, 83, 13);
 		}
 		return labelPuntuakMakina;
 	}
 	private JLabel getJokalari_emaitza() {
 		if (jokalari_emaitza == null) {
 			jokalari_emaitza = new JLabel("0");
+			jokalari_emaitza.setForeground(new Color(255, 0, 0));
 			jokalari_emaitza.setBounds(27, 55, 13, 25);
 		}
 		return jokalari_emaitza;
@@ -175,6 +182,7 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 	private JLabel getMakina_emaitza() {
 		if (makina_emaitza == null) {
 			makina_emaitza = new JLabel("0");
+			makina_emaitza.setForeground(new Color(255, 0, 0));
 			makina_emaitza.setBounds(129, 55, 13, 25);
 		}
 		return makina_emaitza;
@@ -182,7 +190,8 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 	private JButton getJokatuBotoia() {
 		if (jokatuBotoia == null) {
 			jokatuBotoia = new JButton("JOKATU");
-			jokatuBotoia.setBackground(new Color(229, 229, 229));
+			jokatuBotoia.setBackground(new Color(0, 0, 0));
+			jokatuBotoia.setForeground(new Color(255, 0, 0));
 			jokatuBotoia.setBounds(292, 188, 104, 53);
 			jokatuBotoia.addActionListener(getKontroladorea());
 		}
@@ -191,13 +200,14 @@ public class AzkenJokoaBista extends JFrame implements Observer{
 	private JLabel getMakina_irudi() {
 		if (makina_irudi == null) {
 			makina_irudi = new JLabel("");
-			makina_irudi.setBounds(469, 155, 114, 99);
+			makina_irudi.setBounds(469, 155, 114, 117);
 		}
 		return makina_irudi;
 	}
 	private JLabel getLabelIrudiMakina() {
 		if (labelIrudiMakina == null) {
 			labelIrudiMakina = new JLabel("MAKINA");
+			labelIrudiMakina.setForeground(new Color(255, 0, 0));
 			labelIrudiMakina.setBounds(488, 125, 65, 13);
 		}
 		return labelIrudiMakina;
