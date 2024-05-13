@@ -93,10 +93,6 @@ public class Partida extends Observable{
 		//tamagotchi.setKaka(false);
 		tamagotchi.sendatu();
 	}
-	private void hasieratuPanelNagusia(){
-		setChanged();
-		notifyObservers(1);
-	}
 	public void tamaJan(){
 		/*int punt=0;
 		int biz = this.piruletak;
